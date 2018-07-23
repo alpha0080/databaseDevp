@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link href="{{url_for('static',filename='css/bootstrap.min.css')}}" rel="stylesheet">
+    <link href="{{url_for('static',filename='css/fileinput.min.css')}}" rel="stylesheet">
+    <link href="{{url_for('static',filename='css/fileinput-rtl.min.css')}}" rel="stylesheet">
+    <link href="{{url_for('static',filename='css/jquery-ui.css')}}" rel="stylesheet">
+    <link href="{{url_for('static',filename='dropzone/dropzone.css')}}" rel="stylesheet">
+
+    <script src="{{url_for('static', filename='jqueryUI/jquery.js')}}"></script>
+
+    <script src="{{url_for('static', filename='dropzone/dropzone.js')}}"></script>
+    <script>
+
+
+    </script>
+    <title>Document</title>
+</head>
+
+<body>
+        test test
+    <form id="uploadZone" action="{{ url_for('dropzoneUploadTest') }}" class="dropzone" method="POST" enctype="multipart/form-data">
+        
+        
+    </form>
+    
+    
+</div>
+
+<script>
+Dropzone.options.uploadZone = {
+    paramName: "file", // The name that will be used to transfe the file
+    maxFilesize: 500, // MB 
+    acceptedFiles:  ".json , .png, .jpg , .atlas"
+}
+    
+    </script>
+</body>
+
+</html>

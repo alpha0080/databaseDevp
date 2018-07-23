@@ -1,0 +1,955 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!--
+
+
+    
+    
+    -->
+    <!-- meta使用viewport以确保页面可自由缩放 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 引入 dropzoe 样式 -->
+    <script src="https://rawgit.com/enyo/dropzone/master/dist/dropzone.js"></script>
+    <link rel="stylesheet" href="https://rawgit.com/enyo/dropzone/master/dist/dropzone.css">
+
+    <!-- 引入 jQuery Mobile 样式 -->
+    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
+
+    <!-- 引入 jQuery 库 -->
+    <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+
+    <!-- 引入 jQuery Mobile 库 -->
+    <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+
+    <!--
+	<link href="{{url_for('static',filename='css/jquery-ui.css')}}" rel="stylesheet">
+
+	<script src="{{url_for('static', filename='jqueryUI/jquery.js')}}"></script>
+-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="{{url_for('static', filename='jqueryUI/jqpaginator.min.js')}}"></script>
+    <title>QC 上傳</title>
+
+</head>
+
+<body>
+
+    <style>
+        .inputHeight {
+
+            height: 10px
+        }
+
+        .no-gutters {
+            margin-right: 0;
+            margin-left: 0;
+
+            >.col,
+            >[class*="col-"] {
+                padding-right: 0;
+                padding-left: 0;
+            }
+        }
+
+        .tableTr {
+            background-color: transparent;
+            table-layout: fixed;
+            text-align: left;
+            vertical-align: middle;
+
+        }
+
+        .projectIcon {
+            width: 20;
+            font-size: 12px;
+            background-color: black;
+            color: azure
+        }
+
+
+
+        .position-fixed-top {
+            position: fixed;
+            top: 10;
+            left: 0;
+            background: rgb(0, 0, 0);
+            color: #fff;
+            text-align: center;
+            text-decoration: none;
+        }
+
+        .position-fixed {
+            position: fixed;
+            top: 100px;
+            left: 500px;
+            background: rgb(0, 0, 0);
+            color: #fff;
+            text-align: center;
+            text-decoration: none;
+        }
+
+        .position-sticky-left {
+            position: relative;
+            top: 10px;
+            left: 10px;
+            background: rgb(255, 255, 255);
+            color: #fff;
+            text-align: center;
+            text-decoration: none;
+            z-index: 500 !important;
+        }
+
+
+        .zIndexA {
+            z-index: 1000 !important;
+
+        }
+
+        .td_project {}
+
+        .leftNav {}
+
+        .leftNavActive {
+
+            color: brown;
+        }
+
+    </style>
+
+    <div class="container-fluid">
+        <div class="row clearfix">
+            <!-- left side start-->
+
+
+            <div class="col-sm-4 column -fluid" id="divSideLeft">
+                <div class="row clearfix">
+                    <div class="col-sm-12 column">
+                        <div class="row clearfix">
+                            <div class="col-sm-2 column">
+                                <div class="row clearfix">
+                                    <div class="col-sm-12 column" >
+                                        <nav class="navbar navbar-expand-lg bg-light navbar-light justify-content-start zIndexA">
+                                            <ul class="navbar-nav">
+                                                <li class="nav-item" id="navbarQC">
+                                                    <a class="nav-link" href="#" id="navbarTextQC">
+                                                        <h6 class="display-6 font-weight-bold">QC</h6>
+                                                    </a>
+                                                    <!-- <a class="nav-link align-middle " id="navbarTextQC" href="#">QC</a>-->
+                                                </li>
+                                            </ul>
+                                        </nav>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-10 column" id="projectTableList">
+
+                                <div class="row clearfix">
+
+                                    <nav class="navbar navbar-expand-lg bg-light navbar-light justify-content-start zIndexA">
+                                        <!--<nav class="navbar navbar-expand-sm bg-dark navbar-dark zIndexA">-->
+                                        <ul class="navbar-nav">
+                                            <li class="nav-item active leftNav" id="navbarProcess">
+                                                <a class="nav-link" href="#" id="navbarTextProcess">
+                                                    <h6 class="display-6 font-weight-normal">InProgress</h6>
+                                                </a>
+                                                <!--<a class="nav-link leftNav" id="navbarTextProcess" style="color:darkslategrey" href="#">進行中</a>-->
+                                            </li>
+                                            <li class="nav-item leftNav" id="navbarRecent">
+                                                <a class="nav-link" href="#" id="navbarTextRecent">
+                                                    <h6 class="display-6 font-weight-normal">Recent</h6>
+                                                </a>
+                                                <!--<a class="nav-link leftNav" id="navbarTextRecent" style="color:cadetblue" href="#">最近</a>-->
+                                            </li>
+                                            <!--
+                            <li class="nav-item" id="navbarRecentInputText">
+                                <input class="form-control w-2 p-2" type="text" value="20" style="width: 50px;margin: -5px">
+                              </li>
+                              -->
+                                            <li class="nav-item leftNav" id="navbarComplete">
+                                                <a class="nav-link" href="#" id="navbarTextComplete">
+                                                    <h6 class="display-6 font-weight-normal">Completed</h6>
+                                                </a>
+                                                <!-- <a class="nav-link leftNav" id="navbarTextComplete" style="color:cadetblue" href="#">已完成</a> -->
+                                            </li>
+                                        </ul>
+                                    </nav>
+
+
+                                </div>
+                                <div class="row clearfix">
+
+                                    <table class="table col-lg table-hover tableTr  " id="tableLeft">
+                                        <thead>
+                                            <tr>
+
+                                                <th style="width:140px;border-width: 0px"></th>
+                                                <th style="width:200px;border-width: 0px"></th>
+                                                <th style="width:140px;border-width: 0px"></th>
+
+                                            </tr>
+
+                                        </thead>
+                                        <tbody id="tableBodyLeft">
+
+
+                                        </tbody>
+                                    </table>
+
+                                </div>
+                                <div class="row clearfix">
+                                    <table class="table col-lg table-hover tableTr  " id="tableLeft">
+                                        <thead>
+                                            <tr>
+
+                                                <th style="width:140px;border-width: 0px"></th>
+                                                <th style="width:200px;border-width: 0px"></th>
+                                                <th style="width:140px;border-width: 0px"></th>
+
+                                            </tr>
+
+                                        </thead>
+                                        <tbody id="tableBodyLeft">
+
+
+                                        </tbody>
+                                    </table>
+
+
+
+                                </div>
+                                <div class="row clearfix">
+                                    <button type="button" id="showMoreItemLeft" class="btn btn-info align-middle" style="background-color: rgb(220,220,220)"><h5>more projects</h5></button>
+
+
+                                </div>
+
+                            </div>
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+            <!-- left side end -->
+            <div class="col-sm-8 column">
+                <div class="row no-gutters clearfix ">
+
+
+                    <div class="col-sm-8 column">
+                        <nav class="navbar navbar-expand-lg bg-dark navbar-dark ">
+                            <ul class="navbar-nav" id="modeList">
+                                <li class="nav-item active">
+                                    <a class="nav-link" href="#" id="qcUpload">
+                                        <h6 class="display-6 font-weight-light">Upload</h6>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#" id="preView">
+                                        <h6 class="display-6 font-weight-light">PreView</h6>
+                                    </a>
+                                </li>
+
+                            </ul>
+                        </nav>
+                    </div>
+
+                    <div class="col-sm-2 column" id="divDataTime">
+                        <nav class="navbar navbar-expand-lg bg-dark navbar-dark justify-content-start ">
+                            <ul class="navbar-nav " id="modeListUser">
+                                <li class="nav-item ">
+                                    <a class="nav-link" href="#" id="dataShow">
+                                        <h6 class="display-6 font-weight-light">data</h6>
+                                    </a>
+                                </li>
+
+
+                            </ul>
+                        </nav>
+                    </div>
+
+                    <div class="col-sm-2 column" id="divDataTime">
+                        <nav class="navbar navbar-expand-lg bg-dark navbar-dark justify-content-start ">
+                            <ul class="navbar-nav " id="modeListUser">
+                                <li class="nav-item " id="loginBtnLi">
+                                    <a class="nav-link" href="#">
+                                        <h6 class="display-6 font-weight-light">Login</h6>
+                                    </a>
+                                </li>
+
+
+                            </ul>
+                        </nav>
+                    </div>
+
+
+
+
+
+                </div>
+                <div class="row no-gutters clearfix">
+                    <div class="col-sm-12 column">
+                        <div class="row" id="loginDataSubmit">
+                            <div class="col-sm-4">
+                                <input class="form-control text text-sm-center" type="text" placeholder="your id" aria-label="Search">
+                            </div>
+                            <div class="col-sm-4">
+                                <input class="form-control text text-sm-center" type="text" placeholder="password" aria-label="Search">
+                            </div>
+                            <div class="col-sm-4">
+                                <button class="btn btn-outline-success" type="submit">submit</button>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="row clearfix">
+                    <div class="col-sm-12 column">
+                        <a class="nav-link leftNav" id="divRightInfo" style="color:cadetblue" href="#">
+                            <h6 class="text-danger display-6" id="infoProjectText"></h6>
+                        </a>
+                    </div>
+                </div>
+                <div class="row clearfix">
+                    <div class="col-sm-12 column">
+                        <form action="/qcUpload" class="dropzone" id="dropzoneArea" method="POST"></form>
+                        <button type="button" class="btn btn-outline-primary" id="submitFiles">submit</button>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- test 3   divRightInfo qc item list-->
+                <div class="row clearfix">
+                    <div class="col-sm" id="tableRight">
+                        <table class="table col-sm table-hover tableTr">
+                            <thead>
+                                <tr>
+                                    <th style="width:10px">#</th>
+                                    <th style="width:150px">#</th>
+                                    <th style="width:300px">First</th>
+
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <div class="col-1" style="height: 112px;background-color:darkcyan"></div>
+
+                                    </td>
+                                    <td>
+                                        <img class="rounded float-left" src="http://vg.com/assets/simpleslot/chi_hsi_cf/qc/20180531/0528_七夕shot_01.jpg" alt="Generic placeholder image" style="height: 112px;width: 200px">
+                                    </td>
+                                    <td>Otto</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="col-1" style="height: 112px;background-color:darkcyan"></div>
+
+                                    </td>
+                                    <td>
+                                        <img class="rounded float-left" src="http://vg.com/assets/simpleslot/battle_of_ball/icon/battle_of_ball_v001_icon.png" alt="Generic placeholder image" style="height: 112px;width: 200px">
+                                    </td>
+                                    <td>Thornton</td>
+                                </tr>
+
+
+                                <tr>
+                                    <td>
+                                        <div class="col-1" style="height: 112px;background-color:darkcyan"></div>
+
+                                    </td>
+                                    <td>
+                                        <img class="rounded float-left" src="http://192.168.161.193:8080/1.jpg" alt="Generic placeholder image" style="height: 112px;width: 200px">
+                                    </td>
+                                    <td>Thornton</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="col-1" style="height: 112px;background-color:darkcyan"></div>
+
+                                    </td>
+                                    <td>
+
+                                        <iframe class="h-70" style="height: 112px;width: 200px" src="http://vg.com/assets/simpleslot/chi_hsi_cf/qc/20180531/render_effect_0531.mp4"></iframe>
+
+                                    </td>
+                                    <td>the Bird</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+
+
+            </div>
+        </div>
+
+
+
+
+
+
+
+
+
+
+        <script>
+            //初始設定 start
+
+
+            var webServerRoot = "e:/webServer"
+            var uploadPath = webServerRoot + "/uploads"
+            var projectDBPath = webServerRoot + "/database"
+
+
+            //初始變數
+            var currentUser = ""
+
+            var currentSelectProject = ""
+            var currentSelectProjectCN = ""
+            var currentSelectProjectGameCode = ""
+
+            var currentSelectProjectType = "/getProjectProcessDB"
+            var currentProjectShowFromNum = 0
+            var currentProjectShowToNum = 10
+            var sendFileList = []
+            // var projectLocation = projectDBPath +"/" +projectName
+
+
+
+
+
+
+
+
+
+            //初始設定 end
+
+
+            //dropzone 事件設定
+
+            Dropzone.options.dropzoneArea = {
+                paramName: "file", // The name that will be used to transfer the file
+                maxFilesize: 500, // MB
+                autoProcessQueue: false,
+                parallelUploads: 100,
+                acceptedFiles: ".json , .png, .jpg ,.skel, .atlas, .pdf, .pptx, .ppt, .txt, .doc, .xml, .mb, .ma, .max, .3ds, .mp4, .avi, .mov",
+                ignoreHiddenFiles: true,
+                
+                init: function() {
+                        var myDropzone = this;
+                       
+                        // Update selector to match your button
+                        $("#submitFiles").click(function (e) {
+                            //sendFileList =[]
+                            
+                            e.preventDefault();
+                            myDropzone.processQueue();
+                            fileCounts = Object.keys(myDropzone.files).length
+                            console.log("fileCounts",fileCounts)
+                            for (var i = 0; i < fileCounts; i++) { 
+
+                               // console.log("file",myDropzone.files[i]['name'])
+                                sendFileList.push(myDropzone.files[i]['name'])
+                            };
+                            console.log('sendFileList',sendFileList)
+                           // fileUploadCompleted()
+                            
+                        })
+                    
+                        myDropzone.on("complete", function(file) {
+                            
+                            var files =String(sendFileList)
+                            $.post("/qcUpload"//, {"sendFileList": files,
+                                    // 'youdata': 'youdata from front'} ,
+                                  //  function(data){
+                                  //  console.log("feedback",data)
+                                  //  }
+                                  );
+                         if (this.getUploadingFiles().length === 0 && this.getQueuedFiles().length === 0) {
+                                    fileUploadCompleted();
+                                  }   
+                            
+                            
+                        });
+
+
+                        
+                        function fileUploadCompleted(){
+                       // this.on("complete", function() {
+                        var files =String(sendFileList)
+                            $.post("/defineUploadFiles", {"sendFileList": files, //waitting for all files uploaded
+                                     'projectName': currentSelectProject,
+                                       'projectNameCN': currentSelectProjectCN
+                                         },
+                                  function(data){
+                                    console.log("feedback",data)
+                                    myDropzone.removeAllFiles()
+                                    }
+                                  
+                                  
+                                  );
+                                }
+                  
+                }
+                
+
+                
+                
+            };
+
+
+            var selectedProjList = [];
+            //按下login label
+            $('#loginBtnLi').click(function() {
+
+                $("#loginDataSubmit").show(200);
+            });
+
+
+            $("#submitFiles").click(function() {
+                
+                 sendFileList =[]
+                
+                
+            })
+
+
+            // 按下upload按鈕
+            $('#qcUpload').click(function() {
+                // var noProjectText = $('<h5 class ="text-danger display-5" id="infoProjectText" >select project</h5>')
+                // $("#infoProjectText").remove()
+                // $("#divRightInfo").append(projectSelectText);
+                // $("#tableRight").remove(); divRightInfo
+                $("#infoProjectText").text("select project")
+
+                console.log(selectedProjList.length)
+                if (selectedProjList.length == 0) {
+                    // $("#divRightInfo").append(noProjectText)
+                } else {
+                    // $("#infoProjectText").value = "";
+                    //  $("#divRightInfo").remove()
+                    //  var projectSelectText = $('<h5 class ="text-info " id="infoProjectText" >' +
+                    //       selectedProjList[1] +
+                    //       '</h5>'
+                    //  )
+                    //  $("#divRightInfo").append(projectSelectText);
+                    $("#infoProjectText").text(selectedProjList[1]);
+                    createUploadZone()
+                }
+
+            })
+            //按下 進行中 按鈕
+            $('#navbarProcess').click(function() {
+                console.log("clicked nav bar inProcess");
+                // $('.leftNav').css('color', 'cadetblue'); navbarProcess
+                // $('.leftNav').attr('class', 'nav-item');
+                $('#navbarProcess').attr('class', 'nav-item active');
+                $('#navbarRecent').attr('class', 'nav-item');
+                $('#navbarComplete').attr('class', 'nav-item');
+                // $('#navbarTextProcess').css('color', 'darkslategrey');
+                $.post("/getProjectDB", {
+                    "projectState": "process",
+                    'listCount': 20
+                });
+                $(".td_project").remove();
+                currentSelectProjectType = "/getProjectProcessDB"
+                currentProjectShowFromNum = 0
+                currentProjectShowToNum = 10
+                createProjectTable("/getProjectProcessDB", 0, 10);
+            });
+
+
+
+            //按下 最近 按鈕
+            $('#navbarTextRecent').click(function() {
+                console.log("clicked nav bar inProcess");
+                // $('.leftNav').css('color', 'cadetblue'); navbarRecent
+
+                // $('.leftNav').attr('class', 'nav-item');
+                $('#navbarRecent').attr('class', 'nav-item active');
+                $('#navbarProcess').attr('class', 'nav-item');
+                $('#navbarComplete').attr('class', 'nav-item');
+                // $('#navbarTextRecent').css('color', 'darkslategrey'); 
+                $.post("/getProjectDB", {
+                    "projectState": "recent",
+                    'listCount': 20
+                });
+                $(".td_project").remove();
+                currentSelectProjectType = "/getProjectRecentDB"
+                currentProjectShowFromNum = 0
+                currentProjectShowToNum = 10
+                createProjectTable("/getProjectRecentDB", 0, 10);
+
+
+
+
+            });
+
+
+            //按下 已完成 按鈕 
+            $('#navbarTextComplete').click(function() {
+                console.log("clicked nav bar inProcess");
+                // $('.leftNav').attr('class', 'nav-item');
+                $('#navbarComplete').attr('class', 'nav-item active');
+                $('#navbarProcess').attr('class', 'nav-item');
+                $('#navbarRecent').attr('class', 'nav-item');
+                // $('.leftNav').css('color', 'cadetblue');
+                //  $('#navbarTextComplete').css('color', 'darkslategrey', 0, 10);
+                $.post("/getProjectDB", {
+                    "projectState": "complete",
+                    'listCount': 20
+                });
+                $(".td_project").remove();
+                currentSelectProjectType = "/getProjectCompletedDB"
+                currentProjectShowFromNum = 0
+                currentProjectShowToNum = 10
+                createProjectTable("/getProjectCompletedDB", 0, 10);
+            });
+
+            //按下顯示更多專案
+            $('#showMoreItemLeft').click(function() {
+                currentProjectShowFromNum = currentProjectShowFromNum + 10;
+                currentProjectShowToNum = currentProjectShowToNum + 10;
+                console.log(currentSelectProjectType, currentProjectShowFromNum, currentProjectShowToNum)
+
+                let projectState = currentSelectProjectType;
+                let fromNum = currentProjectShowFromNum;
+                let toNum = currentProjectShowToNum;
+                createProjectTable(projectState, fromNum, toNum)
+
+            });
+
+
+
+
+
+
+
+
+
+            //顯示上傳區域
+
+            function createUploadZone() { // 可能要先創立 div 
+                console.log("create upload zone")
+                var rootPath = ""
+                $("#dropzoneArea").show(500);
+                /*
+                $.ajax({
+                    url: "/qcUpload",
+                    data: {
+                        "url": "1"
+                    }
+                });
+                */
+            };
+
+
+
+
+
+            //取得專案資料夾資訊
+
+            function getProjectPath(projectName) {
+                var projectPath = projectDBPath + "/" + projectName
+                var projectQCPath = projectPath + "/qc"
+                var projectQCIconPath = projectQCPath + "/icons"
+                var projectAssetsPath = projectPath + "/assets"
+                var projectAssetsIconsPath = projectAssetsPath + "/icons"
+                var projectShotsPath = projectPath + "/shots"
+                var projectShotsIconsPath = projectShotsPath + "/icons"
+                console.log('projectShotsIconsPath', projectShotsIconsPath)
+                //return 
+            };
+
+
+
+
+            //顯示專案
+            function createProjectTable(projectState, fromNum, toNum) {
+                // console.log('getJson')
+                //  $.post("/getProjectDB",{
+                //       "projectState": "recent",
+                //      'listCount': 20
+                //       });
+                $.getJSON(projectState, function(data) {
+
+                    //console.log(typeof(data))
+                    // console.log("projectCount", data.length)
+                    for (var i = fromNum; i < toNum; i++) { //data.length
+                        // console.log(data[i]);
+                        projectName = data[i][8]
+                        projectCNName = data[i][10]
+                        projectGameCode = data[i][1]
+
+                        var $tr = $('<tr class="table-active "' +
+                            'id="' + projectGameCode + '"' +
+                            '></tr>');
+
+
+
+                        var $td1 = $('<td class="td_project " style="border: 0px" id="num">' + " " + '</td>');
+                        var $td2 = $('<td class="td_project co-sm" style="border: 0px;font-size: 12px;text-align: left"' +
+                            'id="' + projectName + ',' + projectGameCode + '"' +
+                            '>' +
+                            '<h7 class="text-success td_project  ">' + projectCNName + "," + '</h7>' + '<br>' +
+                            '<h6 class="text-info td_project">' + projectName + '</h6>' +
+                            '</td>');
+                        var imageName = "http://vg.com/assets/simpleslot/" + projectName + "/icon/" + projectName + "_v001_icon.png"
+                        // console.log(i,typeof(imageName),imageName)
+
+                        var $td3 = $('<img src="' +
+                            imageName + '"' +
+                            'class="img-thumbnail td_project" style="padding: 2px"' +
+                            'id="' + projectCNName + "," + projectName + ',' + projectGameCode + '"' +
+                            '>');
+                        var $td3_err = $('<img src="http://vg.com/assets/simpleslot/qc_db/icon/no_image.png"' +
+                            'class="img-thumbnail td_project" style="padding:2px"' +
+                            'id="' + projectName + '"' +
+                            '>');
+
+                        // console.log(imageName)
+                        var $tr2 = $('<tr class="td_project btn btn-light" style="height:5px;"></tr>');
+                        var $td4 = $('<td class="td_project btn btn-light" style="border: 0px;font-size:2px;line-height: 2px">' + '</td>');
+                        $("#tableBodyLeft").append($tr);
+                        //   $("#tableBodyLeft").append($td1);
+
+                        try {
+                            $("#tableBodyLeft").append($td3);
+                        } catch (e) {
+
+                            $("#tableBodyLeft").append($td3_err);
+                            //  document.getElementById("demo").innerHTML = err.message;
+                        }
+
+
+
+
+                        //$("#tableBodyLeft").append($td3);
+
+                        $("#tableBodyLeft").append($td2);
+                        //$("#tableBodyLeft").append($div2);
+
+                        $td2.click(function() {
+                            // console.log($(this).text());
+                            //  console.log($(this).attr("id"));
+                            selectedProjList = []
+                            selectedProjList.push(($(this).attr("id")).split(',')[0])
+                            selectedProjList.push($(this).text())
+                            currentSelectProjectGameCode = ($(this).attr("id")).split(',')[1]
+                            //$("#infoProjectText").remove()
+                            var projectSelectText = $('<h5 class ="text-info text-left" id="infoProjectText" >' +
+                                selectedProjList[1] +
+                                '</h5>')
+                            // $("#divRightInfo").append(projectSelectText);
+                            $("#infoProjectText").text(selectedProjList[1]);
+                            $("#infoProjectText").attr('class', 'text-info display-6');
+                            // console.log("selectedProjList", selectedProjList)
+                            $(".td_project").css({
+                                "border-style": "none"
+                            });
+                            $(this).css({
+                                "border-style": "solid",
+                                "border-width": "2px",
+                                "border-color": "rgb(200,230,200)"
+                            });
+                            currentSelectProject = selectedProjList[0]
+                            currentSelectProjectCN = selectedProjList[1]
+                            createUploadZone();
+                           // console.log("currentSelectProject", currentSelectProjectCN,currentSelectProject, currentSelectProjectGameCode)
+                            console.log("currentSelectProjectCN",currentSelectProjectCN)
+                            //getProjectPath(projectName)
+                        });
+                        $td3.click(function() { //click project icon
+                            // console.log($(this).text());
+                            //  console.log($(this).attr("id"));
+                            selectedProjList = []
+                            currentSelectProject = ($(this).attr("id")).split(',')[1]
+                            currentSelectProjectGameCode = ($(this).attr("id")).split(',')[2]
+
+                            // console.log("afddsfdsfdsfdsfdf",projectName)
+                            selectedProjList.push(currentSelectProject)
+                            selectedProjList.push($(this).attr("id"))
+                            // $("#infoProjectText").remove()
+                            var projectSelectText = $('<h5 class ="text-info " id="infoProjectText" >' +
+                                selectedProjList[1] +
+                                '</h5>')
+                            // $("#divRightInfo").append(projectSelectText);
+                            $("#infoProjectText").text(selectedProjList[1]);
+                            $("#infoProjectText").attr('class', 'text-info display-6');
+                            $(".td_project").css({
+                                "border-style": "none",
+                            });
+                            $(this).css({
+                                "border-style": "solid",
+                                "border-width": "2px",
+                                "border-color": "rgb(200,230,200)"
+                            });
+                            currentSelectProjectCN = selectedProjList[1]
+
+                            //console.log("currentSelectProject", currentSelectProjectCN,currentSelectProject, currentSelectProjectGameCode)
+                            console.log("currentSelectProjectCN",currentSelectProjectCN)
+
+                            createUploadZone();
+
+                            // getProjectPath(projectName)
+
+                            //$("#tableRight").remove();
+                        });
+                        jQuery(".img-thumbnail").error(function(e) {
+                            //圖片失連
+                            jQuery(e.target).attr("src", "http://vg.com/assets/simpleslot/qc_db/icon/no_image.png");
+                        });
+
+
+                    }
+
+                });
+
+
+
+            };
+
+
+            function isEventSupported(eventName) {
+                var el = document.createElement('div');
+                eventName = 'on' + eventName;
+                var isSupported = (eventName in el);
+                if (!isSupported) {
+                    el.setAttribute(eventName, 'return;');
+                    isSupported = typeof el[eventName] == 'function';
+                }
+                el = null;
+                return isSupported;
+            }
+
+            $(document).ready(function() {
+                $("#tableLeft").disableSelection();
+                $("#divSideLeft").disableSelection();
+                $.getJSON("/getUserDB", function(data) { // get userData
+
+                    // console.log("data",data)
+
+                })
+                createProjectTable("/getProjectProcessDB", 0, 10); //call recent project 
+              //  $("#projectTableList").hide();
+
+                $("#loginDataSubmit").hide();
+                
+
+                $("#dropzoneArea").hide();
+                // Check which wheel event is supported. Don't use both as it would fire each event 
+                // in browsers where both events are supported.
+                var wheelEvent = isEventSupported('mousewheel') ? 'mousewheel' : 'wheel';
+
+                // Now bind the event to the desired element
+                $('#divSideLeft').on(wheelEvent, function(e) {
+                    var oEvent = e.originalEvent,
+                        delta = oEvent.deltaY || oEvent.wheelDelta;
+                    //console.log($("#projectTable").scrollTop())
+                    //   console.log("delta", delta)
+                    // deltaY for wheel event
+                    // wheelData for mousewheel event
+
+                    if (delta > 0) {
+
+                        var y = scrollDown("#tableLeft")
+                    } else {
+
+                        var y = scrollUp("#tableLeft")
+                    }
+
+
+                });
+
+                /*
+                $.get("/getUser", function(data, status) {
+                    currentUser = data
+                    //modeList
+                    //<li class="nav-item">
+                    //<a class="nav-link" href="#">檢視</a>
+                    //</li>
+
+                    var $a1 = ('<a class="nav-link" href="#" id="preView"><h5 class="display-5 font-weight-light">' +
+                        currentUser + '</h5></a>')
+                    //  $('#userLabel').append($a1)
+                });
+                */
+
+            })
+
+            function scrollUp(item) {
+                //   console.log("scroll up")
+                var itemPosition = $(item).position()
+                var ya = itemPosition.top
+                //var y = parseInt($(item).offset().top)
+                // itemPosition.top = 200
+                //var scrollValue = 10
+                ya = itemPosition.top - 10
+                //    console.log("ya", ya)
+
+                //console.log($(item).offset().top)
+            }
+
+            function scrollDown(item) {
+                //  console.log("scroll down")
+                var itemPosition = $(item).position()
+                var yb = itemPosition.top
+                // var y = parseInt($(item).offset().top)
+                yb += 10
+                //  console.log("yb", yb)
+                // $(item).css({"top": yb});
+            }
+
+
+
+            var maxList = 10
+            var startNum = 10
+            var endNum = 55
+            //createTable(maxList, startNum, endNum)
+
+            function createTable(maxList, startNum, endNum) {
+                for (var i = startNum; i < endNum + 1; i++) {
+
+                    var $tr = $('<tr class="tr_content"></tr>');
+                    var $td1 = $('<td style="border: 0px">' +
+                        i +
+                        '</td>')
+                    var $td2 = $('<td style="vertical-align: middle;border: 0px">' +
+                        '<img src="http://vg.com/assets/simpleslot/battle_of_ball/qc/win.png" class="rounded float-left " style="height:100px">' +
+
+                        // '<img src="http://vg.com/assets/simpleslot/battle_of_ball/icon/battle_of_ball_v001_icon.png" class="img-thumbnail ">' +
+                        '</td>');
+                    var $td3 = $('<td style="border: 0px">' +
+                        'projectName' +
+                        '</td>')
+
+
+                    $("#tableBodyLeft").append($tr);
+                    $("#tableBodyLeft").append($td1);
+
+                    $("#tableBodyLeft").append($td2);
+                    $("#tableBodyLeft").append($td3);
+
+
+
+                };
+            };
+
+        </script>
+</body>
+
+</html>

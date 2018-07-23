@@ -1,0 +1,2472 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!--
+
+
+    
+    
+    -->
+    
+    <link rel="stylesheet" href="https://fonts.googleapis.com/earlyaccess/cwtexkai.css">
+     <link rel="stylesheet" href="https://fonts.googleapis.com/earlyaccess/cwtexyen.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/earlyaccess/cwtexfangsong.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/earlyaccess/notosanstc.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/earlyaccess/cwtexming.css">
+   
+    <!-- meta使用viewport以确保页面可自由缩放 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+    <!-- input dropzoe js -->
+    <script src="https://rawgit.com/enyo/dropzone/master/dist/dropzone.js"></script>
+    <link rel="stylesheet" href="https://rawgit.com/enyo/dropzone/master/dist/dropzone.css">
+
+    <!-- input jQuery Mobile js -->
+
+    <!-- input jQuery js -->
+    
+    <script
+  src="https://code.jquery.com/jquery-3.3.1.js"
+  integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+  crossorigin="anonymous"></script>
+    
+    <script
+          src="https://code.jquery.com/ui/1.12.0/jquery-ui.js"
+          integrity="sha256-0YPKAwZP7Mp3ALMRVB2i8GXeEndvCq3eSl/WsAl1Ryk="
+          crossorigin="anonymous"></script>
+    <!-- <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>-->
+
+    <!-- input jQuery js-->
+
+
+    <!--
+	<link href="{{url_for('static',filename='css/jquery-ui.css')}}" rel="stylesheet">
+
+	<script src="{{url_for('static', filename='jqueryUI/jquery.js')}}"></script>
+-->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+
+    <script src="{{url_for('static', filename='jqueryUI/jqpaginator.min.js')}}"></script>
+
+    <!-- input bootstrapjs -->
+    <script src="https://cdn.bootcss.com/bootstrap/4.1.1/js/bootstrap.js"></script>
+    <link href="https://cdn.bootcss.com/bootstrap/4.1.1/css/bootstrap.css" rel="stylesheet">
+        <!--
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    
+      -->
+    
+    
+    <!-- input bootstrap tag plugin js -->
+
+
+    <script src="{{url_for('static', filename='tagsinput.js')}}"></script>
+    <link href="{{url_for('static',filename='css/tagsinput.css')}}" rel="stylesheet">
+    
+    
+    
+        <!-- inputBootstrap-Markdown js  -->
+
+    
+    
+    <!-- input pixi js -->
+
+
+    <script src="{{url_for('static', filename='pixi.min.js')}}"></script>
+    <script src="{{url_for('static', filename='pixi-spine.js')}}"></script>
+
+    <!-- input full screen js -->
+
+    <script src="{{url_for('static', filename='screenfull.min.js')}}"></script>
+
+    <!-- input Markdown js
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.css">
+    <script src="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.js"></script>
+ -->
+
+    <title>QC 上傳</title>
+
+
+</html>
+
+<body>
+
+    <style>
+
+        .modelTopDiv{
+            width:90%;
+            background-color: powderblue;
+        }
+        .modelImagePreview{
+            
+        }
+        
+        .textOverlapImage {
+            position: absolute;
+            top: 80%;
+            left: 50%;
+            color:light;
+            font-family: "微軟正黑體";
+            font-size: 0.3em;
+            color: black;
+            font-weight: 100;
+            transform: translate(-50%, -50%);
+        }
+        .carouselItemID{}
+        .upladoFileInTable{}
+        .inputHeight {
+
+            height: 10px
+        }
+
+        .no-gutters {
+            margin-right: 0;
+            margin-left: 0;
+
+            >.col,
+            >[class*="col-"] {
+                padding-right: 0;
+                padding-left: 0;
+            }
+        }
+
+        .tableTr {
+            background-color: transparent;
+            table-layout: fixed;
+            text-align: left;
+            vertical-align: middle;
+
+        }
+
+        .projectIcon {
+            width: 20;
+            font-size: 12px;
+            background-color: black;
+            color: azure
+        }
+
+
+
+        .position-fixed-top {
+            position: fixed;
+            top: 10;
+            left: 0;
+            background: rgb(0, 0, 0);
+            color: #fff;
+            text-align: center;
+            text-decoration: none;
+        }
+
+        .position-fixed {
+            position: fixed;
+            top: 100px;
+            left: 500px;
+            background: rgb(0, 0, 0);
+            color: #fff;
+            text-align: center;
+            text-decoration: none;
+        }
+
+        .position-sticky-left {
+            position: relative;
+            top: 10px;
+            left: 10px;
+            background: rgb(255, 255, 255);
+            color: #fff;
+            text-align: center;
+            text-decoration: none;
+            z-index: 500 !important;
+        }
+
+
+        .zIndexA {
+            z-index: 1000 !important;
+
+        }
+
+        .td_project {}
+
+        .leftNav {}
+
+        .leftNavActive {
+
+            color: brown;
+        }
+
+
+        .chineseStyleA {
+            font-family: "微軟正黑體";
+            font-size: 1em;
+            color: white;
+            font-weight: 200;
+            letter-spacing: 0.1em
+        }
+
+
+        .chineseStyleB {
+            font-family: "微軟正黑體";
+            font-size: 1.1em;
+            color: white;
+            font-weight: 100;
+            letter-spacing: 0.1em
+        }
+        /* 專案選取 字型 中文 楷體字型 */
+        @import url(https://fonts.googleapis.com/earlyaccess/cwtexkai.css);
+        
+        .chineseStyleK {
+            font-family: "cwTeXKai",serif;
+            font-size: 1em;
+            font-weight: lighter;
+            letter-spacing: 0.2em
+        }
+         /* 專案選取 字型 中文 圓體字型 */
+        @import url(https://fonts.googleapis.com/earlyaccess/cwtexyen.css);
+         .chineseStyleU {
+            font-family:'cwTeXYen', sans-serif;
+            font-size: 1em;
+            font-weight: lighter;
+            letter-spacing: 0.2em
+        }
+        
+                @import url(https://fonts.googleapis.com/earlyaccess/cwtexyen.css);
+         .chineseStyleU_title {
+            font-family:'cwTeXYen', sans-serif;
+            font-size: 2em;
+            font-weight: 200;
+            letter-spacing: 0.2em
+        }
+        
+         /* 專案選取 字型 中文 仿宋體 */
+        @import url(https://fonts.googleapis.com/earlyaccess/cwtexfangsong.css);
+         .chineseStyleS {
+            font-family:'cwTeXFangSong', serif;
+            font-size: 1em;
+            font-weight: lighter;
+            letter-spacing: 0.2em
+        }
+         /* 專案選取 字型 中文黑體 */
+        @import url(https://fonts.googleapis.com/earlyaccess/notosanstc.css);
+         .chineseStyleST {
+            font-family: 'Noto Sans TC', sans-serif;
+            font-size: 1em;
+            font-weight: lighter;
+            letter-spacing: 0.2em
+        }
+        
+         /* 專案選取 字型 明體 */
+        @import url(https://fonts.googleapis.com/earlyaccess/cwtexming.css);
+         .chineseStyleMing {
+            font-family: 'cwTeXMing', serif;
+            font-size: 1em;
+            font-weight: lighter;
+            letter-spacing: 0.2em
+        }
+        
+        
+        
+        
+        /* 專案選取 字型 中文 */
+        .chineseStyleC {
+            font-family: 'Noto Sans TC', sans-serif;
+            font-size: 1.1em;
+            line-height:1.5;
+            font-weight: 100;
+            letter-spacing:0.2em
+        }
+        /* 專案選取 字型 英文 */
+
+        .chineseStyleD {
+            font-family:  'Arial';
+            font-size: 1em;
+            line-height:1.5;
+            font-weight: 100;
+            font
+            letter-spacing: 0.2em
+        }
+
+        .chineseStylePreviewA {
+            font-family: "微軟正黑體";
+            font-size: 0.8em;
+            font-weight: lighter;
+            color:white;
+            letter-spacing: 0.2em
+        }
+
+
+        .chineseStyleBold {
+            font-family: "微軟正黑體";
+            font-size: 1em;
+            color: rgb(40,40,40);
+            font-weight: 600;
+            letter-spacing: 0.1em
+        }
+        
+        .chineseStyleSmall {
+            font-family: "微軟正黑體";
+            font-size: 0.8em;
+            color: rgb(40,40,40);
+            font-weight: 200;
+            letter-spacing: 0.1em
+        }
+
+        .engStyleA {
+            font-family: "Segoe UI";
+            font-size: 1em;
+            font-weight: 100;
+            letter-spacing: 0.1em
+        }
+
+
+        .engStyleB {
+            font-family: "Segoe UI";
+            font-size: 1em;
+            font-weight: 100;
+            letter-spacing: 0.1em
+        }
+        
+        .engStyleBold {
+            font-family: "Segoe UI";
+            font-size: 1em;
+            font-weight: 500;
+            letter-spacing: 0.1em
+        }
+        
+        .modal-megamenu {
+            width:90%;
+            height:90%;
+        }
+
+        .modal-body {
+            max-height:90%;
+            overflow:auto;
+            
+        }
+        
+        .modalImage{
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            width: 100%;
+            
+        }
+        
+        #fillInTextArea{
+            height: 300px;
+            
+            
+            
+        }
+        
+
+    </style>
+    <style >
+        /*用於 input text*/
+
+        .textGrp_fixWidth {
+            /*設定每個 input-group-addon 都有固定寬度 */
+            width:100%;
+            
+        }
+
+        
+        .input-group{
+            padding-bottom:2px;
+        }
+
+        /*自動根據內容調整高度，同時設定最小高度*/
+        .input-group-btn, .input-group .form-control
+        {
+            height: auto;
+            min-height: 30px;
+        }
+        
+        .textEditModalView{
+             /*position: absolute;
+            top: 80%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            */
+            color:light;
+            font-family: "微軟正黑體";
+            font-size: 1em;
+            color: black;
+            font-weight: 100;
+            min-height: 300px;
+            min-width: 600px;
+           
+    
+        }
+        .delFileBtn{}
+        
+        
+        
+        /*  用於動態樹窗 */
+        .closeBTN{
+            position: absolute;
+            top: 10%;
+            left: 5%;
+            transform: translate(-50%, -50%);  
+            font-size:3em;
+                }
+        
+         .fullScreenBtn{
+            position: absolute;
+            top: 10%;
+            left: 95%;
+            transform: translate(-50%, -50%);  
+            font-size:3em;
+                }
+        
+        .pixiCanvas{
+            
+            padding: 10;
+            margin: 0;  
+            border: 1px;
+            border-color: red
+        }    
+        
+        
+        .pixiElement{
+            
+        }
+        
+        
+        .previewProjectNav{
+            
+        }
+        
+    </style>
+
+    <div class="container">
+        <div class="row clearfix" id="All">
+            <!-- 最上層導航標籤-->
+            <div class="col-md-12 column" id="NavOnTop">
+                <div class="row no-gutters clearfix ">
+                    <div class="col-md-4 column">
+                        <nav class="navbar navbar-expand-md bg-dark navbar-dark ">
+                            <ul class="navbar-nav" id="modeList">
+                                <li class="nav-item active">
+                                    <a class="nav-link" href="#" id="qcUpload">
+                                        <h6 class="display-6 font-weight-light">Upload</h6>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#" id="ReviewNav">
+                                        <h6 class="display-6 font-weight-light">Review</h6>
+                                    </a>
+                                </li>
+
+                            </ul>
+                        </nav>
+                    </div>
+
+                    <div class="col-md-4 column" id="NavTop">
+                        <nav class="navbar navbar-expand-md bg-dark navbar-dark justify-content-start ">
+                            <ul class="navbar-nav " id="modeListUser">
+                                <li class="nav-item ">
+                                    <a class="nav-link" href="#" id="dataShow">
+                                        <h6 class="display-6 font-weight-light">data</h6>
+                                    </a>
+
+                                </li>
+
+
+                            </ul>
+                            <ul class="navbar-nav " id="modeListUser">
+                                <li class="nav-item ">
+                                    <a class="nav-link" href="#" id="dataShow">
+                                        <h6 class="display-6 font-weight-light " id="displayCurrentDate">null</h6>
+
+                                    </a>
+
+                                </li>
+
+
+                            </ul>
+                        </nav>
+                    </div>
+
+                    <div class="col-md-3 column">
+                        <nav class="navbar navbar-expand-md bg-dark navbar-dark  ">
+                            <ul class="navbar-nav " id="modeListUser">
+                                <li class="nav-item " id="loginBtnLi">
+
+                                    <a class="nav-link align-middle">
+                                        <h7 class=" btn btn-info btn-sm align-top" style="padding-top:0px;height:" id="loginBtn" data-toggle="modal" data-target="#loginModalDiv">Login</h7>
+                                    </a>
+                                </li>
+
+                            </ul>
+
+
+                            <input class="form-control form-control-sm " type="user" placeholder="ID" style="height: 25px" id="loginIDinputbox">
+
+
+
+                            
+                        </nav>
+
+
+                    </div>
+                    <div class="col-md-1 column">
+                    <nav class="navbar navbar-expand-md bg-dark navbar-dark  ">
+                    <ul class="navbar-nav " id="modeListUser">
+                                <li class="nav-item " id="loginBtnLi">
+
+                                    <a class="nav-link align-middle">
+                                        <h7 class=" btn btn-secondary btn-sm align-top justify-content-end" style="padding-top:0px;height:" data-toggle="modal" data-target="#controlPanel" id="controlTools">SET</h7>
+                                    </a>
+                                </li>
+
+                            </ul>
+                    
+                     </nav>                   
+                    </div>
+                </div>
+            </div>
+            <!-- UPLOAD DIV -->
+            <div class="col-md-12 column" id="UploadDivAll">
+                <div class="row no-gutters clearfix ">
+
+
+
+
+                    <!--dropzone 功能鍵 送出/清除 -->
+
+                    <div class="col-md-12 column text-left " id="dropzoneArea">
+
+                        <form action="/qcUpload" class="dropzone chineseStyleA " id="dropzoneArea" method="POST" style="color:black;min-height: 300px">
+                            <h6 class="chineseStyleA" id="infoProjectText"></h6>
+
+
+                        </form>
+                        <div class="btn-group btn-group-md-fluid" role="group" style="width: 100%">
+                            <input class="btn btn-primary" type="button" id="clearAllUploadFiles" value="clear" style="width: 10em">
+                            <input class="btn btn-warning" type="button" id="submitFiles" value="submit" style="width: 10em">
+                            <input class="btn btn-secondary" type="button" id="testBTN_A" value="testA" style="width: 10em">
+                            <input class="btn btn-secondary" type="button" id="testBTN_B" value="testB" style="width: 10em">
+                            <input class="btn btn-secondary" type="button" id="" value="testC" style="width: 10em">
+                            <input class="btn btn-secondary" type="button" id="" value="testD" style="width: 10em">
+                            <input class="btn btn-secondary" type="button" id="" value="testE" style="width: 10em">
+
+                        </div>
+
+                        <!--<input type="text" class="form-control" id="tagInput">-->
+                        <!--  data-role="tagsinput" -->
+                    </div>
+
+
+                    <!-- 專案顯示 選擇 進行 最近 或是 已完成 -->
+                    <div class="col-md-12 column">
+
+                        <nav class="navbar navbar-expand-md navbar-dark justify-content-start chineseStyleA " style="background-color: rgb(50,50,50);height: 80%">
+                            <ul class="navbar-nav">
+                                <li class="nav-item active leftNav" id="navbarProcess">
+                                    <a class="nav-link" href="#" id="navbarTextProcess">
+                                        <h6 class="display-6 font-weight-normal">進行中</h6>
+                                    </a>
+                                    <!--<a class="nav-link leftNav" id="navbarTextProcess" style="color:darkslategrey" href="#">進行中</a>-->
+                                </li>
+                                <li class="nav-item leftNav" id="navbarRecent">
+                                    <a class="nav-link" href="#" id="navbarTextRecent">
+                                        <h6 class="display-6 font-weight-normal">最近</h6>
+                                    </a>
+                                    <!--<a class="nav-link leftNav" id="navbarTextRecent" style="color:cadetblue" href="#">最近</a>-->
+                                </li>
+                                <!--
+                                <li class="nav-item" id="navbarRecentInputText">
+                                    <input class="form-control w-2 p-2" type="text" value="20" style="width: 50px;margin: -5px">
+                                  </li>
+                                  -->
+                                <li class="nav-item leftNav" id="navbarComplete">
+                                    <a class="nav-link" href="#" id="navbarTextComplete">
+                                        <h6 class="display-6 font-weight-normal">已完成</h6>
+                                    </a>
+                                    <!-- <a class="nav-link leftNav" id="navbarTextComplete" style="color:cadetblue" href="#">已完成</a> -->
+                                </li>
+
+                            </ul>
+                        </nav>
+                        <nav class="navbar navbar-expand-md navbar-dark justify-content-start chineseStyleA " style="background-color: rgb(50,50,50);height: 80%">
+                        </nav>
+
+                    </div>
+
+                    <!-- 專案顯示 -->
+                    <div class="col-md-12 column">
+                        <div class="row clearfix ">
+                            <div class="col-md " id="tableRight">
+
+                                <table class="table table-hover tableTr bg-light">
+                                    <thead>
+                                        <tr>
+                                            <th style="width:20%;border-style: hidden">
+                                                <h6 class="chineseStyleA"></h6>
+                                            </th>
+                                            <th style="width:20%;border-style: hidden">
+                                                <h6 class="chineseStyleA"></h6>
+                                            </th>
+                                            <th style="width:20%;border-style: hidden">
+                                                <h6 class="chineseStyleA"></h6>
+                                            </th>
+                                            <th style="width:20%;border-style: hidden">
+                                                <h6 class="chineseStyleA"></h6>
+                                            </th>
+                                            <th style="width:20%;border-style: hidden">
+                                                <h6 class="chineseStyleA"></h6>
+                                            </th>
+
+
+                                        </tr>
+                                    </thead>
+                                    <tbody id="rightTableForProjs">
+
+
+
+
+                                    </tbody>
+                                </table>
+                                <button type="button" id="showMoreItemLeft" class="btn btn-info align-middle" style="background-color: rgb(220,220,220)"><h5>more projects</h5></button>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- REVIEW DIV -->
+            <div class="col-md-12 column" id="reviewAll">
+
+
+
+
+                <div class="row">
+                    <div class="col-md-12">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="col-md-12">
+                                    <div class="carousel slide col-md-12" id="carousel-981174" style="height:300px">
+                                        <div class="row">
+   
+                                            <div class="col-md-1 " style="background-color: rgb(50,50,50)">
+                                            
+                                            </div>
+                                            <div class="carousel-inner col-md-10 " id="reviewProjectNAV_div" style="background-color: rgb(50,50,50);padding: 10px">
+
+                                            </div> 
+                                            <div class="col-md-1 " style="background-color: rgb(50,50,50)">
+                                            
+                                            </div>
+                                        <!--幻燈片箭頭 -->
+                                        <a class="carousel-control-prev" href="#carousel-981174" data-slide="prev"><span class="carousel-control-prev-icon"></span> <span class="sr-only">Previous</span>
+                                        </a> <a class="carousel-control-next" href="#carousel-981174" data-slide="next"><span class="carousel-control-next-icon"></span> <span class="sr-only">Next</span></a>
+
+                                        </div>
+                                    </div>
+
+                            </div>
+                            <div class="col-md-12">
+
+                               <table class="table chineseStyleBold  " id="uploadFilesTableBaseProject">
+                                  <thead>
+                                    <tr>
+                                      <th scope="col" style="width:2%">#</th>
+                                      <th scope="col" style="width:10%">icon</th>
+                                      <th scope="col " style="width:40%">描述</th>
+                                      <th scope="col " style="width:10%">上傳者</th>
+                                      <th scope="col " style="width:15%">上傳日期</th>
+                                      <th scope="col" style="width:30%" class="align-bottom">
+                                       <button type="button" id ="delFileItemConBTN" class="btn btn-secondary btn-sm chineseStyleA" style="width: 100px">刪除</button>
+                                      
+                                      </th>
+                                    </tr>
+                                  </thead>
+                                  <tbody id= "uploadFiles_tbody">
+     
+                                  </tbody>
+                                </table>
+                        
+                        
+                        
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                
+                
+
+
+
+            </div>
+        
+            <div class="col-md-12 column" id="workingNote">
+                <div class="row no-gutters clearfix ">
+                     <!-- 工作紀錄 導覽列 -->
+                     <div class="col-md-12 column" style="height: 2%">
+
+                            <nav class="navbar navbar-expand-md navbar-dark justify-content-start chineseStyleA " style="background-color: rgb(50,50,50);height: 80%">
+                                <ul class="navbar-nav">
+                                    <li class="nav-item active leftNav" id="navbarViewAllNav">
+                                        <a class="nav-link" href="#" id="navbarViewAll">
+                                            <h6 class="display-6 font-weight-normal">查看</h6>
+                                        </a>
+                                        
+                                        <!--<a class="nav-link leftNav" id="navbarTextProcess" style="color:darkslategrey" href="#">進行中</a>-->
+                                    </li>
+                                    <li class="nav-item leftNav" id="navbarViewAllNav">
+                                        <a class="nav-link" href="#" id="navbarViewAll">
+                                            <h6 class="display-6 font-weight-light">遊戲組</h6>
+                                        </a>
+                                        
+                                        <!--<a class="nav-link leftNav" id="navbarTextProcess" style="color:darkslategrey" href="#">進行中</a>-->
+                                    </li>
+                                    </li>
+                                    <li class="nav-item leftNav" id="navbarViewAllNav">
+                                        <a class="nav-link" href="#" id="navbarViewAll">
+                                            <h6 class="display-6 font-weight-light">模型組</h6>
+                                        </a>
+                                        
+                                        <!--<a class="nav-link leftNav" id="navbarTextProcess" style="color:darkslategrey" href="#">進行中</a>-->
+                                    </li>
+                                    <li class="nav-item  leftNav" id="navbarViewAllNav">
+                                        <a class="nav-link" href="#" id="navbarViewAll">
+                                            <h6 class="display-6 font-weight-light">動畫組</h6>
+                                        </a>
+                                        
+                                        <!--<a class="nav-link leftNav" id="navbarTextProcess" style="color:darkslategrey" href="#">進行中</a>-->
+                                    </li>
+                                    <li class="nav-item leftNav" id="navbarWriteInNav">
+                                        <a class="nav-link" href="#" id="navbarWriteIn">
+                                            <h6 class="display-6 font-weight-normal">撰寫</h6>
+                                        </a>
+                                        <!--<a class="nav-link leftNav" id="navbarTextRecent" style="color:cadetblue" href="#">最近</a>-->
+                                    </li>
+                                    <!--
+                                    <li class="nav-item" id="navbarRecentInputText">
+                                        <input class="form-control w-2 p-2" type="text" value="20" style="width: 50px;margin: -5px">
+                                      </li>
+                                      -->
+
+
+                                </ul>
+                            </nav>
+                            <nav class="navbar navbar-expand-md navbar-dark justify-content-start chineseStyleA " style="background-color: rgb(50,50,50);height: 80%">
+                            </nav>
+
+                    </div>
+                    <div class="col-md-12 column">
+                            
+                          <div class="row no-gutters clearfix " style="height: 1000px">
+                               <div class="col-md-2 column h-100 chineseStyleST" style="background-color: rgb(100,100,100)">
+                                  aaaa 
+                               </div>      
+                               <div class="col-md-10 column" >
+                                   <div class="row no-gutters clear chineseStyleST " style="padding: 10px" >
+                                       
+                                        <div class="col-md-12 column text-left ">
+                                            <label for="basic-url" class="chineseStyleST" >日期</label>
+                                              <input type="text" class="w-100" id="fillinDate" aria-describedby="basic-addon3">
+                                        </div>
+                                        <div class="col-md-12 column text-left ">
+                                            <label for="basic-url" class="chineseStyleST" >專案</label>
+                                               <select class="custom-select-md chineseStyleST" id="fillinSelectProject">
+                                                    <option selected>選擇進行中的專案</option>
+                                                    <option value="1">One</option>
+                                                    <option value="2">Two</option>
+                                                    <option value="3">Three</option>
+                                                  </select>
+                                        </div>
+                                 
+                                        <div class="col-md-12 column text-left " >
+                                        
+                                                <textarea class="" id="markdownEditor" ></textarea>
+                                                <button type="button" class="btn btn-secondary chineseStyleBold" data-dismiss="modal" it="submitFileTextModel"  onclick="submitTextareaInfoTODB();">送出</button>
+                                         </div>
+                                
+
+                                        
+                                        <div class="col-md-12 column text-left " id="dropzoneAreaPersonalDiv">
+
+                                            <form action="/qcUpload" class="dropzone chineseStyleA " id="dropzoneAreaPerson" method="POST" style="color:black;min-height: 200px">
+                                                <h6 class="chineseStyleA" id="infoProjectTextPerson"></h6>
+
+
+                                            </form>
+                                            
+                                            
+                                            
+                                            <div class="btn-group btn-group-md-fluid" role="group" style="width: 100%">
+                                                <input class="btn btn-primary" type="button" id="clearAllUploadFilesP" value="clear" style="width: 10em">
+                                                <input class="btn btn-warning" type="button" id="submitFilesP" value="submit" style="width: 10em">
+
+
+
+                                            </div>
+
+                                            <!--<input type="text" class="form-control" id="tagInput">-->
+                                            <!--  data-role="tagsinput" -->
+                                        </div> 
+                                     </div>     
+                               </div>                
+                           </div>  
+                    </div>
+            
+                </div> 
+            </div>
+
+        </div>
+
+        
+    </div>
+        
+
+        <!-- Modal login popup 視窗 -->
+        <div class="modal fade" id="loginModalDiv" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content ">
+                    <div class="modal-header chineseStyleU_title " style="background-color: rgb(230,230,230);color: black">
+                        <h5 class="modal-title align-middle" id="exampleModalLongTitle">輸入登入帳號/密碼</h5>
+
+                    </div>
+                    <div class="modal-body chineseStyleU">
+                        <label for="basic-url">帳號</label>
+                        <input type="text" class="align-middle" placeholder="" id="loginInputText"></input>
+                        <label for="basic-url">密碼</label>
+                        <input type="password" id="psInputText"></input>
+
+                    </div>
+                    <div class="modal-body chineseStyleU" style="height:100px">
+                    <h6 id="loginErrorText"></h6>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" id="loginInputBTN" type="submit">Login</button>
+
+                    </div>
+                    <div class="modal-footer">
+
+                        <button type="button" class="btn btn-primary" id="registerBTN">Register</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- script for Modal login popup 視窗 -->
+        <script>
+            
+       
+            
+            $('#loginBtn').click(function() {
+                $('#loginErrorText').text("");
+                $('#loginIDinputbox').val("");
+                $('#loginInputText').val("")
+                $('#psInputText').val("")
+            });
+            $(function() {
+                $('#loginInputBTN').click(function(){
+            })
+
+             var loginID = $('#loginInputText').val()
+             var loginPS = $('#psInputText').val()
+             console.log(loginID,loginPS)
+
+           
+            $.post("/loginMatch", {
+                "loginID":loginID,
+                "loginPS":loginPS,
+
+
+            }, function(data) {
+                /*
+                console.log(data)
+                $('#loginIDinputbox').val(data[0])
+
+                if(data == true){
+                    $('#loginIDinputbox').val(loginID)
+                    $('#loginModalDiv').modal('hide')
+
+                    $('#loginErrorText').text("");
+                    $("#loginIDinputbox").show();
+
+
+                }else{
+
+                    $('#loginErrorText').text("輸入帳號或密碼錯誤");
+
+
+                }
+
+            */
+            })
+            
+            // $('#loginModalDiv').modal('hide');
+
+
+         });
+
+
+
+        </script>
+
+        <!-- Modal image/moval popup 視窗 -->
+        <div class="modal fade " id="imageShowModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" >
+          <div class="modal-dialog mw-100 modal-dialog-centered " role="document" >
+            <div class="modal-content w-100" >
+              <div class="modal-header w-100" id="" >
+
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body w-90 hm-90" id="modelImagePreviewDiv"  >
+
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary"  id="imageModalPrew">Prew</button>
+                <button type="button" class="btn btn-primary" id="imageFullScreenModal">fullScreen </button>
+                <button type="button" class="btn btn-secondary"  id="imageModalNext">Next</button>
+
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <!-- spine preview 動態視窗 -->   
+     <div class="modal fade " id="imageShowModalSpine" >
+        <div class="modal-dialog mw-100 modal-megamenu">
+
+            <div class="modal-content w-100"  id="modelImagePreviewSpineDiv" >
+                  
+
+                  <div class="modal-header " id="" >
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                     <div class="modal-body" id="modelImagePreviewDiv"  >
+
+                          <h5 class="col-12  text-center">Spine Animation Test in PIXI.JS</h5>
+                        <canvas class="align-middle pixiCanvas w-100 h-100 " id="showSpineFileInPixi" ></canvas>
+                        <div class="col-12 mx-auto p-10" id="spineActionBTN_grp"></div>
+                           
+                        </div>
+
+                      </div>
+                     <div class="modal-footer">
+
+                    </div>
+            </div>
+
+         </div>
+    </div>  
+    
+    <script>
+        
+    </script>
+    
+    
+    
+
+
+    
+    <!-- 上傳資訊輸入 動態視窗 -->    
+    <div class="modal fade  " id="textEditModal" >s
+        <div class="modal-dialog mw-100 mh-100 modal-megamenu">
+            <div class="modal-content mw-80 mh-100 "  id="textEditModalDiv">
+                <div class="row ">
+                   <div class="col-12 chineseStyleBold form-group">
+                            <h5 class=" col-12 chineseStyleBold text-center align-middle">上傳檔案描述</h5>
+
+                         <div class="col-12 chineseStyleBold form-group">
+                            <textarea class="form-control " id="textAreaForFileDesc" rows="7"></textarea>
+                            <button type="button" class="btn btn-secondary chineseStyleBold" data-dismiss="modal" it="submitFileTextModel"  onclick="submitTextareaInfoTODB();">送出</button>
+
+                         </div>
+                    </div>
+                </div>
+            </div>
+
+         </div>
+    </div>      
+
+
+    <!-- 後台測試 動態視窗 -->
+    <div class="modal fade  " id="controlPanel" >
+        <div class="modal-dialog mw-100 mh-100 modal-megamenu">
+            <div class="modal-content mw-80 mh-100 "  id="textEditModalDiv">
+                <div class="row ">
+                   <div class="col-12 chineseStyleBold form-group">
+                            <h5 class=" col-12 chineseStyleBold text-center align-middle">上傳檔案描述</h5>
+
+                         <div class="col-12 chineseStyleBold form-group">
+                            <div class="btn-group btn-group-md-fluid" role="group" style="width: 100%">
+                                <input class="btn btn-primary" type="button" id="testBTN_synProj" value="讀取tactic" style="width: 10em">
+                                <input class="btn btn-warning" type="button" id="" value="submit" style="width: 10em">
+                                <input class="btn btn-secondary" type="button" id="syncAllIcons" value="同步專案ICON" style="width: 10em">
+                                <input class="btn btn-secondary" type="button" id="" value="testB" style="width: 10em">
+                                <input class="btn btn-secondary" type="button" id="" value="testC" style="width: 10em">
+                                <input class="btn btn-secondary" type="button" id="" value="testD" style="width: 10em">
+                                <input class="btn btn-secondary" type="button" id="" value="testE" style="width: 10em">
+
+                            </div>
+                            <button type="button" class="btn btn-secondary chineseStyleBold" data-dismiss="modal" it="submitFileTextModel"  onclick="submitTextareaInfoTODB();">送出</button>
+
+                         </div>
+                    </div>
+                </div>
+            </div>
+
+         </div>
+    </div>   
+    
+    
+    
+    <!-- counter in background -->
+    <div id="counterInBGDiv">
+         <label for="imageViewList"> image view List</label>
+        <input type="text" id="imageViewList" >
+       <label for="imageViewCounter"> image view counter</label>
+        <input type="number" id="imageViewCounter" >
+       <label for="maxImageViewCounter"> image view counter</label>
+        <input type="number" id="maxImageViewCounter" >
+    </div>
+
+    <script>
+
+
+
+
+    </script>
+    
+    
+     <!-- script for BG set -->
+    <script>
+    
+     $('#controlTools').click(function(){
+         console.log("click control BTN")
+         
+         
+         
+     });
+    
+     $('#testBTN_synProj').click(function(){
+         console.log("syncDB")
+          $.post("/testBTN_synProj", {
+                   // "fileDesc":h5Msg,
+                   // "fileID": fileEditID,
+            }, function(data) {
+           //  console.log(data) 
+
+         
+          });
+
+     })
+        
+         
+     $('#syncAllIcons').click(function(){
+         
+         console.log('click sync all Icons')
+        $.post("/sync_icons", {
+            "currentFileID":"gggg"
+
+
+            }, function(data) {
+            console.log(data)
+        })
+     })
+        
+        
+        
+    </script>
+    
+    <!-- script for Review -->
+
+    <script>
+        var uploadDataAll
+        var fileEditID
+        var fileDescription
+        var currentProjectSelect
+        var projectPreviewIcon 
+        
+        var linkFileInProject 
+        var linkFileIndex 
+
+
+        const target = $('#modelImagePreviewDiv')[0]; // Get DOM element from jQuery collection
+        
+        $('#imageFullScreenModal').click(function(){
+
+            console.log('click full screen')
+
+                if (screenfull.enabled) {
+                screenfull.request(target)
+                };
+
+
+        });
+        $('#imageModalPrew').click(function(){
+           // var currentFrameIndex =  parseInt($('#imageViewCounter').val())
+            $('#modelImagePreviewDiv > img').remove()
+            $('#modelImagePreviewDiv > video').remove()
+
+           // $('#videoModalImageSrc').remove()
+
+            var nextFrameIndex = parseInt($('#imageViewCounter').val()) -1
+            var nextFrameImage =  $('#imageViewList').val().split(',')[nextFrameIndex]
+            $('#imageViewCounter').val(nextFrameIndex)
+            //console.log('nextFrameIndex',nextFrameIndex,nextFrameImage,typeof(nextFrameIndex),typeof(nextFrameImage))
+                    
+            if(nextFrameIndex <=0){
+                
+                nextFrameImage=  $('#imageViewList').val().split(',')[0]
+                nextFrameIndex = 0
+                $('#imageViewCounter').val(0)
+                
+               // console.log(nextFrameIndex,nextFrameImage)
+            }else{
+                
+                nextFrameImage=  $('#imageViewList').val().split(',')[nextFrameIndex]
+                
+                
+            }
+            var imageType = ['jpg','png','tif','tga','PNG','JPG','TIF','TGA']
+            var movieClip = ['mp4','avi','mov']
+            var fieName = nextFrameImage.split('/').slice(-1)[0]
+            var ext = fieName.split('.')[1]
+           // console.log(ext)
+            if(imageType.includes(ext)){
+                console.log('image')
+
+                var $imageLink = $('<img class="card-img-top modelImagePreview d-block w-100 h-100" src="' + nextFrameImage + '" id="modelImagePreview"/>')
+                   // var $imageLink = $('<img class="img-responsive" src="' + fileLinkUrl + '" id="modelImagePreview"/>')
+
+                 $('#modelImagePreviewDiv').append($imageLink)    
+
+            }else{
+              //  console.log('movie')
+
+                 var $movieLink = $('<video autoplay loop class="embed-responsive-item d-block w-100 modelImagePreview">' +
+                                      '<source src="'+ nextFrameImage + '" type="video/mp4" id="videoModalImageSrc">)'+
+                                       '</video>')
+                 $('#modelImagePreviewDiv').append($movieLink) 
+                        
+
+            }
+
+
+        });
+        $('#imageModalNext').click(function(){
+            $('#modelImagePreviewDiv > img').remove()
+            $('#modelImagePreviewDiv > video').remove()
+            var maxFrameIndex = parseInt($('#maxImageViewCounter').val())
+            var nextFrameIndex = parseInt($('#imageViewCounter').val()) +1
+            var nextFrameImage =  $('#imageViewList').val().split(',')[nextFrameIndex]
+            $('#imageViewCounter').val(nextFrameIndex)
+            if(nextFrameIndex >= maxFrameIndex){
+                
+                nextFrameImage=  $('#imageViewList').val().split(',')[maxFrameIndex-1]
+                nextFrameIndex = maxFrameIndex-1
+                $('#imageViewCounter').val(maxFrameIndex-1)
+            }else{
+                
+                nextFrameImage=  $('#imageViewList').val().split(',')[nextFrameIndex]
+                
+                
+            }
+
+            var imageType = ['jpg','png','tif','tga','PNG','JPG','TIF','TGA']
+            var movieClip = ['mp4','avi','mov']
+            var fieName = nextFrameImage.split('/').slice(-1)[0]
+            var ext = fieName.split('.')[1]
+          //  console.log(ext,nextFrameImage)
+            if(imageType.includes(ext)){
+             //   console.log('image')
+
+
+                 var $imageLink = $('<img class="card-img-top modelImagePreview d-block w-100 h-100" src="' + nextFrameImage + '" id="modelImagePreview"/>')
+               // var $imageLink = $('<img class="img-responsive" src="' + fileLinkUrl + '" id="modelImagePreview"/>')
+
+                 $('#modelImagePreviewDiv').append($imageLink)    
+            }else{
+                console.log('movie')
+
+                 var $movieLink = $('<video autoplay loop class="embed-responsive-item d-block w-100 modelImagePreview">' +
+                                      '<source src="'+ nextFrameImage + '" type="video/mp4" id="videoModalImageSrc">)'+
+                                       '</video>')
+                 $('#modelImagePreviewDiv').append($movieLink) 
+                        
+            }
+
+
+        });
+
+        
+        //按下 textEditModal 送出按鈕
+
+        function submitTextareaInfoTODB(){
+           // console.log('fileDescription',fileDescription)
+            
+            //var vMsg=document.getElementById("textAreaForFileDesc").value;  
+            var msg = $('#textAreaForFileDesc').val()
+            var h5Msg = msg.replace(/\n/g,"<br>")
+            //$("#divContent").html($("#textAreaForFileDesc").html().replace(/\n/g,"<br>"));
+            //let getFileID = fileEditID.split('_')[1]
+            //console.log(h5Msg,fileEditID)
+
+            $.post("/writeFileDesctiption", {
+                    "fileDesc":h5Msg,
+                    "fileID": fileEditID,
+            }, function(data) {
+                //console.log(data)
+                 var uploadLastCount = 10;
+                $.post("/qcdbUpdata", {
+                    "deltaTime":"deltaYearTime",
+                    "uploadLastCount": uploadLastCount,
+                    "projectStatus": ".In Progress",
+
+                }, function(data) {
+                //console.log('upload data',data)
+                                   // console.log(Object.keys(data))
+               // creatReviewProjectNav(data)
+                    uploadDataAll = data
+                    //createProjectTableLeft(data['timeBase'],data['timeBaseProjectList'])
+                    //createPreviewTable(data['timeBase'],"projectType")
+                    projectUploadData = uploadDataAll[currentProjectSelect]
+                  //  console.log(projectUploadData)
+                    $('#uploadFiles_tbody > tr').remove()
+                    createUploadFileTable(projectUploadData)
+                }); 
+               
+
+
+            });
+            
+            
+            
+
+            
+        };
+        
+        
+        
+        
+        
+                    
+
+        
+        
+        
+        function reNewUploadData(){
+            
+            
+                       //取得已上傳的QC資料
+            var uploadLastCount = 10;
+            $.post("/qcdbUpdata", {
+                    "deltaTime":"deltaYearTime",
+                    "uploadLastCount": uploadLastCount,
+                    "projectStatus": ".In Progress",
+
+            }, function(data) {
+                //console.log('upload data',data)
+                                   // console.log(Object.keys(data))
+               // creatReviewProjectNav(data)
+                uploadDataAll = data
+                    //createProjectTableLeft(data['timeBase'],data['timeBaseProjectList'])
+                    //createPreviewTable(data['timeBase'],"projectType")
+            }); 
+            
+            
+            
+            
+        };
+        
+        
+        //按下 刪除 BTN
+        
+        $('#delFileItemConBTN').click(function(){
+            
+            console.log('click del btn')
+            //$('.delFileBtn').show()
+            //$('.delFileBtn').prop('disabled', false)
+            
+            //$('.delFileBtn').toggleClass('btn-danger btn-info')
+            $('.delFileBtn').toggle();
+                                      
+        });
+        
+        //按下 review BTN
+        $('#ReviewNav').click(function(){
+               
+            console.log('REVIEW');  
+            
+            $('#UploadDivAll').hide()
+            $('#reviewAll').show(200);  
+            
+            
+            $('#carousel-981174').carousel({
+                
+                interval: false  //輪播速度
+            })
+            
+            var uploadLastCount = 10;
+            $.post("/qcdbUpdata", {
+                    "deltaTime":"deltaYearTime",
+                    "uploadLastCount": uploadLastCount,
+                    "projectStatus": ".In Progress",
+
+            }, function(data) {
+                //console.log('upload data',data)
+                                   // console.log(Object.keys(data))
+                creatReviewProjectNav(data)
+                uploadDataAll = data
+                    //createProjectTableLeft(data['timeBase'],data['timeBaseProjectList'])
+                    //createPreviewTable(data['timeBase'],"projectType")
+            });
+            
+            $('#reviewProjectNAV_div > div').remove()
+            
+            
+            $.post("/getProjectSampleIcon", {
+
+                }, function(data) {
+                 //   image = data
+               // console.log(data)
+                projectPreviewIcon =data
+
+            })
+            
+            
+            
+            
+        })
+
+        //創建review 預覽幻燈片
+        function creatReviewProjectNav(qcFileData){
+
+                
+            projectsReviewKeys = Object.keys(qcFileData);
+           // console.log('projectsReviewKeys',projectsReviewKeys,typeof(projectsReviewKeys))
+          
+            projectsReviewKeysCount = Object.keys(qcFileData).length;
+            //console.log('projectsReviewKeysCount',projectsReviewKeysCount)
+            preCarShowCount = 3.0
+            carCount = Math.ceil(parseFloat(projectsReviewKeysCount)/preCarShowCount)
+
+            createReviewProjectNavDiv(qcFileData,projectsReviewKeys,projectsReviewKeysCount,carCount);
+                 
+                $('.carouselItemID').click(function(event) {
+
+                    currentProjectSelect = event['currentTarget']['id'].split('carItem_')[1]
+                  //  console.log('currentProjectSelect',currentProjectSelect)
+                    var projectUploadData = uploadDataAll[currentProjectSelect]
+                   // console.log('currentProjectSelect',currentProjectSelect,uploadDataAll[currentProjectSelect])
+                    createUploadFileTable(projectUploadData);
+
+                    });
+            
+            
+        };
+        function createReviewProjectNavDiv(qcFileData,projectsReviewKeys,projectsReviewKeysCount,carCount){
+
+                            
+            $reviewCarNav_active = $('<div class="carousel-item active">'+
+                                        '<div class="row " id= "projecrReviewPage_0">'+
+                                        '</div>'+
+                                    '</div>'
+                                    );
+
+            $('#reviewProjectNAV_div').append($reviewCarNav_active) 
+            for(var i =1;i<carCount;i++){
+                
+                
+
+                
+                
+                
+                
+                $reviewCarNav= $('<div class="carousel-item">'+
+                                    '<div class="row " id= "projecrReviewPage_'+ String(i) +'">'+
+                                    '</div>'+
+                                 '</div>'
+                                );
+                $('#reviewProjectNAV_div').append($reviewCarNav) 
+
+            }
+            
+
+                
+
+             
+           // console.log('previewImageList',previewImageList)
+            for(i =0;i<projectsReviewKeysCount;i++){
+
+                
+                var previewIage = projectPreviewIcon[projectsReviewKeys[i]]
+                
+               // console.log('previewIage',previewIage)
+                $reviewCarNav1 = $('<div class="col-4 previewProjectNav carouselItemID" id ="carItem_' + projectsReviewKeys[i] + '">'+
+                                    '<div class="row">'+
+                                        '<img class="rounded mx-auto d-block h-100 " src="'+previewIage+'">'+
+                                        //'<img class="img-responsive" src="'+previewIage+'">'+
+                                        '<div class="col-12 text-center previewProjectNav chineseStylePreviewA rounded mx-auto d-block">'+
+                                                '<h7">' + projectsReviewKeys[i] +'</h7><br>'+
+                                                '<h7">' + qcFileData[projectsReviewKeys[i]]['name_chn'] +'</h7>'+
+                                            '</div>'+
+                                        '</div>'+
+                                    '</div>'); 
+
+                if(i<3){
+                       $('#projecrReviewPage_0').append($reviewCarNav1) 
+
+
+                }else{
+                    var pageCount =  Math.floor(parseFloat(i)/(3.0))
+                    
+                   // console.log('pageCount',i,pageCount)
+                    var navPage = "#projecrReviewPage_" +String(pageCount)
+                    $(navPage).append($reviewCarNav1)
+                   // 
+                    };
+                //點選專案導覽圖片
+                    $('.previewProjectNav').click(function(event) {
+
+                        console.log('click project nav')
+                        //console.log($("canvas").children)
+                       // $("canvas").children.remove()
+                    //$('.pixiElement').remove()
+
+                    })
+                    
+                    
+                
+                }    
+            
+            
+            
+            
+            //
+            
+            
+        }
+         
+        
+
+        //取得 預覽幻燈片 ID
+
+
+
+        
+        function createUploadFileTable(projectUploadData){
+           // console.log('createUploadFileTabe')
+            linkFileInProject = []
+            //console.log('projectUploadData',projectUploadData);  
+            $('.upladoFileInTable ').remove()
+            var keysByProject = Object.keys(projectUploadData)
+            var keysByProjectCount = keysByProject.length
+            //console.log('keysByProject',keysByProject,keysByProjectCount);  
+            //for(var i = (keysByProjectCount-3);i>=0;i--){ 
+            for(var i = 0;i<keysByProjectCount-2;i++){  //-2 ,cause take off 'game_code' and 'name_chn'
+                var keyID = keysByProject[i];
+                var fileData = projectUploadData[keyID]
+               // var fileName = fileData['file_name']
+              //  var iconName = fileData['icon_file']
+                var iconUrl = fileData['icon_url']
+                var fileUrl = fileData['file_url']
+                var fileType = fileData['file_type']
+                var loginUser = $('#loginIDinputbox').val()
+                var uploadData = fileData['data']
+                var fileName = fileData['file_name']
+                
+                var fileDescriptionText = fileData['description']
+                var fileID = fileData['file_id']
+                var olid = "ol_" +String(fileID)
+                var delBtn = "delBtn_" + String(fileID)
+                var editBtn = "editBtn_" + String(fileID)
+
+                var checkBtn = "checkBtn_" + String(fileID)
+                var textEditGrpID = "textEdit_" + String(fileID)
+                var fileTrID = "linkfIndexTr_" + String(fileID)
+                //console.log('description',fileData['description'])
+                //console.log('fileType',fileUrl)
+                linkFileInProject.push(fileUrl)
+                // 如果是 spine 檔案，則創建spine 的preview table
+                if(fileType =="spine"){
+                    //console.log('asdf')
+                    var spineJsonFile =  fileData['releationship'].split(';')
+                   // var fileID = fileData['file_id']
+                    var pixiCanvasID = "pixiCanvas_"+String(fileID)
+
+                    //定義 spine的顯示 table 
+                    $file_tr0_spine =$('<tr class="upladoFileInTable align-middle"  id= "'+ fileTrID +'">'+
+                                            '<a href="'+fileUrl +'">'+
+                                       
+                                                   '<td class="align-middle engStyleBold" >'+
+                                                        '<div class="form-check">'+
+                                                            '<input type="checkbox" class="form-check-input" id="'+ checkBtn +'">'+
+                                                            '<a>'+i+'</a>'+
+                                                            '</div>'+
+
+                                                        '</div>'+
+                                                   '</td>'+ 
+                                       
+                                                   '<td class="upladoSpineFileInTableIcon" alt="'+fileUrl+'" data-toggle="modal" data-target="#imageShowModalSpine" id= "linkfIndex_'+ pixiCanvasID +'">'+
+                                                        '<div><canvas id="'+pixiCanvasID+'" class="upladoSpineFileInTableIcon pixiElement" data-toggle="modal" data-target="#imageShowModalSpine" alt="'+fileUrl+'"></canvas></div>'+
+                                                   '</td>'+  
+                                                   '<td class="align-middle " id="'+textEditGrpID +'">'+
+                                                        '<div class="row ">'+
+                                                            //'<h6>spine file</h6><br>'+
+                                                            // 增加表列說明
+                                                            '<ol id="'+ olid +'" class= "chineseStyleSmall olFileDesc">'+
+                                                                '<li class="list-item">spine file</li>'+
+                                                                '<li>'+fileDescriptionText+'</li>'+
+                                                            '</ol>'+
+
+                                                        '</div>'+
+                                                   '</td>'+  
+                                                   '<td class="align-middle">'+
+                                                        '<h5 class="chineseStyleSmall">'+loginUser+'</h5>'+
+                                                   '</td>'+
+                                                   '<td class="align-middle">'+
+                                                        '<h5 class="chineseStyleSmall">'+uploadData+'</h5>'+
+                                                   '</td >'+
+                                                   '<td class="align-middle">'+  
+                                                        '<button type="button" class="btn btn-danger btn-sm delFileBtn" id="'+ delBtn+'">DEL</button>'+
+                                                        '<button type="button" class="btn btn-success btn-sm textEditGrp" data-toggle="modal" data-target="#textEditModal" id="'+ editBtn+'">EDIT</button>'+
+
+                                                   '</td>'+
+                                            '</a>'+
+                                       '</tr>' 
+                                      );                         
+                    
+                                
+                    //添加檔案描述
+                   // $(function(){
+                   
+                    //});
+                    $('#uploadFiles_tbody').append($file_tr0_spine) // 創建 預覽table
+                    $(function(){
+                        
+                        //console.log(fileID,fileData)
+
+                        
+                        $.post("/pixiJsonLoad", {
+                        "pixiJsonFile":fileName,
+                        "fileID":fileID,
+                        "fileUrl":fileUrl
+                            
+                            
+                        }, function(data) {
+                            let fileID = data[1]
+                            let spineJsonData = data[0]
+                            let fileUrl = data[2]
+                            let imageSize = parseInt(data[3].split(',')[0])//取得Image的圖檔解析度
+                            let descriptionText = data[4]
+                            //console.log('load pixi json file',data[1])
+                            //console.log("spineAnimationCount",Object.keys(data[0]['animations']).length)
+                            
+                            
+                            //for(i=0;i<spineAnimationCount;i++){
+                             //   var animationJobName = String(fileID)+'_'+Object.keys(data[0]['animations'])[i]
+                            var spineJobName = 'spineJob_'+String(fileID)
+                          //  console.log(spineJobName,fileUrl)
+                           // create a new instance of the loader
+                            
+                            //$.getJSON( "http://192.168.161.193:8080/database/projects/qc_db/qc/0627/symbol3.json", function( data ) {
+                               //new PIXI.loaders.Loader() 
+                              //  .add('spineJobName',data)
+                                
+                           // })
+
+                                                                  
+                            new PIXI.loaders.Loader()
+                                //.add("spineJob",fileUrl)
+                                .add(spineJobName,fileUrl)
+                                .on("progress" , function(loader , resource)
+                                  {
+                                 //   console.log("Finished loading : " + resource.name + " progress : " + loader.progress);
+//
+                                    })
+                                .once("complete" , function()
+                                  {
+                                   // console.log("Finished loading assets");
+                                  })  
+                                .load(onAssetsLoaded)
+
+                                
+                                // app.stage.interactive = true;
+
+                                function onAssetsLoaded(loader, res) {
+                                    
+                                    var spineSampleAnimationJobName = Object.keys(data[0]['animations'])[0]//[0]
+                                    let pixiCanvasID = "pixiCanvas_"+String(fileID)
+
+                                    
+                                   // console.log(pixiCanvasID)
+                                    var app = new PIXI.Application(192, 108, {
+                                                view: document.getElementById(pixiCanvasID)
+                                            }
+                                        );
+                                    var spineAnime = new PIXI.spine.Spine(res[spineJobName].spineData);
+                                    spineAnimationList = Object.keys(res[spineJobName]['data']['animations'])
+                                    spineAnimationCount = spineAnimationList.length
+                                    previewSampleAnimation = spineAnimationList[0]
+                                   // console.log(imageSize,spineAnimationCount,spineAnimationList)
+
+                                    spineAnime.x = app.screen.width / 2
+                                    spineAnime.y = app.screen.height / 2 /// 2
+                                    
+                                    
+                                    var scaleRatio = 1920 / imageSize
+                                    if(scaleRatio <1){scaleNum = 1}else{
+                                        scaleNum = scaleRatio
+                                    }
+                                    spineAnime.scale.set(scaleNum*0.2);
+
+                                    spineAnime.state.setAnimation(0, previewSampleAnimation, true);
+                                    app.stage.addChild(spineAnime) 
+                                    var olidName = "#ol_" +String(fileID)
+                                    $(olidName).append('<button type="button" class="btn btn-info btn-sm">' +
+                                                            'Action <span class="badge badge-light">'+ spineAnimationCount +
+                                                           '</span><span class="sr-only">unread messages</span>'+
+                                                            '</button>')
+            
+
+                                }
+
+
+
+                        });    
+                        
+                        
+                        
+                        
+                      
+                    });
+                    
+                    
+                    }else{
+                       
+                    //var index = Math.abs(i-((keysByProjectCount-3)))-1
+                    $file_tr0 = $('<tr class="upladoFileInTable align-middle" id= "'+ fileTrID +'">'+
+                                                        '<a href="'+fileUrl +'">'+
+                                                           '<td class="align-middle engStyleBold">'+
+                                                                '<div class="form-check">'+
+                                                                '<input type="checkbox" class="form-check-input" id="'+ checkBtn +'">'+
+                                                                '<a>'+i+'</a>'+
+                                                                '</div>'+
+                                                               
+                                                            '</div>'+
+                                                           '</td>'+  
+                                                           '<td class="uploadFileInTableIcon" data-toggle="modal" data-target="#imageShowModal" id= "linkfIndex_'+i+'_'+ fileType +'">'+
+                                                           '<img class="h-100" src="' + iconUrl+ '" />'+
+                                                           '</td>'+  
+                                                           '<td class="align-middle textEditGrp" id="'+textEditGrpID +'">'+
+                                                            '<div class="row ">'+
+                                                                //'<h6>spine file</h6><br>'+
+                                                                // 增加表列說明
+                                                                '<ol id="'+ olid +'" class= "chineseStyleSmall olFileDesc">'+
+                                                                    '<li class="list-item">image/movie file</li>'+
+                                                                    '<li>'+fileDescriptionText+'</li>'+
+                                                                '</ol>'+
+
+                                                            '</div>'+
+                                                           '</td>'+  
+                                                           '<td class="align-middle">'+
+                                                            '<h5 class="chineseStyleSmall">'+loginUser+'</h5>'+
+                                                           '</td>'+
+                                                            '<td class="align-middle">'+
+                                                            '<h5 class="chineseStyleSmall">'+uploadData+'</h5>'+
+                                                            '</td>'+
+                                                           '<td class="align-middle">'+  
+                                                                '<button type="button" class="btn btn-danger btn-sm delFileBtn" id="'+ delBtn+'">DEL</button>'+
+                                                                  '<button type="button" class="btn btn-success btn-sm textEditGrp " data-toggle="modal" data-target="#textEditModal" id="'+ editBtn+'">EDIT</button>'+
+
+                                                           '</td>'+
+                                                        '</a>'+
+                                                   '</tr>' 
+                                  );
+                    $('#uploadFiles_tbody').append($file_tr0) // 創建 預覽table
+
+                };
+            };
+            
+            $(function(){
+                $("#uploadFiles_tbody").each(function(elem,index){
+                  var arr = $.makeArray($("tr",this).detach());
+                  arr.reverse();
+                    $(this).append(arr);
+                });
+            });
+
+            
+            //添加檔案描述
+            
+            $(function(){
+                $(".textEditGrp").click(function(event){
+                    //fileID = 
+                    fileEditID = (event['currentTarget']['id']).split('_')[1]
+                    fileDescription = projectUploadData[fileEditID]['description']
+                    //replaceTextFileDescription = fileDescription.replace("<br>",/\n/g)
+
+                    //var reg=new RegExp("＜br＞","g"); 
+                    //var reg1=new RegExp("＜p＞","g"); 
+                    //console.log(fileDescription)
+                    //str = fileDescription.replace(reg,"\r\n");
+                    if(fileDescription==null){
+                        $('#textAreaForFileDesc').val('')
+                    }else{
+                        var newfileDescription =fileDescription.replace(/<br\s*\/?\s*>/ig,"\n");                    
+                        $('#textAreaForFileDesc').val(newfileDescription)
+                    }
+                    
+                });
+            });
+
+            
+            
+            
+            
+            var modalApp = new PIXI.Application(1920, 1080, {
+                        view: document.getElementById('showSpineFileInPixi')
+                    }
+                );
+            
+            
+            // 點擊spine icon
+            $(".upladoSpineFileInTableIcon").click(function(event){
+                
+                        for (var i = modalApp.stage.children.length - 1; i >= 0; i--)
+                            {	modalApp.stage.removeChild(modalApp.stage.children[i]);};
+                
+                
+                      //  $('.modelImagePreview').remove()
+                
+                        var sentence = $(this).attr('alt');
+                        var text = $('#the_box');
+                        text.val(text.val() + sentence + ' ');
+                
+                
+                        //modalApp.renderer.view.style.position = "absolute";
+                        //modalApp.renderer.view.style.display = "block";
+                        modalApp.renderer.autoResize = true;
+                        //modalApp.renderer.resize(window.innerWidth, window.innerHeight);
+                
+                        new PIXI.loaders.Loader()
+                                //.add("spineJob",fileUrl)
+                                .add('spineModalJob',sentence)
+                                .on("progress" , function(loader , resource)
+                                  {
+                                    //console.log("Finished loading : " + resource.name + " progress : " + loader.progress);
+
+                                    })
+                                .once("complete" , function()
+                                  {
+                                  //  console.log("Finished loading assets");
+                                  })  
+                                .load(onAssetsLoaded)
+
+                                
+                       
+
+                                function onAssetsLoaded(loader, res) {
+                                    
+                                    var spineAnime = new PIXI.spine.Spine(res.spineModalJob.spineData);
+                                    var animationActionList = Object.keys(res.spineModalJob['data']['animations'])
+                                    var firstAnimationJob = animationActionList[0]
+                                    var animationActionCount = Object.keys(animationActionList).length
+                                    
+                                   // console.log('animationActionCount',animationActionCount,animationActionList)
+
+                                    spineAnime.x = modalApp.screen.width / 2
+                                    spineAnime.y = modalApp.screen.height / 2 /// 2
+                                    spineAnime.scale.set(1);
+                                   // var spineSampleAnimationJobName = Object.keys(data[0]['animations'])[0]//[0]
+                                    spineAnime.state.setAnimation(0, firstAnimationJob, true);
+                                    modalApp.stage.addChild(spineAnime)
+                                    $('#spineActionBTN_grp > button').remove()
+                                    for(var i=0;i<animationActionCount;i++){
+                                        var btnActionName = animationActionList[i];
+                                        var spineActionBtnID = "spineActionBtn_" + btnActionName
+                                        var $actionBtn = $('<button type="button" class="btn btn-outline-dark" style="width: 19%;margin: 2px;" id="'+
+                                                           spineActionBtnID +
+                                                           '">'+ btnActionName +
+                                                           '</button>')
+                                        
+                                        
+                                        $('#spineActionBTN_grp').append($actionBtn)
+                                        
+                                        $actionBtn.click(function(event){
+                                            
+                                            
+                                                                                        
+                                        for(var i = modalApp.stage.children.length - 1; i >= 0; i--){	  modalApp.stage.removeChild(modalApp.stage.children[i])
+                                            }
+                                            
+                                           // console.log(event['currentTarget']['id'])
+                                            var spineActionBtnId = event['currentTarget']['id'].split('spineActionBtn_')[1]
+                                            console.log(spineActionBtnId)
+                                            
+                                            spineAnime.state.setAnimation(0, spineActionBtnId, true);
+                                            modalApp.stage.addChild(spineAnime)
+                                            
+
+                                            
+                                            
+                                        });
+                                        
+                                        
+                                    };
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    
+                                }
+                                    
+                
+                
+
+             });     
+            
+            // 點擊 image/movie icon
+
+            $(".uploadFileInTableIcon").click(function(event){
+                  // window.location = fileUrl;
+                $('.modelImagePreview').remove()
+                var currentImageIndex = parseInt(event['currentTarget']['id'].split('_')[1])
+                var fileLinkUrl = linkFileInProject[currentImageIndex]
+                var currentSelectFileType = event['currentTarget']['id'].split('_')[2]
+
+                var currentUser = $('#loginIDinputbox').val();
+                
+                console.log('currentUser',currentUser)
+                console.log('linkFileInProject',)
+                $.post("/imageList",{
+                    
+                    "imageList":JSON.stringify(linkFileInProject),
+                    "imageIndex":currentImageIndex,
+                    "currentUser":currentUser
+                    
+
+                    }, function(data) {
+                    console.log(data)
+                    
+                    $('#imageViewList').val(linkFileInProject)
+                    $('#imageViewCounter').val(currentImageIndex)
+                    $('#maxImageViewCounter').val(Object.keys(linkFileInProject).length)
+    
+                })
+                
+                
+                
+                
+                
+                if(currentSelectFileType == "image"){
+                     var $imageLink = $('<img class="card-img-top modelImagePreview d-block w-100 h-100" src="' + fileLinkUrl + '" id="modelImagePreview"/>')
+                   // var $imageLink = $('<img class="img-responsive" src="' + fileLinkUrl + '" id="modelImagePreview"/>')
+
+                     $('#modelImagePreviewDiv').append($imageLink)    
+                    
+                    
+                    
+                    
+                }else if(currentSelectFileType == "movieClip"){
+                      // </video>
+                    // console.log('moviefile URL',fileLinkUrl)
+                     var $movieLink = $('<video autoplay loop class="embed-responsive-item d-block w-100 modelImagePreview">' +
+                                      '<source src="'+ fileLinkUrl + '" type="video/mp4" id="videoModalImageSrc">)'+
+                                       '</video>')
+                     $('#modelImagePreviewDiv').append($movieLink) 
+                        
+                    
+                    }else if(currentSelectFileType == "spine"){
+                        // console.log('spine spine spine')
+                       // <video autoplay loop class="embed-responsive-item">
+                        // <source src="http://techslides.com/demos/sample-videos/small.mp4" type="video/mp4">
+                      
+                        
+                         };
+               
+             });     
+            //$('.delFileBtn').prop('disabled', true)
+            $('.delFileBtn').hide()
+            $('.delFileBtn').click(function(event){
+                var currentDelBTNID = event['currentTarget']['id']
+                var currentFileID = String(currentDelBTNID.split('delBtn_')[1])
+                var currentFileTrID = "linkfIndexTr_" + currentFileID
+                console.log(currentDelBTNID,currentFileID)
+                var tdSelectorID = "#" +currentFileTrID                                       
+
+                $(tdSelectorID).remove()
+                
+                $.post("/delFileItemInDB", {
+                    "currentFileID":currentFileID
+
+
+                    }, function(data) {
+                    console.log(data)
+                })
+                
+                
+                
+                
+                
+            });
+            
+
+        };
+        
+        
+
+        
+        
+    </script>
+
+
+
+
+    <!-- script for upload --> 
+    <script>
+        //初始設定 start 
+
+
+        var webServerRoot = "e:/webServer"
+        var uploadPath = webServerRoot + "/uploads"
+        var projectDBPath = webServerRoot + "/database"
+
+
+        //初始變數
+        var currentUser = ""
+
+        var currentSelectProject = ""
+        var currentSelectProjectCN = ""
+        var currentSelectProjectGameCode = ""
+
+        var currentSelectProjectType = "/getProjectProcessDB"
+        var currentProjectShowFromNum = 0
+        var currentProjectShowToNum = 10
+        var sendFileList = []
+        // var projectLocation = projectDBPath +"/" +projectName
+
+
+
+
+
+
+
+
+
+        //初始設定 end
+
+
+        //dropzone 事件設定
+
+        Dropzone.options.dropzoneArea = {
+            paramName: "file", // The name that will be used to transfer the file
+            maxFilesize: 500, // MB
+            autoProcessQueue: false,
+            parallelUploads: 100,
+            acceptedFiles: ".json , .png, .jpg ,.skel, .atlas, .pdf, .pptx, .ppt, .txt, .doc, .xml, .mb, .ma, .max, .3ds, .mp4, .avi, .mov",
+            ignoreHiddenFiles: true,
+
+            init: function() {
+                var myDropzone = this;
+
+                // Update selector to match your button
+                $("#submitFiles").click(function(e) {
+                    //sendFileList =[]
+
+                    e.preventDefault();
+                    myDropzone.processQueue();
+                    fileCounts = Object.keys(myDropzone.files).length
+                    //console.log("fileCounts", fileCounts)
+                    for (var i = 0; i < fileCounts; i++) {
+
+                        // console.log("file",myDropzone.files[i]['name'])
+                        sendFileList.push(myDropzone.files[i]['name'])
+                    };
+                   // console.log('sendFileList', sendFileList)
+                    // fileUploadCompleted()
+
+                })
+
+                myDropzone.on("complete", function(file) {
+
+                    var files = String(sendFileList)
+                    $.post("/qcUpload" //, {"sendFileList": files,
+                        // 'youdata': 'youdata from front'} ,
+                        //  function(data){
+                        //  console.log("feedback",data)
+                        //  }
+                    );
+                    if (this.getUploadingFiles().length === 0 && this.getQueuedFiles().length === 0) {
+                        fileUploadCompleted();
+                    }
+
+
+                });
+
+
+
+                function fileUploadCompleted() {
+                    // this.on("complete", function() {
+                    var files = String(sendFileList)
+                    $.post("/defineUploadFiles", {
+                            "sendFileList": files, //waitting for all files uploaded
+                            'projectName': currentSelectProject,
+                            'projectNameCN': currentSelectProjectCN
+                        },
+                        function(data) {
+                            console.log("feedback", data)
+                            myDropzone.removeAllFiles()
+                        }
+
+
+                    );
+                }
+
+
+                $("#clearAllUploadFiles").click(function(e) {
+                    
+                    myDropzone.removeAllFiles()
+
+                });
+                
+                $("#rightTableForProjs").parent().children().click(function(e) {
+                    //console.log('sdsd')
+
+                    //console.log(e['currentTarget'])
+                    myDropzone.removeAllFiles()
+
+                })
+
+            }
+
+        };
+
+
+        var selectedProjList = [];
+        //按下login btn
+
+        $('#loginSubmitBtn').click(function() {
+
+            console.log(loginID, loginPS)
+
+
+
+        });
+
+
+
+
+
+
+        $("#submitFiles").click(function() {
+
+            sendFileList = []
+
+
+        })
+
+
+        // upload tag input
+        $("#tagInput").tagsinput({
+            tagClass: function(item) {
+
+                //console.log(item)
+
+                if (item == '3d') {
+                    return 'bg-white text-dark'
+                } else {
+                    return 'bg-info text-white'
+                };
+            }
+
+
+        });
+
+
+        // 按下   testBTN_A  按鈕
+        $('#testBTN_A').click(function() {
+
+        });
+
+        // 按下   testBTN_B  按鈕
+        $('#testBTN_B').click(function() {
+
+
+            //  $.post("/syncDBIcon",({console.log(data)}))
+
+
+            // console.log('syncDBIcon Post')
+
+        });
+
+
+
+
+        // 按下upload按鈕
+        $('#qcUpload').click(function() {
+            // var noProjectText = $('<h5 class ="text-danger display-5" id="infoProjectText" >select project</h5>')
+            // $("#infoProjectText").remove()
+            // $("#divRightInfo").append(projectSelectText);
+            // $("#tableRight").remove(); divRightInfo
+            $('#reviewAll').hide()
+
+            $('#UploadDivAll').show(200)
+            
+            
+            $("#infoProjectText").text("select project")
+
+            console.log(selectedProjList.length)
+            if (selectedProjList.length == 0) {
+                // $("#divRightInfo").append(noProjectText)
+            } else {
+                // $("#infoProjectText").value = "";
+                //  $("#divRightInfo").remove()
+                //  var projectSelectText = $('<h5 class ="text-info " id="infoProjectText" >' +
+                //       selectedProjList[1] +
+                //       '</h5>'
+                //  )
+                //  $("#divRightInfo").append(projectSelectText);
+                $("#infoProjectText").text(selectedProjList[1]);
+                createUploadZone()
+            }
+
+        })
+        //按下 進行中 按鈕
+        $('#navbarProcess').click(function() {
+            console.log("clicked nav bar inProcess");
+            // $('.leftNav').css('color', 'cadetblue'); navbarProcess
+            // $('.leftNav').attr('class', 'nav-item');
+            $('#navbarProcess').attr('class', 'nav-item active');
+            $('#navbarRecent').attr('class', 'nav-item');
+            $('#navbarComplete').attr('class', 'nav-item');
+            // $('#navbarTextProcess').css('color', 'darkslategrey');
+
+            $(".td_project").remove();
+            currentSelectProjectType = "/getProjectProcessDB"
+            currentProjectShowFromNum = 0
+            currentProjectShowToNum = 10
+            //createProjectTable("/getProjectProcessDB", 0, 10);
+            createProjectTableInRightTable("/getProjectProcessDB", 0, 10)
+        });
+
+
+
+        //按下 最近 按鈕
+        $('#navbarTextRecent').click(function() {
+            console.log("clicked nav bar Recent");
+            // $('.leftNav').css('color', 'cadetblue'); navbarRecent
+
+            // $('.leftNav').attr('class', 'nav-item');
+            $('#navbarRecent').attr('class', 'nav-item active');
+            $('#navbarProcess').attr('class', 'nav-item');
+            $('#navbarComplete').attr('class', 'nav-item');
+            // $('#navbarTextRecent').css('color', 'darkslategrey'); 
+
+            $(".td_project").remove();
+            currentSelectProjectType = "/getProjectRecentDB"
+            currentProjectShowFromNum = 0
+            currentProjectShowToNum = 10
+            //createProjectTable("/getProjectRecentDB", 0, 10);
+            createProjectTableInRightTable("/getProjectRecentDB", 0, 10)
+
+
+
+        });
+
+
+        //按下 已完成 按鈕 
+        $('#navbarTextComplete').click(function() {
+            console.log("clicked nav bar complete");
+            // $('.leftNav').attr('class', 'nav-item');
+            $('#navbarComplete').attr('class', 'nav-item active');
+            $('#navbarProcess').attr('class', 'nav-item');
+            $('#navbarRecent').attr('class', 'nav-item');
+            // $('.leftNav').css('color', 'cadetblue');
+            //  $('#navbarTextComplete').css('color', 'darkslategrey', 0, 10);
+
+            $(".td_project").remove();
+            currentSelectProjectType = "/getProjectCompletedDB"
+            currentProjectShowFromNum = 0
+            currentProjectShowToNum = 10
+            //createProjectTable("/getProjectCompletedDB", 0, 10);
+            createProjectTableInRightTable("/getProjectCompletedDB", 0, 10)
+        });
+
+        //按下顯示更多專案
+        $('#showMoreItemLeft').click(function() {
+            currentProjectShowFromNum = currentProjectShowFromNum + 10;
+            currentProjectShowToNum = currentProjectShowToNum + 10;
+            console.log(currentSelectProjectType, currentProjectShowFromNum, currentProjectShowToNum)
+
+            let projectState = currentSelectProjectType;
+            let fromNum = currentProjectShowFromNum;
+            let toNum = currentProjectShowToNum;
+            //  createProjectTable(projectState, fromNum, toNum)
+            createProjectTableInRightTable(projectState, fromNum, toNum)
+        });
+
+
+
+        //顯示上傳區域
+
+        function createUploadZone() { // 可能要先創立 div 
+         //   console.log("create upload zone")
+            var rootPath = ""
+            $("#dropzoneArea").show(500);
+            /*
+            $.ajax({
+                url: "/qcUpload",
+                data: {
+                    "url": "1"
+                }
+            });
+            */
+        };
+
+
+
+
+
+        //取得專案資料夾資訊
+
+        function getProjectPath(projectName) {
+            var projectPath = projectDBPath + "/" + projectName
+            var projectQCPath = projectPath + "/qc"
+            var projectQCIconPath = projectQCPath + "/icons"
+            var projectAssetsPath = projectPath + "/assets"
+            var projectAssetsIconsPath = projectAssetsPath + "/icons"
+            var projectShotsPath = projectPath + "/shots"
+            var projectShotsIconsPath = projectShotsPath + "/icons"
+            console.log('projectShotsIconsPath', projectShotsIconsPath)
+            //return 
+        };
+
+
+
+
+        //顯示專案
+
+        function createProjectTableInRightTable(projectState, fromNum, toNum) {
+            $.getJSON(projectState, function(data) {
+
+                for (var i = fromNum; i < toNum; i++) { //data.length
+                    // console.log(data[i]);
+                    //var projectName = data[i][0]
+                    //var projectCNName = data[i][3]
+                    //var projectGameCode = data[i][1]
+                    // var projectIcon = data[i][9]
+                    // console.log(i % 4, Math.floor(i / 5))
+                    // console.log(data[i]);
+                    var projectName = data[i][0]
+                    var projectCNName = data[i][3]
+                    var projectGameCode = data[i][1]
+                    var projectIcon = data[i][9]
+                    var $Rtr = $('<tr class="table-active "' +
+                        'id="' + projectGameCode + '"' +
+                        '></tr>');
+                    var $Rtd2 = $('<td class="td_project  text-center co-md " style="border: 0px;text-align: left"' +
+                        'id="' + projectCNName + "," + projectName + ',' + projectGameCode + '"' +
+                        '>' +
+                        '<a class=" text-center chineseStyleC td_project  " style="color:rgb(80,80,80)">' + projectCNName + "," + '</a>' + '<br>' +
+                        '<a class=" text-center chineseStyleD td_project" style="color:rgb(80,100,80)">' + projectName + '</a>' + '<br>' +
+                        '<img src="' +
+                        projectIcon + '"' +
+                        'class="td_project rounded" style="padding: 1px;height:108px;width:192px"' +
+                        //  'id="' + projectCNName + "," + projectName + ',' + projectGameCode + '"' +
+                        '>' + '<br>' +
+                        '</td>');
+
+
+                    if (i % 5 == 0) {
+                        $('#rightTableForProjs').append($Rtr);
+                        $('#rightTableForProjs').append($Rtr)
+                        //  $('#rightTableForProjs').append($Rtd3)
+                        $('#rightTableForProjs').append($Rtd2)
+
+
+                    } else {
+
+                        // $('#rightTableForProjs').append($Rtd3)
+                        $('#rightTableForProjs').append($Rtd2)
+
+                    };
+
+                    $Rtd2.click(function() { //click project icon
+                        // console.log($(this).text());
+                        //  console.log($(this).attr("id"));
+                        
+                        selectedProjList = []
+                        currentSelectProject = ($(this).attr("id")).split(',')[1]
+                        currentSelectProjectGameCode = ($(this).attr("id")).split(',')[2]
+
+                        // console.log("afddsfdsfdsfdsfdf",projectName)
+                        selectedProjList.push(currentSelectProject)
+                        selectedProjList.push($(this).attr("id"))
+                        // $("#infoProjectText").remove()
+                        var projectSelectText = $('<h5 class ="text-info " id="infoProjectText" >' +
+                            selectedProjList[1] +
+                            '</h5>')
+                        // $("#divRightInfo").append(projectSelectText);
+                        $("#infoProjectText").text(selectedProjList[1]);
+                        $("#infoProjectText").attr('class', 'text-info display-6');
+                        $(".td_project").css({
+                            "border-style": "none",
+                        });
+                        $(this).css({
+                            "border-style": "solid",
+                            "border-width": "2px",
+                            "border-color": "rgb(200,230,200)"
+                        });
+                        currentSelectProjectCN = selectedProjList[1]
+
+                        //console.log("currentSelectProject", currentSelectProjectCN,currentSelectProject, currentSelectProjectGameCode)
+                     //   console.log("currentSelectProjectCN", currentSelectProjectCN) Dropzone.options.dropzoneArea
+                        
+
+                        createUploadZone();
+                        
+
+                        //console.log($('#dropzoneArea').files)
+                    });
+
+
+
+                }
+
+            })
+
+
+
+
+
+        }
+
+
+
+        $(document).ready(function() {
+            $("#tableLeft").disableSelection();
+            $("#divSideLeft").disableSelection();
+            //get current date
+            n = new Date();
+            y = n.getFullYear();
+            m = n.getMonth() + 1;
+            d = n.getDate();
+            date = m + "/" + d + "/" + y;
+            // console.log(date)
+            $("#displayCurrentDate").text(date)
+            $("#fillinDate").val(date)
+
+            $.getJSON("/getUserDB", function(data) { // get userData
+
+                // console.log("data",data) fillinDate
+
+            })
+
+            // createProjectTable("/getProjectProcessDB", 0, 10); //call recent project 
+            //  $("#projectTableList").hide();
+
+            $("#loginDataSubmit").hide();
+
+
+            $("#dropzoneArea").hide();
+
+
+            $("#reviewAll").hide();
+            $("#loginIDinputbox").hide();
+            $("#counterInBGDiv").hide();
+
+
+
+            // Check which wheel event is supported. Don't use both as it would fire each event 
+            // in browsers where both events are supported.
+
+            createProjectTableInRightTable("/getProjectProcessDB", 0, 10);
+            
+
+            
+            
+            
+
+        })
+        
+        
+        
+
+
+        function scrollUp(item) {
+            //   console.log("scroll up")
+            var itemPosition = $(item).position()
+            var ya = itemPosition.top
+            //var y = parseInt($(item).offset().top)
+            // itemPosition.top = 200
+            //var scrollValue = 10
+            ya = itemPosition.top - 10
+            //    console.log("ya", ya)
+
+            //console.log($(item).offset().top)
+        }
+
+        function scrollDown(item) {
+            //  console.log("scroll down")
+            var itemPosition = $(item).position()
+            var yb = itemPosition.top
+            // var y = parseInt($(item).offset().top)
+            yb += 10
+            //  console.log("yb", yb)
+            // $(item).css({"top": yb});
+        }
+
+
+
+        var maxList = 10
+        var startNum = 10
+        var endNum = 55
+        //createTable(maxList, startNum, endNum)
+
+        function createTable(maxList, startNum, endNum) {
+            for (var i = startNum; i < endNum + 1; i++) {
+
+                var $tr = $('<tr class="tr_content"></tr>');
+                var $td1 = $('<td style="border: 0px">' +
+                    i +
+                    '</td>')
+                var $td2 = $('<td style="vertical-align: middle;border: 0px">' +
+                    '<img src="http://vg.com/assets/simpleslot/battle_of_ball/qc/win.png" class="rounded float-left " style="height:100px">' +
+
+                    // '<img src="http://vg.com/assets/simpleslot/battle_of_ball/icon/battle_of_ball_v001_icon.png" class="img-thumbnail ">' +
+                    '</td>');
+                var $td3 = $('<td style="border: 0px">' +
+                    'projectName' +
+                    '</td>')
+
+
+                $("#tableBodyLeft").append($tr);
+                $("#tableBodyLeft").append($td1);
+
+                $("#tableBodyLeft").append($td2);
+                $("#tableBodyLeft").append($td3);
+
+
+
+            };
+        };
+
+    </script>
+</body>
+
+</html>

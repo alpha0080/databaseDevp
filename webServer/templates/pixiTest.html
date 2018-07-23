@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+
+
+    <!--
+
+
+    
+    
+    -->
+
+    <!-- meta使用viewport以确保页面可自由缩放 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+   <!-- UI -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/earlyaccess/cwtexkai.css">
+     <link rel="stylesheet" href="https://fonts.googleapis.com/earlyaccess/cwtexyen.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/earlyaccess/cwtexfangsong.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/earlyaccess/notosanstc.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/earlyaccess/cwtexming.css">
+   
+
+
+
+    <!-- input jQuery js -->
+    <!-- Query CDN  
+    <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>-->
+    <script src="http://code.jquery.com/jquery-3.3.1.min.js"></script>
+
+     <!--
+    <script src="{{url_for('static', filename='jquery-3.3.1.min.js')}}"></script>
+     -->
+    <!-- input jQuery Mobile js
+    <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+
+ 
+    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
+    -->
+    <!--
+	<link href="{{url_for('static',filename='css/jquery-ui.css')}}" rel="stylesheet">
+
+	<script src="{{url_for('static', filename='jqueryUI/jquery.js')}}"></script>
+-->
+   <!--
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    -->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <!--
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+     -->
+    <script src="{{url_for('static', filename='jqueryUI/jqpaginator.min.js')}}"></script>
+
+    
+    <script src="{{url_for('static', filename='tagsinput.js')}}"></script>
+    <link href="{{url_for('static',filename='css/tagsinput.css')}}" rel="stylesheet">
+    
+    
+    
+    
+
+    <!-- input bootstrap tag plugin js -->
+
+
+    <script src="{{url_for('static', filename='bootstrap.js')}}"></script>
+    <link href="{{url_for('static',filename='css/bootstrap.css')}}" rel="stylesheet">
+    
+    
+        <!-- input dropzoe js -->
+    <script src="https://rawgit.com/enyo/dropzone/master/dist/dropzone.js"></script>
+    <link rel="stylesheet" href="https://rawgit.com/enyo/dropzone/master/dist/dropzone.css">
+
+    
+    
+    <!-- input pixi js -->
+
+
+    <script src="{{url_for('static', filename='pixi.min.js')}}"></script>
+    <script src="{{url_for('static', filename='pixi-spine.js')}}"></script>
+
+    <!-- input full screen js -->
+
+    <script src="{{url_for('static', filename='screenfull.min.js')}}"></script>
+
+    <!-- input Markdown js -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.css">
+    <script src="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.js"></script>
+
+
+    <title>Document</title>
+</head>
+<body>
+       
+        <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="col-md-4">
+                    </div>
+                    <div class="col-md-4">
+                    pixi test
+                    <canvas id="main"></canvas>
+                                        <text></text>
+<ol>
+				<li class="list-item">
+					Lorem ipsum dolor sit amet
+				</li>
+				<li class="list-item">
+					Consectetur adipiscing elit
+				</li>
+				<li class="list-item">
+					Integer molestie lorem at massa
+				</li>
+				<li class="list-item">
+					Facilisis in pretium nisl aliquet
+				</li>
+				<li class="list-item">
+					Nulla volutpat aliquam velit
+				</li>
+				<li class="list-item">
+					Faucibus porta lacus fringilla vel
+				</li>
+				<li class="list-item">
+					Aenean sit amet erat nunc
+				</li>
+				<li class="list-item">
+					Eget porttitor lorem
+				</li>
+			</ol>
+                    </div>
+                    <div class="col-md-4">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+
+
+
+<script>
+ 
+/*
+var app = new PIXI.Application(192, 108, { antialias: true,    
+view: document.getElementById(pixiCanvasID),
+antialias: false, 
+transparent: false, 
+resolution: 1
+});
+document.body.appendChild(app.view);  
+*/
+    
+    // 使用我們自創的 HTML Tag - canvas#main 
+// 給予 256 X 256 的大小
+var renderer = new PIXI.Application(256, 256, {
+            view: document.getElementById('main')
+        }
+    );
+
+// 創建 Stage 
+var stage = new PIXI.Container();
+
+// 以 Render 去渲染 Stage
+renderer.render(stage);
+    
+    </script>
+</html>

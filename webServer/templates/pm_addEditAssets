@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <!-- 新增 asset -->
+    <div class="modal-body chineseStyleU_TableHeadAssets align-middle" style="border-style: solid;border-width: 1px;border-radius: 5px;margin-left: 20px;margin-right: 20px;background-color: rgb(240,240,240)" id="editAndAddNewAsset">
+        <div class="input-group mb-3">
+            <h5>新增 asset 編輯</h5>
+        </div>
+        <div class="input-group mb-3">
+            <div class="input-group-append ">
+                <label class="input-group-text align-middle" for="inputGroupSelect02" style="width: 100px">英文名稱</label>
+            </div>
+            <div class="input-group-append " style="width:190px">
+                <input type="text" class="form-control" placeholder="物件英文名稱" aria-label="project EN name" aria-describedby="basic-addon2" id="">
+            </div>
+            <div class="input-group-append ">
+                <label class="input-group-text align-middle" for="inputGroupSelect02" style="width: 100px">物件描述</label>
+            </div>
+            <input type="text" class="form-control" placeholder="Asset 描述" aria-label="project Chn name" aria-describedby="basic-addon2" id="">
+        </div>
+        <div class="input-group mb-3">
+
+            <div class="input-group-append ">
+                <label class="input-group-text align-middle" for="inputGroupSelect02" style="width: 100px">物件類別</label>
+            </div>
+            <select class="custom-select" id=""></select>
+            <div class="input-group-append">
+                <label class="input-group-text align-middle" for="inputGroupSelect02" style="width: 100px">執行人員</label>
+            </div>
+            <select class="custom-select" id=""></select>
+            <div class="input-group-append">
+                <label class="input-group-text align-middle" for="inputGroupSelect02" style="width: 100px">起始日期</label>
+            </div>
+            <input type="text" class="form-control input-group date" placeholder="07/01/2018" aria-label="project EN name" data-provide="datepicker" id="" value="07/01/2018">
+            <div class="input-group-append">
+                <label class="input-group-text align-middle" for="inputGroupSelect02" style="width: 100px">結束日期</label>
+            </div>
+            <input type="text" class="form-control input-group date" placeholder="07/01/2018" aria-label="project EN name" data-provide="datepicker" id="" value="07/01/2018">
+        </div>
+        <div class="input-group mb-3" style="background-color: white">
+            <table class="table chineseStyleU_TableHead">
+                <thead>
+                    <tr>
+
+                        <th>
+                            流程名稱
+                        </th>
+                        <th>
+                            起始日期
+                        </th>
+                        <th>
+                            結束日期
+                        </th>
+                        <th>
+                            執行狀況
+                        </th>
+                        <th>
+                            執行人員
+                        </th>
+                        <th>
+                            備註
+                        </th>
+
+                    </tr>
+                </thead>
+                <tbody class="align-middle" id="assetTaskTable">
+                    <tr class="p-3 mb-2 bg-secondary text-white">
+                        <td class="align-middle">
+                            concept
+                        </td>
+                        <td class="align-middle">
+                            <input type="text" class="form-control input-group date " placeholder="07/01/2018" aria-label="project EN name" data-provide="datepicker" id="" value="07/01/2018">
+                        </td>
+                        <td class="align-middle">
+                            <input type="text" class="form-control input-group date" placeholder="07/01/2018" aria-label="project EN name" data-provide="datepicker" id="" value="07/01/2018">
+                        </td>
+                        <td class="align-middle" style="width:200px">
+                            <select class="custom-select" id="assetTaskProcessSelect">
+                                                <option selected></option>
+                                                <option value=".Not Ready" selected>準備中</option>
+                                                <option value=".In Progress">進行中</option>
+                                                <option value=".Complete">已完成</option>
+                                              </select>
+                        </td>
+                        <td class="align-middle" style="width:200px">
+                            <select class="custom-select" id="assetTaskProcessSelect">
+                                                <option selected>選擇執行人員</option>
+
+                                              </select>
+                        </td>
+                        <td class="align-middle" style="width:300px">
+                            <input type="text" class="form-control" placeholder="" id="">
+                        </td>
+
+                    </tr>
+                    <tr class="p-3 mb-2 bg-secondary text-white">
+                        <td class="align-middle">
+                            model
+                        </td>
+                        <td class="align-middle">
+                            <input type="text" class="form-control input-group date " placeholder="07/01/2018" aria-label="project EN name" data-provide="datepicker" id="" value="07/01/2018">
+                        </td>
+                        <td class="align-middle">
+                            <input type="text" class="form-control input-group date" placeholder="07/01/2018" aria-label="project EN name" data-provide="datepicker" id="" value="07/01/2018">
+                        </td>
+                        <td class="align-middle" style="width:200px">
+                            <select class="custom-select" id="assetTaskProcessSelect">
+                                                <option selected></option>
+                                                <option value=".Not Ready" selected>準備中</option>
+                                                <option value=".In Progress">進行中</option>
+                                                <option value=".Complete">已完成</option>
+                                              </select>
+                        </td>
+                        <td class="align-middle" style="width:200px">
+                            <select class="custom-select" id="assetTaskProcessSelect">
+                                                <option selected>選擇執行人員</option>
+
+                                              </select>
+                        </td>
+                        <td class="align-middle" style="width:300px">
+                            <input type="text" class="form-control" placeholder="" id="">
+                        </td>
+
+                    </tr>
+                    <tr class="p-3 mb-2 bg-secondary text-white">
+                        <td class="align-middle">
+                            texture
+                        </td>
+                        <td class="align-middle">
+                            <input type="text" class="form-control input-group date " placeholder="07/01/2018" aria-label="project EN name" data-provide="datepicker" id="" value="07/01/2018">
+                        </td>
+                        <td class="align-middle">
+                            <input type="text" class="form-control input-group date" placeholder="07/01/2018" aria-label="project EN name" data-provide="datepicker" id="" value="07/01/2018">
+                        </td>
+                        <td class="align-middle" style="width:200px">
+                            <select class="custom-select" id="assetTaskProcessSelect">
+                                                <option selected></option>
+                                                <option value=".Not Ready" selected>準備中</option>
+                                                <option value=".In Progress">進行中</option>
+                                                <option value=".Complete">已完成</option>
+                                              </select>
+                        </td>
+                        <td class="align-middle" style="width:200px">
+                            <select class="custom-select" id="assetTaskProcessSelect">
+                                                <option selected>選擇執行人員</option>
+
+                                              </select>
+                        </td>
+                        <td class="align-middle" style="width:300px">
+                            <input type="text" class="form-control" placeholder="" id="">
+                        </td>
+
+                    </tr>
+                    <tr class="p-3 mb-2 bg-secondary text-white">
+                        <td class="align-middle">
+                            rigging
+                        </td>
+                        <td class="align-middle">
+                            <input type="text" class="form-control input-group date " placeholder="07/01/2018" aria-label="project EN name" data-provide="datepicker" id="" value="07/01/2018">
+                        </td>
+                        <td class="align-middle">
+                            <input type="text" class="form-control input-group date" placeholder="07/01/2018" aria-label="project EN name" data-provide="datepicker" id="" value="07/01/2018">
+                        </td>
+                        <td class="align-middle" style="width:200px">
+                            <select class="custom-select" id="assetTaskProcessSelect">
+                                                <option selected></option>
+                                                <option value=".Not Ready" selected>準備中</option>
+                                                <option value=".In Progress">進行中</option>
+                                                <option value=".Complete">已完成</option>
+                                              </select>
+                        </td>
+                        <td class="align-middle" style="width:200px">
+                            <select class="custom-select" id="assetTaskProcessSelect">
+                                                <option selected>選擇執行人員</option>
+
+                                              </select>
+                        </td>
+                        <td class="align-middle" style="width:300px">
+                            <input type="text" class="form-control" placeholder="" id="">
+                        </td>
+
+                    </tr>
+                </tbody>
+            </table>
+
+        </div>
+        <div class="input-group mb-3 ">
+            <h6 class="col-6"></h6>
+            <button type="button" class="col-2 btn btn-dark btn-md ">確定新增</button>
+            <h6 class="col-1"></h6>
+
+            <button type="button" class="col-2 btn btn-secondary btn-md ">取消</button>
+
+            <h6 class="col-1"></h6>
+        </div>
+
+
+    </div>
+
+    <!-- 新增 shot -->
+    <div class="modal-body chineseStyleU_TableHeadAssets align-middle" style="border-style: solid;border-width: 1px;border-radius: 5px;margin-left: 20px;margin-right: 20px;background-color: rgb(240,240,240)">
+        <div class="input-group mb-3">
+            <h5> 新增 shot 編輯</h5>
+        </div>
+        <div class="input-group mb-3">
+            <div class="input-group-append ">
+                <label class="input-group-text align-middle" for="inputGroupSelect02" style="width: 100px">英文名稱</label>
+            </div>
+            <div class="input-group-append " style="width:190px">
+                <input type="text" class="form-control" placeholder="物件英文名稱" aria-label="project EN name" aria-describedby="basic-addon2" id="">
+            </div>
+            <div class="input-group-append ">
+                <label class="input-group-text align-middle" for="inputGroupSelect02" style="width: 100px">物件描述</label>
+            </div>
+            <input type="text" class="form-control" placeholder="shot 描述" aria-label="project Chn name" aria-describedby="basic-addon2" id="">
+        </div>
+        <div class="input-group mb-3">
+
+            <div class="input-group-append">
+                <label class="input-group-text align-middle" for="inputGroupSelect02" style="width: 100px">執行人員</label>
+            </div>
+            <select class="custom-select" id=""></select>
+            <div class="input-group-append">
+                <label class="input-group-text align-middle" for="inputGroupSelect02" style="width: 100px">起始日期</label>
+            </div>
+            <input type="text" class="form-control input-group date" placeholder="07/01/2018" aria-label="project EN name" data-provide="datepicker" id="" value="07/01/2018">
+            <div class="input-group-append">
+                <label class="input-group-text align-middle" for="inputGroupSelect02" style="width: 100px">結束日期</label>
+            </div>
+            <input type="text" class="form-control input-group date" placeholder="07/01/2018" aria-label="project EN name" data-provide="datepicker" id="" value="07/01/2018">
+        </div>
+        <div class="input-group mb-3" style="background-color: white">
+            <table class="table chineseStyleU_TableHead">
+                <thead>
+                    <tr>
+
+                        <th>
+                            流程名稱
+                        </th>
+                        <th>
+                            起始日期
+                        </th>
+                        <th>
+                            結束日期
+                        </th>
+                        <th>
+                            執行狀況
+                        </th>
+                        <th>
+                            執行人員
+                        </th>
+                        <th>
+                            備註
+                        </th>
+
+                    </tr>
+                </thead>
+                <tbody class="align-middle" id="assetTaskTable">
+                    <tr class="p-3 mb-2 bg-secondary text-white">
+                        <td class="align-middle">
+                            layout
+                        </td>
+                        <td class="align-middle">
+                            <input type="text" class="form-control input-group date " placeholder="07/01/2018" aria-label="project EN name" data-provide="datepicker" id="" value="07/01/2018">
+                        </td>
+                        <td class="align-middle">
+                            <input type="text" class="form-control input-group date" placeholder="07/01/2018" aria-label="project EN name" data-provide="datepicker" id="" value="07/01/2018">
+                        </td>
+                        <td class="align-middle" style="width:200px">
+                            <select class="custom-select" id="assetTaskProcessSelect">
+                                                <option selected></option>
+                                                <option value=".Not Ready" selected>準備中</option>
+                                                <option value=".In Progress">進行中</option>
+                                                <option value=".Complete">已完成</option>
+                                              </select>
+                        </td>
+                        <td class="align-middle" style="width:200px">
+                            <select class="custom-select" id="assetTaskProcessSelect">
+                                                <option selected>選擇執行人員</option>
+
+                                              </select>
+                        </td>
+                        <td class="align-middle" style="width:300px">
+                            <input type="text" class="form-control" placeholder="" id="">
+                        </td>
+
+                    </tr>
+                    <tr class="p-3 mb-2 bg-secondary text-white">
+                        <td class="align-middle">
+                            animation
+                        </td>
+                        <td class="align-middle">
+                            <input type="text" class="form-control input-group date " placeholder="07/01/2018" aria-label="project EN name" data-provide="datepicker" id="" value="07/01/2018">
+                        </td>
+                        <td class="align-middle">
+                            <input type="text" class="form-control input-group date" placeholder="07/01/2018" aria-label="project EN name" data-provide="datepicker" id="" value="07/01/2018">
+                        </td>
+                        <td class="align-middle" style="width:200px">
+                            <select class="custom-select" id="assetTaskProcessSelect">
+                                                <option selected></option>
+                                                <option value=".Not Ready" selected>準備中</option>
+                                                <option value=".In Progress">進行中</option>
+                                                <option value=".Complete">已完成</option>
+                                              </select>
+                        </td>
+                        <td class="align-middle" style="width:200px">
+                            <select class="custom-select" id="assetTaskProcessSelect">
+                                                <option selected>選擇執行人員</option>
+
+                                              </select>
+                        </td>
+                        <td class="align-middle" style="width:300px">
+                            <input type="text" class="form-control" placeholder="" id="">
+                        </td>
+
+                    </tr>
+                    <tr class="p-3 mb-2 bg-secondary text-white">
+                        <td class="align-middle">
+                            lighting
+                        </td>
+                        <td class="align-middle">
+                            <input type="text" class="form-control input-group date " placeholder="07/01/2018" aria-label="project EN name" data-provide="datepicker" id="" value="07/01/2018">
+                        </td>
+                        <td class="align-middle">
+                            <input type="text" class="form-control input-group date" placeholder="07/01/2018" aria-label="project EN name" data-provide="datepicker" id="" value="07/01/2018">
+                        </td>
+                        <td class="align-middle" style="width:200px">
+                            <select class="custom-select" id="assetTaskProcessSelect">
+                                                <option selected></option>
+                                                <option value=".Not Ready" selected>準備中</option>
+                                                <option value=".In Progress">進行中</option>
+                                                <option value=".Complete">已完成</option>
+                                              </select>
+                        </td>
+                        <td class="align-middle" style="width:200px">
+                            <select class="custom-select" id="assetTaskProcessSelect">
+                                                <option selected>選擇執行人員</option>
+
+                                              </select>
+                        </td>
+                        <td class="align-middle" style="width:300px">
+                            <input type="text" class="form-control" placeholder="" id="">
+                        </td>
+
+                    </tr>
+                    <tr class="p-3 mb-2 bg-secondary text-white">
+                        <td class="align-middle">
+                            effects
+                        </td>
+                        <td class="align-middle">
+                            <input type="text" class="form-control input-group date " placeholder="07/01/2018" aria-label="project EN name" data-provide="datepicker" id="" value="07/01/2018">
+                        </td>
+                        <td class="align-middle">
+                            <input type="text" class="form-control input-group date" placeholder="07/01/2018" aria-label="project EN name" data-provide="datepicker" id="" value="07/01/2018">
+                        </td>
+                        <td class="align-middle" style="width:200px">
+                            <select class="custom-select" id="assetTaskProcessSelect">
+                                                <option selected></option>
+                                                <option value=".Not Ready" selected>準備中</option>
+                                                <option value=".In Progress">進行中</option>
+                                                <option value=".Complete">已完成</option>
+                                              </select>
+                        </td>
+                        <td class="align-middle" style="width:200px">
+                            <select class="custom-select" id="assetTaskProcessSelect">
+                                                <option selected>選擇執行人員</option>
+
+                                              </select>
+                        </td>
+                        <td class="align-middle" style="width:300px">
+                            <input type="text" class="form-control" placeholder="" id="">
+                        </td>
+
+                    </tr>
+                    <tr class="p-3 mb-2 bg-secondary text-white">
+                        <td class="align-middle">
+                            simulation
+                        </td>
+                        <td class="align-middle">
+                            <input type="text" class="form-control input-group date " placeholder="07/01/2018" aria-label="project EN name" data-provide="datepicker" id="" value="07/01/2018">
+                        </td>
+                        <td class="align-middle">
+                            <input type="text" class="form-control input-group date" placeholder="07/01/2018" aria-label="project EN name" data-provide="datepicker" id="" value="07/01/2018">
+                        </td>
+                        <td class="align-middle" style="width:200px">
+                            <select class="custom-select" id="assetTaskProcessSelect">
+                                                <option selected></option>
+                                                <option value=".Not Ready" selected>準備中</option>
+                                                <option value=".In Progress">進行中</option>
+                                                <option value=".Complete">已完成</option>
+                                              </select>
+                        </td>
+                        <td class="align-middle" style="width:200px">
+                            <select class="custom-select" id="assetTaskProcessSelect">
+                                                <option selected>選擇執行人員</option>
+
+                                              </select>
+                        </td>
+                        <td class="align-middle" style="width:300px">
+                            <input type="text" class="form-control" placeholder="" id="">
+                        </td>
+
+                    </tr>
+                    <tr class="p-3 mb-2 bg-secondary text-white">
+                        <td class="align-middle">
+                            comp
+                        </td>
+                        <td class="align-middle">
+                            <input type="text" class="form-control input-group date " placeholder="07/01/2018" aria-label="project EN name" data-provide="datepicker" id="" value="07/01/2018">
+                        </td>
+                        <td class="align-middle">
+                            <input type="text" class="form-control input-group date" placeholder="07/01/2018" aria-label="project EN name" data-provide="datepicker" id="" value="07/01/2018">
+                        </td>
+                        <td class="align-middle" style="width:200px">
+                            <select class="custom-select" id="assetTaskProcessSelect">
+                                                <option selected></option>
+                                                <option value=".Not Ready" selected>準備中</option>
+                                                <option value=".In Progress">進行中</option>
+                                                <option value=".Complete">已完成</option>
+                                              </select>
+                        </td>
+                        <td class="align-middle" style="width:200px">
+                            <select class="custom-select" id="assetTaskProcessSelect">
+                                                <option selected>選擇執行人員</option>
+
+                                              </select>
+                        </td>
+                        <td class="align-middle" style="width:300px">
+                            <input type="text" class="form-control" placeholder="" id="">
+                        </td>
+
+                    </tr>
+                    <tr class="p-3 mb-2 bg-secondary text-white">
+                        <td class="align-middle">
+                            final
+                        </td>
+                        <td class="align-middle">
+                            <input type="text" class="form-control input-group date " placeholder="07/01/2018" aria-label="project EN name" data-provide="datepicker" id="" value="07/01/2018">
+                        </td>
+                        <td class="align-middle">
+                            <input type="text" class="form-control input-group date" placeholder="07/01/2018" aria-label="project EN name" data-provide="datepicker" id="" value="07/01/2018">
+                        </td>
+                        <td class="align-middle" style="width:200px">
+                            <select class="custom-select" id="assetTaskProcessSelect">
+                                                <option selected></option>
+                                                <option value=".Not Ready" selected>準備中</option>
+                                                <option value=".In Progress">進行中</option>
+                                                <option value=".Complete">已完成</option>
+                                              </select>
+                        </td>
+                        <td class="align-middle" style="width:200px">
+                            <select class="custom-select" id="assetTaskProcessSelect">
+                                                <option selected>選擇執行人員</option>
+
+                                              </select>
+                        </td>
+                        <td class="align-middle" style="width:300px">
+                            <input type="text" class="form-control" placeholder="" id="">
+                        </td>
+
+                    </tr>
+                </tbody>
+            </table>
+
+        </div>
+        <div class="input-group mb-3 ">
+            <h6 class="col-6"></h6>
+            <button type="button" class="col-2 btn btn-dark btn-md ">確定新增</button>
+            <h6 class="col-1"></h6>
+
+            <button type="button" class="col-2 btn btn-secondary btn-md ">取消</button>
+
+            <h6 class="col-1"></h6>
+        </div>
+
+
+    </div>
+
+
+
+</body>
+
+</html>

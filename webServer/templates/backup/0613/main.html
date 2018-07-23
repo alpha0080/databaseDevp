@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <!--
+    <link href="{{url_for('static',filename='bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
+    <script src="{{url_for('static', filename='bootstrap/js/bootstrap.min.js')}}" crossorigin="anonymous"></script>
+
+    <link href="{{url_for('static',filename='css/fileinput.min.css')}}" rel="stylesheet">
+    <link href="{{url_for('static',filename='css/fileinput-rtl.min.css')}}" rel="stylesheet">
+    <link href="{{url_for('static',filename='css/jquery-ui.css')}}" rel="stylesheet">
+    <link href="{{url_for('static',filename='dropzone/dropzone.css')}}" rel="stylesheet">
+    <script src="{{url_for('static', filename='jqueryUI/jquery.js')}}"></script>
+    <script src="{{url_for('static', filename='jqueryUI/jqpaginator.min.js')}}"></script>
+
+    <script src="{{url_for('static', filename='dropzone/dropzone.js')}}"></script>
+    
+        -->
+    <link href="{{url_for('static',filename='css/jquery-ui.css')}}" rel="stylesheet">
+    <script src="{{url_for('static', filename='jqueryUI/jquery.js')}}"></script>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <!--
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="{{url_for('static', filename='jqueryUI/jqpaginator.min.js')}}"></script>
+
+    <!--
+
+    <link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">  
+	<script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
+	<script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    -->
+
+    <title>專案首頁</title>
+</head>
+
+<body>
+ 
+    <div class="fixed-bottom">
+       
+        <nav aria-label="Page navigation example">
+            <ul class="pagination justify-content-center" id="pageTest">
+                <!--
+            <li class="page-item" id= "a1"><a class="page-link" href="#">Previous</a></li>
+            <li class="page-item"><a class="page-link" href="#">1</a></li>
+            <li class="page-item"><a class="page-link" href="#">2</a></li>
+            <li class="page-item"><a class="page-link" href="#">3</a></li>
+            <li class="page-item"><a class="page-link" href="#">Next</a></li>
+            -->
+            </ul>
+        </nav>
+    </div>
+
+
+
+    <div class="container-fluid"  >
+        <div class="row clearfix ">
+            <div class="col-md-2 column " style="background-color: rgb(60,60,60)">
+                <h5 class="sticky-top">hhhh</h5>
+            </div>
+            <div class="col-md-10 column " style="background-color: rgb(180,180,180);padding: 0px;font-size: 14px;">
+
+                <table class="table table-striped  ">
+                    <thead class="thead-dark  sticky-top" style="background-color:rgb(40,40,40);color: azure;padding: 100px">
+                        <tr>
+
+                            <div class="btn-group btn-group-toggle  btn-sm " style="padding: 2px " data-toggle="buttons">
+                                <label class="btn btn-secondary active  ">
+                                    <input type="radio" name="options" id="option1" autocomplete="off" checked> 進行中
+                                  </label>
+                                <label class="btn btn-secondary">
+                                    <input type="radio" name="options" id="option2" autocomplete="off"> 已完成
+                                  </label>
+                                <label class="btn btn-secondary">
+                                    <input type="radio" name="options" id="option3" autocomplete="off"> 全部
+                                  </label>
+                            </div>
+                        </tr>
+                        <tr>
+                            <th>
+                                編號
+                            </th>
+                            <th>
+                                專案
+                            </th>
+                            <th>
+                                名稱
+                            </th>
+                            <th>
+                                英文名稱
+                            </th>
+                            <th>
+                                操作
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody id="projectTable">
+                        <!--
+                        <tr>
+                            <td style="vertical-align: middle">
+                                1
+                            </td>
+                            <td style="vertical-align: middle">
+                                <img src="http://vg.com/assets/simpleslot/battle_of_ball/icon/battle_of_ball_v001_icon.png" class="img-thumbnail ">
+
+                            </td>
+                            <td style="vertical-align: middle">
+                                中文名稱
+                            </td>
+                            <td style="vertical-align: middle">
+                                project name
+                            </td>
+                            <td style="vertical-align: middle">
+                                <a class="btn btn-primary btn-sm" href="#">1</a>
+                                <a class="btn btn-primary btn-sm" href="#">2</a>
+                                <a class="btn btn-primary btn-sm" href="#">3</a>
+                            </td>
+                        </tr>
+                        -->
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        var $prev = $('<li class="page-item " id= "btwPrew"><a class="page-link" href="#">Prev</a></li>')
+        var $next = $('<li class="page-item" id= "btwNext"><a class="page-link" href="#">>Next</a></li>')
+
+        //var $td1 = $('<td class="td_content1">' + i * 1 + '</td>');
+
+        $("#pageTest").append($prev);
+
+
+        var startPage = 1;
+        var totalPage = 24;
+        var pageStep = 5
+        var endPage = pageStep;
+
+        for (var i = startPage; i < endPage + 1; i++) {
+            var $bet = $('<li class="page-item"' +
+                'id = "btw' + i + '"' +
+                '>' +
+                '<a class="page-link" href="#">' +
+                i +
+                '</a></li>'
+            );
+            $("#pageTest").append($bet);
+        }
+        $("#pageTest").append($next);
+
+
+
+        $(function() { //get li text
+            $('li').click(function() {
+                //console.log($(this).text());
+                console.log($(this).attr("id"));
+                console.log($(this).text());
+            });
+            $('a').click(function() {
+                //console.log($(this).text());
+                console.log($(this).attr("id"));
+                console.log($(this).text());
+            });
+            $('img').click(function() {
+                //console.log($(this).text());
+                console.log($(this).attr("id"));
+                console.log($(this).text());
+            });
+        });
+        $('#btwPrew').click(function() {
+            if (startPage <= 1) {
+                startPage = 1
+                endPage = pageStep;
+            } else {
+                if (endPage == totalPage) {
+                    startPage = startPage - pageStep
+                    endPage = endPage - totalPage % pageStep;
+                } else {
+                    if (startPage - pageStep <= 1) {
+                        startPage = 1
+                        endPage = endPage - pageStep;
+                    } else {
+                        startPage = startPage - pageStep
+                        endPage = endPage - pageStep;
+                    }
+
+                }
+
+
+            };
+            console.log("start page", startPage, "end page", endPage)
+
+        });
+        $('#btwNext').click(function() {
+            console.log("clicked Next btw")
+            console.log("endPage", startPage)
+            if (endPage + pageStep >= totalPage) {
+                endPage = totalPage
+                startPage = totalPage - totalPage % pageStep;
+            } else {
+                endPage = endPage + pageStep
+                startPage = startPage + pageStep;
+            };
+            console.log("start page", startPage, "end page", endPage)
+
+        });
+
+
+        var maxList = 10
+        var startNum = 10
+        var endNum = 55
+        createTable(maxList, startNum, endNum)
+
+        function createTable(maxList, startNum, endNum) {
+            for (var i = startNum; i < endNum + 1; i++) {
+
+                var $listBwt_A = '<a class="btn btn-secondary btn-sm" href="#" id = "asset_' +
+                    i +
+                    '">A</a>'
+                var $listBwt_S = '<a class="btn btn-success btn-sm" href="#" id = "shot_' +
+                    i +
+                    '">S</a>'
+                var $listBwt_Q = '<a class="btn btn-info btn-sm" href="#" id = "qc' +
+                    i +
+                    '">Q</a>'
+
+                var $tr = $('<tr class="tr_content"></tr>');
+                var $td1 = $('<td style="vertical-align: middle">' + i + '</td>');
+                var $td2 = $('<td style="vertical-align: middle">' +
+                    '<img src="http://vg.com/assets/simpleslot/battle_of_ball/qc/win.png" class="img-thumbnail " style="height:150px">' +
+
+                   // '<img src="http://vg.com/assets/simpleslot/battle_of_ball/icon/battle_of_ball_v001_icon.png" class="img-thumbnail ">' +
+                    '</td>');
+                var $td3 = $('<td style="vertical-align: middle">' +
+                    '中文專案名稱' +
+                    '</td>');
+
+                var $td4 = $('<td style="vertical-align: middle">' +
+                    'project Name' +
+                    '</td>');
+                var $td5 = $('<td style="vertical-align: middle">' +
+                    $listBwt_A +
+                    $listBwt_S +
+                    $listBwt_Q +
+                    '</td>');
+
+
+                $("#projectTable").append($tr);
+                $("#projectTable").append($td1);
+
+                $("#projectTable").append($td2);
+                $("#projectTable").append($td3);
+                $("#projectTable").append($td4);
+                $("#projectTable").append($td5);
+
+
+
+
+            };
+        };
+
+    </script>
+
+
+
+
+
+</body>
+
+</html>

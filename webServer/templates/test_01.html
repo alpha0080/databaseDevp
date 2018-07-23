@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <!-- meta使用viewport以确保页面可自由缩放 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+    <!-- input dropzoe js -->
+    <script src="https://rawgit.com/enyo/dropzone/master/dist/dropzone.js"></script>
+    <link rel="stylesheet" href="https://rawgit.com/enyo/dropzone/master/dist/dropzone.css">
+
+    <!-- input jQuery Mobile js -->
+    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
+
+    <!-- input jQuery js -->
+    <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+
+    <!-- input jQuery Mobile 库js-->
+    <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+
+    <!--
+	<link href="{{url_for('static',filename='css/jquery-ui.css')}}" rel="stylesheet">
+
+	<script src="{{url_for('static', filename='jqueryUI/jquery.js')}}"></script>
+-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="{{url_for('static', filename='jqueryUI/jqpaginator.min.js')}}"></script>
+
+
+    <!-- input bootstrap tag plugin js -->
+
+
+    <script src="{{url_for('static', filename='tagmanager.js')}}"></script>
+    <link href="{{url_for('static',filename='css/tagmanager.css')}}" rel="stylesheet">
+
+    <title>Document</title>
+</head>
+
+<body>
+<input type="text" name="tags" placeholder="Tags"  class='tm-input tm-input-info tm-input-small'/>
+
+<script>
+    
+    $(".tm-input").tagsManager(
+    {
+
+        tagCloseIcon: 'x',
+        tagClass: 'bg-primary text-white',
+    }
+    );
+    </script>
+
+</body>
+
+</html>

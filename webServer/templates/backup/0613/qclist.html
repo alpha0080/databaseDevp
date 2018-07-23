@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!--
+    <link href="{{url_for('static',filename='css/fileinput.min.css')}}" rel="stylesheet">
+    <link href="{{url_for('static',filename='css/fileinput-rtl.min.css')}}" rel="stylesheet">
+    <link href="{{url_for('static',filename='dropzone/dropzone.css')}}" rel="stylesheet">
+    <script src="{{url_for('static', filename='dropzone/dropzone.js')}}"></script>
+    <script src="https://rawgit.com/enyo/dropzone/master/dist/dropzone.js"></script>
+<link rel="stylesheet" href="https://rawgit.com/enyo/dropzone/master/dist/dropzone.css">
+    <link href="{{url_for('static',filename='css/dropzone.css')}}" rel="stylesheet">
+    <script src="{{url_for('static', filename='dropzone/dropzone.js')}}"></script>
+
+
+    
+    
+    
+    -->
+    <link href="{{url_for('static',filename='css/dropzone.min.css')}}" rel="stylesheet">
+
+    <link href="{{url_for('static',filename='css/jquery-ui.css')}}" rel="stylesheet">
+
+    <script src="{{url_for('static', filename='dropzone/dropzone.min.js')}}"></script>
+    <script src="{{url_for('static', filename='jqueryUI/jquery.js')}}"></script>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="{{url_for('static', filename='jqueryUI/jqpaginator.min.js')}}"></script>
+    <title>Document</title>
+
+</head>
+
+<body>
+
+    <style>
+        .slideB {
+            position: relative;
+            height: 200;
+            lightyellow;
+        }
+
+        .slide .inner {
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            height: 100;
+            lightblue;
+            width: 100%
+        }
+
+        .position-fixed-top {
+            position: fixed;
+            top: 10;
+            left: 0;
+            background: rgb(0, 0, 0);
+            color: #fff;
+            text-align: center;
+            text-decoration: none;
+        }
+
+        .position-fixed {
+            position: fixed;
+            top: 100px;
+            left: 500px;
+            background: rgb(0, 0, 0);
+            color: #fff;
+            text-align: center;
+            text-decoration: none;
+        }
+
+        .position-sticky-left {
+            position: relative;
+            top: 10px;
+            left: 10px;
+            background: rgb(200, 200, 200);
+            color: #fff;
+            text-align: center;
+            text-decoration: none;
+        }
+
+
+        .warpA {}
+
+    </style>
+
+    <div class="container">
+
+        <div class="row clearfix">
+            <div class="col-md-3 column" id="divABC">
+                    <button id="butAAA">
+                        sdsd
+                    </button>
+            </div>
+            <div class="col-md-9 column">
+
+                <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top" style="height: 70px">
+                    <a class="navbar-brand">QC</a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                      </button>
+                    <div class="collapse navbar-collapse " id="navbarNavAltMarkup">
+                        <div class="navbar-nav">
+                            <a class="nav-item nav-link active" href="#">日期 <span class="sr-only">(current)</span></a>
+                            <a class="nav-item nav-link" href="#">專案</a>
+                            <a class="nav-item nav-link disabled" href="#">Disabled</a>
+                            <a class="nav-item nav-link disabled" href="#">Disabled</a>
+                        </div>
+                    </div>
+                    <nav class="navbar navbar-light bg-light">
+                        <form class="form-inline">
+                            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                        </form>
+                    </nav>
+                </nav>
+
+                <table class="table table-striped  ">
+                    <thead class="thead-dark">
+
+                        <tr>
+                            <th>
+                                日期: 05/28
+                            </th>
+
+                        </tr>
+
+                    </thead>
+
+                </table>
+                <table class="table table-striped  ">
+                    <thead class="thead">
+
+                        <tr>
+                            <th>
+                                圖片
+                            </th>
+
+                        </tr>
+
+                    </thead>
+                    <tbody id="projectItems">
+                        <td>
+                            ggg
+                        </td>
+
+                    </tbody>
+
+                </table>
+                <table class="table table-striped  " id = "tableDDD">
+                    <thead class="thead">
+
+                        <tr>
+                            <th>
+                                影片
+                            </th>
+
+                        </tr>
+
+                    </thead>
+                    <tbody id="projectItems">
+                        <td>
+                            ggg
+                        </td>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+        </div>
+    </div>
+    <script>
+        function isEventSupported(eventName) {
+            var el = document.createElement('div');
+            eventName = 'on' + eventName;
+            var isSupported = (eventName in el);
+            if (!isSupported) {
+                el.setAttribute(eventName, 'return;');
+                isSupported = typeof el[eventName] == 'function';
+            }
+            el = null;
+            return isSupported;
+        }
+
+        $(document).ready(function() {
+
+            // Check which wheel event is supported. Don't use both as it would fire each event 
+            // in browsers where both events are supported.
+            var wheelEvent = isEventSupported('mousewheel') ? 'mousewheel' : 'wheel';
+
+            // Now bind the event to the desired element
+            $('#divABC').on(wheelEvent, function(e) {
+                console.log("AAA")
+                var oEvent = e.originalEvent,
+                    delta = oEvent.deltaY || oEvent.wheelDelta;
+                //console.log($("#projectTable").scrollTop())
+                console.log("delta", delta)
+               // var topValue = $("#butAAA").offset().top
+                addScrollTop(delta)
+                // deltaY for wheel event
+                // wheelData for mousewheel event
+
+                if (delta > 0) {
+                    // Scrolled up
+                } else {
+                    // Scrolled down
+                }
+            });
+
+
+        })
+
+        function addScrollTop(delta) {
+            console.log("asd")
+           // y = topValue - delta
+            y = $("#butAAA").offset().top - delta / 2;
+            console.log("y", y)
+            $("#butAAA").css({top: y });
+            // var $listItem = $('<li class="list-group-item">Vestibulum at eros</li>');
+            // $("#ulAAA").append($listItem)
+        }
+
+
+
+
+
+        var maxList = 10
+        var startNum = 10
+        var endNum = 55
+        createTable(maxList, startNum, endNum)
+
+        function createTable(maxList, startNum, endNum) {
+            for (var i = startNum; i < endNum + 1; i++) {
+
+                var $listBwt_A = '<a class="btn btn-secondary btn-sm" href="#" id = "asset_' +
+                    i +
+                    '">A</a>'
+                var $listBwt_S = '<a class="btn btn-success btn-sm" href="#" id = "shot_' +
+                    i +
+                    '">S</a>'
+                var $listBwt_Q = '<a class="btn btn-info btn-sm" href="#" id = "qc' +
+                    i +
+                    '">Q</a>'
+
+                var $tr = $('<tr class="tr_content"></tr>');
+                var $td1 = $('<td style="vertical-align: middle">' + i + '</td>');
+                var $td2 = $('<td style="vertical-align: middle">' +
+                    '<img src="http://vg.com/assets/simpleslot/battle_of_ball/qc/win.png" class="img-thumbnail " style="height:150px">' +
+
+                    // '<img src="http://vg.com/assets/simpleslot/battle_of_ball/icon/battle_of_ball_v001_icon.png" class="img-thumbnail ">' +
+                    '</td>');
+                var $td3 = $('<td style="vertical-align: middle">' +
+                    '中文專案名稱' +
+                    '</td>');
+
+                var $td4 = $('<td style="vertical-align: middle">' +
+                    'project Name' +
+                    '</td>');
+                var $td5 = $('<td style="vertical-align: middle">' +
+                    $listBwt_A +
+                    $listBwt_S +
+                    $listBwt_Q +
+                    '</td>');
+
+
+                $("#projectTable").append($tr);
+                $("#projectTable").append($td1);
+
+                $("#projectTable").append($td2);
+                $("#projectTable").append($td3);
+                $("#projectTable").append($td4);
+                $("#projectTable").append($td5);
+
+
+
+
+            };
+        };
+
+    </script>
+</body>
+
+</html>

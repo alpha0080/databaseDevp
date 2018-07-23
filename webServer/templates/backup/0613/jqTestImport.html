@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+
+    <link href="{{url_for('static',filename='css/bootstrap.min.css')}}" rel="stylesheet">
+    <link href="{{url_for('static',filename='css/fileinput.min.css')}}" rel="stylesheet">
+    <link href="{{url_for('static',filename='css/fileinput-rtl.min.css')}}" rel="stylesheet">
+    <link href="{{url_for('static',filename='css/jquery-ui.css')}}" rel="stylesheet">
+
+    <script src="{{url_for('static', filename='jqueryUI/jquery.js')}}"></script>
+
+    <script src="{{url_for('static', filename='jqueryUI/jquery-ui.js')}}"></script>
+
+</head>
+
+<body>
+    <script>
+        $(document).ready(function() {
+        $(".btn1").click(function() {
+            $.get("/mystring", function(data, status) {
+                alert("数据: " + data + "\n状态: " + status);
+            });
+        });
+
+
+        $(".btn2").click(function() {
+            $.get("/mydict", function(data, status) {
+                alert("name: " + data.name + " age:" + data.age);
+            });
+        });
+
+        $(".btn3").click(function() {
+            $.get("/mylist", function(data, status) {
+                alert("name: " + data);
+                var json = eval('(' + data + ')');
+                alert('name: ' + json[0] + ' age:' + json[1]);
+            });
+        });
+
+        $(".btn4").click(function() {
+            $.ajax({
+                url: "/mystring",
+                data: {
+                    "mydata": "test"
+                },
+                success: function(data) {
+                    alert(data);
+                }
+            });
+        });
+
+        $(".btn5").click(function() {
+            $.ajax({
+                url: "/mydict",
+                success: function(data) {
+                    alert("name: " + data.name + " age:" + data.age);
+                }
+            });
+        });
+
+        $(".btn11").click(function() { //輸入資訊 按下 button 送資訊給flask
+            var firstname = $("#firstname").val();
+            var lastname = $("#lastname").val();
+            $.post("/name", {
+                "firstname": firstname,
+                'lastname': lastname
+            }, function(data, status) {
+                alert("name: " + data.name + "  age:" + data.age);
+            });
+        });
+
+        $(".btn12").click(function() {
+            $.getJSON("/mytable", function(data) {
+                if (data.length > 0) {
+                    $("#createtable").empty();
+                    var table = $("<table border='1' cellspacing='0'> </table>");
+                    table.appendTo($("#createtable"));
+                    var trh = $("<tr></tr>");
+                    trh.appendTo(table);
+                    for (var h = 0; h < data[0].length; h++) {
+                        var th = $("<th>" + data[0][h] + "</th>");
+                        th.appendTo(trh);
+                    }
+                    for (var r = 1; r < data.length; r++) {
+                        var tr = $("<tr></tr>");
+                        tr.appendTo(table);
+                        for (var j = 0; j < data[r].length; j++) {
+                            var td = $("<td>" + data[r][j] + "</td>");
+                            td.appendTo(tr);
+                        }
+                    }
+                }
+            });
+        });
+        });
+
+
+    </script>
+
+    <h1>Ajax Test</h1>
+    <button class="btn1">get string</button>
+    <button class="btn2">get dict</button>
+    <button class="btn3">get list</button> <br/><br/>
+    <button class="btn4">ajax string</button>
+    <button class="btn5">ajax dict</button>
+    <form action="/myform" method='post'>
+        First name: <input type="text" name="FirstName" value="Mickey" id="firstname"><br> Last name: <input type="text" name="LastName" value="Mouse" id="lastname"><br>
+        <input type="submit" value="提交">
+    </form>
+    <br/><br/>
+    <button class="btn11">send name to flask</button>
+    <button class="btn12">从后端获取数据动态生成表格</button>
+    <br/><br/>
+    <input type="button" value="添加表格" onClick="CreateTable(5,6)">
+    <br/><br/>
+    <div id="createtable"></div>
+
+
+</body>
+
+</html>

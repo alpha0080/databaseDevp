@@ -1,0 +1,1690 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!--
+
+
+    
+    
+    -->
+    <!-- meta使用viewport以确保页面可自由缩放 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+    <!-- input dropzoe js -->
+    <script src="https://rawgit.com/enyo/dropzone/master/dist/dropzone.js"></script>
+    <link rel="stylesheet" href="https://rawgit.com/enyo/dropzone/master/dist/dropzone.css">
+
+    <!-- input jQuery Mobile js -->
+    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
+
+    <!-- input jQuery js -->
+    <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+
+    <!-- input jQuery Mobile 库js-->
+    <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+
+    <!--
+	<link href="{{url_for('static',filename='css/jquery-ui.css')}}" rel="stylesheet">
+
+	<script src="{{url_for('static', filename='jqueryUI/jquery.js')}}"></script>
+-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="{{url_for('static', filename='jqueryUI/jqpaginator.min.js')}}"></script>
+
+
+    <!-- input bootstrap tag plugin js -->
+
+
+    <script src="{{url_for('static', filename='tagsinput.js')}}"></script>
+    <link href="{{url_for('static',filename='css/tagsinput.css')}}" rel="stylesheet">
+    
+    <!-- input pixi js -->
+
+
+    <script src="{{url_for('static', filename='pixi.min.js')}}"></script>
+    <script src="{{url_for('static', filename='pixi-spine.js')}}"></script>
+
+
+
+    <title>QC 上傳</title>
+
+
+</html>
+
+<body>
+
+    <style>
+
+        .modelTopDiv{
+            width:90%;
+            background-color: powderblue;
+        }
+        .modelImagePreview{
+            
+        }
+        
+        .textOverlapImage {
+            position: absolute;
+            top: 80%;
+            left: 50%;
+            color:light;
+            font-family: "微軟正黑體";
+            font-size: 0.3em;
+            color: black;
+            font-weight: 100;
+            transform: translate(-50%, -50%);
+        }
+        .carouselItemID{}
+        .upladoFileInTable{}
+        .inputHeight {
+
+            height: 10px
+        }
+
+        .no-gutters {
+            margin-right: 0;
+            margin-left: 0;
+
+            >.col,
+            >[class*="col-"] {
+                padding-right: 0;
+                padding-left: 0;
+            }
+        }
+
+        .tableTr {
+            background-color: transparent;
+            table-layout: fixed;
+            text-align: left;
+            vertical-align: middle;
+
+        }
+
+        .projectIcon {
+            width: 20;
+            font-size: 12px;
+            background-color: black;
+            color: azure
+        }
+
+
+
+        .position-fixed-top {
+            position: fixed;
+            top: 10;
+            left: 0;
+            background: rgb(0, 0, 0);
+            color: #fff;
+            text-align: center;
+            text-decoration: none;
+        }
+
+        .position-fixed {
+            position: fixed;
+            top: 100px;
+            left: 500px;
+            background: rgb(0, 0, 0);
+            color: #fff;
+            text-align: center;
+            text-decoration: none;
+        }
+
+        .position-sticky-left {
+            position: relative;
+            top: 10px;
+            left: 10px;
+            background: rgb(255, 255, 255);
+            color: #fff;
+            text-align: center;
+            text-decoration: none;
+            z-index: 500 !important;
+        }
+
+
+        .zIndexA {
+            z-index: 1000 !important;
+
+        }
+
+        .td_project {}
+
+        .leftNav {}
+
+        .leftNavActive {
+
+            color: brown;
+        }
+
+
+        .chineseStyleA {
+            font-family: "微軟正黑體";
+            font-size: 1em;
+            color: white;
+            font-weight: 200;
+            letter-spacing: 0.1em
+        }
+
+
+        .chineseStyleB {
+            font-family: "微軟正黑體";
+            font-size: 1.1em;
+            color: white;
+            font-weight: 100;
+            letter-spacing: 0.1em
+        }
+
+        .chineseStyleC {
+            font-family: "微軟正黑體";
+            font-size: 1.1em;
+            font-weight: 100;
+            letter-spacing: 0.2em
+        }
+
+        .chineseStyleD {
+            font-family: "微軟正黑體";
+            font-size: 1.1em;
+            font-weight: 100;
+            letter-spacing: 0.2em
+        }
+
+        .chineseStylePreviewA {
+            font-family: "微軟正黑體";
+            font-size: 0.8em;
+            font-weight: 100;
+            color:white;
+            letter-spacing: 0.2em
+        }
+
+
+        .chineseStyleBold {
+            font-family: "微軟正黑體";
+            font-size: 1em;
+            color: rgb(40,40,40);
+            font-weight: 600;
+            letter-spacing: 0.1em
+        }
+        
+        .chineseStyleSmall {
+            font-family: "微軟正黑體";
+            font-size: 0.8em;
+            color: rgb(40,40,40);
+            font-weight: 200;
+            letter-spacing: 0.1em
+        }
+
+        .engStyleA {
+            font-family: "Segoe UI";
+            font-size: 1em;
+            font-weight: 100;
+            letter-spacing: 0.1em
+        }
+
+
+        .engStyleB {
+            font-family: "Segoe UI";
+            font-size: 1em;
+            font-weight: 100;
+            letter-spacing: 0.1em
+        }
+        
+        .engStyleBold {
+            font-family: "Segoe UI";
+            font-size: 1em;
+            font-weight: 500;
+            letter-spacing: 0.1em
+        }
+        
+        .modal-megamenu {
+            width:90%;
+            height:90%;
+        }
+
+        .modal-body {
+            max-height:90%;
+            overflow:auto;
+            
+        }
+        
+        .modalImage{
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            width: 100%;
+            
+        }
+        .closeBTN{
+            position: absolute;
+            top: 5%;
+            left: 5%;
+            transform: translate(-50%, -50%);  
+            font-size:2em;
+                }
+    </style>
+
+
+    <div class="container">
+        <div class="row clearfix" id="All">
+            <!-- 最上層導航標籤-->
+            <div class="col-md-12 column" id="NavOnTop">
+                <div class="row no-gutters clearfix ">
+                    <div class="col-md-4 column">
+                        <nav class="navbar navbar-expand-md bg-dark navbar-dark ">
+                            <ul class="navbar-nav" id="modeList">
+                                <li class="nav-item active">
+                                    <a class="nav-link" href="#" id="qcUpload">
+                                        <h6 class="display-6 font-weight-light">Upload</h6>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#" id="ReviewNav">
+                                        <h6 class="display-6 font-weight-light">Review</h6>
+                                    </a>
+                                </li>
+
+                            </ul>
+                        </nav>
+                    </div>
+
+                    <div class="col-md-4 column" id="NavTop">
+                        <nav class="navbar navbar-expand-md bg-dark navbar-dark justify-content-start ">
+                            <ul class="navbar-nav " id="modeListUser">
+                                <li class="nav-item ">
+                                    <a class="nav-link" href="#" id="dataShow">
+                                        <h6 class="display-6 font-weight-light">data</h6>
+                                    </a>
+
+                                </li>
+
+
+                            </ul>
+                            <ul class="navbar-nav " id="modeListUser">
+                                <li class="nav-item ">
+                                    <a class="nav-link" href="#" id="dataShow">
+                                        <h6 class="display-6 font-weight-light " id="displayCurrentDate">null</h6>
+
+                                    </a>
+
+                                </li>
+
+
+                            </ul>
+                        </nav>
+                    </div>
+
+                    <div class="col-md-4 column">
+                        <nav class="navbar navbar-expand-md bg-dark navbar-dark justify-content-start ">
+                            <ul class="navbar-nav " id="modeListUser">
+                                <li class="nav-item " id="loginBtnLi">
+
+                                    <a class="nav-link align-middle">
+                                        <h7 class=" btn btn-info btn-sm align-top" style="padding-top:0px;height:" id="loginBtn">Login</h7>
+                                    </a>
+                                </li>
+
+                            </ul>
+
+
+                            <input class="form-control form-control-sm " type="user" placeholder="ID" style="height: 25px" id="loginIDinputbox">
+                            <input class="form-control form-control-sm " type="user" placeholder="password" style="height: 25px" id="loginPSinputBox">
+
+                            <ul class="navbar-nav " id="modeListUser">
+                                <li class="nav-item " id="loginBtnLi">
+
+                                    <a class="nav-link align-middle">
+                                        <h7 class=" btn btn-success btn-sm align-top" style="padding-top:0px;height:" id="loginSubmitBtn">Submit</h7>
+                                    </a>
+                                </li>
+
+                            </ul>
+
+                        </nav>
+
+
+                    </div>
+
+
+
+                </div>
+            </div>
+            <!-- UPLOAD DIV -->
+            <div class="col-md-12 column" id="UploadDivAll">
+                <div class="row no-gutters clearfix ">
+
+
+
+
+                    <!--dropzone 功能鍵 送出/清除 -->
+
+                    <div class="col-md-12 column text-left " id="dropzoneArea">
+
+                        <form action="/qcUpload" class="dropzone chineseStyleA " id="dropzoneArea" method="POST" style="color:black;min-height: 300px">
+                            <h6 class="chineseStyleA" id="infoProjectText"></h6>
+
+
+                        </form>
+                        <div class="btn-group btn-group-md-fluid" role="group" style="width: 100%">
+                            <input class="btn btn-primary" type="button" id="clearAllUploadFiles" value="clear" style="width: 10em">
+                            <input class="btn btn-warning" type="button" id="submitFiles" value="submit" style="width: 10em">
+                            <input class="btn btn-secondary" type="button" id="testBTN_A" value="testA" style="width: 10em">
+                            <input class="btn btn-secondary" type="button" id="testBTN_B" value="testB" style="width: 10em">
+                            <input class="btn btn-secondary" type="button" id="" value="testC" style="width: 10em">
+                            <input class="btn btn-secondary" type="button" id="" value="testD" style="width: 10em">
+                            <input class="btn btn-secondary" type="button" id="" value="testE" style="width: 10em">
+
+                        </div>
+
+                        <!--<input type="text" class="form-control" id="tagInput">-->
+                        <!--  data-role="tagsinput" -->
+                    </div>
+
+
+                    <!-- 專案顯示 選擇 進行 最近 或是 已完成 -->
+                    <div class="col-md-12 column">
+
+                        <nav class="navbar navbar-expand-md navbar-dark justify-content-start chineseStyleA " style="background-color: rgb(50,50,50);height: 80%">
+                            <ul class="navbar-nav">
+                                <li class="nav-item active leftNav" id="navbarProcess">
+                                    <a class="nav-link" href="#" id="navbarTextProcess">
+                                        <h6 class="display-6 font-weight-normal">進行中</h6>
+                                    </a>
+                                    <!--<a class="nav-link leftNav" id="navbarTextProcess" style="color:darkslategrey" href="#">進行中</a>-->
+                                </li>
+                                <li class="nav-item leftNav" id="navbarRecent">
+                                    <a class="nav-link" href="#" id="navbarTextRecent">
+                                        <h6 class="display-6 font-weight-normal">最近</h6>
+                                    </a>
+                                    <!--<a class="nav-link leftNav" id="navbarTextRecent" style="color:cadetblue" href="#">最近</a>-->
+                                </li>
+                                <!--
+                                <li class="nav-item" id="navbarRecentInputText">
+                                    <input class="form-control w-2 p-2" type="text" value="20" style="width: 50px;margin: -5px">
+                                  </li>
+                                  -->
+                                <li class="nav-item leftNav" id="navbarComplete">
+                                    <a class="nav-link" href="#" id="navbarTextComplete">
+                                        <h6 class="display-6 font-weight-normal">已完成</h6>
+                                    </a>
+                                    <!-- <a class="nav-link leftNav" id="navbarTextComplete" style="color:cadetblue" href="#">已完成</a> -->
+                                </li>
+
+                            </ul>
+                        </nav>
+                        <nav class="navbar navbar-expand-md navbar-dark justify-content-start chineseStyleA " style="background-color: rgb(50,50,50);height: 80%">
+                        </nav>
+
+                    </div>
+
+                    <!-- 專案顯示 -->
+                    <div class="col-md-12 column">
+                        <div class="row clearfix ">
+                            <div class="col-md " id="tableRight">
+
+                                <table class="table col-md table-hover tableTr bg-dark">
+                                    <thead>
+                                        <tr>
+                                            <th style="width:20%;border-style: hidden">
+                                                <h6 class="chineseStyleA"></h6>
+                                            </th>
+                                            <th style="width:20%;border-style: hidden">
+                                                <h6 class="chineseStyleA"></h6>
+                                            </th>
+                                            <th style="width:20%;border-style: hidden">
+                                                <h6 class="chineseStyleA"></h6>
+                                            </th>
+                                            <th style="width:20%;border-style: hidden">
+                                                <h6 class="chineseStyleA"></h6>
+                                            </th>
+                                            <th style="width:20%;border-style: hidden">
+                                                <h6 class="chineseStyleA"></h6>
+                                            </th>
+
+
+                                        </tr>
+                                    </thead>
+                                    <tbody id="rightTableForProjs">
+
+
+
+
+                                    </tbody>
+                                </table>
+                                <button type="button" id="showMoreItemLeft" class="btn btn-info align-middle" style="background-color: rgb(220,220,220)"><h5>more projects</h5></button>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- REVIEW DIV -->
+            <div class="col-md-12 column" id="reviewAll">
+
+
+
+
+                <div class="row">
+                    <div class="col-md-12">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="col-md-12">
+                                    <div class="carousel slide col-md-12" id="carousel-981174" style="height:300px">
+                                        <div class="row">
+   
+                                            <div class="col-md-1 " style="background-color: rgb(50,50,50)">
+                                            
+                                            </div>
+                                            <div class="carousel-inner col-md-10 " id="reviewProjectNAV_div" style="background-color: rgb(50,50,50);padding: 10px">
+
+                                            </div> 
+                                            <div class="col-md-1 " style="background-color: rgb(50,50,50)">
+                                            
+                                            </div>
+                                        <!--幻燈片箭頭 -->
+                                        <a class="carousel-control-prev" href="#carousel-981174" data-slide="prev"><span class="carousel-control-prev-icon"></span> <span class="sr-only">Previous</span>
+                                        </a> <a class="carousel-control-next" href="#carousel-981174" data-slide="next"><span class="carousel-control-next-icon"></span> <span class="sr-only">Next</span></a>
+
+                                        </div>
+                                    </div>
+
+                            </div>
+                            <div class="col-md-12">
+
+                               <table class="table table-hover chineseStyleBold  " id="uploadFilesTableBaseProject">
+                                  <thead>
+                                    <tr>
+                                      <th scope="col" style="width:2%">#</th>
+                                      <th scope="col" style="width:10%">icon</th>
+                                      <th scope="col " style="width:40%">描述</th>
+                                      <th scope="col " style="width:10%">上傳人</th>
+                                      <th scope="col " style="width:10%">上傳日期</th>
+                                      <th scope="col" style="width:30%">標籤</th>
+                                    </tr>
+                                  </thead>
+                                  <tbody id= "uploadFiles_tbody">
+     
+                                  </tbody>
+                                </table>
+                        
+                        
+                        
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                
+                
+
+
+
+            </div>
+
+
+
+        </div>
+        <div  class="row clearfix">
+
+            <div class='col-6'  id="spineDiv">
+                
+                <div (window:resize)="adjustCanvasSize()" id="pixi-canvas-container">
+
+                </div>
+            </div>
+            
+        </div>
+        
+    </div>
+
+     <!-- pop up window for image/movie preview -->
+     <div class="modal fade " id="myModal" >
+            <div class="modal-dialog mw-100 modal-megamenu">
+                <div class="modal-content mw-100">
+
+                    <div class="modal-body modalImage"  id="modelImagePreviewDiv" >
+                    <h3 class=" closeBTN " data-dismiss="modal">x</h3>
+                    </div>
+                </div>
+                    
+             </div>
+        </div>   
+     <div class="modal fade " id="myModalSpine" >
+        <div class="modal-dialog mw-100 modal-megamenu">
+            <div class="modal-content mw-100"  id="modelImagePreviewSpineDiv">
+                <div class="col-1">
+
+                </div>
+                <div class="col-10">
+                    <div class="row">
+                      <h5 class="col-12 mw-100 text-center">spine test in pixi js</h5>
+                       <div class="col-12">
+                        
+                        <div><canvas id="showSpineFileInPixi"></canvas></div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-1">
+
+                </div>
+                <!--
+                
+                <div class="modal-body modalImage"  id="modelImagePreviewDiv" >
+                <h3 class=" closeBTN " data-dismiss="modal">x</h3>
+                </div>
+                -->
+            </div>
+
+         </div>
+    </div>      
+
+    <!-- script for Review -->
+
+    <script>
+        var uploadDataAll
+        
+        //按下 review BTN
+        $('#ReviewNav').click(function(){
+               
+            console.log('REVIEW');  
+            $('#UploadDivAll').hide()
+            $('#reviewAll').show(200);  
+            
+            
+            $('#carousel-981174').carousel({
+                
+                interval: false  //輪播速度
+            })
+            
+            //取得已上傳的QC資料
+            var uploadLastCount = 10;
+            $.post("/qcdbUpdata", {
+                    "deltaTime":"deltaYearTime",
+                    "uploadLastCount": uploadLastCount,
+                    "projectStatus": ".In Progress",
+
+            }, function(data) {
+                console.log('upload data',data)
+                                   // console.log(Object.keys(data))
+                creatReviewProjectNav(data)
+                uploadDataAll = data
+                    //createProjectTableLeft(data['timeBase'],data['timeBaseProjectList'])
+                    //createPreviewTable(data['timeBase'],"projectType")
+            });
+            
+            $('#reviewProjectNAV_div > div').remove()
+            
+        })
+
+        //創建review 預覽幻燈片
+        function creatReviewProjectNav(qcFileData){
+            projectsReviewKeys = Object.keys(qcFileData);
+            projectsReviewKeysCount = Object.keys(qcFileData).length;
+            preCarShowCount = 3.0
+            carCount = Math.ceil(parseFloat(projectsReviewKeysCount)/preCarShowCount)
+            //console.log('carCount',Math.ceil(9/preCarShowCount))
+            
+           // console.log('qcFileData',projectsReviewKeysCount,carCount,projectsReviewKeys);
+            
+
+           // var projectSampleIconFile = projectData[projectIconKey]['file_name']
+
+
+            
+            for (var i = 0;i<carCount;i++){
+               // var projectName = projectsReviewKeys[i];
+               // var projectChnName = qcFileData[projectName]['name_chn'];
+               // var projectData = qcFileData[projectName]//[Object.keys(qcFileData[projectName])]
+               // var projectIconKey = Object.keys(projectData)[0]//projectData[Object.keys(projectData)]
+               // var projectSampleIconFile = projectData[projectIconKey]['icon_file']
+                
+                    
+
+                
+               // console.log('i',i) 
+                if ( i == 0 ){
+                    
+                    console.log(qcFileData[projectsReviewKeys[i]][Object.keys(qcFileData[projectsReviewKeys[i]])[0]])
+                    $('#reviewProjectNAV_div').append(
+                        '<div class="carousel-item active">'+
+                            '<div class="row ">'+        
+                                '<div class="col-4  carouselItemID" id ="carItem_' + projectsReviewKeys[i] + '">'+
+                                    '<div class="row">'+
+                                        '<img class="rounded mx-auto d-block h-100" src="'+qcFileData[projectsReviewKeys[i]][Object.keys(qcFileData[projectsReviewKeys[i]])[0]]['icon_url'] +'">'+
+                                        '<div class="col-12 text-center chineseStylePreviewA rounded mx-auto d-block">'+
+                                            '<h7">' + projectsReviewKeys[i] +'</h7><br>'+
+                                            '<h7">' + qcFileData[projectsReviewKeys[i]]['name_chn'] +'</h7>'+
+                                        '</div>'+
+                                    '</div>'+
+                                '</div>' + 
+                                '<div class="col-4  carouselItemID" id ="carItem_' + projectsReviewKeys[i+1] + '">'+
+                                    '<div class="row">'+
+                                        '<img class="rounded mx-auto d-block h-100" src="'+qcFileData[projectsReviewKeys[i+1]][Object.keys(qcFileData[projectsReviewKeys[i+1]])[0]]['icon_url'] +'">'+
+                                        '<div class="col-12 text-center chineseStylePreviewA rounded mx-auto d-block">'+
+                                            '<h7">' + projectsReviewKeys[i+1] +'</h7><br>'+
+                                            '<h7">' + qcFileData[projectsReviewKeys[i+1]]['name_chn'] +'</h7>'+
+                                        '</div>'+
+                                    '</div>'+
+                                '</div>' + 
+                                '<div class="col-4  carouselItemID" id ="carItem_' + projectsReviewKeys[i+2] + '">'+
+                                    '<div class="row">'+
+                                        '<img class="rounded mx-auto d-block h-100" src="'+qcFileData[projectsReviewKeys[i+2]][Object.keys(qcFileData[projectsReviewKeys[i+2]])[0]]['icon_url'] +'">'+
+                                        '<div class="col-12 text-center chineseStylePreviewA rounded mx-auto d-block">'+
+                                            '<h7">' + projectsReviewKeys[i+2] +'</h7><br>'+
+                                            '<h7">' + qcFileData[projectsReviewKeys[i+2]]['name_chn'] +'</h7>'+
+                                        '</div>'+
+                                    '</div>'+
+                                '</div>' + 
+                            '</div>'+
+                        '</div>'
+                    )
+
+
+
+                }
+                else if(i > 0 && i < (carCount-1)){
+                 //   console.log('i>0',i) ;
+                    $('#reviewProjectNAV_div').append(
+                        '<div class="carousel-item ">'+
+                            '<div class="row">'+
+                                '<div class="col-4  carouselItemID" id ="carItem_' +  projectsReviewKeys[i*preCarShowCount]+ '">'+
+                                    '<div class="row">'+
+                                        '<img class="rounded mx-auto d-block h-100" src="'+qcFileData[projectsReviewKeys[((i*preCarShowCount))]][Object.keys(qcFileData[projectsReviewKeys[((i*preCarShowCount))]])[0]]['icon_url']+'">'+
+                                        '<div class="col-12 text-center chineseStylePreviewA rounded mx-auto d-block">'+
+                                            '<h7">' + projectsReviewKeys[((i*preCarShowCount))] +'</h7><br>'+
+                                            '<h7">' + qcFileData[projectsReviewKeys[((i*preCarShowCount))]]['name_chn'] +'</h7>'+
+                                        '</div>'+
+                                    '</div>'+
+                                '</div>' + 
+                                '<div class="col-4  carouselItemID" id ="carItem_' +  projectsReviewKeys[i*preCarShowCount+1] + '">'+
+                                    '<div class="row">'+
+                                        '<img class="rounded mx-auto d-block h-100" src="'+qcFileData[projectsReviewKeys[((i*preCarShowCount)+1)]][Object.keys(qcFileData[projectsReviewKeys[((i*preCarShowCount)+1)]])[0]]['icon_url']+'">'+
+                                        '<div class="col-12 text-center chineseStylePreviewA rounded mx-auto d-block">'+
+                                            '<h7">' + projectsReviewKeys[((i*preCarShowCount)+1)] +'</h7><br>'+
+                                            '<h7">' + qcFileData[projectsReviewKeys[((i*preCarShowCount)+1)]]['name_chn'] +'</h7>'+
+                                        '</div>'+
+                                    '</div>'+
+                                '</div>' + 
+                                '<div class="col-4  carouselItemID" id ="carItem_' +  projectsReviewKeys[i*preCarShowCount+2] + '">'+
+                                    '<div class="row">'+
+                                        '<img class="rounded mx-auto d-block h-100" src="'+qcFileData[projectsReviewKeys[((i*preCarShowCount)+2)]][Object.keys(qcFileData[projectsReviewKeys[((i*preCarShowCount)+2)]])[0]]['icon_url']+'">'+
+                                        '<div class="col-12 text-center chineseStylePreviewA rounded mx-auto d-block">'+
+                                            '<h7">' + projectsReviewKeys[((i*preCarShowCount)+2)] +'</h7><br>'+
+                                            '<h7">' + qcFileData[projectsReviewKeys[((i*preCarShowCount)+2)]]['name_chn'] +'</h7>'+
+                                        '</div>'+
+                                    '</div>'+
+                                '</div>' + 
+                            '</div>'+
+                        '</div>'
+                    )
+                    
+
+                    
+                }
+                else if( i ==(carCount-1 )){
+                   // console.log('i=carCount-1',i) 
+                    $('#reviewProjectNAV_div').append('<div class="carousel-item " ><div class="row" id="carDivLast"></div></div>');  
+                    }
+                        };
+                    for(i =((carCount-1)*preCarShowCount);i<projectsReviewKeysCount;i++){
+                      // console.log('i last',i)
+
+
+                      $('#carDivLast').append(
+                            '<div class="col-4  carouselItemID" id ="carItem_' + projectsReviewKeys[i] + '">'+
+                                '<div class="row">'+
+                                    '<img class="rounded mx-auto d-block h-100" src="'+qcFileData[projectsReviewKeys[i]][Object.keys(qcFileData[projectsReviewKeys[i]])[0]]['icon_url'] +'">'+
+                                    '<div class="col-12 text-center chineseStylePreviewA rounded mx-auto d-block">'+
+                                        '<h7">' + projectsReviewKeys[i] +'</h7><br>'+
+                                        '<h7">' + qcFileData[projectsReviewKeys[i]]['name_chn'] +'</h7>'+
+                                    '</div>'+
+                                '</div>'+
+                            '</div>' 
+                    )
+            }       
+           
+            
+            
+                            
+            $('.carouselItemID').click(function(event) {
+
+                var currentProjectSelect = event['currentTarget']['id'].split('carItem_')[1]
+                var projectUploadData = uploadDataAll[currentProjectSelect]
+               // console.log('currentProjectSelect',currentProjectSelect,uploadDataAll[currentProjectSelect])
+                createUploadFileTable(projectUploadData);
+
+                });
+            
+            
+        };
+        
+        //取得 預覽幻燈片 ID
+
+        	$(document).ready(function(){
+
+                
+                
+                
+            })
+
+        var linkFileInProject 
+        var linkFileIndex 
+        for(i=(10-1);i>=0;i--){
+           // console.log(i)
+        }
+        for(i=0;i<10;i++){
+          //  console.log(i)
+        }
+        
+        
+        function createUploadFileTable(projectUploadData){
+           // console.log('projectUploadData',projectUploadData)
+            linkFileInProject = []
+            //console.log('projectUploadData',projectUploadData);  
+            $('.upladoFileInTable ').remove()
+            var keysByProject = Object.keys(projectUploadData)
+            var keysByProjectCount = keysByProject.length
+            //console.log('keysByProject',keysByProject,keysByProjectCount);  
+            //for(var i = (keysByProjectCount-3);i>=0;i--){ 
+            for(var i = 0;i<keysByProjectCount-2;i++){  //-2 ,cause take off 'game_code' and 'name_chn'
+                var keyID = keysByProject[i];
+                var fileData = projectUploadData[keyID]
+               // var fileName = fileData['file_name']
+              //  var iconName = fileData['icon_file']
+                var iconUrl = fileData['icon_url']
+                var fileUrl = fileData['file_url']
+                var fileType = fileData['file_type']
+                var loginUser = fileData['login']
+                var uploadData = fileData['data']
+                var fileName = fileData['file_name']
+                
+                //console.log('fileType',fileUrl)
+                linkFileInProject.push(fileUrl)
+                if(fileType =="spine"){
+                    console.log('asdf')
+                    var spineJsonFile =  fileData['releationship'].split(';')
+                    var fileID = fileData['file_id']
+                    var pixiCanvasID = "pixiCanvas_"+String(fileID)
+                    
+                   // console.log(pixiCanvasID)
+                    $file_tr0_spine =$('<tr class="upladoFileInTable align-middle"  id= "linkfIndexTr_'+i+'_'+ fileType +'">'+
+                                        '<a href="'+fileUrl +'">'+
+                                       '<td class="align-middle engStyleBold">'+
+                                        i+
+                                       '</td>'+  
+                                       '<td class="upladoSpineFileInTableIcon" alt="'+fileUrl+'" data-toggle="modal" data-target="#myModalSpine" id= "linkfIndex_'+ pixiCanvasID +'">'+
+                                       '<div><canvas id="'+pixiCanvasID+'"></canvas></div>'+
+                                       '</td>'+  
+                                       '<td>'+
+                                       '<div class="input-group">'+
+                                        '<h6>spine file</h6><br>'+
+                                        '<input type="text" class="form-control chineseStyleSmall" placeholder="" aria-describedby="basic-addon2">' +
+                                        '<div class="input-group-append">'+
+                                        '<button class="btn btn-outline-secondary chineseStyleSmall" type="button">送出</button>'+
+                                        '</div>'+
+                                        '</div>'+
+                                       '</td>'+  
+                                       '<td class="align-middle">'+
+                                        '<h5 class="chineseStyleSmall">'+loginUser+'</h5>'+
+                                       '</td>'+
+                                        '<td class="align-middle">'+
+                                        '<h5 class="chineseStyleSmall">'+uploadData+'</h5>'+
+                                        '</td>'+
+                                        '<td>'+  
+                                        //'<div class="input-group">'+
+                                        '<input type="text" data-role="tagsinput" value="">'+
+                                        //'</div>'+
+                                        '</td>'+
+                                    '</a>'+
+                               '</tr>' 
+                              );                         
+                    
+                    $('#uploadFiles_tbody').append($file_tr0_spine) // 創建 預覽table
+                    $(function(){
+                        
+                        //console.log(fileID,fileData)
+
+                        
+                        $.post("/pixiJsonLoad", {
+                        "pixiJsonFile":fileName,
+                        "fileID":fileID,
+                        "fileUrl":fileUrl
+                            
+                            
+                        }, function(data) {
+                            let fileID = data[1]
+                            let spineJsonData = data[0]
+                            let fileUrl = data[2]
+                            //console.log('load pixi json file',data[1])
+                            //console.log("spineAnimationCount",Object.keys(data[0]['animations']).length)
+                            
+                            
+                            //for(i=0;i<spineAnimationCount;i++){
+                             //   var animationJobName = String(fileID)+'_'+Object.keys(data[0]['animations'])[i]
+                            var spineJobName = 'spineJob_'+String(fileID)
+                          //  console.log(spineJobName,fileUrl)
+                           // create a new instance of the loader
+                            
+                            //$.getJSON( "http://192.168.161.193:8080/database/projects/qc_db/qc/0627/symbol3.json", function( data ) {
+                               //new PIXI.loaders.Loader() 
+                              //  .add('spineJobName',data)
+                                
+                           // })
+
+                                                                  
+                            new PIXI.loaders.Loader()
+                                //.add("spineJob",fileUrl)
+                                .add(spineJobName,fileUrl)
+                                .on("progress" , function(loader , resource)
+                                  {
+                                 //   console.log("Finished loading : " + resource.name + " progress : " + loader.progress);
+//
+                                    })
+                                .once("complete" , function()
+                                  {
+                                   // console.log("Finished loading assets");
+                                  })  
+                                .load(onAssetsLoaded)
+
+                                
+                                // app.stage.interactive = true;
+
+                                function onAssetsLoaded(loader, res) {
+                                    
+                                    var spineSampleAnimationJobName = Object.keys(data[0]['animations'])[0]//[0]
+                                    let pixiCanvasID = "pixiCanvas_"+String(fileID)
+
+                                    
+                                    console.log(pixiCanvasID)
+                                    var app = new PIXI.Application(192, 108, {
+                                                view: document.getElementById(pixiCanvasID)
+                                            }
+                                        );
+                                    var spineAnime = new PIXI.spine.Spine(res[spineJobName].spineData);
+                                    spineAnime.x = app.screen.width / 2
+                                    spineAnime.y = app.screen.height / 2 /// 2
+
+                                    spineAnime.scale.set(0.1);
+
+                                    spineAnime.state.setAnimation(0, spineSampleAnimationJobName, true);
+                                    app.stage.addChild(spineAnime)
+
+                                }
+
+
+
+                        });    
+                        
+                        
+                        
+                        
+                      
+                    });
+                    
+                    
+                    }else{
+                       
+                    //var index = Math.abs(i-((keysByProjectCount-3)))-1
+                    $file_tr0 = $('<tr class="upladoFileInTable align-middle"  id= "linkfIndexTr_'+i+'_'+ fileType +'">'+
+                                                        '<a href="'+fileUrl +'">'+
+                                                           '<td class="align-middle engStyleBold">'+
+                                                            i+
+                                                           '</td>'+  
+                                                           '<td class="uploadFileInTableIcon" data-toggle="modal" data-target="#myModal" id= "linkfIndex_'+i+'_'+ fileType +'">'+
+                                                           '<img class="h-100" src="' + iconUrl+ '" />'+
+                                                           '</td>'+  
+                                                           '<td>'+
+                                                           '<div class="input-group">'+
+                                                            '<input type="text" class="form-control chineseStyleSmall" placeholder="" aria-describedby="basic-addon2">' +
+                                                            '<div class="input-group-append">'+
+                                                            '<button class="btn btn-outline-secondary chineseStyleSmall" type="button">送出</button>'+
+                                                            '</div>'+
+                                                            '</div>'+
+                                                           '</td>'+  
+                                                           '<td class="align-middle">'+
+                                                            '<h5 class="chineseStyleSmall">'+loginUser+'</h5>'+
+                                                           '</td>'+
+                                                            '<td class="align-middle">'+
+                                                            '<h5 class="chineseStyleSmall">'+uploadData+'</h5>'+
+                                                            '</td>'+
+                                                            '<td>'+  
+                                                            //'<div class="input-group">'+
+                                                            '<input type="text" data-role="tagsinput" value="">'+
+                                                            //'</div>'+
+                                                            '</td>'+
+                                                        '</a>'+
+                                                   '</tr>' 
+                                  );
+                    $('#uploadFiles_tbody').append($file_tr0) // 創建 預覽table
+
+
+                    //console.log(pixiCanvasID,fileData)
+                    /*
+                    
+                    
+         
+
+                    $file_tr0.click(function() { 
+                       // window.location = fileUrl input type="text" data-role="tagsinput" value="jQuery,Script,Net">
+
+                    });
+                        
+
+                        /*
+ 
+                        */
+                };
+            };
+            
+            $(function(){
+                $("#uploadFiles_tbody").each(function(elem,index){
+                  var arr = $.makeArray($("tr",this).detach());
+                  arr.reverse();
+                    $(this).append(arr);
+                });
+            });
+
+            
+            var modalApp = new PIXI.Application(960, 540, {
+                        view: document.getElementById('showSpineFileInPixi')
+                    }
+                );
+            
+            $(".upladoSpineFileInTableIcon").click(function(event){
+                
+                        for (var i = modalApp.stage.children.length - 1; i >= 0; i--)
+                            {	modalApp.stage.removeChild(modalApp.stage.children[i]);};
+                
+                
+                      //  $('.modelImagePreview').remove()
+                
+                        var sentence = $(this).attr('alt');
+                        var text = $('#the_box');
+                        text.val(text.val() + sentence + ' ');
+                      //  console.log(sentence)
+                       // var $canvas = $('<div><canvas id="showSpineFileInPixi"></canvas></div>')
+                        //$('#modelImagePreviewDiv').remove  
+
+                      //  $('#modelImagePreviewSpineDiv').append($canvas)    
+                
+                        new PIXI.loaders.Loader()
+                                //.add("spineJob",fileUrl)
+                                .add('spineModalJob',sentence)
+                                .on("progress" , function(loader , resource)
+                                  {
+                                    console.log("Finished loading : " + resource.name + " progress : " + loader.progress);
+
+                                    })
+                                .once("complete" , function()
+                                  {
+                                    console.log("Finished loading assets");
+                                  })  
+                                .load(onAssetsLoaded)
+
+                                
+                       
+
+                                function onAssetsLoaded(loader, res) {
+
+
+                                    var spineAnime = new PIXI.spine.Spine(res.spineModalJob.spineData);
+                                    var animationActionList = Object.keys(res.spineModalJob['data']['animations'])
+                                    var firstAnimationJob = animationActionList[0]
+                                    console.log(firstAnimationJob)
+
+                                    spineAnime.x = modalApp.screen.width / 2
+                                    spineAnime.y = modalApp.screen.height / 2 /// 2
+                                    spineAnime.scale.set(0.5);
+                                   // var spineSampleAnimationJobName = Object.keys(data[0]['animations'])[0]//[0]
+                                    spineAnime.state.setAnimation(0, firstAnimationJob, true);
+                                    modalApp.stage.addChild(spineAnime)
+                                    
+                                }
+                                    
+                
+                
+                
+                
+                     // });
+                
+                //var $canvas = $('')
+                
+                /*
+                var currentImageIndex = parseInt(event['currentTarget']['id'].split('_')[1])
+                var fileLinkUrl = linkFileInProject[currentImageIndex]
+                var currentSelectFileType = event['currentTarget']['id'].split('_')[2]
+               // console.log('currentSelectFileType',currentSelectFileType)
+               // console.log(linkFileInProject[currentImageIndex])
+                //                                   <img class="card-img-top" alt="Bootstrap Thumbnail First" src="https://www.layoutit.com/img/people-q-c-600-200-1.jpg" id="modelImagePreview"/>
+
+              //  $('#modelImagePreview').attr('src',fileLinkUrl)
+                if(currentSelectFileType == "image"){
+                     var $imageLink = $('<img class="card-img-top modelImagePreview d-block w-100" src="' + fileLinkUrl + '" id="modelImagePreview"/>')
+                     $('#modelImagePreviewDiv').append($imageLink)    
+                }else if(currentSelectFileType == "movieClip"){
+                      // </video>
+                     console.log('moviefile URL',fileLinkUrl)
+                     var $movieLink = $('<video autoplay loop class="embed-responsive-item d-block w-100 modelImagePreview">' +
+                                      '<source src="'+ fileLinkUrl + '" type="video/mp4">)'+
+                                       '</video>')
+                     $('#modelImagePreviewDiv').append($movieLink) 
+                        
+                    
+                    }else if(currentSelectFileType == "spine"){
+                         console.log('spine spine spine')
+                       // <video autoplay loop class="embed-responsive-item">
+                        // <source src="http://techslides.com/demos/sample-videos/small.mp4" type="video/mp4">
+                      
+                        
+                         };
+               */
+             });     
+            
+            $(".uploadFileInTableIcon").click(function(event){
+                  // window.location = fileUrl;
+                $('.modelImagePreview').remove()
+                var currentImageIndex = parseInt(event['currentTarget']['id'].split('_')[1])
+                var fileLinkUrl = linkFileInProject[currentImageIndex]
+                var currentSelectFileType = event['currentTarget']['id'].split('_')[2]
+               // console.log('currentSelectFileType',currentSelectFileType)
+               // console.log(linkFileInProject[currentImageIndex])
+                //                                   <img class="card-img-top" alt="Bootstrap Thumbnail First" src="https://www.layoutit.com/img/people-q-c-600-200-1.jpg" id="modelImagePreview"/>
+
+              //  $('#modelImagePreview').attr('src',fileLinkUrl)
+                if(currentSelectFileType == "image"){
+                     var $imageLink = $('<img class="card-img-top modelImagePreview d-block w-100" src="' + fileLinkUrl + '" id="modelImagePreview"/>')
+                     $('#modelImagePreviewDiv').append($imageLink)    
+                }else if(currentSelectFileType == "movieClip"){
+                      // </video>
+                     console.log('moviefile URL',fileLinkUrl)
+                     var $movieLink = $('<video autoplay loop class="embed-responsive-item d-block w-100 modelImagePreview">' +
+                                      '<source src="'+ fileLinkUrl + '" type="video/mp4">)'+
+                                       '</video>')
+                     $('#modelImagePreviewDiv').append($movieLink) 
+                        
+                    
+                    }else if(currentSelectFileType == "spine"){
+                         console.log('spine spine spine')
+                       // <video autoplay loop class="embed-responsive-item">
+                        // <source src="http://techslides.com/demos/sample-videos/small.mp4" type="video/mp4">
+                      
+                        
+                         };
+               
+             });     
+        // console.log('linkFileInProject',linkFileInProject)
+
+        };
+        
+        
+        
+    </script>
+
+    <script>
+
+
+
+    </script>
+
+
+
+    <!-- script for upload --> 
+    <script>
+        //初始設定 start 
+
+
+        var webServerRoot = "e:/webServer"
+        var uploadPath = webServerRoot + "/uploads"
+        var projectDBPath = webServerRoot + "/database"
+
+
+        //初始變數
+        var currentUser = ""
+
+        var currentSelectProject = ""
+        var currentSelectProjectCN = ""
+        var currentSelectProjectGameCode = ""
+
+        var currentSelectProjectType = "/getProjectProcessDB"
+        var currentProjectShowFromNum = 0
+        var currentProjectShowToNum = 10
+        var sendFileList = []
+        // var projectLocation = projectDBPath +"/" +projectName
+
+
+
+
+
+
+
+
+
+        //初始設定 end
+
+
+        //dropzone 事件設定
+
+        Dropzone.options.dropzoneArea = {
+            paramName: "file", // The name that will be used to transfer the file
+            maxFilesize: 500, // MB
+            autoProcessQueue: false,
+            parallelUploads: 100,
+            acceptedFiles: ".json , .png, .jpg ,.skel, .atlas, .pdf, .pptx, .ppt, .txt, .doc, .xml, .mb, .ma, .max, .3ds, .mp4, .avi, .mov",
+            ignoreHiddenFiles: true,
+
+            init: function() {
+                var myDropzone = this;
+
+                // Update selector to match your button
+                $("#submitFiles").click(function(e) {
+                    //sendFileList =[]
+
+                    e.preventDefault();
+                    myDropzone.processQueue();
+                    fileCounts = Object.keys(myDropzone.files).length
+                    //console.log("fileCounts", fileCounts)
+                    for (var i = 0; i < fileCounts; i++) {
+
+                        // console.log("file",myDropzone.files[i]['name'])
+                        sendFileList.push(myDropzone.files[i]['name'])
+                    };
+                   // console.log('sendFileList', sendFileList)
+                    // fileUploadCompleted()
+
+                })
+
+                myDropzone.on("complete", function(file) {
+
+                    var files = String(sendFileList)
+                    $.post("/qcUpload" //, {"sendFileList": files,
+                        // 'youdata': 'youdata from front'} ,
+                        //  function(data){
+                        //  console.log("feedback",data)
+                        //  }
+                    );
+                    if (this.getUploadingFiles().length === 0 && this.getQueuedFiles().length === 0) {
+                        fileUploadCompleted();
+                    }
+
+
+                });
+
+
+
+                function fileUploadCompleted() {
+                    // this.on("complete", function() {
+                    var files = String(sendFileList)
+                    $.post("/defineUploadFiles", {
+                            "sendFileList": files, //waitting for all files uploaded
+                            'projectName': currentSelectProject,
+                            'projectNameCN': currentSelectProjectCN
+                        },
+                        function(data) {
+                            console.log("feedback", data)
+                            //myDropzone.removeAllFiles() td_project
+                        }
+
+
+                    );
+                }
+
+
+                $("#clearAllUploadFiles").click(function(e) {
+                    
+                    myDropzone.removeAllFiles()
+
+                });
+                
+                $("#rightTableForProjs").parent().children().click(function(e) {
+                    //console.log('sdsd')
+
+                    //console.log(e['currentTarget'])
+                    myDropzone.removeAllFiles()
+
+                })
+
+            }
+
+        };
+
+
+        var selectedProjList = [];
+        //按下login btn
+
+        $('#loginBtn').click(function() {
+
+            $("#loginIDinputbox").show(100);
+            $("#loginPSinputBox").show(100);
+            $("#loginSubmitBtn").show(100);
+
+
+        });
+        $('#loginSubmitBtn').click(function() {
+            var loginID = $("#loginIDinputbox").val()
+            var loginPS = $("#loginPSinputBox").val()
+            console.log(loginID, loginPS)
+
+            $("#loginIDinputbox").hide();
+            $("#loginPSinputBox").hide();
+            $("#loginSubmitBtn").hide();
+
+
+
+        });
+
+
+
+
+
+
+        $("#submitFiles").click(function() {
+
+            sendFileList = []
+
+
+        })
+
+
+        // upload tag input
+        $("#tagInput").tagsinput({
+            tagClass: function(item) {
+
+                //console.log(item)
+
+                if (item == '3d') {
+                    return 'bg-white text-dark'
+                } else {
+                    return 'bg-info text-white'
+                };
+            }
+
+
+        });
+
+
+        // 按下   testBTN_A  按鈕
+        $('#testBTN_A').click(function() {
+            console.log('click testA')
+            $.post("/syncDBIconB", function(data) {
+                console.log(data)
+            })
+
+        });
+
+        // 按下   testBTN_B  按鈕
+        $('#testBTN_B').click(function() {
+
+
+            //  $.post("/syncDBIcon",({console.log(data)}))
+
+            $.post("/syncDBIcon", function(data) {
+                console.log(data)
+            })
+
+            // console.log('syncDBIcon Post')
+
+        });
+
+
+
+
+        // 按下upload按鈕
+        $('#qcUpload').click(function() {
+            // var noProjectText = $('<h5 class ="text-danger display-5" id="infoProjectText" >select project</h5>')
+            // $("#infoProjectText").remove()
+            // $("#divRightInfo").append(projectSelectText);
+            // $("#tableRight").remove(); divRightInfo
+            $('#reviewAll').hide()
+
+            $('#UploadDivAll').show(200)
+            
+            
+            $("#infoProjectText").text("select project")
+
+            console.log(selectedProjList.length)
+            if (selectedProjList.length == 0) {
+                // $("#divRightInfo").append(noProjectText)
+            } else {
+                // $("#infoProjectText").value = "";
+                //  $("#divRightInfo").remove()
+                //  var projectSelectText = $('<h5 class ="text-info " id="infoProjectText" >' +
+                //       selectedProjList[1] +
+                //       '</h5>'
+                //  )
+                //  $("#divRightInfo").append(projectSelectText);
+                $("#infoProjectText").text(selectedProjList[1]);
+                createUploadZone()
+            }
+
+        })
+        //按下 進行中 按鈕
+        $('#navbarProcess').click(function() {
+            console.log("clicked nav bar inProcess");
+            // $('.leftNav').css('color', 'cadetblue'); navbarProcess
+            // $('.leftNav').attr('class', 'nav-item');
+            $('#navbarProcess').attr('class', 'nav-item active');
+            $('#navbarRecent').attr('class', 'nav-item');
+            $('#navbarComplete').attr('class', 'nav-item');
+            // $('#navbarTextProcess').css('color', 'darkslategrey');
+
+            $(".td_project").remove();
+            currentSelectProjectType = "/getProjectProcessDB"
+            currentProjectShowFromNum = 0
+            currentProjectShowToNum = 10
+            //createProjectTable("/getProjectProcessDB", 0, 10);
+            createProjectTableInRightTable("/getProjectProcessDB", 0, 10)
+        });
+
+
+
+        //按下 最近 按鈕
+        $('#navbarTextRecent').click(function() {
+            console.log("clicked nav bar Recent");
+            // $('.leftNav').css('color', 'cadetblue'); navbarRecent
+
+            // $('.leftNav').attr('class', 'nav-item');
+            $('#navbarRecent').attr('class', 'nav-item active');
+            $('#navbarProcess').attr('class', 'nav-item');
+            $('#navbarComplete').attr('class', 'nav-item');
+            // $('#navbarTextRecent').css('color', 'darkslategrey'); 
+
+            $(".td_project").remove();
+            currentSelectProjectType = "/getProjectRecentDB"
+            currentProjectShowFromNum = 0
+            currentProjectShowToNum = 10
+            //createProjectTable("/getProjectRecentDB", 0, 10);
+            createProjectTableInRightTable("/getProjectRecentDB", 0, 10)
+
+
+
+        });
+
+
+        //按下 已完成 按鈕 
+        $('#navbarTextComplete').click(function() {
+            console.log("clicked nav bar complete");
+            // $('.leftNav').attr('class', 'nav-item');
+            $('#navbarComplete').attr('class', 'nav-item active');
+            $('#navbarProcess').attr('class', 'nav-item');
+            $('#navbarRecent').attr('class', 'nav-item');
+            // $('.leftNav').css('color', 'cadetblue');
+            //  $('#navbarTextComplete').css('color', 'darkslategrey', 0, 10);
+
+            $(".td_project").remove();
+            currentSelectProjectType = "/getProjectCompletedDB"
+            currentProjectShowFromNum = 0
+            currentProjectShowToNum = 10
+            //createProjectTable("/getProjectCompletedDB", 0, 10);
+            createProjectTableInRightTable("/getProjectCompletedDB", 0, 10)
+        });
+
+        //按下顯示更多專案
+        $('#showMoreItemLeft').click(function() {
+            currentProjectShowFromNum = currentProjectShowFromNum + 10;
+            currentProjectShowToNum = currentProjectShowToNum + 10;
+            console.log(currentSelectProjectType, currentProjectShowFromNum, currentProjectShowToNum)
+
+            let projectState = currentSelectProjectType;
+            let fromNum = currentProjectShowFromNum;
+            let toNum = currentProjectShowToNum;
+            //  createProjectTable(projectState, fromNum, toNum)
+            createProjectTableInRightTable(projectState, fromNum, toNum)
+        });
+
+
+
+        //顯示上傳區域
+
+        function createUploadZone() { // 可能要先創立 div 
+         //   console.log("create upload zone")
+            var rootPath = ""
+            $("#dropzoneArea").show(500);
+            /*
+            $.ajax({
+                url: "/qcUpload",
+                data: {
+                    "url": "1"
+                }
+            });
+            */
+        };
+
+
+
+
+
+        //取得專案資料夾資訊
+
+        function getProjectPath(projectName) {
+            var projectPath = projectDBPath + "/" + projectName
+            var projectQCPath = projectPath + "/qc"
+            var projectQCIconPath = projectQCPath + "/icons"
+            var projectAssetsPath = projectPath + "/assets"
+            var projectAssetsIconsPath = projectAssetsPath + "/icons"
+            var projectShotsPath = projectPath + "/shots"
+            var projectShotsIconsPath = projectShotsPath + "/icons"
+            console.log('projectShotsIconsPath', projectShotsIconsPath)
+            //return 
+        };
+
+
+
+
+        //顯示專案
+
+        function createProjectTableInRightTable(projectState, fromNum, toNum) {
+            $.getJSON(projectState, function(data) {
+
+                for (var i = fromNum; i < toNum; i++) { //data.length
+                    // console.log(data[i]);
+                    //var projectName = data[i][0]
+                    //var projectCNName = data[i][3]
+                    //var projectGameCode = data[i][1]
+                    // var projectIcon = data[i][9]
+                    // console.log(i % 4, Math.floor(i / 5))
+                    // console.log(data[i]);
+                    var projectName = data[i][0]
+                    var projectCNName = data[i][3]
+                    var projectGameCode = data[i][1]
+                    var projectIcon = data[i][9]
+                    var $Rtr = $('<tr class="table-active "' +
+                        'id="' + projectGameCode + '"' +
+                        '></tr>');
+                    var $Rtd2 = $('<td class="td_project  text-center co-md " style="border: 0px;font-size: 12px;text-align: left"' +
+                        'id="' + projectCNName + "," + projectName + ',' + projectGameCode + '"' +
+                        '>' +
+                        '<a class="text-light text-center chineseStyleC td_project  ">' + projectCNName + "," + '</a>' + '<br>' +
+                        '<a class="text-light text-center chineseStyleD td_project">' + projectName + '</a>' + '<br>' +
+                        '<img src="' +
+                        projectIcon + '"' +
+                        'class="td_project rounded-circle" style="padding: 1px;height:130px;width:130px"' +
+                        //  'id="' + projectCNName + "," + projectName + ',' + projectGameCode + '"' +
+                        '>' + '<br>' +
+                        '</td>');
+
+
+                    if (i % 5 == 0) {
+                        $('#rightTableForProjs').append($Rtr);
+                        $('#rightTableForProjs').append($Rtr)
+                        //  $('#rightTableForProjs').append($Rtd3)
+                        $('#rightTableForProjs').append($Rtd2)
+
+
+                    } else {
+
+                        // $('#rightTableForProjs').append($Rtd3)
+                        $('#rightTableForProjs').append($Rtd2)
+
+                    };
+
+                    $Rtd2.click(function() { //click project icon
+                        // console.log($(this).text());
+                        //  console.log($(this).attr("id"));
+                        
+                        selectedProjList = []
+                        currentSelectProject = ($(this).attr("id")).split(',')[1]
+                        currentSelectProjectGameCode = ($(this).attr("id")).split(',')[2]
+
+                        // console.log("afddsfdsfdsfdsfdf",projectName)
+                        selectedProjList.push(currentSelectProject)
+                        selectedProjList.push($(this).attr("id"))
+                        // $("#infoProjectText").remove()
+                        var projectSelectText = $('<h5 class ="text-info " id="infoProjectText" >' +
+                            selectedProjList[1] +
+                            '</h5>')
+                        // $("#divRightInfo").append(projectSelectText);
+                        $("#infoProjectText").text(selectedProjList[1]);
+                        $("#infoProjectText").attr('class', 'text-info display-6');
+                        $(".td_project").css({
+                            "border-style": "none",
+                        });
+                        $(this).css({
+                            "border-style": "solid",
+                            "border-width": "2px",
+                            "border-color": "rgb(200,230,200)"
+                        });
+                        currentSelectProjectCN = selectedProjList[1]
+
+                        //console.log("currentSelectProject", currentSelectProjectCN,currentSelectProject, currentSelectProjectGameCode)
+                     //   console.log("currentSelectProjectCN", currentSelectProjectCN) Dropzone.options.dropzoneArea
+                        
+
+                        createUploadZone();
+                        
+
+                        //console.log($('#dropzoneArea').files)
+                    });
+
+
+
+                }
+
+            })
+
+
+
+
+
+        }
+
+
+
+        $(document).ready(function() {
+            $("#tableLeft").disableSelection();
+            $("#divSideLeft").disableSelection();
+            //get current date
+            n = new Date();
+            y = n.getFullYear();
+            m = n.getMonth() + 1;
+            d = n.getDate();
+            date = m + "/" + d + "/" + y;
+            // console.log(date)
+            $("#displayCurrentDate").text(date)
+
+            $.getJSON("/getUserDB", function(data) { // get userData
+
+                // console.log("data",data)
+
+            })
+
+            // createProjectTable("/getProjectProcessDB", 0, 10); //call recent project 
+            //  $("#projectTableList").hide();
+
+            $("#loginDataSubmit").hide();
+
+
+            $("#dropzoneArea").hide();
+
+            $("#loginIDinputbox").hide();
+            $("#loginPSinputBox").hide();
+            $("#loginSubmitBtn").hide();
+            $("#reviewAll").hide();
+
+
+            // Check which wheel event is supported. Don't use both as it would fire each event 
+            // in browsers where both events are supported.
+
+            createProjectTableInRightTable("/getProjectProcessDB", 0, 10);
+            
+
+            
+            
+            
+
+        })
+        
+        
+        
+
+
+        function scrollUp(item) {
+            //   console.log("scroll up")
+            var itemPosition = $(item).position()
+            var ya = itemPosition.top
+            //var y = parseInt($(item).offset().top)
+            // itemPosition.top = 200
+            //var scrollValue = 10
+            ya = itemPosition.top - 10
+            //    console.log("ya", ya)
+
+            //console.log($(item).offset().top)
+        }
+
+        function scrollDown(item) {
+            //  console.log("scroll down")
+            var itemPosition = $(item).position()
+            var yb = itemPosition.top
+            // var y = parseInt($(item).offset().top)
+            yb += 10
+            //  console.log("yb", yb)
+            // $(item).css({"top": yb});
+        }
+
+
+
+        var maxList = 10
+        var startNum = 10
+        var endNum = 55
+        //createTable(maxList, startNum, endNum)
+
+        function createTable(maxList, startNum, endNum) {
+            for (var i = startNum; i < endNum + 1; i++) {
+
+                var $tr = $('<tr class="tr_content"></tr>');
+                var $td1 = $('<td style="border: 0px">' +
+                    i +
+                    '</td>')
+                var $td2 = $('<td style="vertical-align: middle;border: 0px">' +
+                    '<img src="http://vg.com/assets/simpleslot/battle_of_ball/qc/win.png" class="rounded float-left " style="height:100px">' +
+
+                    // '<img src="http://vg.com/assets/simpleslot/battle_of_ball/icon/battle_of_ball_v001_icon.png" class="img-thumbnail ">' +
+                    '</td>');
+                var $td3 = $('<td style="border: 0px">' +
+                    'projectName' +
+                    '</td>')
+
+
+                $("#tableBodyLeft").append($tr);
+                $("#tableBodyLeft").append($td1);
+
+                $("#tableBodyLeft").append($td2);
+                $("#tableBodyLeft").append($td3);
+
+
+
+            };
+        };
+
+    </script>
+</body>
+
+</html>

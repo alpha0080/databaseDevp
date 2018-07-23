@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+
+
+    <!--
+
+
+    
+    
+    -->
+    <!-- meta使用viewport以确保页面可自由缩放 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+    <!-- input dropzoe js -->
+    <script src="https://rawgit.com/enyo/dropzone/master/dist/dropzone.js"></script>
+    <link rel="stylesheet" href="https://rawgit.com/enyo/dropzone/master/dist/dropzone.css">
+
+    <!-- input jQuery Mobile js -->
+    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
+
+    <!-- input jQuery js -->
+    <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+
+    <!-- input jQuery Mobile 库js-->
+    <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+
+    <!--
+	<link href="{{url_for('static',filename='css/jquery-ui.css')}}" rel="stylesheet">
+
+	<script src="{{url_for('static', filename='jqueryUI/jquery.js')}}"></script>
+-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="{{url_for('static', filename='jqueryUI/jqpaginator.min.js')}}"></script>
+
+
+    <!-- input bootstrap tag plugin js -->
+
+
+    <script src="{{url_for('static', filename='tagsinput.js')}}"></script>
+    <link href="{{url_for('static',filename='css/tagsinput.css')}}" rel="stylesheet">
+
+
+    <title>學習地圖_課程輸入後台</title>
+</head>
+
+<body>
+    <style>
+        .no-border {
+            border: 0;
+            box-shadow: none; /* You may want to include this as bootstrap applies these styles too */
+         }
+        .classElement {}
+
+        .classTagList {}
+        .tagInputSample{}
+    </style>
+    <div class="container ">
+
+        <div class="row clearfix">
+
+            <div class="col-md-10 column">
+                <div class="row">
+                    <div class="col-md-6">
+                     <a class="navbar-brand" href="#" style="font-family:微軟正黑體">學習地圖課程後台</a>
+
+                        
+                        
+                    </div>
+                    <div class="col-md-6 column">
+
+
+                    <ul class="nav justify-content-end">
+                      <li class="nav-item">
+                        <a class="nav-link " href="#">A</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" href="#">B</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" href="#">C</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link " href="#">D</a>
+                      </li>
+                    </ul>
+                    </div>
+
+
+                    <div class="col-md-12 column">
+                        <div class="row">
+                            <div class="col-md-3 column">
+
+                                <input type="text" placeholder="課程名稱" id="classNameInput">
+                            </div>
+                            <div class="col-md-7 column">
+
+                                <input type="text" placeholder="課程描述" id="classDescription">
+                            </div>
+                            <div class="col-md-2 column">
+
+                                <button type="submit" class="btn btn-primary" id="submitClassBTN">Submit</button>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="col-md-12 column">
+                        <table class="table table-striped table-sm" id='learningMapTable'>
+                            <thead class="thead-dark ">
+                                <tr>
+                                    <th scope="col" style="width:30px">#</th>
+                                    <th scope="col" class="font-weight-light" style="width:200px">class name</th>
+                                    <th scope="col" class="font-weight-light" style="width:300px">description</th>
+                                    <th scope="col" class="font-weight-light" style="width:200px">tag list</th>
+                                    <th scope="col" class="font-weight-light" style="width:50px">del</th>
+
+
+                                </tr>
+                            </thead>
+                            <tbody id="classTableThead">
+                                <tr>
+                                    <!--<th style="width=30px" scope="row"></th>-->
+                                    <td style="width:30"></td>
+                                    <td style="width:200"></td>
+                                    <td style="width:300"></td>
+                                    <td style="width:200"></td>
+                                    <td style="width:50"></td>
+
+                                </tr>
+
+                            </tbody>
+                        </table>
+
+
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2 column" id="div_rightSide">
+                <div class='row'>
+                    <div class="col-md-12 column">
+                        <div class="row">
+
+                    <ul class="nav justify-content-end">
+                      <li class="nav-item">
+                        <a class="nav-link card text-white bg-info mb-0" href="#">A</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link  card text-white bg-info mb-0" href="#">B</a>
+                      </li>
+ 
+                    </ul>
+                        </div>
+                        <div class="row">
+                            <input type="text">
+                        </div>
+                        <div class="row">
+                            <table class="table table-striped table-sm" id='learningMapTable'>
+                                <thead class="thead-info ">
+                                    <tr>
+                                        <th scope="col" class="font-weight-light"> tag sample</th>
+                                    </tr>
+                                </thead>
+
+                            </table>
+                        </div>
+                        <div class="row" >
+                        <div class='col-md-12 column' id="tagSampleInputDiv">
+                            <h7 style="font-size:14px;font-family:微軟正黑體"> 部門</h7>
+                            <input type="text" class="form-control tagInputSample" ID="tagInput_dept">
+       
+                            <h7 style="font-size:14px;font-family:微軟正黑體"> 成員</h7>
+                            <input type="text" class="form-control tagInputSample"  ID="tagInput_user">
+                        
+                
+                            <h7 style="font-size:14px;font-family:微軟正黑體"> 軟體</h7>
+                            <input type="text" class="form-control tagInputSample"  ID="tagInput_software">
+   
+                            <h7 style="font-size:14px;font-family:微軟正黑體"> 專業技能</h7>
+                            <input type="text" class="form-control tagInputSample"  ID="tagInput_skill_professional">
+                            <h7 style="font-size:14px;font-family:微軟正黑體"> 通用技能</h7>
+                            <input type="text" class="form-control tagInputSample" ID="tagInput_skill_common">
+                            <h7 style="font-size:14px;font-family:微軟正黑體"> 領導技能</h7>
+                            <input type="text" class="form-control tagInputSample" ID="tagInput_skill_leader">
+                        </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+    <script>
+        $(document).ready(function() {
+            $.post("/getExistLearnTable", function(data) {
+                createLearningMapTabe(data)
+            });
+           // console.log($('#tagInput_dept'))
+            $.post("/getTagSampleFromDB", function(data) {
+                //console.log(data)
+                createTagSample(data)
+            });
+            
+            
+          //  $.post("/getClassCssFromDB", function(data) {
+           //         console.log(data)
+                //createTagSample(data)
+           // });
+           // console.log()
+            // $('#div_rightSide').hide();   getClassCssFromDB 
+
+        })
+
+        $("#submitClassBTN").click(function() {
+            // console.log('submit class');
+            var className = $("#classNameInput").val();
+            var classDescription = $("#classDescription").val();
+            // console.log(className, classDescription);
+
+
+            $.post("/registClass", {
+                    "className": className, //waitting for all files uploaded
+                    'classDescription': classDescription,
+                    //'projectNameCN': currentSelectProjectCN
+                },
+                function(data) {
+                    // console.log("feedback", data)
+                    //myDropzone.removeAllFiles()
+                });
+            $("#classNameInput").val('');
+            $("#classDescription").val('');
+            location.reload();
+        });
+
+        // $("#classTableThead").remove()
+        //  $("#classTableThead").remove() description
+        function createTagSample(data){
+          //  console.log(data)
+            var tagTypeCount = Object.keys(data).length
+            
+            for(var i=0;i<tagTypeCount;i++){
+                //tagList = data[i][2]
+                var tagInputName = Object.keys(data)[i]
+             //   console.log( tagInputName)
+                var tag = JSON.parse(data[tagInputName]['tag_list'])
+                //console.log(Object.keys())
+               // console.log(tagInputName,tagSampleList)
+                //console.log($(tagInputName))
+               // tagListCout =  Object.keys(tagSampleList)//.length
+              //  console.log(tag)
+                if (tag == null) {
+                   //  console.log('null')   
+                }           
+                else{
+                    // console.log(tag,typeof(tag))
+    
+                    //   console.log('tagLength',Object.keys(tag))
+                    tagCounts = Object.keys(tag).length
+
+                    for (var j = 0; j < tagCounts; j++) {
+                        //console.log('keys',Object.keys(tag))
+                       // console.log(tag[j])
+                        $('#'+tagInputName).tagsinput('add', tag[j]);
+                      //  console.log(tag)
+
+                    }
+
+                }
+                
+
+                //for(var j=0;j<tagListCout;j++){
+                  //  console.log(Object.keys(tagListCout)[j])
+                  //  $('#'+tagInputName).tagsinput('add',Object.keys(tagListCout)[j])
+                    
+                    
+               // }
+               // $('#'+tagInputName).tagsinput('add',tagSampleList)
+                //$td8.tagsinput('add', tag[j]);
+                
+            }    
+        
+                        
+            
+           // console.log(tagTypeCount)
+            
+            
+            
+            
+            
+            
+        };
+        
+        
+        
+        
+        function createLearningMapTabe(data) {
+            $(".classElement").remove()
+            classCount = Object.keys(data).length
+
+            // console.log(data,classCount)
+
+            for (i = 0; i < classCount; i++) {
+
+                var className = data[Object.keys(data)[i]]['lessonName']
+                var classDescription = data[Object.keys(data)[i]]['description']
+                var classIndexNum = Object.keys(data)[i]
+                var tag = data[Object.keys(data)[i]]['tag']
+
+                tag = JSON.parse(tag)
+                //  console.log(tag,typeof(tag))
+
+                var $tr1 = $('<tr class="table-active classElement "' +
+                    'id="tr' + className + '"' +
+                    '></tr>');
+                var $td1 = $('<th class= "classElement" style="width:30px" scope="row">' +
+                    '<h7 class="text-info " style="font-size:14px;font-family:微軟正黑體">' +
+                    i +
+                    '</h7>' +
+                    '</th>')
+                var $td2 = $('<th class= "classElement" style="width:200px" scope="row">' +
+                    '<h7 class="text-dark" style="font-size:14px;font-family:微軟正黑體">' +
+                    className +
+                    '</h7>' +
+                    '</th>')
+                var $td3 = $('<th class= "classElement" style="width:300px" scope="row">' +
+                    '<h7 class="text-secondary font-weight-normal" style="font-size:14px;font-family:微軟正黑體">' +
+                    classDescription +
+                    '</h7>' +
+                    '</th>')
+                var $td4 = $('<th class= "classElement" style="width:500px" scope="row">' +
+                    "tag" +
+                    '</th>')
+
+                var $td6 = $('<td class="co-md" style="width=50px"' +
+                    'id="' + classIndexNum + '"' +
+                    '>' +
+                    '<h7 class="text-danger text align-middle ">' + "del" + '</h7>' +
+                    '</td>');
+                var $td7 = $('<td class="co-md" style="width:50px"' +
+                    'id="tag_' + classIndexNum + '"' +
+                    '>' +
+                    '<h7 class="text-warning text align-middle ">' + "tag" + '</h7>' +
+                    '</td>');
+
+
+                var $td8 = $('<input type="text" class="form-control classTagList align-middle" style="width:200px" ID="tagList_' + classIndexNum +
+                    '">')
+
+
+                $("#classTableThead").append($tr1)
+                $("#classTableThead").append($td1)
+                $("#classTableThead").append($td2)
+                $("#classTableThead").append($td3)
+                //$("#classTableThead").append('<input type="text" class="form-control" data-role="tagsinput" ID = "gg">')
+                // $("#classTableThead").append($td7)
+                $("#classTableThead").append($td8)
+                $("#classTableThead").append($td6)
+
+                $td6.click(function() {
+                    //  console.log($(this).attr("id")) ["0"].$element["0"]
+                    delElement($(this).attr("id"))
+                    location.reload();
+                })
+                // $td7.click(function() { 
+                //  console.log($(this).attr("id"))
+                //  delElement($(this).attr("id"))
+                //  location.reload(); 
+                //  })
+                // console.log(classIndexNum)
+                //  $td8.attr('id', classIndexNum);
+
+                $td8.tagsinput({
+
+                    tagClass: function(item) {
+
+                        //  console.log(item);
+                        //console.log($(this).val()) ;   
+                        // itemValue: 'id';
+                        if (item == '3d') {
+                            return 'bg-white text-dark font-weight-light'
+                        } else {
+                            return 'bg-light text-primary  font-weight-light border-0';
+
+
+
+                        };
+
+                    },
+                });
+                //add exist tags
+                if (tag == null) {
+
+                } else {
+                    //   console.log('tagLength',Object.keys(tag))
+                    tagCounts = Object.keys(tag).length
+
+                    for (var j = 0; j < tagCounts; j++) {
+                        //console.log('keys',Object.keys(tag))
+                       // console.log(tag[j])
+                        $td8.tagsinput('add', tag[j]);
+
+                    }
+
+                }
+
+
+                //$td8.tagsinput('add', 'some tag');
+
+                $td8.on('itemAdded', function(event) {
+                    // Do some processing here["0"].$element
+                    var tagListID = $(this).tagsinput()['0']['$element']['0']['id']
+                    //var tagListItems = JSON.stringify($(this).tagsinput('items'))
+                    var tagListItems = JSON.stringify($(this).tagsinput('items')) //$(this).val()//JSON.stringify($(this).val())
+                    JSON.stringify($(this).val()) //.tagsinput('items')JSON.stringify($(this).tagsinput('items'))
+                    console.log(tagListID)
+                    //  console.log(encodeURIComponent(tagListItems))
+
+                    $.post("/addTagToItem", {
+                            "tagListItems": tagListItems, //tagListItems, //waitting for all files uploaded
+                            "tagListID": tagListID,
+                            //'classDescription': classDescription,
+                            //'projectNameCN': currentSelectProjectCN
+                        },
+                        function(data) {
+                            console.log("feedback", data)
+                            //myDropzone.removeAllFiles()
+                        });
+
+
+
+                });
+
+
+                $td8.on('itemRemoved', function(event) {
+                    // $(this).tagsinput('remove', event.item);
+                    //console.log(event.item)
+                    var tagListItemsHave = JSON.stringify($(this).tagsinput('items'))
+                    //  console.log($td8.val())
+                    var tagListID = $(this).tagsinput()['0']['$element']['0']['id']
+                    console.log(tagListItems, tagListID)
+
+                    $.post("/removeTagFromTagList", {
+                            "tagListItems": tagListItems, //tagListItems, //waitting for all files uploaded
+                            "tagListID": tagListID,
+
+                        },
+                        function(data) {
+                            console.log("feedback", data)
+                        });
+
+                });
+
+
+
+            }
+        }
+
+        //tag right side
+        
+      
+        /*
+        $('.tagInputSample').tagsinput({
+            
+            tagClass: function(item) {
+
+              //  console.log('item',$(item));
+                //console.log($(this).val()) ;   
+                // itemValue: 'id';
+                updateTagTypeDB($('.tagInputSample'))
+                if (item == '3d') {
+                    return 'bg-secondary text-white  font-weight-light border-1'
+                } else {
+                    return 'bg-secondary text-white  font-weight-light border-1';
+
+
+
+                };
+
+            },
+            
+        });
+        */
+        
+        
+        $('#tagInput_dept').tagsinput({
+            
+            tagClass: function(item) {
+
+              //  console.log('item',$(item));
+                //console.log($(this).val()) ;   
+                // itemValue: 'id';
+                var aa = JSON.stringify($('#tagInput_dept').tagsinput('items')) //$(this).val()//JSON.stringify($(this).val())
+                console.log(aa)
+               // updateTagTypeDB('tagInput_dept')
+                if (item == '3d') {
+                    return 'bg-secondary text-white  font-weight-light border-1'
+                } else {
+                    return 'bg-secondary text-white  font-weight-light border-1';
+
+
+
+                };
+
+            },
+            
+        });
+        
+        
+        function updateTagTypeDB(item){
+            
+          //  console.log(item,$(item).val())
+           // console.log($("#tagInput_dept").val())
+            var tagListItemsInput =$('#'+item).val()
+           // var tagListItemsInput = JSON.parse("[" + $('#'+item).val() + "]");
+            console.log(item,tagListItemsInput)
+            /*
+            $.post("/addTagSampleTODB", {
+                    "tagListItems": tagListItemsInput, //tagListItems, //waitting for all files uploaded
+                    "tagListID": item,
+                },
+                function(data) {
+
+                });
+                */
+        }
+        
+        
+       /*
+        $('.tagInputSample').on('itemAdded', function(event) {
+                    let tagListID = $(this).tagsinput()['0']['$element']['0']['id'] 
+                    let tagListItemsInput = JSON.stringify($(this).tagsinput('items')) //$(this).val()//JSON.stringify($(this).val())
+                   // console.log(tagListID)
+
+
+                    $.post("/addTagSampleTODB", {
+                            "tagListItems": tagListItemsInput, //tagListItems, //waitting for all files uploaded
+                            "tagListID": tagListID,
+                        },
+                        function(data) {
+
+                        });
+        });
+        
+
+*/
+   
+        
+        
+        
+        
+        
+        
+        /*
+        
+        $('.tagInputSample').on('itemRemoved', function(event) {
+            // $(this).tagsinput('remove', event.item);
+            //console.log(event.item)
+            let tagListItemsRemoved = JSON.stringify($(this).tagsinput('items'))
+            //  console.log($td8.val())
+            let tagListID = $(this).tagsinput()['0']['$element']['0']['id'] 
+            //console.log(tagListID)
+            
+            $.post("/addTagSampleTODB", {
+                    "tagListItems": tagListItemsRemoved, //tagListItems, //waitting for all files uploaded
+                    "tagListID": tagListID,
+
+                },
+                function(data) {
+                  console.log("feedback", data)
+                });
+               
+        });
+        
+        */
+        /*
+         $('.tagInputSample').on('itemRemoved', function(event) {
+            // $(this).tagsinput('remove', event.item);
+            //console.log(event.item)
+            let tagListItemsRemoved = JSON.stringify($(this).tagsinput('items'))
+            //  console.log($td8.val())
+            let tagListID = $(this).tagsinput()['0']['$element']['0']['id']
+            //console.log(tagListID)
+            
+            $.post("/removeTagSampleFromTagList", {
+                    "tagListItems": tagListItemsRemoved, //tagListItems, //waitting for all files uploaded
+                    "tagListID": tagListID,
+
+                },
+                function(data) {
+                  console.log("feedback", data)
+                });
+               
+        });
+
+        */
+        
+
+        // console.log('testA',$('.classTagList').val())
+        function delElement(classElement) {
+
+            //console.log(classElement)
+            $.post("/delClassElement", {
+                    "classElement": classElement, //waitting for all files uploaded
+                    //'classDescription': classDescription,
+                    //'projectNameCN': currentSelectProjectCN
+                },
+                function(data) {
+                    // console.log("feedback", data)
+                    //myDropzone.removeAllFiles()
+                });
+
+        }
+        /*
+           <tr>
+            <th style="width=30px" scope="row">1</th>
+            <td style="width=200px">Mark</td>
+            <td style="width=500px">Otto</td>
+            <td style="width=200px">@mdo</td>
+        </tr>
+
+        */
+
+    </script>
+
+</body>
+
+
+</html>

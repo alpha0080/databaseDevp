@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>sentTOFlask</title>
+
+    <link href="{{url_for('static',filename='css/bootstrap.min.css')}}" rel="stylesheet">
+    <link href="{{url_for('static',filename='css/fileinput.min.css')}}" rel="stylesheet">
+    <link href="{{url_for('static',filename='css/fileinput-rtl.min.css')}}" rel="stylesheet">
+    <link href="{{url_for('static',filename='css/jquery-ui.css')}}" rel="stylesheet">
+
+    <script src="{{url_for('static', filename='jqueryUI/jquery.js')}}"></script>
+
+    <script src="{{url_for('static', filename='jqueryUI/jquery-ui.js')}}"></script>
+
+</head>
+
+<body>
+    test test test <br>
+    <button id="aass">一个 button 元素</button>
+
+    <script>
+        $('#aass').click(function() {
+            var data = {
+                'name': 'kikay',
+                'age': 18
+            }
+            $.ajax({
+                type: 'POST',
+                url: '{{url_for("cleanReq")}}',
+                data: data,
+                dataType: 'json', //希望服务器返回json格式的数据
+                });
+                  
+            });
+
+
+    </script>
+
+
+
+
+
+</body>
+
+</html>

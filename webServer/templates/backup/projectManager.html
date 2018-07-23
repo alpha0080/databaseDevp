@@ -1,0 +1,2025 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+
+
+    <!-- UI -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/earlyaccess/cwtexkai.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/earlyaccess/cwtexyen.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/earlyaccess/cwtexfangsong.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/earlyaccess/notosanstc.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/earlyaccess/cwtexming.css">
+
+
+
+    <!-- input jQuery Mobile js
+    <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
+   -->
+    <!-- jquery core
+    <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+ -->
+    <script src="{{url_for('static', filename='jquery-3.3.1.min.js')}}"></script>
+
+
+    <!-- Jquery UI -->
+    <link href="{{url_for('static',filename='css/jquery-ui.min.css')}}" rel="stylesheet">
+
+    <script src="{{url_for('static', filename='jquery-ui.min.js')}}"></script>
+
+
+
+
+    <!-- bootstrap CDN 
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+
+    -->
+
+
+    <!-- bootstrap local -->
+    <link href="{{url_for('static',filename='css/bootstrap.min.css')}}" rel="stylesheet">
+
+    <script src="{{url_for('static', filename='bootstrap.min.js')}}"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+
+
+    <!-- input dropzoe js -->
+    <script src="https://rawgit.com/enyo/dropzone/master/dist/dropzone.js"></script>
+    <link rel="stylesheet" href="https://rawgit.com/enyo/dropzone/master/dist/dropzone.css">
+
+
+
+
+    <!-- input bootstrap tag plugin js -->
+
+    <script src="{{url_for('static', filename='tagsinput.js')}}"></script>
+    <link href="{{url_for('static',filename='css/tagsinput.css')}}" rel="stylesheet">
+
+
+    <!-- input pixi js -->
+
+
+    <script src="{{url_for('static', filename='pixi.min.js')}}"></script>
+    <script src="{{url_for('static', filename='pixi-spine.js')}}"></script>
+
+    <!-- input full screen js -->
+
+    <script src="{{url_for('static', filename='screenfull.min.js')}}"></script>
+
+    <!-- input Markdown js 
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.css">
+    <script src="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.js"></script>
+    -->
+    <script src="{{url_for('static', filename='bootstrap-markdown.js')}}"></script>
+    <link href="{{url_for('static',filename='css/bootstrap-markdown.css')}}" rel="stylesheet">
+
+    
+    
+    
+    <!-- input bootstrap datepickup CDN js
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/js/bootstrap-datepicker.js"></script>
+    <link rel="stylesheet" href="https://rawgit.com/enyo/dropzone/master/dist/https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/css/bootstrap-datepicker.css"> -->
+
+     <!-- input full bootstrap datepickup js -->
+
+    <script src="{{url_for('static', filename='bootstrap-datepicker.min.js')}}"></script>  
+    <link href="{{url_for('static',filename='css/bootstrap-datepicker.min.css')}}" rel="stylesheet">
+  
+   
+   
+    <title>專案管理</title>
+</head>
+
+<style>
+    
+    .englishStyle_tableBody {
+            font-family:  'Arial';
+            font-size: 1em;
+            line-height:1.5;
+            font-weight: 100;
+            letter-spacing: 0.2em
+        }
+    .englishStyle_tableBodyS {
+            font-family:  'Arial';
+            font-size: 0.7em;
+            line-height:1.5;
+            font-weight: 100;
+            letter-spacing: 0.2em
+        }
+    
+    .chineseStyleJobRecord {
+
+        font-family: "微軟正黑體";
+        font-size: 1em;
+        color: light;
+        font-weight: 100;
+        letter-spacing: 0.1em
+    }
+
+    .chineseStyleA {
+        font-family: "微軟正黑體";
+        font-size: 1em;
+        color: white;
+        font-weight: 200;
+        letter-spacing: 0.1em
+    }
+
+
+    .chineseStyleB {
+        font-family: "微軟正黑體";
+        font-size: 1.1em;
+        color: white;
+        font-weight: 100;
+        letter-spacing: 0.1em
+    }
+
+    /* 專案選取 字型 中文 楷體字型 */
+
+    @import url(https://fonts.googleapis.com/earlyaccess/cwtexkai.css);
+
+    .chineseStyleK {
+        font-family: "cwTeXKai", serif;
+        font-size: 1em;
+        font-weight: lighter;
+        letter-spacing: 0.2em
+    }
+
+    /* 專案選取 字型 中文 圓體字型 */
+
+    @import url(https://fonts.googleapis.com/earlyaccess/cwtexyen.css);
+    .chineseStyleU {
+        font-family: 'cwTeXYen', sans-serif;
+        font-size: 1em;
+        font-weight: lighter;
+        letter-spacing: 0.2em
+    }
+
+    
+    
+    
+    @import url(https://fonts.googleapis.com/earlyaccess/cwtexyen.css);
+    .chineseStyleModalBold {
+        font-family: 'cwTeXYen', sans-serif;
+        font-size: 1.2em;
+        font-weight: 300;
+        letter-spacing: 0.2em
+    }
+
+    
+
+    @import url(https://fonts.googleapis.com/earlyaccess/cwtexyen.css);
+    .chineseStyleU_TableHead {
+        font-family: 'cwTeXYen', sans-serif;
+        font-size: 1em;
+        font-weight: 100;
+        letter-spacing: 0.2em
+    }
+
+
+    @import url(https://fonts.googleapis.com/earlyaccess/cwtexyen.css);
+    .chineseStyleU_TableBody {
+        font-family: 'cwTeXYen', sans-serif;
+        font-size: 1.2em;
+        font-weight: 500;
+        letter-spacing: 0.2em;
+        color:rgb(20,70,20);
+    }
+
+
+        @import url(https://fonts.googleapis.com/earlyaccess/cwtexyen.css);
+    .chineseStyleU_TableHeadAssets {
+        font-family: 'cwTeXYen', sans-serif;
+        font-size: 1em;
+        font-weight: 100;
+        letter-spacing: 0.2em
+    }
+    
+
+
+    @import url(https://fonts.googleapis.com/earlyaccess/cwtexyen.css);
+    .chineseStyleU_title {
+        font-family: 'cwTeXYen', sans-serif;
+        font-size: 2em;
+        font-weight: 200;
+        letter-spacing: 0.2em
+    }
+
+    /* 專案選取 字型 中文 仿宋體 */
+
+    @import url(https://fonts.googleapis.com/earlyaccess/cwtexfangsong.css);
+    .chineseStyleS {
+        font-family: 'cwTeXFangSong', serif;
+        font-size: 1em;
+        font-weight: lighter;
+        letter-spacing: 0.2em
+    }
+
+    /* 專案選取 字型 中文黑體 */
+
+    @import url(https://fonts.googleapis.com/earlyaccess/notosanstc.css);
+    .chineseStyleST {
+        font-family: 'Noto Sans TC', sans-serif;
+        font-size: 1em;
+        font-weight: lighter;
+        letter-spacing: 0.2em
+    }
+
+    /* 專案選取 字型 明體 */
+
+    @import url(https://fonts.googleapis.com/earlyaccess/cwtexming.css);
+    .chineseStyleMing {
+        font-family: 'cwTeXMing', serif;
+        font-size: 1em;
+        font-weight: lighter;
+        letter-spacing: 0.2em
+    }
+
+</style>
+
+<style>
+/* button style */
+    
+    .projectEditorBtn{}
+    
+    .assetShotEditor{
+        
+       z-index: 1000;
+        background-color: white;
+        position: relative; 
+    }
+    
+    
+    .userSelector{
+        
+    }
+    
+    </style>
+
+
+<body>
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12 ">
+                <nav class="navbar navbar-expand-md navbar-dark " style="background-color: rgb(50,50,50);height: 80%">
+                    <ul class="navbar-nav justify-content-start chineseStyleA col-10">
+                        <li class="nav-item active leftNav" id="pm_nav_progress">
+                            <a class="nav-link" href="#" id="pm_nav_progressBTN">
+                                <h6 class="display-6 font-weight-normal">執行中</h6>
+                            </a>
+
+                            <!--<a class="nav-link leftNav" id="navbarTextProcess" style="color:darkslategrey" href="#">進行中</a>-->
+                        </li>
+                        <li class="nav-item leftNav" id="pm_nav_completed">
+                            <a class="nav-link" href="#" id="pm_nav_completedBTN">
+                                <h6 class="display-6 font-weight-light">已完成</h6>
+                            </a>
+
+                            <!--<a class="nav-link leftNav" id="navbarTextProcess" style="color:darkslategrey" href="#">進行中</a>-->
+                        </li>
+                        <li class="nav-item leftNav" id="pm_nav_all">
+                            <a class="nav-link" href="#" id="pm_nav_allBTN">
+                                <h6 class="display-6 font-weight-light">全部</h6>
+                            </a>
+
+                            <!--<a class="nav-link leftNav" id="navbarTextProcess" style="color:darkslategrey" href="#">進行中</a>-->
+                        </li>
+
+                    </ul>
+
+                    <ul class="navbar-nav  chineseStyleA  col-2">
+                        <li class="nav-item active leftNav" id="pm_nav_newProj">
+                            <a class="nav-link" href="#" id="pm_nav_newProjBTN" data-toggle="modal" data-target="#addNewProjectINtacticModal">
+                                <h6 class="display-6 font-weight-normal">新增</h6>
+                            </a>
+
+                            <!--<a class="nav-link leftNav" id="navbarTextProcess" style="color:darkslategrey" href="#">進行中</a>-->
+                        </li>
+
+
+                    </ul>
+
+
+                </nav>
+
+            </div>
+       
+        </div>
+        <div class="row">
+             <div class="col-md-12 ">
+                <nav class="navbar navbar-expand-md navbar-dark " style="background-color: rgb(50,50,50);height: 80%">
+                    <ul class="navbar-nav justify-content-start chineseStyleA col-6">
+
+                    </ul>
+
+                    <ul class="navbar-nav  chineseStyleA  col-6">
+                       <li class="nav-item active leftNav" id="">
+                            <a class="nav-link" href="#" id="pm_syncProjectsBtn" >
+                                <h6 class="display-6 font-weight-normal">同步projects</h6>
+                            </a>
+                        </li>
+                       
+                       
+                        <li class="nav-item active leftNav" id="">
+                            <a class="nav-link" href="#" id="pm_syncAssetsBtn">
+                                <h6 class="display-6 font-weight-normal">同步assets</h6>
+                            </a>
+                        </li>
+                        <li class="nav-item active leftNav" id="">
+                            <a class="nav-link" href="#" id="pm_syncShotsBtn">
+                                <h6 class="display-6 font-weight-normal">同步shots</h6>
+                            </a>
+                        </li>
+
+                    </ul>
+
+
+                </nav>
+
+            </div>
+        
+        </div>
+        <div class="row">
+            <div class="col-md-12 ">
+                <table class="table chineseStyleU_TableHead">
+                    <thead>
+                        <tr>
+                            <th>
+                                <div class="form-check">
+                                    <!--<input type="checkbox" class=" align-middle" id="exampleCheck1">-->
+                                </div>
+                            </th>
+                            <th>
+                                #
+                            </th>
+                            <th>
+                                預覽
+                            </th>
+                            <th>
+                                英文名稱
+                            </th>
+                            <th>
+                                中文名稱
+                            </th>
+                            <th>
+                                窗口
+                            </th>
+                            <th>
+                                PC
+                            </th>
+                            <th>
+                                執行人員
+                            </th>
+                            <th>
+                                專案時間
+                            </th>
+                            <th>
+                                編輯
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody class="align-middle" id="pmTbodyA">
+                  
+
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+
+
+    
+
+
+
+
+
+</body>
+
+<body>
+        <!-- 新增asset/shot 上傳資訊輸入 動態視窗 -->  
+     <div class="modal fade  " id="addNewAssetSlotINtacticModal">
+        <div class="modal-dialog modal-megamenu" style="min-width: 800px">
+            <div class="modal-content " id="">
+                <div class="modal-header " id="">
+                       
+                    <h5 class="chineseStyleModalBold w-100 text-center align-middle">新增Asset/Shot</h5>
+
+                </div>
+                <div class="modal-body chineseStyleModalBold align-middle">
+                       
+                        <div class="input-group mb-3">
+                            <div class="input-group-append ">
+                            <label class="input-group-text align-middle" for="inputGroupSelect02" style="width: 100px">英文名稱</label>
+                          </div>
+                          <input type="text" class="form-control" placeholder="專案英文名稱" aria-label="project EN name" aria-describedby="basic-addon2" id="">
+
+                        </div>
+                        <div class="input-group mb-3">
+                         <div class="input-group-append ">
+                            <label class="input-group-text align-middle" for="inputGroupSelect02" style="width: 100px">中文名稱</label>
+                          </div>
+                          <input type="text" class="form-control" placeholder="專案中文名稱" aria-label="project Chn name" aria-describedby="basic-addon2" id="">
+
+                        </div>
+                        <div class="input-group mb-3">
+                           <div class="input-group-append ">
+                            <label class="input-group-text align-middle" for="inputGroupSelect02" style="width: 100px">窗口</label>
+                          </div>
+                          <select class="custom-select" id="">
+                          </select>
+
+                        </div>
+                        <div class="input-group mb-3">
+                           <div class="input-group-append">
+                            <label class="input-group-text align-middle" for="inputGroupSelect02" style="width: 100px">PC</label>
+                          </div>
+                          <select class="custom-select" id="">
+
+                          </select>
+                        
+                        </div>
+                        <div class="input-group mb-3">
+                            <label class="input-group-text align-middle" for="inputGroupSelect02" style="width: 100px">起始日期</label>
+                            <input type="text" class="form-control input-group date" placeholder="07/01/2018" aria-label="project EN name"  data-provide="datepicker" id ="">
+                             
+                            <label class="input-group-text align-middle" for="inputGroupSelect02" style="width: 100px">結束日期</label>
+                             <input type="text" class="form-control input-group date" placeholder="07/01/2018" aria-label="project EN name"  data-provide="datepicker"  id ="">
+                            
+                        </div>
+
+                </div>
+                <div class="modal-body chineseStyleModalBold align-middle" style="height: 100px">
+                    <h6 class="text-danger"id=""></h6>
+                </div>
+                
+
+                
+                
+                
+                
+                
+                <div class="modal-footer ">
+                        <button type="button" class="btn btn-primary chineseStyleModalBold w-100" id="">送出</button>
+
+
+                </div>
+                
+            </div>
+        </div>
+     </div>     
+          
+            
+                
+    
+        <!-- 新增專案 上傳資訊輸入 動態視窗 -->    
+    <div class="modal fade  " id="addNewProjectINtacticModal">
+        <div class="modal-dialog modal-megamenu" style="min-width: 800px">
+            <div class="modal-content " id="textEditModalDiv">
+                <div class="modal-header " id="">
+                    <h5 class="chineseStyleModalBold w-100 text-center align-middle">創建新專案</h5>
+
+                </div>
+                <div class="modal-body chineseStyleModalBold align-middle">
+                        <div class="input-group mb-3">
+                            <div class="input-group-append ">
+                            <label class="input-group-text align-middle" for="inputGroupSelect02" style="width: 100px">英文名稱</label>
+                          </div>
+                          <input type="text" class="form-control" placeholder="專案英文名稱" aria-label="project EN name" aria-describedby="basic-addon2" id="addNewProjENNameInput">
+
+                        </div>
+                        <div class="input-group mb-3">
+                         <div class="input-group-append ">
+                            <label class="input-group-text align-middle" for="inputGroupSelect02" style="width: 100px">中文名稱</label>
+                          </div>
+                          <input type="text" class="form-control" placeholder="專案中文名稱" aria-label="project Chn name" aria-describedby="basic-addon2" id="addNewProjCNNameInput">
+
+                        </div>
+                        <div class="input-group mb-3">
+                           <div class="input-group-append ">
+                            <label class="input-group-text align-middle" for="inputGroupSelect02" style="width: 100px">窗口</label>
+                          </div>
+                          <select class="custom-select" id="newProjSelectWindowInput">
+                          </select>
+
+                        </div>
+                        <div class="input-group mb-3">
+                           <div class="input-group-append">
+                            <label class="input-group-text align-middle" for="inputGroupSelect02" style="width: 100px">PC</label>
+                          </div>
+                          <select class="custom-select" id="newProjSelectPCInput">
+
+                          </select>
+                        
+                        </div>
+                        <div class="input-group mb-3">
+                            <label class="input-group-text align-middle" for="inputGroupSelect02" style="width: 100px">起始日期</label>
+                            <input type="text" class="form-control input-group date" placeholder="07/01/2018" aria-label="project EN name"  data-provide="datepicker" id ="newProj_DateStart">
+                             
+                            <label class="input-group-text align-middle" for="inputGroupSelect02" style="width: 100px">結束日期</label>
+                             <input type="text" class="form-control input-group date" placeholder="07/01/2018" aria-label="project EN name"  data-provide="datepicker"  id ="newProj_DateEnd">
+                            
+                        </div>
+
+                </div>
+                <div class="modal-body chineseStyleModalBold align-middle" style="height: 100px">
+                    <h6 class="text-danger"id="errorTextAddNewProj"></h6>
+                </div>
+                
+
+                
+                
+                
+                
+                
+                <div class="modal-footer ">
+                        <button type="button" class="btn btn-primary chineseStyleModalBold w-100" id="addNewProjSubmit">送出</button>
+
+
+                </div>
+                
+            </div>
+        </div>
+     </div>  
+ 
+
+    
+       
+        <!-- 點選 專案編輯 動態視窗 -->    
+    <div class="modal fade  " id="projectEditedINtacticModal">
+        <div class="modal-dialog modal-megamenu" style="min-width: 1200px">
+            <div class="modal-content " id="textEditModalDiv">
+                <div class="modal-header " id="">
+                    <h5 class="chineseStyleModalBold w-100 text-center align-middle">專案內容編輯/更動</h5>
+
+                </div>
+
+                <div class="modal-body chineseStyleModalBold align-middle">
+                        <div class="input-group mb-3">
+                            <div class="input-group-append ">
+                            <label class="input-group-text align-middle" for="inputGroupSelect02" style="width: 100px">英文名稱</label>
+                          </div>
+                          <input type="text" class="form-control" placeholder="專案英文名稱" aria-label="project EN name" aria-describedby="basic-addon2" id="projContentEngName">
+                          
+                           <div class="input-group-append ">
+                            <label class="input-group-text align-middle" for="inputGroupSelect02" style="width: 100px">中文名稱</label>
+                          </div>
+                          <input type="text" class="form-control" placeholder="專案中文名稱" aria-label="project Chn name" aria-describedby="basic-addon2" id="projContentChnName">
+                           <div class="input-group-append ">
+                            <label class="input-group-text align-middle" for="inputGroupSelect02" style="width: 100px">窗口</label>
+                          </div>
+                          <select class="custom-select" id="projContentWindowName"></select>
+                           <div class="input-group-append">
+                            <label class="input-group-text align-middle" for="inputGroupSelect02" style="width: 100px">PC</label>
+                          </div>
+                          <select class="custom-select" id="projContentPC"></select>
+                        </div>
+
+
+
+                        <div class="input-group mb-6">
+                            <div class="input-group-append">
+                                <label class="input-group-text align-middle" for="inputGroupSelect02" style="width: 100px">執行人員</label>
+                            </div>    
+                             <div class="input-group-append " style="width:470px">
+                               <input type="text" class="" data-role="tagsinput" id="projContentWorking" > 
+                              <!--<select multiple data-role="tagsinput" id="projContentWorking"></select> -->
+
+
+                             </div>    
+                             <div class="input-group-append">
+                            <label class="input-group-text align-middle" for="inputGroupSelect02" style="width: 100px">起始日期</label>
+                            </div>
+                            <input type="text" class="form-control input-group date"  placeholder="07/01/2018" aria-label="project EN name" data-provide="datepicker" id="projContentDateStart" value ="07/01/2018">
+                            <div class="input-group-append">
+                            <label class="input-group-text align-middle" for="inputGroupSelect02" style="width: 100px">結束日期</label>
+                            </div>
+                            <input type="text" class="form-control input-group date" placeholder="07/01/2018" aria-label="project EN name" data-provide="datepicker" id="projContentDateEnd"  value ="07/01/2018">
+                        </div>
+                </div>
+
+                
+                <!-- 新增 asset -->
+                
+                <!-- /// -->
+                <!-- 新增 shot -->
+                            
+                <!-- /// --> 
+                
+                
+                <div class="modal-body chineseStyleU_TableHeadAssets align-middle">
+                    <ul class="nav nav-tabs" id="" role="tablist">
+                      <li class="nav-item">
+                        <a class="nav-link active" id="nav_projs" data-toggle="tab" href="#divProjs" role="tab" aria-controls="divProjs" aria-selected="true">Prjoect</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" id="nav_assets" data-toggle="tab" href="#divAssets" role="tab" aria-controls="divAssets" aria-selected="false">Assets</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" id="nav_shots" data-toggle="tab" href="#divShots" role="tab" aria-controls="divShots" aria-selected="false">Shots</a>
+                      </li>
+                    </ul>
+
+                    <div class="tab-content" id="divProjEditor">
+                      <div class="tab-pane fade show active" id="divProjs" role="tabpanel" aria-labelledby="nav_projs">專案細節</div>
+                      <div class="tab-pane fade" id="divAssets" role="tabpanel" aria-labelledby="nav_assets">
+
+                          <div class="row">
+                    
+                                     <h6 class="col-10"></h6> <button type="button" class="col-1 btn btn-dark btn-sm "  style="margin-top: 3px;margin-bottom:2px" id="addNewAssetINEditorBtn" data-toggle="modal" data-target="#addEditAssetModal">新增asset</button><h6 class="col-1"></h6>
+                          </div>
+                          <div class="modal-body chineseStyleModalBold align-middle" id="addAssetParentDiv">
+                
+                            </div>             
+                
+                          <table class="table chineseStyleU_TableHead">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        <div class="form-check">
+                                            <!--<input type="checkbox" class=" align-middle" id="exampleCheck1">-->
+                                        </div>
+                                    </th>
+                                    <th>
+                                        #
+                                    </th>
+                                    <th>
+                                        預覽
+                                    </th>
+                                    <th>
+                                        英文名稱
+                                    </th>
+                                    <th>
+                                        描述
+                                    </th>
+                                    <th>
+                                        物件類別
+                                    </th>
+                                    <th>
+                                        執行人員
+                                    </th>
+                                    <th>
+                                        備註
+                                    </th>
+                                    <th>
+                                        專案時間
+                                    </th>
+                                    <th>
+                                        編輯
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody class="align-middle" id="pmEditorAssets">
+
+
+
+                            </tbody>
+                        </table>
+                      
+                      
+                      
+                      
+                      </div>
+                      <div class="tab-pane fade" id="divShots" role="tabpanel" aria-labelledby="nav_shots">
+                            <div class="row">
+                    
+                                     <h6 class="col-10"></h6> <button type="button" class="col-1 btn btn-dark btn-sm "  style="margin-top: 3px;margin-bottom:2px" id="addNewShotINEditorBtn" data-toggle="modal" data-target="#addEditShotModal">新增Shot</button><h6 class="col-1"></h6>
+                          </div>
+                            <div class="modal-body chineseStyleModalBold align-middle" id="addShotParentDiv">
+                
+                                </div>    
+                            <table class="table chineseStyleU_TableHead">
+                                <thead>
+                                    <tr>
+                                        <th>
+                                            <div class="form-check">
+                                                <!--<input type="checkbox" class=" align-middle" id="exampleCheck1">-->
+                                            </div>
+                                        </th>
+                                        <th>
+                                            #
+                                        </th>
+                                        <th>
+                                            預覽
+                                        </th>
+                                        <th>
+                                            英文名稱
+                                        </th>
+                                        <th>
+                                            描述
+                                        </th>
+
+                                        <th>
+                                            執行人員
+                                        </th>
+                                        <th>
+                                            備註
+                                        </th>
+                                        <th>
+                                            專案時間
+                                        </th>
+                                        <th>
+                                            編輯
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody class="align-middle" id="pmEditorShots">
+
+
+
+                                </tbody>
+                            </table>
+
+                      
+                      
+                      
+                      
+                      
+                      
+                      </div>
+                      
+                    </div>
+
+                    
+                    
+                </div>
+                <div class="modal-body chineseStyleModalBold align-middle" style="height: 100px">
+                    <h6 class="text-danger"id="errorTextAddNewProj"></h6>
+                </div>
+                
+
+                
+                
+                
+                
+                
+                <div class="modal-footer ">
+                        <button type="button" class="btn btn-success chineseStyleModalBold w-100" id="editProjectSubmitBtn">確認</button>
+
+
+                </div>
+                
+            </div>
+        </div>
+     </div>               
+    
+</body>
+<script>
+        //store tactic上所有專案資料
+        var in3DDBGameDB =[] 
+        var in3DDBGameDBInProgress =[]
+        var in3DDBGameDBCompleted =[]
+        var in3DDBPCDB = []
+        var in3DDBUserDB =[]
+        $(function() {
+            
+            console.log('取得3DDB 專案資料')  
+            $.post("/get3DDBGameDB", {
+                //"loginID":loginID,
+               // "loginPS":loginPS,
+
+
+            }, function(data) {
+               // console.log(data[4])
+                in3DDBPCDB = data[3]
+                in3DDBUserDB = data[4]
+
+                in3DDBGameDB = data[2]
+                in3DDBGameDBInProgress = data[0]
+                in3DDBGameDBCompleted = data[1]
+                $('#projContentWorking').tagsinput('removeAll')
+
+                buildProjectTable(in3DDBGameDBInProgress)
+            })
+        //$('.userSelector').append()
+             
+        })
+    
+        //submitAddNewAssetBtn 在asset/shot編輯器中 點選  確定 送出 
+        $(function() {
+            $('#submitAddNewAssetBtn').click(function(){
+                console.log('點選新增 確認 新增asset 按鈕') 
+                var assetName = $('#editAssetName').val()
+                var assetDesctiption = $('#editAssetDescription').val()
+                var assetClass = $('#editAssetClassSelector').val()
+                var assetWorkUser = $('#editAssetWorkOnUserSelector').val()
+                var assetTimeStart = $('#editAssetTimeStart').val()
+                var assetTimeEnd = $('#editAssetTimeEnd').val()
+                
+                var conceptTS = $('#assetConceptTimeStart').val()
+                var conceptTD = $('#assetConceptTimeEnd').val()
+                var conceptProcess = $('#assetConceptTaskProcessSelect').val()
+                var conceptWorkonUser = $('#assetConceptWorkonUserSelector').val()
+                var conceptWorkonExtra = $('#assetConceptExtra').val()
+                
+                var modelTS = $('#assetModelTimeStart').val()
+                var modelTD = $('#assetModelTimeEnd').val()
+                var modelProcess = $('#assetModelTaskProcessSelect').val()
+                var modelWorkonUser = $('#assetModelWorkonUserSelector').val()
+                var modelWorkonExtra = $('#assetModelExtra').val()
+                
+                var textureTS = $('#assetTextureTimeStart').val()
+                var textureTD = $('#assetTextureTimeEnd').val()
+                var textureProcess = $('#assetTextureTaskProcessSelect').val()
+                var textureWorkonUser = $('#assetTextureWorkonUserSelector').val()
+                var textureWorkonExtra = $('#assetTextureExtra').val()
+                
+
+                var riggingTS = $('#assetRiggingTimeStart').val()
+                var riggingTD = $('#assetRiggingTimeEnd').val()
+                var riggingProcess = $('#assetRiggingTaskProcessSelect').val()
+                var riggingWorkonUser = $('#assetRiggingWorkonUserSelector').val()
+                var riggingWorkonExtra = $('#assetRiggingExtra').val()
+
+                console.log(assetName,assetDesctiption,assetClass,assetWorkUser,assetTimeStart,assetTimeEnd)
+
+
+
+            })
+
+        })
+    
+    
+         //submitAddNewShotBtn 在asset/shot編輯器中 點選  確定 送出 
+        $(function() {
+            $('#submitAddNewShotBtn').click(function(){
+                console.log('點選新增 確認 新增shot 按鈕') 
+                var assetName = $('#editShotName').val()
+                var assetDesctiption = $('#editShotDescription').val()
+                var assetWorkUser = $('#editShotWorkOnUserSelector').val()
+                var assetTimeStart = $('#editShotTimeStart').val()
+                var assetTimeEnd = $('#editShotTimeEnd').val()
+                
+                var layoutTS = $('#assetLayoutTimeStart').val()
+                var layoutTD = $('#assetLayoutTimeEnd').val()
+                var layoutProcess = $('#assetLayoutTaskProcessSelect').val()
+                var layoutWorkonUser = $('#assetLayoutWorkonUserSelector').val()
+                var layoutWorkonExtra = $('#assetLayoutExtra').val()
+                
+                var animationTS = $('#assetAnimationTimeStart').val()
+                var animationTD = $('#assetAnimationTimeEnd').val()
+                var animationProcess = $('#assetAnimationTaskProcessSelect').val()
+                var animationWorkonUser = $('#assetAnimationWorkonUserSelector').val()
+                var animationWorkonExtra = $('#assetAnimationExtra').val()
+                
+                var lightingTS = $('#assetLightingTimeStart').val()
+                var lightingTD = $('#assetLightingTimeEnd').val()
+                var lightingProcess = $('#assetLightingTaskProcessSelect').val()
+                var lightingWorkonUser = $('#assetLightingWorkonUserSelector').val()
+                var lightingWorkonExtra = $('#assetLightingExtra').val()
+                
+                var effectsTS = $('#assetEffectsTimeStart').val()
+                var effectsTD = $('#assetEffectsTimeEnd').val()
+                var effectsProcess = $('#assetEffectsTaskProcessSelect').val()
+                var effectsWorkonUser = $('#assetEffectsWorkonUserSelector').val()
+                var effectsWorkonExtra = $('#assetEffectsExtra').val()
+
+                var simulationTS = $('#assetSimulationTimeStart').val()
+                var simulationTD = $('#assetSimulationTimeEnd').val()
+                var simulationProcess = $('#assetSimulationTaskProcessSelect').val()
+                var simulationWorkonUser = $('#assetSimulationWorkonUserSelector').val()
+                var simulationWorkonExtra = $('#assetSimulationExtra').val()
+
+                var compTS = $('#assetCompTimeStart').val()
+                var compTD = $('#assetCompTimeEnd').val()
+                var compProcess = $('#assetCompTaskProcessSelect').val()
+                var compWorkonUser = $('#assetCompWorkonUserSelector').val()
+                var compWorkonExtra = $('#assetCompExtra').val()
+
+                var finalTS = $('#assetFinalTimeStart').val()
+                var finalTD = $('#assetFinalTimeEnd').val()
+                var finalProcess = $('#assetFinalTaskProcessSelect').val()
+                var finalWorkonUser = $('#assetFinalWorkonUserSelector').val()
+                var finalWorkonExtra = $('#assetFinalExtra').val()
+                
+
+            })
+
+        })   
+    
+    
+    
+
+    
+        //addNewAsset 在asset/shot編輯器中 點選  新增asset 
+        $('#addNewAssetINEditorBtn').click(function(){
+            
+           // $('.userSelector').append('<option selected><h5 class="text-primary">請選擇專案負責人....</h5></option>')
+            var userCount = in3DDBUserDB.length
+            console.log('點選新增Asset 按鈕')  
+            $('.userSelector >option').remove()
+            for(var i=0;i<userCount;i++){
+                var user = in3DDBUserDB[i][2]
+               $('.userSelector').append('<option><h5 class="text-primary">'+user +'</h5></option>') 
+                
+                
+            }
+
+        })
+    
+    
+        
+        
+    
+        
+     
+        $('#addNewShotINEditorBtn').click(function(){
+           // $('.userSelector').append('<option selected><h5 class="text-primary">請選擇專案負責人....</h5></option>')
+            var userCount = in3DDBUserDB.length
+            console.log('取得user資料',in3DDBUserDB,userCount)  
+            $('.userSelector >option').remove()
+            for(var i=0;i<userCount;i++){
+                var user = in3DDBUserDB[i][2]
+               $('.userSelector').append('<option><h5 class="text-primary">'+user +'</h5></option>') 
+                
+                
+            }
+
+        })
+     
+    
+    
+    
+        //管理 pm_syncProjectsBtn 
+        $('#pm_syncProjectsBtn').click(function(){
+             $.post("/pm_syncProjectsBtn", {
+
+
+            }, function(data) {
+                console.log(data)
+            
+             });
+        })
+    
+    
+    
+        //管理 同步assets 
+        $('#pm_syncAssetsBtn').click(function(){
+             $.post("/pm_syncAssetsBtn", {
+
+
+            }, function(data) {
+                console.log(data)
+            
+             });
+        })
+    
+        //管理 同步shots
+        $('#pm_syncShotsBtn').click(function(){
+             $.post("/pm_syncShotsBtn", {
+
+
+            }, function(data) {
+                console.log(data)
+            
+             });
+        })
+    
+       
+    
+    
+        //創建新專案 動態視窗 
+        $(function() {
+
+            })
+        //點選 新增 專案
+        $('#pm_nav_newProjBTN').click(function(){
+            $('#newProjSelectPCInput >option').remove()
+            $('#newProjSelectWindowInput >option').remove()
+            console.log(in3DDBPCDB)
+            pcCount =  in3DDBPCDB.length
+            userCount = in3DDBUserDB.length
+            $('#newProjSelectPCInput').append('<option selected ><h5 class="text-primary">請選擇PC....</h5></option>')  
+            $('#newProjSelectWindowInput').append('<option selected><h5 class="text-primary">請選擇專案負責人....</h5></option>')  
+
+            for(i=0;i<pcCount;i++){
+                var pc = in3DDBPCDB[i][1]
+                var pcOptionID = "pcOption_" + in3DDBPCDB[i][0]
+                //console.log(pc)
+                var $optionPC0 = $('<option value="'+pc+'" id="'+pcOptionID+'">'+ pc+'</option>')
+                $('#newProjSelectPCInput').append($optionPC0)   
+            } 
+            
+            
+            for(i=0;i<userCount;i++){
+                var user = in3DDBUserDB[i][2]
+                var userOptionID = "userOption_" + in3DDBUserDB[i][0]
+               // console.log(pc)
+                var $optionUser0 = $('<option value="'+user+'" id="'+userOptionID+'">'+ user+'</option>')
+                $('#newProjSelectWindowInput').append($optionUser0)   
+            }  
+            
+        })
+    
+
+        //點選 project nav
+        $('#nav_projs').click(function(){
+            
+            $('#editAndAddNewAsset').hide()// 關閉動態asset/shot編輯視窗
+            $('#editAndAddNewShot').hide()
+
+            
+        })
+        //點選 asset nav
+        $('#nav_assets').click(function(){
+            
+            $('#editAndAddNewAsset').hide()
+            $('#editAndAddNewShot').hide()
+ 
+            
+        })
+
+        //點選 shot nav
+        $('#nav_shots').click(function(){
+            
+            $('#editAndAddNewAsset').hide()
+            $('#editAndAddNewShot').hide()
+  
+            
+        })
+    
+    
+        //點選 新增送出 於新增專案視窗
+        $('#addNewProjSubmit').click(function(){
+            console.log("點選送出_新增專案")
+            var projectName = $('#addNewProjENNameInput').val()
+            var projectCNName = $('#addNewProjCNNameInput').val()
+
+            var windowUserName = $('#newProjSelectWindowInput').val()
+            var pcName = $('#newProjSelectPCInput').val()  
+            var newProjectStartTime =  $('#newProj_DateStart').val()  
+            var newProjectEndTime =  $('#newProj_DateEnd').val()  
+
+            //console.log($('#newProjSelectPCInput').attr('id'))
+            //console.log(projectName,projectCNName,pcName,windowUserName,newProjectStartTime,newProjectEndTime)
+            
+            $.post("/addNewProjInTactic", {
+                "projectName":projectName,
+                "projectCNName":projectCNName,
+                "windowUserName":windowUserName,
+                "pcName":pcName,
+                "newProjectStartTime":newProjectStartTime,
+                "newProjectEndTime":newProjectEndTime,
+
+
+
+            }, function(data) {
+                console.log(data,typeof(data))
+                if(data=='null'){
+                    
+                    $('#addNewProjectINtacticModal').modal('toggle');
+                }else{
+                                
+                    $('#errorTextAddNewProj').text(data)    
+                }
+
+            })
+            
+        
+        
+        
+        })
+    
+        //定義 workingon 人員 tag 顏色
+        $('#projContentWorking').tagsinput({
+
+                    tagClass: function(item) {
+
+                        //  console.log(item);
+                        //console.log($(this).val()) ;   
+                        // itemValue: 'id';
+                        if (item == '3d') {
+                            return 'bg-white text-dark font-weight-light'
+                        } else {
+                            return 'bg-light text-primary  font-weight-light border-0';
+
+
+
+                        };
+
+                    },
+                });
+    
+    
+        //點選 編輯專案 確認 
+        $("#projectEditedINtacticModal").on("hidden.bs.modal", function () {
+            console.log('關閉專案編輯視窗');
+            $('#projContentWorking').tagsinput('removeAll')
+        });
+
+    
+        //點選 編輯專案 確認 
+
+        $('#editProjectSubmitBtn').click(function(){
+            console.log('點擊專案編輯 確認按鈕')
+            var gameName = $('#projContentEngName').val()
+            var gameNameChn = $('#projContentChnName').val()
+            var projectPM = $('#projContentWindowName').val()
+            var projectPC = $('#projContentPC').val()
+            var projectBriefSD = $('#projContentDateStart').val()
+            var projectBriefED = $('#projContentDateEnd').val()
+            var projectWorkingOn = $('#projContentWorking').val()
+           // console.log(gameName,gameNameChn,projectPM,projectPC)
+           // console.log('projectBriefSD',projectBriefSD)
+          //  console.log('projectBriefED',projectBriefED)
+          //  console.log('projectWorkingOn',projectWorkingOn)
+
+            //console.log(in3DDBGameDB) addNewProjInTactic
+            
+             $.post("/storeModifyTo3DDB", {
+                    "gameName":gameName,
+                    "gameNameChn":gameNameChn,
+                    "projectPM":projectPM,
+                    "projectPC":projectPC,
+                    "projectBriefSD":projectBriefSD,
+                    "projectBriefED":projectBriefED,
+                    "projectWorkingOn":projectWorkingOn,
+
+
+                        }, function(data) {
+                 console.log(data)
+                //console.log(in3DDBGameDB) addNewProjInTactic
+            })
+             $('#projectEditedINtacticModal').modal('toggle');
+        })
+    
+    
+    
+        $('#pm_nav_progressBTN').click(function(){
+            
+           
+        })
+           
+        //創建 專案 table
+        function buildProjectTable(data){
+            console.log('開啟專案編輯頁面 初始化',)
+            projectCount = data.length
+            
+            for(var i=0;i<projectCount;i++){
+                var gameName = data[i][0] ;
+                var gameNameChn = data[i][3] ;
+
+                var gameCode =data[i][1];
+                var gameID = data[i][1];
+                if(data[i][12]== null){var gamePM ='null'}
+                    else{var gamePM = data[i][12]};
+                
+                var project_coordinator = data[i][5];
+                var timestamp = data[i][10];
+                var previewImgURL = data[i][9];
+                var editBtnID = 'projEditBtn_'+gameName
+                var editBtnName = "#"+editBtnID
+                
+              // var tdSelectorID = "#" +currentFileTrID                                       
+
+             //   $(tdSelectorID).remove()
+               // console.log(data[i])
+                // 動態增加專案列表物件 START
+                var $tableItem0 = $('<tr class="align-middle">'+
+                                    '<td class="align-middle">'+
+                                        '<div class="form-check">'+
+                                            '<input type="checkbox" class="" id="exampleCheck1">'+
+                                        '</div>'+
+                                    '</td>'+
+                                    '<td  class="align-middle">'+
+                                        i+
+                                    '</td>'+
+                                    '<td  class="align-middle">'+
+                                         '<img class="card-img-top" style="width:192px;height:108px" src="' + previewImgURL + '" id="modelImagePreview"/>'+
+                                    '</td>'+
+                                    '<td class="englishStyle_tableBody align-middle" style="color:rgb(30,30,200)">'+
+                                        gameName +
+                                    '</td>'+
+                                    '<td class="chineseStyleU_TableBody align-middle" style="color:rgb(30,120,30)">'+
+                                        gameNameChn +
+                                    '</td>'+
+                                    '<td class="englishStyle_tableBody align-middle">'+
+                                        gamePM +
+                                    '</td>'+
+                                    '<td class="englishStyle_tableBody align-middle">'+
+                                        project_coordinator +
+                                    '</td>'+
+                                    '<td class="englishStyle_tableBody align-middle">'+
+                                        ""+
+                                    '</td>'+
+                                    '<td class="englishStyle_tableBodyS h-50 align-middle">'+
+                                        timestamp +
+                                    '</td>'+
+                                    '<td class=" align-middle chineseStyleU_TableBody">'+
+                                        '<span class="badge badge-pill badge-primary projectEditorBtn " data-toggle="modal" data-target="#projectEditedINtacticModal"' + 
+                                        'id="'+editBtnID+'">專案編輯</span>'+
+                                    '</td>'+
+                                '</tr>'
+                                )
+                // 動態增加專案列表物件 END
+             $('#pmTbodyA').append($tableItem0)   
+                
+                //個別專案編輯按鈕
+                
+             $(editBtnName).click(function(event){
+                 console.log('tag',$("#projContentWorking").val())
+               // console.log(event['currentTarget']['id'])
+                 var currentProject = event['currentTarget']['id'].split('projEditBtn_')[1]
+                 
+                 
+                    
+                   $.post("/getProjectDataWhenClickEditBtn", {
+                                "projectName":currentProject,
+
+                            }, function(data) {
+                                console.log(data)
+                                var projectData = data[0];
+                                var assetsData =data[1];
+                                var shotsData =data[2];
+                                var assetsCount = assetsData.length
+                                var shotsCount = shotsData.length
+                                var pcCount =  in3DDBPCDB.length
+                                var userCount = in3DDBUserDB.length
+                              //  console.log("projectData",projectData)
+                               // console.log("assetsData",assetsData,assetsCount)
+
+                              //  console.log("shotsData",shotsData,shotsCount)
+                              //  console.log("in3DDBPCDB",in3DDBPCDB)
+                              //  console.log("in3DDBUserDB",in3DDBUserDB)
+
+                                $('#pmEditorAssets > tr').remove()
+                                $('#pmEditorShots > tr').remove()
+                       
+                                var projectEngName = projectData[0][0]
+                             //   console.log('projectEngName',projectEngName)
+                                var projectChnName = projectData[0][3]
+                                var projectPM = projectData[0][12]
+                                var projectPC = projectData[0][5]
+                                var projectBriefSD = projectData[0][13]
+                                var projectBriefED = projectData[0][14]
+
+
+                             //   for(var i=0;i<workingOnCount;i++){
+                                //    $('#projContentWorking').tagsinput('add', projectWorkingOn[i]); 
+                                    
+                               //     };
+                                //$('#projContentWorking').val("")  
+                               
+                                //pc select option
+                                for(i=0;i<pcCount;i++){
+                                    var pc = in3DDBPCDB[i][1]
+                                    var pcOptionID = "pcOption_" + in3DDBPCDB[i][0]
+                                    //console.log(pc)
+                                    var $optionPC0 = $('<option value="'+pc+'" id="'+pcOptionID+'">'+ pc+'</option>')
+                                    $('#projContentPC').append($optionPC0)   
+                                    
+                                    
+                                    $("#projContentPC > option").each(function() {
+                                        if(this.text == projectPC) {
+                                            $("#selectId > option").removeAttr("selected");
+                                            $(this).attr("selected","selected");
+                                        }
+                                    });
+
+                                    
+                                } 
+                                 //pm select option//
+                                for(i=0;i<userCount;i++){
+                                    var user = in3DDBUserDB[i][2]
+                                    var userOptionID = "userOption_" + in3DDBUserDB[i][0]
+                                   // console.log(pc)
+                                    var $optionUser0 = $('<option value="'+user+'" id="'+userOptionID+'">'+ user+'</option>')
+                                    $('#projContentWindowName').append($optionUser0)   
+                                    
+                                    $("#projContentWindowName > option").each(function() {
+                                        if(this.text == projectPM) {
+                                            $("#selectId > option").removeAttr("selected");
+                                            $(this).attr("selected","selected");
+                                        }
+                                    });
+                                    
+                                    
+                                    
+                                }  
+                                $('#projContentEngName').val(projectEngName)
+                                $('#projContentChnName').val(projectChnName)
+                                $('#projContentDateStart').val(projectBriefSD)
+                                $('#projContentDateEnd').val(projectBriefED)
+
+                                for(i=0;i<assetsCount;i++){
+                                    var assetPreviewImgURL =""
+                                    var assetName = assetsData[i][6];
+                                    var assetChnName =  assetsData[i][1];
+                                    var assetTimesStamp = assetsData[i][2].split(' ')[0];
+                                    var assetType = assetsData[i][8]
+                                    var assetUser = assetsData[i][14]
+                                    var assetEditBtnID = "editAssetBtn_"+assetsData[i][12]
+                                    var trID = "assetTr_"+assetsData[i][12]
+                                    //console
+                                    if(assetType == "ASSET_TYPE00002"){var assetTypeDesc = "character"}
+                                    else if(assetType == "ASSET_TYPE00003"){var assetTypeDesc = "vehicle"}
+                                    else if(assetType == "ASSET_TYPE00004"){var assetTypeDesc = "set"}
+                                    else if(assetType == "ASSET_TYPE00005"){var assetTypeDesc = "prop"}
+                                    else if(assetType == "ASSET_TYPE00006"){var assetTypeDesc = "other"}
+                                    
+                                    
+                                    var $trAsset0 =  $('<tr class="align-middle">'+
+                                                        '<td class="align-middle">'+
+                                                            '<div class="form-check">'+
+                                                                '<input type="checkbox" class="" id="exampleCheck1">'+
+                                                            '</div>'+
+                                                        '</td>'+
+                                                        '<td  class="align-middle">'+
+                                                            i+
+                                                        '</td>'+
+                                                        '<td  class="align-middle">'+
+                                                             '<img class="card-img-top" style="width:96px;height:54px" src="' + assetPreviewImgURL + '" id="modelImagePreview"/>'+
+                                                        '</td>'+
+                                                        '<td class="englishStyle_tableBody align-middle" style="color:rgb(30,30,200)">'+
+                                                            assetName +
+                                                        '</td>'+
+                                                        '<td class="chineseStyleU_TableBody align-middle" style="color:rgb(30,120,30)">'+
+                                                            assetChnName +
+                                                        '</td>'+
+                                                        '<td class="englishStyle_tableBody align-middle">'+
+                                                            assetTypeDesc +
+                                                        '</td>'+
+                                                        '<td class="englishStyle_tableBody align-middle">'+
+                                                            "Login" +
+                                                        '</td>'+
+                                                        '<td class="englishStyle_tableBody align-middle">'+
+                                                            ""+
+                                                        '</td>'+
+                                                        '<td class="englishStyle_tableBodyS h-50 align-middle">'+
+                                                            assetTimesStamp +
+                                                        '</td>'+
+                                                        '<td class=" align-middle">'+
+                                                           '<span class="badge badge-pill badge-primary projectEditorBtn" data-toggle="modal" data-target="#addEditAssetModal"' + 
+                                                            'id="'+assetEditBtnID+' " >EDIT</span>'+
+                                                        '</td>'+
+                                                    '</tr>'
+                                                    );
+                                    
+                                    
+                                    $('#pmEditorAssets').append($trAsset0)
+                                    //點選 asset編輯按鈕
+                                    $('.projectEditorBtn').click(function(event){
+                                        
+                                        console.log(event['currentTarget']['id'],trID)
+
+                                    })
+                                    
+                                }
+
+                                for(i=0;i<shotsCount;i++){
+                                    var shotPreviewImgURL =""
+                                    var shotName = shotsData[i][8];
+                                    var shotChnName =  shotsData[i][1];
+                                    var shotTimesStamp = shotsData[i][2].split(' ')[0];
+                                    var shotEditBtnID = "editShotBtn_"+shotsData[i][12]   
+                                    var shotLoginUser = shotsData[i][6];
+                                    var $trAsset0 =  $('<tr class="align-middle">'+
+                                                        '<td class="align-middle">'+
+                                                            '<div class="form-check">'+
+                                                                '<input type="checkbox" class="" id="exampleCheck1">'+
+                                                            '</div>'+
+                                                        '</td>'+
+                                                        '<td  class="align-middle">'+
+                                                            i+
+                                                        '</td>'+
+                                                        '<td  class="align-middle">'+
+                                                             '<img class="card-img-top" style="width:96px;height:54px" src="' + shotPreviewImgURL + '" id="modelImagePreview"/>'+
+                                                        '</td>'+
+                                                        '<td class="englishStyle_tableBody align-middle" style="color:rgb(30,30,200)">'+
+                                                            shotName +
+                                                        '</td>'+
+                                                        '<td class="chineseStyleU_TableBody align-middle" style="color:rgb(30,120,30)">'+
+                                                            shotChnName +
+                                                        '</td>'+
+
+                                                        '<td class="englishStyle_tableBody align-middle">'+
+                                                            "Login" +
+                                                        '</td>'+
+                                                        '<td class="englishStyle_tableBody align-middle">'+
+                                                            ""+
+                                                        '</td>'+
+                                                        '<td class="englishStyle_tableBodyS h-50 align-middle">'+
+                                                            shotTimesStamp +
+                                                        '</td>'+
+                                                        '<td class=" align-middle">'+
+                                                           '<span class="badge badge-pill badge-primary projectEditorBtn" data-toggle="modal" data-target="#addEditShotModal" ' + 
+                                                            'id="'+shotEditBtnID+'">EDIT</span>'+
+                                                        '</td>'+
+                                                    '</tr>'
+                                                );
+                                    
+                                    
+                                    $('#pmEditorShots').append($trAsset0)
+                                    $('.projectEditorBtn').click(function(event){
+                                        
+                                        console.log(event['currentTarget']['id'])
+                                    })
+                                    
+                                    
+                                };
+                                
+                                var projectWorkingOn = data[0][0][11]
+                                if(projectWorkingOn == null){console.log('null')
+                                    $('#projContentWorking').tagsinput('removeAll')}
+                                   // $('#projContentWorking').val('')
+                                    else{
+                                    projectWorkingOnLinst =projectWorkingOn.split(',') 
+                                    workingOnCount = projectWorkingOnLinst.length
+                                    console.log('projectWorkingOn',projectWorkingOn)
+                                
+                                    for(var i=0;i<workingOnCount;i++){
+                                        $('#projContentWorking').tagsinput('add', projectWorkingOnLinst[i]); 
+
+                                         };
+                 
+                                
+                                
+                                }
+                                //.split(',')
+                                
+                                //if(){}else{}
+
+                              //  var workingOnCount = projectWorkingOn.length
+                               // for(var i=0;i<workingOnCount;i++){
+                                 //       $('#projContentWorking').tagsinput('add', projectWorkingOn[i]); 
+
+                                     //    };
+                 
+                 
+                    //console.log(currentProject,in3DDBGameDB)
+                 
+                    })
+            
+            
+                })
+            }
+            
+        }
+    
+        function defineWorkonUser(projectWorkingOn,workingOnCount){
+            console.log('define workon user')
+            $('#projContentWorking').tagsinput('removeAll')
+            for(var i=0;i<workingOnCount;i++){
+                    $('#projContentWorking').tagsinput('add', projectWorkingOn[i]); 
+                                    
+                     };
+                                //$('#projContentWorking').val("")  
+                               
+            
+        }
+    
+    
+        $( document ).ready(function(in3DDBUserDB) {
+            //console.log('in3DDBUserDB',in3DDBUserDB)
+            //$('.userSelector').append()
+           // $('#editAndAddNewShot').hide()
+
+        });
+    
+    
+    
+    
+        
+    </script>
+    
+    
+
+<body>
+
+    
+<!-- 編輯/新增 asset 動態視窗 -->
+<div class="modal fade  " id="addEditAssetModal" class="assetShotEditor" style="background-color: rgba(0,0,0,0.5)">
+    <div class="modal-dialog modal-megamenu assetShotEditor" style="min-width: 1200px">
+        <div class="modal-content " id="">
+            <div class="modal-header " id="">
+
+                <h5 class="chineseStyleModalBold w-100 text-center align-middle">新增Asset/Shot</h5>
+
+            </div>
+
+            <!-- 新增 asset -->
+            <div class="modal-body chineseStyleU_TableHeadAssets align-middle " style="border-style: solid;border-width: 1px;border-radius: 5px;margin-left: 20px;margin-right: 20px;background-color: rgb(240,240,240)" id="">
+                <div class="input-group mb-3">
+                    <h5>新增 asset 編輯</h5>
+                </div>
+                <div class="input-group mb-3">
+                    <div class="input-group-append ">
+                        <label class="input-group-text align-middle" for="inputGroupSelect02" style="width: 100px">英文名稱</label>
+                    </div>
+                    <div class="input-group-append " style="width:190px">
+                        <input type="text" class="form-control" placeholder="物件英文名稱" aria-label="project EN name" aria-describedby="basic-addon2" id="editAssetName">
+                    </div>
+                    <div class="input-group-append ">
+                        <label class="input-group-text align-middle" for="inputGroupSelect02" style="width: 100px">物件描述</label>
+                    </div>
+                    <input type="text" class="form-control" placeholder="Asset 描述" aria-label="project Chn name" aria-describedby="basic-addon2" id="editAssetDescription">
+                </div>
+                <div class="input-group mb-3">
+
+                    <div class="input-group-append ">
+                        <label class="input-group-text align-middle" for="inputGroupSelect02" style="width: 100px">物件類別</label>
+                    </div>
+                    <select class="custom-select" id="editAssetClassSelector">
+                        <option value="character">character</option>
+                        <option value="vehicle">vehicle</option>
+                        <option value="set">set</option>
+                        <option value="prop">prop</option>
+                        <option value="other">other</option>
+                    </select>
+                    <div class="input-group-append">
+                        <label class="input-group-text align-middle" for="inputGroupSelect02" style="width: 100px">執行人員</label>
+                    </div>
+                    <select class="custom-select userSelector" id="editAssetWorkOnUserSelector"></select>
+                    <div class="input-group-append">
+                        <label class="input-group-text align-middle" for="inputGroupSelect02" style="width: 100px">起始日期</label>
+                    </div>
+                    <input type="text" class="form-control input-group date" placeholder="07/01/2018" aria-label="project EN name" data-provide="datepicker" id="editAssetTimeStart" value="07/01/2018">
+                    <div class="input-group-append">
+                        <label class="input-group-text align-middle" for="inputGroupSelect02" style="width: 100px">結束日期</label>
+                    </div>
+                    <input type="text" class="form-control input-group date" placeholder="07/01/2018" aria-label="project EN name" data-provide="datepicker" id="editAssetTimeEnd" value="07/01/2018">
+                </div>
+                <div class="input-group mb-3" style="background-color: white">
+                    <table class="table chineseStyleU_TableHead">
+                        <thead>
+                            <tr>
+
+                                <th>
+                                    流程名稱
+                                </th>
+                                <th>
+                                    起始日期
+                                </th>
+                                <th>
+                                    結束日期
+                                </th>
+                                <th>
+                                    執行狀況
+                                </th>
+                                <th>
+                                    執行人員
+                                </th>
+                                <th>
+                                    備註
+                                </th>
+
+                            </tr>
+                        </thead>
+                        <tbody class="align-middle" id="assetTaskTable">
+                            <tr class="p-3 mb-2 bg-secondary text-white">
+                                <td class="align-middle">
+                                    concept
+                                </td>
+                                <td class="align-middle">
+                                    <input type="text" class="form-control input-group date " placeholder="07/01/2018" aria-label="project EN name" data-provide="datepicker" id="assetConceptTimeStart" value="07/01/2018">
+                                </td>
+                                <td class="align-middle">
+                                    <input type="text" class="form-control input-group date" placeholder="07/01/2018" aria-label="project EN name" data-provide="datepicker" id="assetConceptTimeEnd" value="07/01/2018">
+                                </td>
+                                <td class="align-middle" style="width:200px">
+                                    <select class="custom-select processSelector" id="assetConceptTaskProcessSelect">
+                                                <option selected></option>
+                                                <option value=".Not Ready" selected>準備中</option>
+                                                <option value=".In Progress">進行中</option>
+                                                <option value=".Complete">已完成</option>
+                                              </select>
+                                </td>
+                                <td class="align-middle" style="width:200px">
+                                    <select class="custom-select userSelector" id="assetConceptWorkonUserSelector">
+                                                <option selected>選擇執行人員</option>
+
+                                              </select>
+                                </td>
+                                <td class="align-middle" style="width:300px">
+                                    <input type="text" class="form-control" placeholder="" id="assetConceptExtra">
+                                </td>
+
+                            </tr>
+                            <tr class="p-3 mb-2 bg-secondary text-white">
+                                <td class="align-middle">
+                                    model
+                                </td>
+                                <td class="align-middle">
+                                    <input type="text" class="form-control input-group date " placeholder="07/01/2018" aria-label="project EN name" data-provide="datepicker" id="assetModelTimeStart" value="07/01/2018">
+                                </td>
+                                <td class="align-middle">
+                                    <input type="text" class="form-control input-group date" placeholder="07/01/2018" aria-label="project EN name" data-provide="datepicker" id="assetModelTimeEnd" value="07/01/2018">
+                                </td>
+                                <td class="align-middle" style="width:200px">
+                                    <select class="custom-select" id="assetModelTaskProcessSelect">
+                                                <option selected></option>
+                                                <option value=".Not Ready" selected>準備中</option>
+                                                <option value=".In Progress">進行中</option>
+                                                <option value=".Complete">已完成</option>
+                                              </select>
+                                </td>
+                                <td class="align-middle" style="width:200px">
+                                    <select class="custom-select userSelector" id="assetModelWorkonUserSelector">
+                                                <option selected>選擇執行人員</option>
+
+                                              </select>
+                                </td>
+                                <td class="align-middle" style="width:300px">
+                                    <input type="text" class="form-control" placeholder="" id="assetModelExtra">
+                                </td>
+
+                            </tr>
+                            <tr class="p-3 mb-2 bg-secondary text-white">
+                                <td class="align-middle">
+                                    texture
+                                </td>
+                                <td class="align-middle">
+                                    <input type="text" class="form-control input-group date " placeholder="07/01/2018" aria-label="project EN name" data-provide="datepicker" id="assetTextureTimeStart" value="07/01/2018">
+                                </td>
+                                <td class="align-middle">
+                                    <input type="text" class="form-control input-group date" placeholder="07/01/2018" aria-label="project EN name" data-provide="datepicker" id="assetTextureTimeEnd" value="07/01/2018">
+                                </td>
+                                <td class="align-middle" style="width:200px">
+                                    <select class="custom-select" id="assetTextureTaskProcessSelect">
+                                                <option selected></option>
+                                                <option value=".Not Ready" selected>準備中</option>
+                                                <option value=".In Progress">進行中</option>
+                                                <option value=".Complete">已完成</option>
+                                              </select>
+                                </td>
+                                <td class="align-middle" style="width:200px">
+                                    <select class="custom-select userSelector" id="assetTextureWorkonUserSelector">
+                                                <option selected>選擇執行人員</option>
+
+                                              </select>
+                                </td>
+                                <td class="align-middle" style="width:300px">
+                                    <input type="text" class="form-control" placeholder="" id="assetTextureExtra">
+                                </td>
+
+                            </tr>
+                            <tr class="p-3 mb-2 bg-secondary text-white">
+                                <td class="align-middle">
+                                    rigging
+                                </td>
+                                <td class="align-middle">
+                                    <input type="text" class="form-control input-group date " placeholder="07/01/2018" aria-label="project EN name" data-provide="datepicker" id="assetRiggingTimeStart" value="07/01/2018">
+                                </td>
+                                <td class="align-middle">
+                                    <input type="text" class="form-control input-group date" placeholder="07/01/2018" aria-label="project EN name" data-provide="datepicker" id="assetRiggingTimeEnd" value="07/01/2018">
+                                </td>
+                                <td class="align-middle" style="width:200px">
+                                    <select class="custom-select" id="assetRiggingTaskProcessSelect">
+                                                <option selected></option>
+                                                <option value=".Not Ready" selected>準備中</option>
+                                                <option value=".In Progress">進行中</option>
+                                                <option value=".Complete">已完成</option>
+                                              </select>
+                                </td>
+                                <td class="align-middle" style="width:200px">
+                                    <select class="custom-select userSelector" id="assetRiggingWorkonUserSelector">
+                                                <option selected>選擇執行人員</option>
+
+                                              </select>
+                                </td>
+                                <td class="align-middle" style="width:300px">
+                                    <input type="text" class="form-control" placeholder="" id="assetRiggingExtra">
+                                </td>
+
+                            </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+
+
+
+
+            </div>
+
+        
+            <div class="modal-footer ">
+                <div class="input-group mb-3 ">
+                    <h6 class="col-6"></h6>
+                    <button type="button" class="col-2 btn btn-dark btn-md " id= "submitAddNewAssetBtn">確定 送出</button>
+                    <h6 class="col-1"></h6>
+
+                    <button type="button" class="col-2 btn btn-secondary btn-md ">取消</button>
+
+                    <h6 class="col-1"></h6>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- 編輯/新增 shot 動態視窗 -->
+<div class="modal fade  " id="addEditShotModal" class="assetShotEditor" style="background-color: rgba(0,0,0,0.5)">
+    <div class="modal-dialog modal-megamenu" style="min-width: 1200px">
+        <div class="modal-content " id="">
+            <div class="modal-header " id="">
+
+                <h5 class="chineseStyleModalBold w-100 text-center align-middle">新增/編輯 Shot</h5>
+
+            </div>
+
+            <!-- 新增 shot -->
+            <div class="modal-body chineseStyleU_TableHeadAssets align-middle" style="border-style: solid;border-width: 1px;border-radius: 5px;margin-left: 20px;margin-right: 20px;background-color: rgb(240,240,240)" id="">
+                <div class="input-group mb-3">
+                    <h5> 新增 shot 編輯</h5>
+                </div>
+                <div class="input-group mb-3">
+                    <div class="input-group-append ">
+                        <label class="input-group-text align-middle" for="inputGroupSelect02" style="width: 100px">英文名稱</label>
+                    </div>
+                    <div class="input-group-append " style="width:190px">
+                        <input type="text" class="form-control" placeholder="物件英文名稱" aria-label="project EN name" aria-describedby="basic-addon2" id="editShotName">
+                    </div>
+                    <div class="input-group-append ">
+                        <label class="input-group-text align-middle" for="inputGroupSelect02" style="width: 100px">物件描述</label>
+                    </div>
+                    <input type="text" class="form-control" placeholder="shot 描述" aria-label="project Chn name" aria-describedby="basic-addon2" id="editShotDescription">
+                </div>
+                <div class="input-group mb-3">
+
+                    <div class="input-group-append">
+                        <label class="input-group-text align-middle" for="inputGroupSelect02" style="width: 100px">執行人員</label>
+                    </div>
+                    <select class="custom-select userSelector" id="editShotWorkOnUserSelector"></select>
+                    <div class="input-group-append">
+                        <label class="input-group-text align-middle" for="inputGroupSelect02" style="width: 100px">起始日期</label>
+                    </div>
+                    <input type="text" class="form-control input-group date" placeholder="07/01/2018" aria-label="project EN name" data-provide="datepicker" id="editShotTimeStart" value="07/01/2018">
+                    <div class="input-group-append">
+                        <label class="input-group-text align-middle" for="inputGroupSelect02" style="width: 100px">結束日期</label>
+                    </div>
+                    <input type="text" class="form-control input-group date" placeholder="07/01/2018" aria-label="project EN name" data-provide="datepicker" id="editShotTimeEnd" value="07/01/2018">
+                </div>
+                <div class="input-group mb-3" style="background-color: white">
+                    <table class="table chineseStyleU_TableHead">
+                        <thead>
+                            <tr>
+
+                                <th>
+                                    流程名稱
+                                </th>
+                                <th>
+                                    起始日期
+                                </th>
+                                <th>
+                                    結束日期
+                                </th>
+                                <th>
+                                    執行狀況
+                                </th>
+                                <th>
+                                    執行人員
+                                </th>
+                                <th>
+                                    備註
+                                </th>
+
+                            </tr>
+                        </thead>
+                        <tbody class="align-middle" id="assetTaskTable">
+                            <tr class="p-3 mb-2 bg-secondary text-white">
+                                <td class="align-middle">
+                                    layout
+                                </td>
+                                <td class="align-middle">
+                                    <input type="text" class="form-control input-group date " placeholder="07/01/2018" aria-label="project EN name" data-provide="datepicker" id="assetLayoutTimeStart" value="07/01/2018">
+                                </td>
+                                <td class="align-middle">
+                                    <input type="text" class="form-control input-group date" placeholder="07/01/2018" aria-label="project EN name" data-provide="datepicker" id="assetLayoutTimeEnd" value="07/01/2018">
+                                </td>
+                                <td class="align-middle" style="width:200px">
+                                    <select class="custom-select" id="assetLayoutTaskProcessSelect">
+                                                <option selected></option>
+                                                <option value=".Not Ready" selected>準備中</option>
+                                                <option value=".In Progress">進行中</option>
+                                                <option value=".Complete">已完成</option>
+                                              </select>
+                                </td>
+                                <td class="align-middle" style="width:200px">
+                                    <select class="custom-select userSelector" id="assetLayoutWorkonUserSelector">
+                                                <option selected>選擇執行人員</option>
+
+                                              </select>
+                                </td>
+                                <td class="align-middle" style="width:300px">
+                                    <input type="text" class="form-control" placeholder="" id="assetLayoutExtra">
+                                </td>
+
+                            </tr>
+                            <tr class="p-3 mb-2 bg-secondary text-white">
+                                <td class="align-middle">
+                                    animation
+                                </td>
+                                <td class="align-middle">
+                                    <input type="text" class="form-control input-group date " placeholder="07/01/2018" aria-label="project EN name" data-provide="datepicker" id="assetAnimationTimeStart" value="07/01/2018">
+                                </td>
+                                <td class="align-middle">
+                                    <input type="text" class="form-control input-group date" placeholder="07/01/2018" aria-label="project EN name" data-provide="datepicker" id="assetAnimationTimeEnd" value="07/01/2018">
+                                </td>
+                                <td class="align-middle" style="width:200px">
+                                    <select class="custom-select" id="assetAnimationTaskProcessSelect">
+                                                <option selected></option>
+                                                <option value=".Not Ready" selected>準備中</option>
+                                                <option value=".In Progress">進行中</option>
+                                                <option value=".Complete">已完成</option>
+                                              </select>
+                                </td>
+                                <td class="align-middle" style="width:200px">
+                                    <select class="custom-select userSelector" id="assetAnimationWorkonUserSelector">
+                                                <option selected>選擇執行人員</option>
+
+                                              </select>
+                                </td>
+                                <td class="align-middle" style="width:300px">
+                                    <input type="text" class="form-control" placeholder="" id="assetAnimationExtra">
+                                </td>
+
+                            </tr>
+                            <tr class="p-3 mb-2 bg-secondary text-white">
+                                <td class="align-middle">
+                                    lighting
+                                </td>
+                                <td class="align-middle">
+                                    <input type="text" class="form-control input-group date " placeholder="07/01/2018" aria-label="project EN name" data-provide="datepicker" id="assetLightingTimeStart" value="07/01/2018">
+                                </td>
+                                <td class="align-middle">
+                                    <input type="text" class="form-control input-group date" placeholder="07/01/2018" aria-label="project EN name" data-provide="datepicker" id="assetLightingTimeEnd" value="07/01/2018">
+                                </td>
+                                <td class="align-middle" style="width:200px">
+                                    <select class="custom-select" id="assetLightingTaskProcessSelect">
+                                                <option selected></option>
+                                                <option value=".Not Ready" selected>準備中</option>
+                                                <option value=".In Progress">進行中</option>
+                                                <option value=".Complete">已完成</option>
+                                              </select>
+                                </td>
+                                <td class="align-middle" style="width:200px">
+                                    <select class="custom-select userSelector" id="assetLightingWorkonUserSelector">
+                                                <option selected>選擇執行人員</option>
+
+                                              </select>
+                                </td>
+                                <td class="align-middle" style="width:300px">
+                                    <input type="text" class="form-control" placeholder="" id="assetLightingExtra">
+                                </td>
+
+                            </tr>
+                            <tr class="p-3 mb-2 bg-secondary text-white">
+                                <td class="align-middle">
+                                    effects
+                                </td>
+                                <td class="align-middle">
+                                    <input type="text" class="form-control input-group date " placeholder="07/01/2018" aria-label="project EN name" data-provide="datepicker" id="assetEffectsTimeStart" value="07/01/2018">
+                                </td>
+                                <td class="align-middle">
+                                    <input type="text" class="form-control input-group date" placeholder="07/01/2018" aria-label="project EN name" data-provide="datepicker" id="assetEffectsTimeEnd" value="07/01/2018">
+                                </td>
+                                <td class="align-middle" style="width:200px">
+                                    <select class="custom-select" id="assetEffectsTaskProcessSelect">
+                                                <option selected></option>
+                                                <option value=".Not Ready" selected>準備中</option>
+                                                <option value=".In Progress">進行中</option>
+                                                <option value=".Complete">已完成</option>
+                                              </select>
+                                </td>
+                                <td class="align-middle" style="width:200px">
+                                    <select class="custom-select userSelector" id="assetEffectsWorkonUserSelector">
+                                                <option selected>選擇執行人員</option>
+
+                                              </select>
+                                </td>
+                                <td class="align-middle" style="width:300px">
+                                    <input type="text" class="form-control" placeholder="" id="assetEffectsExtra">
+                                </td>
+
+                            </tr>
+                            <tr class="p-3 mb-2 bg-secondary text-white">
+                                <td class="align-middle">
+                                    simulation
+                                </td>
+                                <td class="align-middle">
+                                    <input type="text" class="form-control input-group date " placeholder="07/01/2018" aria-label="project EN name" data-provide="datepicker" id="assetSimulationTimeStart" value="07/01/2018">
+                                </td>
+                                <td class="align-middle">
+                                    <input type="text" class="form-control input-group date" placeholder="07/01/2018" aria-label="project EN name" data-provide="datepicker" id="assetSimulationTimeEnd" value="07/01/2018">
+                                </td>
+                                <td class="align-middle" style="width:200px">
+                                    <select class="custom-select" id="assetSimulationTaskProcessSelect">
+                                                <option selected></option>
+                                                <option value=".Not Ready" selected>準備中</option>
+                                                <option value=".In Progress">進行中</option>
+                                                <option value=".Complete">已完成</option>
+                                              </select>
+                                </td>
+                                <td class="align-middle" style="width:200px">
+                                    <select class="custom-select userSelector" id="assetSimulationWorkonUserSelector">
+                                                <option selected >選擇執行人員</option>
+
+                                              </select>
+                                </td>
+                                <td class="align-middle" style="width:300px">
+                                    <input type="text" class="form-control" placeholder="" id="assetSimulationExtra">
+                                </td>
+
+                            </tr>
+                            <tr class="p-3 mb-2 bg-secondary text-white">
+                                <td class="align-middle">
+                                    comp
+                                </td>
+                                <td class="align-middle">
+                                    <input type="text" class="form-control input-group date " placeholder="07/01/2018" aria-label="project EN name" data-provide="datepicker" id="assetCompTimeStart" value="07/01/2018">
+                                </td>
+                                <td class="align-middle">
+                                    <input type="text" class="form-control input-group date" placeholder="07/01/2018" aria-label="project EN name" data-provide="datepicker" id="assetCompTimeEnd" value="07/01/2018">
+                                </td>
+                                <td class="align-middle" style="width:200px">
+                                    <select class="custom-select" id="assetCompTaskProcessSelect">
+                                                <option selected></option>
+                                                <option value=".Not Ready" selected>準備中</option>
+                                                <option value=".In Progress">進行中</option>
+                                                <option value=".Complete">已完成</option>
+                                              </select>
+                                </td>
+                                <td class="align-middle" style="width:200px">
+                                    <select class="custom-select userSelector" id="assetCompWorkonUserSelector">
+                                                <option selected>選擇執行人員</option>
+
+                                              </select>
+                                </td>
+                                <td class="align-middle" style="width:300px">
+                                    <input type="text" class="form-control" placeholder="" id="assetCompExtra">
+                                </td>
+
+                            </tr>
+                            <tr class="p-3 mb-2 bg-secondary text-white">
+                                <td class="align-middle">
+                                    final
+                                </td>
+                                <td class="align-middle">
+                                    <input type="text" class="form-control input-group date " placeholder="07/01/2018" aria-label="project EN name" data-provide="datepicker" id="assetFinalTimeStart" value="07/01/2018">
+                                </td>
+                                <td class="align-middle">
+                                    <input type="text" class="form-control input-group date" placeholder="07/01/2018" aria-label="project EN name" data-provide="datepicker" id="assetFinalTimeEnd" value="07/01/2018">
+                                </td>
+                                <td class="align-middle" style="width:200px">
+                                    <select class="custom-select" id="assetFinalTaskProcessSelect">
+                                                <option selected></option>
+                                                <option value=".Not Ready" selected>準備中</option>
+                                                <option value=".In Progress">進行中</option>
+                                                <option value=".Complete">已完成</option>
+                                              </select>
+                                </td>
+                                <td class="align-middle" style="width:200px">
+                                    <select class="custom-select userSelector" id="assetFinalWorkonUserSelector">
+                                                <option selected>選擇執行人員</option>
+
+                                              </select>
+                                </td>
+                                <td class="align-middle" style="width:300px">
+                                    <input type="text" class="form-control" placeholder="" id="assetFinalExtra">
+                                </td>
+
+                            </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+
+
+
+            </div>
+             <div class="modal-footer ">
+                <div class="input-group mb-3 ">
+                    <h6 class="col-6"></h6>
+                    <button type="button" class="col-2 btn btn-dark btn-md " id = "submitAddNewShotBtn">確定</button>
+                    <h6 class="col-1"></h6>
+
+                    <button type="button" class="col-2 btn btn-secondary btn-md ">取消</button>
+
+                    <h6 class="col-1"></h6>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+    
+
+
+
+</body>
+
+</html>

@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <!-- meta使用viewport以确保页面可自由缩放 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+    <!-- input dropzoe js -->
+    <script src="https://rawgit.com/enyo/dropzone/master/dist/dropzone.js"></script>
+    <link rel="stylesheet" href="https://rawgit.com/enyo/dropzone/master/dist/dropzone.css">
+
+    <!-- input jQuery Mobile js -->
+    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
+
+    <!-- input jQuery js -->
+    <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+
+    <!-- input jQuery Mobile 库js-->
+    <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+
+    <!--
+	<link href="{{url_for('static',filename='css/jquery-ui.css')}}" rel="stylesheet">
+
+	<script src="{{url_for('static', filename='jqueryUI/jquery.js')}}"></script>
+-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="{{url_for('static', filename='jqueryUI/jqpaginator.min.js')}}"></script>
+
+
+    <!-- input bootstrap tag plugin js -->
+
+
+    <script src="{{url_for('static', filename='tagsinput.js')}}"></script>
+    <link href="{{url_for('static',filename='css/tagsinput.css')}}" rel="stylesheet">
+
+
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="container-fluid">
+        <!-- 功能 div -->
+        <div class="row clearfix">
+            <div class="col-md-12 column">
+                <!-- 導航 div -->
+
+                <div class="row clearfix">
+                    <div class="col-md-12 column no-gutters">
+
+                        <nav class="navbar navbar-expand-md navbar-light" style="background-color:rgb(180,180,180);">
+
+                            <ul class="navbar-nav mr-auto ">
+                                <li class="nav-item active">
+                                    <a class="nav-link" href="#" id="qcUpload">Upload </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#" id="preView">Preview</a>
+                                </li>
+
+
+                            </ul>
+                            <ul class="navbar-nav mr-auto ">
+                                <a class="badge-md text-dark text-left">Date:</a>
+
+                                <a class="badge-md text-dark text-left">2018/06/21</a>
+                            </ul>
+                            <button class="btn btn-outline-success btn-sm my-2 my-sm-0" type="submit" style="width:100px">Login</button>
+                            <form class="form-inline ">
+                                <input class="form-control-sm my-2 my-sm-0" type="user" placeholder="ID">
+                            </form>
+                        </nav>
+
+
+
+                    </div>
+
+                </div>
+                <div class="row clearfix">
+                    <div class="col-md-12 column">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- 上傳 div -->
+
+        <div class="row clearfix">
+            <div class="col-md-12 column">
+            </div>
+        </div>
+
+        <!-- project select div -->
+
+        <div class="row clearfix">
+            <div class="col-md-12 column">
+            </div>
+        </div>
+    </div>
+
+    <style>
+        .inputHeight {
+
+            height: 10px
+        }
+
+        .no-gutters {
+            margin-right: 0;
+            margin-left: 0;
+
+            >.col,
+            >[class*="col-"] {
+                padding-right: 0;
+                padding-left: 0;
+            }
+        }
+
+        .tableTr {
+            background-color: transparent;
+            table-layout: fixed;
+            text-align: left;
+            vertical-align: middle;
+
+        }
+
+        .projectIcon {
+            width: 20;
+            font-size: 12px;
+            background-color: black;
+            color: azure
+        }
+
+
+
+        .position-fixed-top {
+            position: fixed;
+            top: 10;
+            left: 0;
+            background: rgb(0, 0, 0);
+            color: #fff;
+            text-align: center;
+            text-decoration: none;
+        }
+
+        .position-fixed {
+            position: fixed;
+            top: 100px;
+            left: 500px;
+            background: rgb(0, 0, 0);
+            color: #fff;
+            text-align: center;
+            text-decoration: none;
+        }
+
+        .position-sticky-left {
+            position: relative;
+            top: 10px;
+            left: 10px;
+            background: rgb(255, 255, 255);
+            color: #fff;
+            text-align: center;
+            text-decoration: none;
+            z-index: 500 !important;
+        }
+
+
+        .zIndexA {
+            z-index: 1000 !important;
+
+        }
+
+        .td_project {}
+
+        .leftNav {}
+
+        .leftNavActive {
+
+            color: brown;
+        }
+
+
+        .chineseStyleA {
+            font-family: "微軟正黑體";
+            font-size: 16px;
+            font-weight: lighter
+        }
+
+        .engStyleA {
+            font-family: "Segoe UI";
+            font-size: 1em;
+            font-weight: 100;
+            letter-spacing: 0.1em
+        }
+
+    </style>
+
+</body>
+
+</html>

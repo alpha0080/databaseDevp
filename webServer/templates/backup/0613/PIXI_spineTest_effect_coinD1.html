@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="scripts/pixi.js?1500"></script>
+	<script src="scripts/pixi-spine.js?1500"></script>
+
+</head>
+
+<body>
+	<script>
+		var app = new PIXI.Application(1920,1080);
+		document.body.appendChild(app.view);
+        
+		PIXI.loader
+			.add('effect_coinD1', 'spineTest/export/effectC_coinD1/effectC_coinD1.json?1500')
+			.load(onAssetsLoaded);
+
+		app.stage.interactive = true;
+        	
+		function onAssetsLoaded(loader, res) {
+            var effectCoinD1 = new PIXI.spine.Spine(res.effect_coinD1.spineData);
+            effectCoinD1.x= app.screen.width / 2
+            effectCoinD1.y= app.screen.height/2  /// 2
+            
+            effectCoinD1.scale.set(0.8);
+
+            effectCoinD1.state.setAnimation(0, 'effectCoinD1', true);
+
+            app.stage.addChild(effectCoinD1);
+
+            /*
+            for(var i = 0;i<200;i++){
+                var effectCoinA = new PIXI.spine.Spine(res.effect_coinA.spineData);
+
+                // set the position
+                effectCoinA.x = (i%20)*100+100//app.screen.width / 2;
+                effectCoinA.y = (Math.floor(i/20))*100+100//app.screen.height/2;
+
+                effectCoinA.scale.set(0.1);
+
+                effectCoinA.state.setAnimation(0, 'effect_Coin_A', true);
+
+                app.stage.addChild(effectCoinA);
+
+               
+             
+            };
+		*/   
+                
+		}
+	</script>
+</body>
+</html>

@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <!--
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    -->
+    
+    <link href="{{url_for('static',filename='css/bootstrap.min.css')}}" rel="stylesheet">
+    <link href="{{url_for('static',filename='css/fileinput.min.css')}}" rel="stylesheet">
+    <link href="{{url_for('static',filename='css/fileinput-rtl.min.css')}}" rel="stylesheet">
+    <link href="{{url_for('static',filename='css/jquery-ui.css')}}" rel="stylesheet">
+    <link href="{{url_for('static',filename='dropzone/dropzone.css')}}" rel="stylesheet">
+
+    <script src="{{url_for('static', filename='jqueryUI/jquery.js')}}"></script>
+
+    <script src="{{url_for('static', filename='dropzone/dropzone.js')}}"></script>
+    
+
+</head>
+
+<body>
+       <!-- Change action value to your upload address -->
+
+   
+      <!-- json load test -->
+
+    <div class="container" id="asdf">
+    </div>
+    <div>
+        <table class="table table-bordered" style="width: 600px">
+            <thead class="thead-dark" style="background-color:rgb(40,40,40);color: azure">
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">ID</th>
+                    <th scope="col">部門</th>
+                    <th scope="col">組</th>
+                </tr>
+
+            </thead>
+            <tbody id="kkk">
+
+                <tr>
+                </tr>
+                <button id="btn1">aa</button>
+                <button id="btn2">aa</button>
+
+            </tbody>
+        </table>
+
+    </div>
+    <script>
+       // createTable()
+        $(document).ready(function() {
+            $("#btn1").click(function() {
+                 $.getJSON("/mydict",function(data){
+                    console.log(typeof(data))
+                    console.log(data.length)
+                    for(var i = 0;i<data.length;i++){
+                       // console.log(data[i]);
+                        userName = data[i][1]
+                        userDept = data[i][7]
+                        userSec = data[i][19]
+                        var $tr = $('<tr class="tr_content"></tr>');
+                        var $td1 = $('<td class="td_content1">' + i  + '</td>');
+                        var $td2 = $('<td class="td_content2">' + userName + '</td>');
+                        var $td3 = $('<td class="td_content3">' + userDept + '</td>');
+                        //var $td4 = $('<button class="button" style="height:20 px">ba</button>');
+                        var $td4 = $('<td class="td_content4">' + userSec + '</td>');
+                        $("#kkk").append($tr);
+
+                        $("#kkk").append($td1);
+                        $("#kkk").append($td2);
+                        $("#kkk").append($td3);
+                        $("#kkk").append($td4);
+                      //  console.log(userName,userDept,userSec);
+                    }
+                     
+                 })
+            });
+            $("#btn2").click(function() {
+                $.get("/mydict", function(data, status) {
+                   // alert("name: " + data.name + " age:" + data.age);
+                    //console.log(data)
+                    var userCount = data.length
+                    console.log(typeof(userCount))
+                    console.log(userCount)
+
+                });
+            });
+
+        });
+
+
+        function createTable() {
+            for (var i = 0; i < 10; i++) {
+
+                var $tr = $('<tr class="tr_content"></tr>');
+                var $td1 = $('<td class="td_content1">' + i * 1 + '</td>');
+                var $td2 = $('<td class="td_content2">' + i * 2 + '</td>');
+                var $td3 = $('<td class="td_content3">' + i * 3 + '</td>');
+                //var $td4 = $('<button class="button" style="height:20 px">ba</button>');
+                var $td4 = $('<td class="td_content4">' + i * 4 + '</td>');
+                $("#kkk").append($tr);
+
+                $("#kkk").append($td1);
+                $("#kkk").append($td2);
+                $("#kkk").append($td3);
+                $("#kkk").append($td4);
+
+
+
+
+            }
+
+
+
+        };
+
+    </script>
+
+</body>
+
+</html>

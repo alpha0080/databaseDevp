@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+
+
+    <!--
+
+
+    
+    
+    -->
+    <!-- meta使用viewport以确保页面可自由缩放 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+    <!-- input dropzoe js -->
+    <script src="https://rawgit.com/enyo/dropzone/master/dist/dropzone.js"></script>
+    <link rel="stylesheet" href="https://rawgit.com/enyo/dropzone/master/dist/dropzone.css">
+
+    <!-- input jQuery Mobile js -->
+    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
+
+    <!-- input jQuery js -->
+    <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+
+    <!-- input jQuery Mobile 库js-->
+    <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+
+    <!--
+	<link href="{{url_for('static',filename='css/jquery-ui.css')}}" rel="stylesheet">
+
+	<script src="{{url_for('static', filename='jqueryUI/jquery.js')}}"></script>
+-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="{{url_for('static', filename='jqueryUI/jqpaginator.min.js')}}"></script>
+
+
+    <!-- input bootstrap tag plugin js -->
+
+
+    <script src="{{url_for('static', filename='tagsinput.js')}}"></script>
+    <link href="{{url_for('static',filename='css/tagsinput.css')}}" rel="stylesheet">
+
+
+    <title>學習地圖_課程輸入後台</title>
+</head>
+
+<body>
+   <style>
+       .classElement{}
+        .classTagList{}
+      
+       
+    
+    </style>
+    <div class="container ">
+       <div class="row clearfix">
+          <div class="col-md-1 column">
+          </div>
+           <div class="col-md-11 column">
+               <h5 class="text-left">課程輸入後台</h5>
+           </div>
+       </div>
+        <div class="row clearfix">
+            <div class="col-md-1 column">
+                
+            </div>
+            <div class="col-md-11 column">
+                <div class="row">
+                    <div class="col-md-12 column">
+                        <table class="table table-striped table-sm">
+                            <thead>
+                                <tr>
+
+                                </tr>
+                            </thead>
+
+                        </table>
+                    </div>
+
+                        
+                                 <div class="col-md-12 column">
+                              <div class="row">
+                                   <div class="col-md-3 column"> 
+                                  
+                                  <input type="text" placeholder="課程名稱" id="classNameInput">
+                                      </div>  
+                                     <div class="col-md-7 column"> 
+                                  
+                                  <input type="text" placeholder="課程描述" id="classDescription">
+                                      </div>  
+                                       <div class="col-md-2 column"> 
+                                  
+                                  <button type="submit" class="btn btn-primary" id="submitClassBTN">Submit</button>
+                                      </div>  
+                              </div>              
+                                            
+                         </div>
+           
+                    <div class="col-md-12 column">
+                        <table class="table table-striped table-sm" id='learningMapTable'>
+                            <thead class="thead-dark ">
+                                <tr>
+                                    <th scope="col" style="width:30px">#</th>
+                                    <th scope="col" class="font-weight-light" style="width:200px">class name</th>
+                                    <th scope="col" class="font-weight-light" style="width:300px">description</th>
+                                    <th scope="col" class="font-weight-light" style="width:200px">tag list</th>
+                                    <th scope="col" class="font-weight-light" style="width:50px">del</th>
+
+
+                                </tr>
+                            </thead>
+                            <tbody id="classTableThead">
+                                <tr>
+                                    <!--<th style="width=30px" scope="row"></th>-->
+                                    <td style="width:30"></td>
+                                    <td style="width:200"></td>
+                                    <td style="width:300"></td>
+                                    <td style="width:200"></td>
+                                    <td style="width:50"></td>
+
+                                </tr>
+
+                            </tbody>
+                        </table>
+
+
+
+                    </div>
+                </div>
+            </div>
+            
+
+        </div>
+    </div>
+
+
+    <script>
+        $(document).ready(function() {
+            $.post("/getExistLearnTable",function(data) {
+                       createLearningMapTabe(data)
+                 //       console.log(data)
+
+            //       })
+
+//$("#classTableThead").remove()
+
+
+        });
+        })
+
+        $("#submitClassBTN").click(function() {
+                   // console.log('submit class');
+                    var className = $("#classNameInput").val();
+                    var classDescription = $("#classDescription").val();
+                   // console.log(className, classDescription);
+
+
+                    $.post("/registClass", {
+                            "className": className, //waitting for all files uploaded
+                            'classDescription': classDescription,
+                            //'projectNameCN': currentSelectProjectCN
+                        },
+                        function(data) {
+                           // console.log("feedback", data)
+                            //myDropzone.removeAllFiles()
+                        });
+                    $("#classNameInput").val('');
+                    $("#classDescription").val('');
+                    location.reload();
+                });
+
+                           // $("#classTableThead").remove()
+          //  $("#classTableThead").remove() description
+
+        function createLearningMapTabe(data){
+            $(".classElement").remove()
+            classCount = Object.keys(data).length
+            
+           // console.log(data,classCount)
+            
+            for(i=0;i<classCount;i++){
+      
+                var className= data[Object.keys(data)[i]]['lessonName']
+                var classDescription = data[Object.keys(data)[i]]['description']
+                var classIndexNum = data[Object.keys(data)[i]]
+                console.log(classIndexNum)
+                          
+                var $tr1 = $('<tr class="table-active classElement "' +
+                            'id="tr' + className + '"' +
+                            '></tr>');
+                var $td1 = $('<th class= "classElement" style="width:30px" scope="row">'+
+                             '<h6 class="text-info">'+
+                             i+
+                             '</h6>'+
+                             '</th>')
+                var $td2 = $('<th class= "classElement" style="width:200px" scope="row">'+
+                             '<h6 class="text-dark">'+
+                             className+
+                             '</h6>'+
+                             '</th>')               
+                var $td3 = $('<th class= "classElement" style="width:300px" scope="row">'+
+                              '<h7 class="text-secondary font-weight-normal">'+
+                             classDescription+
+                             '</h7>'+
+                             '</th>')   
+                var $td4 = $('<th class= "classElement" style="width:500px" scope="row">'+
+                             "tag"+
+                             '</th>')   
+                               
+                var $td6 = $('<td class="co-md" style="width=50px"' +
+                            'id="' + classIndexNum  + '"' +
+                            '>' +
+                            '<h7 class="text-danger text align-middle ">' + "del" +  '</h7>' + 
+                            '</td>');
+                var $td7 = $('<td class="co-md" style="width:50px"' +
+                            'id="tag_' + classIndexNum  + '"' +
+                            '>' +
+                            '<h7 class="text-warning text align-middle ">' + "tag" +  '</h7>' + 
+                            '</td>');
+                               
+                
+                var $td8 = $('<input type="text" class="form-control classTagList align-middle" style="width:200px" ID="tagList_'+classIndexNum+
+                             '">')
+
+                
+                $("#classTableThead").append($tr1)
+                $("#classTableThead").append($td1)
+                $("#classTableThead").append($td2)
+                $("#classTableThead").append($td3)
+                //$("#classTableThead").append('<input type="text" class="form-control" data-role="tagsinput" ID = "gg">')
+               // $("#classTableThead").append($td7)
+                $("#classTableThead").append($td8)
+                $("#classTableThead").append($td6)
+
+                $td6.click(function() { 
+              //  console.log($(this).attr("id")) ["0"].$element["0"]
+                   delElement($(this).attr("id"))
+                   location.reload(); 
+                })
+               // $td7.click(function() { 
+              //  console.log($(this).attr("id"))
+                 //  delElement($(this).attr("id"))
+                 //  location.reload(); 
+              //  })
+               // console.log(classIndexNum)
+              //  $td8.attr('id', classIndexNum);
+                $td8.tagsinput({
+                        
+                          tagClass: function(item) {
+                            
+                          //  console.log(item);
+                      //console.log($(this).val()) ;   
+                              // itemValue: 'id';
+                    if(item =='3d'){return 'bg-white text-dark'}
+                              
+                              else{return 'bg-light text-primary border-0';
+                                  
+                                   
+                                  
+                                  }; 
+                              
+                          },
+                    
+                    
+
+                });
+                
+ 
+                
+                $td8.on('itemAdded', function(event) {
+                   var tag = event.item;
+                   // Do some processing here["0"].$element
+                    var tagListID = $(this).tagsinput()['0']['$element']['0']['id']
+                    //var tagListItems = JSON.stringify($(this).tagsinput('items'))
+                    var tagListItems =JSON.stringify($(this).tagsinput('items')) //$(this).val()//JSON.stringify($(this).val())
+                        JSON.stringify($(this).val())//.tagsinput('items')JSON.stringify($(this).tagsinput('items'))
+                    console.log(tagListID)
+                  //  console.log(encodeURIComponent(tagListItems))
+                        /*
+                     $.post("/addTagToItem", {
+                            "tagListItems": tagListItems,//tagListItems, //waitting for all files uploaded
+                            "tagListID": tagListID,
+                            //'classDescription': classDescription,
+                            //'projectNameCN': currentSelectProjectCN
+                        },
+                        function(data) {
+                            console.log("feedback", data)
+                            //myDropzone.removeAllFiles()
+                        });
+                    */
+                    
+                    
+                });
+
+              
+            }
+           buildTagElementForAllTagList() 
+        }
+
+        function buildTagElementForAllTagList(){
+            
+            console.log('me me me')
+        }
+
+       // console.log('testA',$('.classTagList').val())
+        function delElement(classElement){
+            
+            //console.log(classElement)
+             $.post("/delClassElement", {
+                            "classElement": classElement, //waitting for all files uploaded
+                            //'classDescription': classDescription,
+                            //'projectNameCN': currentSelectProjectCN
+                        },
+                        function(data) {
+                           // console.log("feedback", data)
+                            //myDropzone.removeAllFiles()
+                        });
+            
+        }
+        /*
+           <tr>
+            <th style="width=30px" scope="row">1</th>
+            <td style="width=200px">Mark</td>
+            <td style="width=500px">Otto</td>
+            <td style="width=200px">@mdo</td>
+        </tr>
+
+        */
+        
+        
+    </script>
+
+</body>
+
+
+</html>

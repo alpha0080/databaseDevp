@@ -1,0 +1,1023 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+    <!-- input dropzoe js -->
+    <script src="https://rawgit.com/enyo/dropzone/master/dist/dropzone.js"></script>
+    <link rel="stylesheet" href="https://rawgit.com/enyo/dropzone/master/dist/dropzone.css">
+
+    <!-- input jQuery Mobile js -->
+    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
+
+    <!-- input jQuery js -->
+    <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+
+    <!-- input jQuery Mobile 库js-->
+    <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+
+    <!--
+	<link href="{{url_for('static',filename='css/jquery-ui.css')}}" rel="stylesheet">
+
+	<script src="{{url_for('static', filename='jqueryUI/jquery.js')}}"></script>
+-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="{{url_for('static', filename='jqueryUI/jqpaginator.min.js')}}"></script>
+
+
+    <!-- input bootstrap tag plugin js -->
+
+
+    <script src="{{url_for('static', filename='tagsinput.js')}}"></script>
+    <link href="{{url_for('static',filename='css/tagsinput.css')}}" rel="stylesheet">
+
+
+    <title>個人學習地圖</title>
+</head>
+
+<body>
+    <div class="container -fluid">
+        <div class="col-md-12 column">
+
+            <div class="row clearfix ">
+                <div class="col-md-2 column ">
+                    <div class="row clearfix ">
+
+                        <div class="col-md-12 column">
+                            <nav class="navbar navbar-expand-md navbar-light bg-light col-md-12 column d-flex justify-content-start ml-auto ">
+                                <a class="navbar-brand font-weight-bold " href="#" style="font-family:微軟正黑體">個人資訊</a>
+
+                            </nav>
+                        </div>
+                        <div class="col-md-12 column d-flex justify-content-start ml-auto ">
+                            <h6 class="font-weight-normal">ID</h6>
+                        </div>
+
+                        <div class="col-md-12 column d-flex justify-content-start ml-auto ">
+                            <h5 class="font-weight-normal d-flex justify-content-between">Joey</h5>
+
+                        </div>
+
+                        <div class="col-md-12 column d-flex justify-content-start ml-auto ">
+
+                            <h6 class="font-weight-bold" style="font-family:微軟正黑體"> 職稱</h6>
+                        </div>
+
+                        <div class="col-md-12 column d-flex justify-content-start ml-auto ">
+
+                            <h6 class="font-weight-normal" style="font-family:微軟正黑體"> King of MIKU</h6>
+
+                        </div>
+                        <div class="col-md-12 column">
+
+                            <nav class="navbar navbar-expand-md navbar-light bg-light col-md-12 column d-flex justify-content-start ml-auto ">
+                                <a class="navbar-brand font-weight-bold" href="#" style="font-family:微軟正黑體">執行中專案</a>
+
+                            </nav>
+
+                        </div>
+
+
+                        <div class="col-md-12 column">
+
+                            <nav class="navbar navbar-expand-md navbar-light bg-light col-md-12 column d-flex justify-content-start ml-auto ">
+                                <a class="navbar-brand font-weight-bold" href="#" style="font-family:微軟正黑體">獲得成就</a>
+
+                            </nav>
+
+                        </div>
+
+
+
+                    </div>
+
+                </div>
+                <div class="col-md-10 column">
+                    <div class="row clearfix">
+
+                        <nav class="navbar navbar-expand-md navbar-light bg-light col-md-12 column d-flex justify-content-start ml-auto ">
+
+                            <div class="collapse navbar-collapse " id="navbarText">
+                                <ul class="navbar-nav ">
+                                    <li class="nav-item active">
+                                        <a class="nav-link font-weight-normal" href="#" style="font-family:微軟正黑體" id="personSkillList">個人技能資訊 <span class="sr-only">(current)</span></a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link font-weight-normal" href="#" style="font-family:微軟正黑體" id="personSkillPlan">個人職涯技能規劃</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link font-weight-normal" href="#" style="font-family:微軟正黑體">技能樹列表</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link font-weight-normal" href="#" style="font-family:微軟正黑體">說明</a>
+                                    </li>
+                                </ul>
+
+                            </div>
+                        </nav>
+
+                    </div>
+
+                    <div class="row clearfix personalSkillInfoDiv">
+
+                        <div class="col-md-12">
+
+                            <h7 class="font-weight-bold" style="font-family:微軟正黑體"> 個人專屬技能</h7>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="row" id="skill_proBTN">
+                                <div class="col-md-2">
+                                    <h7 style="font-family:微軟正黑體"> 專業技能</h7>
+                                </div>
+                                <div class="text-white bg-secondary text text-center display-7" style="background-color: cornflowerblue;width: 87px">
+                                    <h7>87 points</h7>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <div class="col-md-12">
+                            <div class="row" id="skill_commonBTN">
+                                <div class="col-md-2">
+                                    <h7 style="font-family:微軟正黑體"> 團隊技能</h7>
+                                </div>
+                                <div class="text-white bg-dark text text-center display-7" style="background-color: cornflowerblue;width: 287px">
+                                    <h7>87+87+87 points</h7>
+                                </div>
+
+                            </div>
+
+                        </div>
+                        <div class="col-md-12">
+                            <div class="row" id="skill_leaderBTN">
+                                <div class="col-md-2">
+                                    <h7 style="font-family:微軟正黑體"> 領導統御</h7>
+                                </div>
+                                <div class="text-white bg-secondary text text-center display-7" style="background-color: cornflowerblue;width: 387px">
+                                    <h7>87+87+87+87 points</h7>
+                                </div>
+
+                            </div>
+
+                        </div>
+                        <div class="col-md-12">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <h7 style="font-family:微軟正黑體"> <br> </h7>
+                                </div>
+
+
+                            </div>
+
+                        </div>
+
+
+
+                        <div class="col-md-12">
+
+                            <h7 class="font-weight-bold" style="font-family:微軟正黑體"> 專案經驗</h7>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="row" id="exp_gameBTN">
+                                <div class="col-md-2">
+                                    <h7 style="font-family:微軟正黑體"> 遊戲專案</h7>
+                                </div>
+                                <div class="text-white bg-info text text-center display-7" style="background-color: cornflowerblue;width: 187px">
+                                    <h7>87 + 87 points</h7>
+                                </div>
+
+                            </div>
+
+                        </div>
+                        <div class="col-md-12">
+                            <div class="row" id="exp_gameBTN">
+                                <div class="col-md-2">
+                                    <h7 style="font-family:微軟正黑體"> 動畫專案</h7>
+                                </div>
+                                <div class="text-white bg-info text text-center display-7" style="background-color: cornflowerblue;width: 287px;opacity: 0.8">
+                                    <h7>87 + 87 + 87 points</h7>
+                                </div>
+
+                            </div>
+
+                        </div>
+                        <div class="col-md-12">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <h7 style="font-family:微軟正黑體"> <br> </h7>
+                                </div>
+
+
+                            </div>
+
+                        </div>
+
+
+                    </div>
+                    <div class="row clearfix personalSkillInfoDiv">
+                        <!-- 專業技能列表 -->
+                        <div class="col-md-12 " id="skillPro_infoBox">
+                            <div class="row clearfix">
+                                <div class="col-md-12 column" style="border-style: solid;border-width: 1px;border-radius: 5px">
+                                    <table class="table table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col" style="font-family:微軟正黑體">專業技能項目</th>
+
+                                            </tr>
+                                        </thead>
+                                    </table>
+                                    <table class="table table-striped table-sm">
+
+                                        <thead>
+                                            <tr>
+                                                <th scope="col" style="font-family:微軟正黑體;width:30px;font-size: 14px">#</th>
+                                                <th scope="col" style="font-family:微軟正黑體;width:150px;font-size: 14px">技能名稱</th>
+                                                <th scope="col" style="font-family:微軟正黑體;width:50px;font-size: 14px">等級</th>
+                                                <th scope="col" style="font-family:微軟正黑體;width:100px;font-size: 14px">技能樹</th>
+                                                <th scope="col" style="font-family:微軟正黑體;width:100px;font-size: 14px">延伸技能</th>
+
+                                                <th scope="col" style="font-family:微軟正黑體;width:200px;font-size: 14px">標籤</th>
+
+
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <th scope="row" class="align-middle" style="font-family:微軟正黑體;width:30px;font-size: 14px">1</th>
+                                                <td class="align-middle" style="font-family:微軟正黑體;width:150px;font-size: 14px">spine 工具操作</td>
+                                                <td class="align-middle" style="font-family:微軟正黑體;width:50px;font-size: 14px">LV8</td>
+                                                <td><button type="button" class="btn btn-secondary btn-sm skillTreeDescBTN" style="font-family:微軟正黑體;width:100px;font-size: 14px">技能樹</button></td>
+                                                <td><button type="button" class="btn btn-secondary btn-sm skillExtDescBTN" style="font-family:微軟正黑體;width:100px;font-size: 14px">延伸技能</button></td>
+
+                                                <td class="align-middle" style="font-family:微軟正黑體;width:200px;font-size: 14px"><input type="text"></td>
+
+                                            </tr>
+                                            <tr>
+                                                <th scope="row" class="align-middle" style="font-family:微軟正黑體;width:30px;font-size: 14px">2</th>
+                                                <td class="align-middle" style="font-family:微軟正黑體;width:150px;font-size: 14px">spine 腳色動畫</td>
+                                                <td class="align-middle" style="font-family:微軟正黑體;width:50px;font-size: 14px">LV8</td>
+                                                <td><button type="button" class="btn btn-secondary btn-sm skillTreeDescBTN" style="font-family:微軟正黑體;width:100px;font-size: 14px">技能樹</button></td>
+                                                <td><button type="button" class="btn btn-secondary btn-sm skillExtDescBTN" style="font-family:微軟正黑體;width:100px;font-size: 14px">延伸技能</button></td>
+                                                <td class="align-middle" style="font-family:微軟正黑體;width:200px;font-size: 14px"><input type="text"></td>
+
+                                            </tr>
+
+                                            <tr>
+                                                <th scope="row" class="align-middle" style="font-family:微軟正黑體;width:30px;font-size: 14px">3</th>
+                                                <td class="align-middle" style="font-family:微軟正黑體;width:150px;font-size: 14px">spine 特效</td>
+                                                <td class="align-middle" style="font-family:微軟正黑體;width:50px;font-size: 14px">LV8</td>
+                                                <td><button type="button" class="btn btn-secondary btn-sm skillTreeDescBTN" style="font-family:微軟正黑體;width:100px;font-size: 14px">技能樹</button></td>
+                                                <td><button type="button" class="btn btn-secondary btn-sm skillExtDescBTN" style="font-family:微軟正黑體;width:100px;font-size: 14px">延伸技能</button></td>
+                                                <td class="align-middle" style="font-family:微軟正黑體;width:200px;font-size: 14px"><input type="text"></td>
+
+                                            </tr>
+                                            <tr>
+                                                <th scope="row" class="align-middle" style="font-family:微軟正黑體;width:30px;font-size: 14px">4</th>
+                                                <td class="align-middle" style="font-family:微軟正黑體;width:150px;font-size: 14px">maya Rigging</td>
+                                                <td class="align-middle" style="font-family:微軟正黑體;width:50px;font-size: 14px">LV8</td>
+                                                <td><button type="button" class="btn btn-secondary btn-sm skillTreeDescBTN" style="font-family:微軟正黑體;width:100px;font-size: 14px">技能樹</button></td>
+                                                <td><button type="button" class="btn btn-secondary btn-sm skillExtDescBTN" style="font-family:微軟正黑體;width:100px;font-size: 14px">延伸技能</button></td>
+                                                <td class="align-middle" style="font-family:微軟正黑體;width:200px;font-size: 14px"><input type="text"></td>
+
+                                            </tr>
+
+                                            <tr>
+                                                <th scope="row" class="align-middle" style="font-family:微軟正黑體;width:30px;font-size: 14px">5</th>
+                                                <td class="align-middle" style="font-family:微軟正黑體;width:150px;font-size: 14px">maya script</td>
+                                                <td class="align-middle" style="font-family:微軟正黑體;width:50px;font-size: 14px">LV8</td>
+                                                <td><button type="button" class="btn btn-secondary btn-sm skillTreeDescBTN" style="font-family:微軟正黑體;width:100px;font-size: 14px">技能樹</button></td>
+                                                <td><button type="button" class="btn btn-secondary btn-sm skillExtDescBTN" style="font-family:微軟正黑體;width:100px;font-size: 14px">延伸技能</button></td>
+                                                <td class="align-middle" style="font-family:微軟正黑體;width:200px;font-size: 14px"><input type="text"></td>
+
+                                            </tr>
+
+                                            <tr>
+                                                <th scope="row" class="align-middle" style="font-family:微軟正黑體;width:30px;font-size: 14px">6</th>
+                                                <td class="align-middle" style="font-family:微軟正黑體;width:150px;font-size: 14px">maya skining</td>
+                                                <td class="align-middle" style="font-family:微軟正黑體;width:50px;font-size: 14px">LV8</td>
+                                                <td><button type="button" class="btn btn-secondary btn-sm font font-weight-light skillTreeDescBTN" style="font-family:微軟正黑體;width:100px;font-size: 14px">技能樹</button></td>
+                                                <td><button type="button" class="btn btn-secondary btn-sm font font-weight-light skillExtDescBTN" style="font-family:微軟正黑體;width:100px;font-size: 14px">延伸技能</button></td>
+                                                <td class="align-middle" style="font-family:微軟正黑體;width:200px;font-size: 14px"><input type="text"></td>
+
+                                            </tr>
+                                            <tr style="background-color: rgb(230,250,230);color:black">
+                                                <th scope="row" class="align-middle" style="font-family:微軟正黑體;width:30px;font-size: 14px">7</th>
+                                                <td class="align-middle" style="font-family:微軟正黑體;width:150px;font-size: 14px">工口遊戲規劃</td>
+                                                <td class="align-middle" style="font-family:微軟正黑體;width:50px;font-size: 14px">LV10</td>
+                                                <td><button type="button" class="btn btn-secondary btn-sm font font-weight-light skillTreeDescBTN" style="font-family:微軟正黑體;width:100px;font-size: 14px">技能樹</button></td>
+                                                <td><button type="button" class="btn btn-info btn-sm font font-weight-light skillExtDescBTN" style="font-family:微軟正黑體;width:100px;font-size: 14px">延伸技能</button></td>
+                                                <td class="align-middle" style="font-family:微軟正黑體;width:200px;font-size: 14px"><input type="text"></td>
+
+                                            </tr>
+                                            <tr style="background-color:rgb(250,230,230);color:black">
+                                                <th scope="row" class="align-middle" style="font-family:微軟正黑體;width:30px;font-size: 14px">8</th>
+                                                <td class="align-middle" style="font-family:微軟正黑體;width:150px;font-size: 14px">配音</td>
+                                                <td class="align-middle" style="font-family:微軟正黑體;width:50px;font-size: 14px">LV3</td>
+                                                <td><button type="button" class="btn btn-secondary btn-sm font font-weight-light skillTreeDescBTN" style="font-family:微軟正黑體;width:100px;font-size: 14px">技能樹</button></td>
+                                                <td><button type="button" class="btn btn-secondary btn-sm font font-weight-light skillExtDescBTN" style="font-family:微軟正黑體;width:100px;font-size: 14px">延伸技能</button></td>
+                                                <td class="align-middle" style="font-family:微軟正黑體;width:200px;font-size: 14px"><input type="text"></td>
+
+                                            </tr>
+                                        </tbody>
+                                    </table>
+
+
+                                </div>
+
+                            </div>
+                            <br>
+                            <div class="row clearfix">
+                                <div class="col-md-12 column" style="border-style: solid;border-width: 1px;height: 100px;border-radius: 5px">
+                                    <h7 style="font-family:微軟正黑體">說明:</h7><br>
+                                    <h7 style="font-family:微軟正黑體" id="skill_description_text"></h7>
+
+                                </div>
+                            </div>
+
+                        </div>
+
+
+
+
+
+
+                        <!-- 團隊技能列表 -->
+
+                        <div class="col-md-12 " id="skillCommon_infoBox">
+                            <div class="row clearfix">
+                                <div class="col-md-12 column" style="border-style: solid;border-width: 1px;height: 500px;border-radius: 5px">
+                                    <table class="table table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col" style="font-family:微軟正黑體">專業技能項目</th>
+
+                                            </tr>
+                                        </thead>
+                                    </table>
+                                    <table class="table table-striped table-sm">
+
+                                        <thead>
+                                            <tr>
+                                                <th scope="col" style="font-family:微軟正黑體;width:30px;font-size: 14px">#</th>
+                                                <th scope="col" style="font-family:微軟正黑體;width:150px;font-size: 14px">技能名稱</th>
+                                                <th scope="col" style="font-family:微軟正黑體;width:50px;font-size: 14px">技能等級</th>
+                                                <th scope="col" style="font-family:微軟正黑體;width:50px;font-size: 14px">獲得分數</th>
+                                                <th scope="col" style="font-family:微軟正黑體;width:50px;font-size: 14px">技能樹</th>
+                                                <th scope="col" style="font-family:微軟正黑體;width:50px;font-size: 14px">延伸技能</th>
+
+                                                <th scope="col" style="font-family:微軟正黑體;width:200px;font-size: 14px">標籤</th>
+
+
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <th scope="row" class="align-middle" style="font-family:微軟正黑體;width:30;font-size: 14px">1</th>
+                                                <td class="align-middle" style="font-family:微軟正黑體;width:150;font-size: 14px">公司遊戲概略</td>
+                                                <td class="align-middle" style="font-family:微軟正黑體;width:50;font-size: 14px">LV8</td>
+                                                <td class="align-middle" style="font-family:微軟正黑體;width:50;font-size: 14px">8 分</td>
+                                                <td class="align-middle" style="font-family:微軟正黑體;width:50;font-size: 14px"><button type="button" class="btn btn-secondary btn-sm skillTreeDescBTN">技能樹</button></td>
+                                                <td class="align-middle" style="font-family:微軟正黑體;width:50;font-size: 14px"><button type="button" class="btn btn-info btn-sm skillExtDescBTN">延伸技能</button></td>
+
+                                                <td class="align-middle" style="font-family:微軟正黑體;width:200px;font-size: 14px"><input type="text"></td>
+
+                                            </tr>
+                                            <tr>
+                                                <th scope="row" class="align-middle" style="font-family:微軟正黑體;width:30;font-size: 14px">2</th>
+                                                <td class="align-middle" style="font-family:微軟正黑體;width:150;font-size: 14px">公司組織</td>
+                                                <td class="align-middle" style="font-family:微軟正黑體;width:50;font-size: 14px">LV8</td>
+                                                <td class="align-middle" style="font-family:微軟正黑體;width:50;font-size: 14px">8 分</td>
+                                                <td class="align-middle" style="font-family:微軟正黑體;width:50;font-size: 14px"><button type="button" class="btn btn-secondary btn-sm skillTreeDescBTN">技能樹</button></td>
+                                                <td class="align-middle" style="font-family:微軟正黑體;width:50;font-size: 14px"><button type="button" class="btn btn-info btn-sm skillExtDescBTN">延伸技能</button></td>
+                                                <td class="align-middle" style="font-family:微軟正黑體;width:200px;font-size: 14px"><input type="text"></td>
+
+                                            </tr>
+
+                                            <tr>
+                                                <th scope="row" class="align-middle" style="font-family:微軟正黑體;width:30;font-size: 14px">3</th>
+                                                <td class="align-middle" style="font-family:微軟正黑體;width:150;font-size: 14px">跨組別溝通</td>
+                                                <td class="align-middle" style="font-family:微軟正黑體;width:50;font-size: 14px">LV8</td>
+                                                <td class="align-middle" style="font-family:微軟正黑體;width:50;font-size: 14px">8 分</td>
+                                                <td class="align-middle" style="font-family:微軟正黑體;width:50;font-size: 14px"><button type="button" class="btn btn-secondary btn-sm skillTreeDescBTN">技能樹</button></td>
+                                                <td class="align-middle" style="font-family:微軟正黑體;width:50;font-size: 14px"><button type="button" class="btn btn-info btn-sm skillExtDescBTN">延伸技能</button></td>
+                                                <td class="align-middle" style="font-family:微軟正黑體;width:200px;font-size: 14px"><input type="text"></td>
+
+                                            </tr>
+                                            <tr>
+                                                <th scope="row" class="align-middle" style="font-family:微軟正黑體;width:30;font-size: 14px">3</th>
+                                                <td class="align-middle" style="font-family:微軟正黑體;width:150;font-size: 14px">專案進度掌握</td>
+                                                <td class="align-middle" style="font-family:微軟正黑體;width:50;font-size: 14px">LV8</td>
+                                                <td class="align-middle" style="font-family:微軟正黑體;width:50;font-size: 14px">8 分</td>
+                                                <td class="align-middle" style="font-family:微軟正黑體;width:50;font-size: 14px"><button type="button" class="btn btn-secondary btn-sm skillTreeDescBTN">技能樹</button></td>
+                                                <td class="align-middle" style="font-family:微軟正黑體;width:50;font-size: 14px"><button type="button" class="btn btn-info btn-sm skillExtDescBTN">延伸技能</button></td>
+                                                <td class="align-middle" style="font-family:微軟正黑體;width:200px;font-size: 14px"><input type="text"></td>
+
+                                            </tr>
+
+                                            <tr>
+                                                <th scope="row" class="align-middle" style="font-family:微軟正黑體;width:30;font-size: 14px">3</th>
+                                                <td class="align-middle" style="font-family:微軟正黑體;width:150;font-size: 14px">專案資源掌握</td>
+                                                <td class="align-middle" style="font-family:微軟正黑體;width:50;font-size: 14px">LV8</td>
+                                                <td class="align-middle" style="font-family:微軟正黑體;width:50;font-size: 14px">8 分</td>
+                                                <td class="align-middle" style="font-family:微軟正黑體;width:50;font-size: 14px"><button type="button" class="btn btn-secondary btn-sm skillTreeDescBTN">技能樹</button></td>
+                                                <td class="align-middle" style="font-family:微軟正黑體;width:50;font-size: 14px"><button type="button" class="btn btn-info btn-sm skillExtDescBTN">延伸技能</button></td>
+                                                <td class="align-middle" style="font-family:微軟正黑體;width:200px;font-size: 14px"><input type="text"></td>
+
+                                            </tr>
+
+                                            <tr>
+                                                <th scope="row" class="align-middle" style="font-family:微軟正黑體;width:30;font-size: 14px">3</th>
+                                                <td class="align-middle" style="font-family:微軟正黑體;width:150;font-size: 14px">窗口</td>
+                                                <td class="align-middle" style="font-family:微軟正黑體;width:50;font-size: 14px">LV8</td>
+                                                <td class="align-middle" style="font-family:微軟正黑體;width:50;font-size: 14px">8 分</td>
+                                                <td class="align-middle" style="font-family:微軟正黑體;width:50;font-size: 14px"><button type="button" class="btn btn-secondary btn-sm skillTreeDescBTN">技能樹</button></td>
+                                                <td class="align-middle" style="font-family:微軟正黑體;width:50;font-size: 14px"><button type="button" class="btn btn-info btn-sm skillExtDescBTN">延伸技能</button></td>
+                                                <td class="align-middle" style="font-family:微軟正黑體;width:200px;font-size: 14px"><input type="text"></td>
+
+                                            </tr>
+
+
+                                        </tbody>
+                                    </table>
+
+
+                                </div>
+
+                            </div>
+                            <div class="row clearfix">
+                                <div class="col-md-12 column" style="border-style: solid;border-width: 1px;height: 100px;border-radius: 5px">
+                                    <h7 style="font-family:微軟正黑體">說明:</h7><br>
+                                    <h7 style="font-family:微軟正黑體" id="skill_description_text"></h7>
+
+                                </div>
+                            </div>
+
+                        </div>
+
+
+
+                        <!-- 領導統御技能列表 -->
+
+
+                        <div class="col-md-12 " id="skillLeader_infoBox">
+                            <div class="row clearfix">
+                                <div class="col-md-12 column" style="border-style: solid;border-width: 1px;height: 500px;border-radius: 5px">
+                                    <table class="table table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col" style="font-family:微軟正黑體">專業技能項目</th>
+
+                                            </tr>
+                                        </thead>
+                                    </table>
+                                    <table class="table table-striped table-sm">
+
+                                        <thead>
+                                            <tr>
+                                                <th scope="col" style="font-family:微軟正黑體;width:30px;font-size: 14px">#</th>
+                                                <th scope="col" style="font-family:微軟正黑體;width:150px;font-size: 14px">技能名稱</th>
+                                                <th scope="col" style="font-family:微軟正黑體;width:50px;font-size: 14px">技能等級</th>
+                                                <th scope="col" style="font-family:微軟正黑體;width:50px;font-size: 14px">獲得分數</th>
+                                                <th scope="col" style="font-family:微軟正黑體;width:50px;font-size: 14px">技能樹</th>
+                                                <th scope="col" style="font-family:微軟正黑體;width:50px;font-size: 14px">延伸技能</th>
+
+                                                <th scope="col" style="font-family:微軟正黑體;width:200px;font-size: 14px">標籤</th>
+
+
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <th scope="row" class="align-middle" style="font-family:微軟正黑體;width:30;font-size: 14px">1</th>
+                                                <td class="align-middle" style="font-family:微軟正黑體;width:150;font-size: 14px">spine 工具操作</td>
+                                                <td class="align-middle" style="font-family:微軟正黑體;width:50;font-size: 14px">LV8</td>
+                                                <td class="align-middle" style="font-family:微軟正黑體;width:50;font-size: 14px">8 分</td>
+                                                <td class="align-middle" style="font-family:微軟正黑體;width:50;font-size: 14px"><button type="button" class="btn btn-secondary btn-sm skillTreeDescBTN">技能樹</button></td>
+                                                <td class="align-middle" style="font-family:微軟正黑體;width:50;font-size: 14px"><button type="button" class="btn btn-info btn-sm skillExtDescBTN">延伸技能</button></td>
+
+                                                <td class="align-middle" style="font-family:微軟正黑體;width:200px;font-size: 14px"><input type="text"></td>
+
+                                            </tr>
+                                            <tr>
+                                                <th scope="row" class="align-middle" style="font-family:微軟正黑體;width:30;font-size: 14px">2</th>
+                                                <td class="align-middle" style="font-family:微軟正黑體;width:150;font-size: 14px">spine 腳色動畫</td>
+                                                <td class="align-middle" style="font-family:微軟正黑體;width:50;font-size: 14px">LV8</td>
+                                                <td class="align-middle" style="font-family:微軟正黑體;width:50;font-size: 14px">8 分</td>
+                                                <td class="align-middle" style="font-family:微軟正黑體;width:50;font-size: 14px"><button type="button" class="btn btn-secondary btn-sm skillTreeDescBTN">技能樹</button></td>
+                                                <td class="align-middle" style="font-family:微軟正黑體;width:50;font-size: 14px"><button type="button" class="btn btn-info btn-sm skillExtDescBTN">延伸技能</button></td>
+                                                <td class="align-middle" style="font-family:微軟正黑體;width:200px;font-size: 14px"><input type="text"></td>
+
+                                            </tr>
+
+                                            <tr>
+                                                <th scope="row" class="align-middle" style="font-family:微軟正黑體;width:30;font-size: 14px">3</th>
+                                                <td class="align-middle" style="font-family:微軟正黑體;width:150;font-size: 14px">spine 特效</td>
+                                                <td class="align-middle" style="font-family:微軟正黑體;width:50;font-size: 14px">LV8</td>
+                                                <td class="align-middle" style="font-family:微軟正黑體;width:50;font-size: 14px">8 分</td>
+                                                <td class="align-middle" style="font-family:微軟正黑體;width:50;font-size: 14px"><button type="button" class="btn btn-secondary btn-sm skillTreeDescBTN">技能樹</button></td>
+                                                <td class="align-middle" style="font-family:微軟正黑體;width:50;font-size: 14px"><button type="button" class="btn btn-info btn-sm skillExtDescBTN">延伸技能</button></td>
+                                                <td class="align-middle" style="font-family:微軟正黑體;width:200px;font-size: 14px"><input type="text"></td>
+
+                                            </tr>
+                                            <tr>
+                                                <th scope="row" class="align-middle" style="font-family:微軟正黑體;width:30;font-size: 14px">3</th>
+                                                <td class="align-middle" style="font-family:微軟正黑體;width:150;font-size: 14px">maya Rigging</td>
+                                                <td class="align-middle" style="font-family:微軟正黑體;width:50;font-size: 14px">LV8</td>
+                                                <td class="align-middle" style="font-family:微軟正黑體;width:50;font-size: 14px">8 分</td>
+                                                <td class="align-middle" style="font-family:微軟正黑體;width:50;font-size: 14px"><button type="button" class="btn btn-secondary btn-sm skillTreeDescBTN">技能樹</button></td>
+                                                <td class="align-middle" style="font-family:微軟正黑體;width:50;font-size: 14px"><button type="button" class="btn btn-info btn-sm skillExtDescBTN">延伸技能</button></td>
+                                                <td class="align-middle" style="font-family:微軟正黑體;width:200px;font-size: 14px"><input type="text"></td>
+
+                                            </tr>
+
+                                            <tr>
+                                                <th scope="row" class="align-middle" style="font-family:微軟正黑體;width:30;font-size: 14px">3</th>
+                                                <td class="align-middle" style="font-family:微軟正黑體;width:150;font-size: 14px">maya script</td>
+                                                <td class="align-middle" style="font-family:微軟正黑體;width:50;font-size: 14px">LV8</td>
+                                                <td class="align-middle" style="font-family:微軟正黑體;width:50;font-size: 14px">8 分</td>
+                                                <td class="align-middle" style="font-family:微軟正黑體;width:50;font-size: 14px"><button type="button" class="btn btn-secondary btn-sm skillTreeDescBTN">技能樹</button></td>
+                                                <td class="align-middle" style="font-family:微軟正黑體;width:50;font-size: 14px"><button type="button" class="btn btn-info btn-sm skillExtDescBTN">延伸技能</button></td>
+                                                <td class="align-middle" style="font-family:微軟正黑體;width:200px;font-size: 14px"><input type="text"></td>
+
+                                            </tr>
+
+                                            <tr>
+                                                <th scope="row" class="align-middle" style="font-family:微軟正黑體;width:30;font-size: 14px">3</th>
+                                                <td class="align-middle" style="font-family:微軟正黑體;width:150;font-size: 14px">maya skining</td>
+                                                <td class="align-middle" style="font-family:微軟正黑體;width:50;font-size: 14px">LV8</td>
+                                                <td class="align-middle" style="font-family:微軟正黑體;width:50;font-size: 14px">8 分</td>
+                                                <td class="align-middle" style="font-family:微軟正黑體;width:50;font-size: 14px"><button type="button" class="btn btn-secondary btn-sm skillTreeDescBTN">技能樹</button></td>
+                                                <td class="align-middle" style="font-family:微軟正黑體;width:50;font-size: 14px"><button type="button" class="btn btn-info btn-sm skillExtDescBTN">延伸技能</button></td>
+                                                <td class="align-middle" style="font-family:微軟正黑體;width:200px;font-size: 14px"><input type="text"></td>
+
+                                            </tr>
+
+
+                                        </tbody>
+                                    </table>
+
+
+                                </div>
+
+                            </div>
+                            <div class="row clearfix">
+                                <div class="col-md-12 column" style="border-style: solid;border-width: 1px;height: 100px;border-radius: 5px">
+                                    <h7 style="font-family:微軟正黑體">說明:</h7><br>
+                                    <h7 style="font-family:微軟正黑體" id="skill_description_text"></h7>
+
+                                </div>
+                            </div>
+
+                        </div>
+
+
+
+
+
+                        <!-- 技能計算方式說明
+                        <div class="col-md-3">
+                        <div class="col-md-12" style="border-style: solid;border-width: 1px;height: 500px;border-radius: 10px" id="skill_calBox">
+                            <h7 style="font-family:微軟正黑體"> 技能計算方式說明</h7>
+                        </div>
+                       </div>  -->
+
+
+                    </div>
+
+                    <div class="row clearfix personalSkillPlaneDiv">
+                        <div class="col-md-12 column">
+                            <div class="row clearfix">
+                                <div class="col-md-12 column">
+
+                                    <h6 class="font-weight-bold" style="font-family:微軟正黑體" id="studyPlanExtBTN">學習規劃圖<h7 class="font-weight-light text-info">(點擊展開)</h7></h6>
+
+
+                                </div>
+                                <div class="col-md-12 ml-auto column" id="stydyPlaneDiv">
+                                    <div class="row clearfix ">
+                                        <div class="col-md-6 column">
+                                            <div class="row">
+                                                <h7 class="font-weight-normal" style="font-family:微軟正黑體">第三季 (2018/07/01~2018/09/30)</h7>
+
+                                            </div>
+
+
+                                            <div class="row classTableBorder ">
+
+                                                <table class="table table-striped table-sm ">
+
+                                                    <thead>
+                                                        <tr class="chineseStyleA">
+                                                            <th scope="col">#</th>
+                                                            <th scope="col">技能名稱</th>
+                                                            <th scope="col">課程時間</th>
+
+
+
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr class="chineseStyleA">
+                                                            <th scope="row" class="align-middle">1</th>
+                                                            <td class="align-middle ">手繪傳統動畫 LV1</td>
+                                                            <td class="align-middle " s>2018/07/01-2018/8/30</td>
+
+
+                                                        </tr>
+                                                        <tr class="chineseStyleA">
+                                                            <th scope="row" class="align-middle">1</th>
+                                                            <td class="align-middle" st>手繪傳統動畫 LV2 (雙足步行)</td>
+                                                            <td class="align-middle">2018/09/01-2018/9/30</td>
+
+
+                                                        </tr>
+
+
+
+
+                                                    </tbody>
+                                                </table>
+                                            </div>
+
+                                        </div>
+
+
+                                        <div class="col-md-6 column">
+                                            <div class="row">
+                                                <h7 class="font-weight-normal" style="font-family:微軟正黑體">第四季 (2018/10/01~2018/12/31)</h7>
+
+                                            </div>
+
+
+                                            <div class="row classTableBorder">
+
+                                                <table class="table table-striped table-sm ">
+
+                                                    <thead>
+                                                        <tr class="chineseStyleA">
+                                                            <th scope="col">#</th>
+                                                            <th scope="col">技能名稱</th>
+                                                            <th scope="col">課程時間</th>
+
+
+
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr class="chineseStyleA">
+                                                            <th scope="row" class="align-middle">1</th>
+                                                            <td class="align-middle ">手繪傳統動畫 LV3 (雙足 四足 走路 跑步)</td>
+                                                            <td class="align-middle " s>2018/06/01-2018/12/30</td>
+
+
+                                                        </tr>
+                                                        <tr class="chineseStyleA">
+                                                            <th scope="row" class="align-middle">1</th>
+                                                            <td class="align-middle" st>人物腳色設計</td>
+                                                            <td class="align-middle">2018/06/01-2018/12/30</td>
+
+
+                                                        </tr>
+
+
+
+
+                                                    </tbody>
+                                                </table>
+                                            </div>
+
+                                        </div>
+
+
+
+
+
+
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="col-md-12 column">
+                            <div class="row clearfix">
+                                <div class="col-md-12 column">
+                                    <h6 class="font-weight-bold" style="font-family:微軟正黑體">學習地圖甘特圖</h6>
+
+                                </div>
+                            </div>
+                            <div class="row clearfix">
+
+                                <div class="col-md-12 column">
+                                    <h6 class="font-weight-bold" style="font-family:微軟正黑體">前期規劃</h6>
+                                </div>
+                                <div class="col-md-12 column">
+                                    <nav class="nav" style="font-family:微軟正黑體;font-size:14px">
+                                        <a class="nav-link active" href="#">腳色設計</a>
+                                        <a class="nav-link" href="#">場景設計</a>
+                                        <a class="nav-link" href="#">構圖</a>
+                                        <a class="nav-link" href="#">腳本</a>
+                                        <a class="nav-link" href="#">concept Drawing</a>
+                                        <a class="nav-link" href="#">配色</a>
+
+                                    </nav>
+                                </div>
+                                <div class="col-md-12 column classTableBorder" >
+                                    <table class="table table-striped table-sm">
+
+                                        <thead>
+                                            <tr>
+                                                <th scope="col" style="font-family:微軟正黑體;width:30px;font-size: 14px">#</th>
+                                                <th scope="col" style="font-family:微軟正黑體;width:100px;font-size: 14px">技能名稱</th>
+                                                <th scope="col" style="font-family:微軟正黑體;width:100px;font-size: 14px">課程時間</th>
+                                                <th scope="col" style="font-family:微軟正黑體;width:50px;font-size: 14px">學習方式</th>
+                                                <th scope="col" style="font-family:微軟正黑體;width:100px;font-size: 14px">預期成效</th>
+
+
+
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <th scope="row" class="align-middle" style="font-family:微軟正黑體;width:30;font-size: 14px">1</th>
+                                                <td class="align-middle" style="font-family:微軟正黑體;width:100px;font-size: 14px">人物腳色設計</td>
+                                                <td class="align-middle" style="font-family:微軟正黑體;width:100px;font-size: 14px">2018/06/01-2018/12/30</td>
+                                                <td class="align-middle" style="font-family:微軟正黑體;width:50px;font-size: 14px">自學</td>
+                                                <td class="align-middle" style="font-family:微軟正黑體;width:100px;font-size: 14px">腳色設定，配色，姿勢，動作</td>
+
+
+                                            </tr>
+
+
+
+
+                                        </tbody>
+                                    </table>
+
+                                </div>
+                            </div>
+                            <hr>
+
+                            <div class="row clearfix">
+                                <div class="col-md-12 column">
+                                    <h6 class="font-weight-bold" style="font-family:微軟正黑體">後期</h6>
+
+                                </div>
+                                <div class="col-md-12 column">
+                                    <nav class="nav" style="font-family:微軟正黑體;font-size:14px">
+                                        <a class="nav-link active" href="#">shading</a>
+                                        <a class="nav-link" href="#">lighting</a>
+                                        <a class="nav-link" href="#">rendering</a>
+                                        <a class="nav-link" href="#">compositing</a>
+                                        <a class="nav-link" href="#">VFX</a>
+
+                                    </nav>
+                                </div>
+                                <div class="col-md-12 column classTableBorder" >
+                                    <table class="table table-striped table-sm">
+
+                                        <thead>
+                                            <tr>
+                                                <th scope="col" style="font-family:微軟正黑體;width:30px;font-size: 14px">#</th>
+                                                <th scope="col" style="font-family:微軟正黑體;width:100px;font-size: 14px">技能名稱</th>
+                                                <th scope="col" style="font-family:微軟正黑體;width:100px;font-size: 14px">課程時間</th>
+                                                <th scope="col" style="font-family:微軟正黑體;width:50px;font-size: 14px">學習方式</th>
+                                                <th scope="col" style="font-family:微軟正黑體;width:100px;font-size: 14px">預期成效</th>
+
+
+
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <th scope="row" class="align-middle" style="font-family:微軟正黑體;width:30;font-size: 14px">1</th>
+                                                <td class="align-middle" style="font-family:微軟正黑體;width:100px;font-size: 14px">分層算圖</td>
+                                                <td class="align-middle" style="font-family:微軟正黑體;width:100px;font-size: 14px">2018/06/01-2018/12/30</td>
+                                                <td class="align-middle" style="font-family:微軟正黑體;width:50px;font-size: 14px">網路教學</td>
+                                                <td class="align-middle" style="font-family:微軟正黑體;width:100px;font-size: 14px">分層算圖，加快算圖時間，節省算圖成本</td>
+
+
+                                            </tr>
+
+
+
+
+                                        </tbody>
+                                    </table>
+
+                                </div>
+                            </div>
+                            <div class="row clearfix">
+                                <div class="col-md-12 column">
+                                    <h6 class="font-weight-bold" style="font-family:微軟正黑體">遊戲製作</h6>
+
+                                </div>
+                                <div class="col-md-12 column">
+                                    <nav class="nav" style="font-family:微軟正黑體;font-size:14px">
+                                        <a class="nav-link active" href="#">遊戲流程</a>
+
+                                        <a class="nav-link active" href="#">H5引擎</a>
+                                        <a class="nav-link" href="#">3D引擎</a>
+                                        <a class="nav-link" href="#">shading</a>
+                                        <a class="nav-link" href="#">Level Design</a>
+                                        <a class="nav-link" href="#">game effect</a>
+
+                                    </nav>
+                                </div>
+                                <div class="col-md-12 column classTableBorder" >
+                                    <table class="table table-striped table-sm">
+
+                                        <thead>
+                                            <tr>
+                                                <th scope="col" style="font-family:微軟正黑體;width:30px;font-size: 14px">#</th>
+                                                <th scope="col" style="font-family:微軟正黑體;width:100px;font-size: 14px">技能名稱</th>
+                                                <th scope="col" style="font-family:微軟正黑體;width:100px;font-size: 14px">課程時間</th>
+                                                <th scope="col" style="font-family:微軟正黑體;width:50px;font-size: 14px">學習方式</th>
+                                                <th scope="col" style="font-family:微軟正黑體;width:100px;font-size: 14px">預期成效</th>
+
+
+
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <th scope="row" class="align-middle" style="font-family:微軟正黑體;width:30;font-size: 14px">1</th>
+                                                <td class="align-middle" style="font-family:微軟正黑體;width:100px;font-size: 14px">Pixi JS</td>
+                                                <td class="align-middle" style="font-family:微軟正黑體;width:100px;font-size: 14px">2018/06/01-2018/12/30</td>
+                                                <td class="align-middle" style="font-family:微軟正黑體;width:50px;font-size: 14px">網路教學</td>
+                                                <td class="align-middle" style="font-family:微軟正黑體;width:100px;font-size: 14px">了解PIXI js的運作方式，寫小工具</td>
+
+
+                                            </tr>
+
+
+
+
+                                        </tbody>
+                                    </table>
+
+                                </div>
+                            </div>
+                            <div class="row clearfix">
+                                <div class="col-md-12 column">
+                                    <h6 class="font-weight-bold" style="font-family:微軟正黑體">動畫師</h6>
+                                </div>
+                            </div>
+                            <div class="row clearfix">
+                                <div class="col-md-12 column">
+                                    <h6 class="font-weight-bold" style="font-family:微軟正黑體">網頁技術</h6>
+
+                                </div>
+                            </div>
+
+
+                            <div class="row clearfix">
+                                <div class="col-md-12 column">
+                                    <h6 class="font-weight-bold" style="font-family:微軟正黑體">管理技能</h6>
+
+                                </div>
+                            </div>
+                        </div>
+
+
+
+
+                    </div>
+
+
+                </div>
+
+            </div>
+        </div>
+
+        <style>
+            .skillPro {}
+
+            .skillTreeDescBTN {}
+
+            .skillExtDescBTN {}
+
+            .personalSkillInfoDiv {}
+
+            .personalSkillPlaneDiv {}
+
+            .chineseStyleA {
+                font-family: 微軟正黑體;
+                font-size: 14px
+            }
+
+            .classTableBorder {
+                margin: 5px;
+                border-style: inset;
+                border-width: 1px;
+                border-radius: 5px;
+            }
+
+        </style>
+
+
+        <script>
+            $(document).ready(function() {
+
+                //$("#skillPro_infoBox").hide()
+                $("#skillCommon_infoBox").hide()
+                $("#skillLeader_infoBox").hide()
+                $(".personalSkillPlaneDiv").hide()
+                $("#stydyPlaneDiv").hide()
+
+            });
+
+            
+            //個人職涯規劃
+            $("#studyPlanExtBTN").click(function() {
+                $("#stydyPlaneDiv").show(200)
+
+            })
+            
+            
+            
+            
+            
+            // show 個人技能資訊
+
+            $("#personSkillList").click(function() {
+                $(".personalSkillInfoDiv").show(200)
+                $(".personalSkillPlaneDiv").hide()
+
+            })
+
+            // show 個人技能資訊
+            $("#personSkillPlan").click(function() {
+                $(".personalSkillInfoDiv").hide()
+                $(".personalSkillPlaneDiv").show(200)
+
+            })
+
+
+
+            $("#skill_proBTN").click(function() {
+                $("#skillCommon_infoBox").hide()
+                $("#skillLeader_infoBox").hide()
+
+
+                $("#skillPro_infoBox").show({
+                    direction: "down"
+                }, 300);
+                console.log("aaa")
+            })
+
+
+            $("#skill_commonBTN").click(function() {
+
+
+                $("#skillPro_infoBox").hide()
+                $("#skillLeader_infoBox").hide()
+
+                $("#skillCommon_infoBox").show({
+                    direction: "down"
+                }, 300);
+                console.log("aaa")
+
+            })
+
+
+            $("#skill_leaderBTN").click(function() {
+                $("#skillPro_infoBox").hide()
+                $("#skillCommon_infoBox").hide()
+
+                $("#skillLeader_infoBox").show({
+                    direction: "down"
+                }, 300);
+                console.log("aaa")
+
+            })
+
+
+            $(".skillTreeDescBTN").click(function() {
+                $('#skill_description_text').text("spine 工具操作 --> spine 腳色動畫 --> spine 特效")
+                console.log('bbb')
+            });
+
+            $(".skillExtDescBTN").click(function() {
+                $('#skill_description_text').text("動畫原理，PIXI.JS，Cocos Creator，Laya Engine")
+                console.log('bbb')
+            });
+
+        </script>
+
+
+
+
+
+</body>
+
+</html>

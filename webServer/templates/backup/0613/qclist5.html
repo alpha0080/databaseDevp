@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!--
+
+
+    
+    
+    -->
+    <!-- meta使用viewport以确保页面可自由缩放 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 引入 dropzoe 样式 -->
+    <script src="https://rawgit.com/enyo/dropzone/master/dist/dropzone.js"></script>
+    <link rel="stylesheet" href="https://rawgit.com/enyo/dropzone/master/dist/dropzone.css">
+
+    <!-- 引入 jQuery Mobile 样式 -->
+    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
+
+    <!-- 引入 jQuery 库 -->
+    <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+
+    <!-- 引入 jQuery Mobile 库 -->
+    <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+
+    <!--
+	<link href="{{url_for('static',filename='css/jquery-ui.css')}}" rel="stylesheet">
+
+	<script src="{{url_for('static', filename='jqueryUI/jquery.js')}}"></script>
+-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="{{url_for('static', filename='jqueryUI/jqpaginator.min.js')}}"></script>
+    <title>Document</title>
+
+</head>
+
+<body>
+
+    <style>
+        .tableTr {
+            background-color: transparent;
+            table-layout: fixed;
+            text-align: left;
+            vertical-align: middle;
+
+        }
+
+        .projectIcon {
+            width: 20;
+            font-size: 12px;
+            background-color: black;
+            color: azure
+        }
+
+
+
+        .position-fixed-top {
+            position: fixed;
+            top: 10;
+            left: 0;
+            background: rgb(0, 0, 0);
+            color: #fff;
+            text-align: center;
+            text-decoration: none;
+        }
+
+        .position-fixed {
+            position: fixed;
+            top: 100px;
+            left: 500px;
+            background: rgb(0, 0, 0);
+            color: #fff;
+            text-align: center;
+            text-decoration: none;
+        }
+
+        .position-sticky-left {
+            position: relative;
+            top: 10px;
+            left: 10px;
+            background: rgb(255, 255, 255);
+            color: #fff;
+            text-align: center;
+            text-decoration: none;
+            z-index: 500 !important;
+        }
+
+
+        .zIndexA {
+            z-index: 1000 !important;
+
+        }
+
+        .td_project {}
+
+        .leftNav {}
+
+        .leftNavActive {
+
+            color: brown;
+        }
+
+    </style>
+
+    <div class="container-fluid">
+        <div class="row clearfix">
+            <!-- left side start-->
+            <div class="col-lg-4 " id="divSideLeft">
+                <div class="bg-dark">
+                    <nav class="navbar navbar-expand-sm bg-light navbar-light zIndexA">
+                        <!--<nav class="navbar navbar-expand-sm bg-dark navbar-dark zIndexA">-->
+                        <ul class="navbar-nav">
+                            <li class="nav-item" id="navbarQC">
+                                <a class="nav-link align-middle " id="navbarTextQC" href="#">QC</a>
+                            </li>
+                            <li class="nav-item" id="navbarProcess">
+                                <a class="nav-link leftNav" id="navbarTextProcess" style="color:darkslategrey" href="#">進行中</a>
+                            </li>
+                            <li class="nav-item" id="navbarRecent">
+                                <a class="nav-link leftNav" id="navbarTextRecent" style="color:cadetblue" href="#">最近</a>
+                            </li>
+                            <!--
+                            <li class="nav-item" id="navbarRecentInputText">
+                                <input class="form-control w-2 p-2" type="text" value="20" style="width: 50px;margin: -5px">
+                              </li>
+                              -->
+                            <li class="nav-item" id="navbarComplete">
+                                <a class="nav-link leftNav" id="navbarTextComplete" style="color:cadetblue" href="#">已完成</a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+
+                <div class="col-lg-4 bg-light ">
+
+                    <table class="table col-lg table-hover tableTr  " id="tableLeft">
+                        <thead>
+                            <tr>
+                                <th style="width:140px">專案名稱</th>
+                                <th style="width:200px"></th>
+                                <th></th>
+
+                            </tr>
+
+                        </thead>
+                        <tbody id="tableBodyLeft">
+
+
+                        </tbody>
+                    </table>
+
+
+                </div>
+            </div>
+            <!-- left side end-->
+            <div class="col-lg-8">
+                <div class="col">
+                    <nav class="navbar navbar-expand-lg bg-dark navbar-dark">
+                        <ul class="navbar-nav">
+                            <li class="nav-item active">
+                                <a class="nav-link" href="#" id="qcUpload">上傳</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">檢視</a>
+                            </li>
+
+                        </ul>
+                    </nav>
+
+                </div>
+                <div class="col-sm" id="divRightInfo">
+                    <h5>5/31</h5>
+                </div>
+                <div class="col-sm">
+
+                    <form action="/qcUpload" class="dropzone" id="dropzoneArea" method="POST"></form>
+
+                </div>
+
+                <!-- test 3    qc item list-->
+                <div class="col-sm" id="tableRight">
+                    <table class="table col-sm table-hover tableTr">
+                        <thead>
+                            <tr>
+                                <th style="width:10px">#</th>
+                                <th style="width:150px">#</th>
+                                <th style="width:300px">First</th>
+
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <div class="col-1" style="height: 112px;background-color:darkcyan"></div>
+
+                                </td>
+                                <td>
+                                    <img class="rounded float-left" src="http://vg.com/assets/simpleslot/chi_hsi_cf/qc/20180531/0528_七夕shot_01.jpg" alt="Generic placeholder image" style="height: 112px;width: 200px">
+                                </td>
+                                <td>Otto</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="col-1" style="height: 112px;background-color:darkcyan"></div>
+
+                                </td>
+                                <td>
+                                    <img class="rounded float-left" src="http://vg.com/assets/simpleslot/battle_of_ball/icon/battle_of_ball_v001_icon.png" alt="Generic placeholder image" style="height: 112px;width: 200px">
+                                </td>
+                                <td>Thornton</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="col-1" style="height: 112px;background-color:darkcyan"></div>
+
+                                </td>
+                                <td>
+
+                                    <iframe class="h-70" style="height: 112px;width: 200px" src="http://vg.com/assets/simpleslot/chi_hsi_cf/qc/20180531/render_effect_0531.mp4"></iframe>
+
+                                </td>
+                                <td>the Bird</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div id="uploadZone">
+                    <h5 class="text-left text text-secondary text-muted">上傳檔案</h5>
+
+
+                </div>
+
+
+
+            </div>
+        </div>
+
+
+
+
+
+
+
+
+
+
+        <script>
+            Dropzone.options.dropzoneArea = {
+                paramName: "file", // The name that will be used to transfer the file
+                maxFilesize: 500, // MB
+                acceptedFiles:  ".json , .png, .jpg , .atlas, .pdf, .pptx, .ppt, .txt, .doc, .xml",
+                 init: function() {
+                    //  $.post({url:"/qcUpload",
+                    //  data:{"hhh": "1"}
+    
+                     this.on("processing", function(file) {
+                            console.log("initial upload folder")
+                              $.post("/qcUpload", {"uuu": "c:/webServer/uploads/1", 'youdata': 'youdata from front'} );
+
+                         
+                        });
+                    }
+            };
+
+
+            var selectedProjList = [];
+            //qcUpload
+
+            $('#qcUpload').click(function() {
+                var noProjectText = $('<h5 class ="text-danger" id="infoText" >請選擇專案</h5>')
+
+                // $("#tableRight").remove(); divRightInfo
+                $("#infoText").remove()
+                console.log(selectedProjList.length)
+                if (selectedProjList.length == 0) {
+                    $("#divRightInfo").append(noProjectText)
+                } else {
+                    $("#infoProjectText").remove()
+                    var projectSelectText = $('<h5 class ="text-info " id="infoProjectText" >' +
+                        selectedProjList[1] +
+                        '</h5>'
+                    )
+                    $("#divRightInfo").append(projectSelectText);
+                    createUploadZone()
+                }
+
+            })
+
+            $('#navbarProcess').click(function() {
+                console.log("clicked nav bar inProcess");
+                $('.leftNav').css('color', 'cadetblue');
+                $('#navbarTextProcess').css('color', 'darkslategrey');
+                $.post("/getProjectDB", {
+                    "projectState": "process",
+                    'listCount': 20
+                });
+                $(".td_project").remove();
+                createProjectTable("/getProjectProcessDB");
+            });
+            $('#navbarTextRecent').click(function() {
+                console.log("clicked nav bar inProcess");
+                $('.leftNav').css('color', 'cadetblue');
+                $('#navbarTextRecent').css('color', 'darkslategrey');
+                $.post("/getProjectDB", {
+                    "projectState": "recent",
+                    'listCount': 20
+                });
+                $(".td_project").remove();
+                createProjectTable("/getProjectRecentDB");
+
+
+
+
+            });
+            $('#navbarTextComplete').click(function() {
+                console.log("clicked nav bar inProcess");
+                $('.leftNav').css('color', 'cadetblue');
+                $('#navbarTextComplete').css('color', 'darkslategrey');
+                $.post("/getProjectDB", {
+                    "projectState": "complete",
+                    'listCount': 20
+                });
+                $(".td_project").remove();
+                createProjectTable("/getProjectCompletedDB");
+            });
+
+
+            $(document).ready(function() {
+
+                $("#tableLeft").disableSelection();
+                $("#divSideLeft").disableSelection();
+                createProjectTable("/getProjectProcessDB"); //call recent project
+
+                tableLeft
+
+
+            })
+
+
+            function createUploadZone() { // 可能要先創立 div 
+                console.log("create upload zone")
+
+                $("#dropzoneArea").show(1000);
+                $.ajax({url:"/qcUpload",
+                      data:{"url": "1"}
+                       });
+            };
+
+
+
+            function createProjectTable(projectState) {
+                // console.log('getJson')
+                //  $.post("/getProjectDB",{
+                //       "projectState": "recent",
+                //      'listCount': 20
+                //       });
+                $.getJSON(projectState, function(data) {
+
+                    console.log(typeof(data))
+                    console.log("projectCount", data.length)
+                    for (var i = 0; i < data.length; i++) { //data.length
+                        // console.log(data[i]);
+                        projectName = data[i][8]
+                        projectCNName = data[i][10]
+                        //   console.log("projectCNName",projectCNName)
+                        //userSec = data[i][19]
+                        var tdID = "leftTd:" + projectName
+                        var tdImageID = "leftTdImageID:" + projectName
+
+                        //   console.log("tdID",tdID)
+                        var $tr = $('<tr class="table-active"' +
+                            '></tr>');
+
+                        var $div1 = $('<div style="background-color:rgb(30,30,30)">')
+                        var $div2 = $('</div>')
+
+                        var $td1 = $('<td class="td_project " style="border: 0px" id="num">' + " " + '</td>');
+                        var $tdRadio1 = $('<input type="radio" aria-label="Radio button for following text input">')
+                        var $td2 = $('<td class="td_project co-sm" style="border: 0px;font-size: 12px;text-align: left"' +
+                            'id="' + projectName + '"' +
+                            '>' +
+                            '<h7 class="text-success td_project  ">' + projectCNName + '</h7>' + '<br>' +
+                            '<h6 class="text-info td_project">' + projectName + '</h6>' +
+                            '</td>');
+                        var imageName = "http://vg.com/assets/simpleslot/" + projectName + "/icon/" + projectName + "_v001_icon.png"
+                        // console.log(i,typeof(imageName),imageName)
+
+                        var $td3 = $('<img src="' +
+                            imageName + '"' +
+                            'class="img-thumbnail td_project" style="padding:2px"' +
+                            'id="' + projectName + '"' +
+                            '>');
+                        var $td3_err = $('<img src="http://vg.com/assets/simpleslot/qc_db/icon/no_image.png"' +
+                            'class="img-thumbnail td_project" style="padding:2px"' +
+                            'id="' + projectName + '"' +
+                            '>');
+
+                        // console.log(imageName)
+                        var $tr2 = $('<tr class="td_project btn btn-light" style="height:5px;"></tr>');
+                        var $td4 = $('<td class="td_project btn btn-light" style="border: 0px;font-size:2px;line-height: 2px">' + '</td>');
+
+                        //var $td4 = $('<button class="button" style="height:20 px">ba</button>');
+                        //    var $td4 = $('<td class="td_content4">' + userSec + '</td>'); style="font-size: 10px"style="text-align: left"
+
+                        // '<img src="http://vg.com/assets/simpleslot/battle_of_ball/icon/battle_of_ball_v001_icon.png" class="img-thumbnail ">' +
+                        //http://vg.com/assets/simpleslot/battle_of_ball/icon/battle_of_ball_v001_icon.png style="background-color: black"
+
+                        //console.log("image file",imageName)
+                        $("#tableBodyLeft").append($tr);
+                        // $("#tableBodyLeft").append($td1);
+                        //$("#tableBodyLeft").append($div1);
+                        try {
+                            $("#tableBodyLeft").append($td3);
+                        } catch (e) {
+
+                            $("#tableBodyLeft").append($td3_err);
+                            //  document.getElementById("demo").innerHTML = err.message;
+                        }
+
+
+
+
+                        //$("#tableBodyLeft").append($td3);
+
+                        $("#tableBodyLeft").append($td2);
+                        //$("#tableBodyLeft").append($div2);
+
+                        $td2.click(function() {
+                            // console.log($(this).text());
+                            //  console.log($(this).attr("id"));
+                            selectedProjList = []
+                            selectedProjList.push($(this).attr("id"))
+                            selectedProjList.push($(this).text())
+                            $("#infoProjectText").remove()
+                            var projectSelectText = $('<h5 class ="text-info " id="infoProjectText" >' +
+                                selectedProjList[1] +
+                                '</h5>')
+                            $("#divRightInfo").append(projectSelectText);
+                            console.log("selectedProjList", selectedProjList)
+                            $(".td_project").css({
+                                "border-style": "none"
+                            });
+                            $(this).css({
+                                "border-style": "solid",
+                                "border-width": "2px",
+                                "border-color": "rgb(200,230,200)"
+                            });
+                            //$("#tableRight").remove();
+                        });
+                        $td3.click(function() {
+                            // console.log($(this).text());
+                            //  console.log($(this).attr("id"));
+                            selectedProjList = []
+                            selectedProjList.push($(this).attr("id"))
+                            selectedProjList.push($(this).text())
+                            $("#infoProjectText").remove()
+                            var projectSelectText = $('<h5 class ="text-info " id="infoProjectText" >' +
+                                selectedProjList[1] +
+                                '</h5>')
+                            $("#divRightInfo").append(projectSelectText);
+                            console.log("selectedProjList", selectedProjList)
+                            $(".td_project").css({
+                                "border-style": "none",
+                            });
+                            $(this).css({
+                                "border-style": "solid",
+                                "border-width": "2px",
+                                "border-color": "rgb(200,230,200)"
+                            });
+                            //$("#tableRight").remove();
+                        });
+                        jQuery(".img-thumbnail").error(function(e) {
+                            //圖片失連
+                            jQuery(e.target).attr("src", "http://vg.com/assets/simpleslot/qc_db/icon/no_image.png");
+                        });
+
+
+                    }
+
+                });
+
+
+
+            };
+
+
+            function isEventSupported(eventName) {
+                var el = document.createElement('div');
+                eventName = 'on' + eventName;
+                var isSupported = (eventName in el);
+                if (!isSupported) {
+                    el.setAttribute(eventName, 'return;');
+                    isSupported = typeof el[eventName] == 'function';
+                }
+                el = null;
+                return isSupported;
+            }
+
+            $(document).ready(function() {
+                $("#dropzoneArea").hide();
+                // Check which wheel event is supported. Don't use both as it would fire each event 
+                // in browsers where both events are supported.
+                var wheelEvent = isEventSupported('mousewheel') ? 'mousewheel' : 'wheel';
+
+                // Now bind the event to the desired element
+                $('#divSideLeft').on(wheelEvent, function(e) {
+                    var oEvent = e.originalEvent,
+                        delta = oEvent.deltaY || oEvent.wheelDelta;
+                    //console.log($("#projectTable").scrollTop())
+                    //   console.log("delta", delta)
+                    // deltaY for wheel event
+                    // wheelData for mousewheel event
+
+                    if (delta > 0) {
+
+                        var y = scrollDown("#tableLeft")
+                    } else {
+
+                        var y = scrollUp("#tableLeft")
+                    }
+
+
+                });
+
+
+
+
+            })
+
+            function scrollUp(item) {
+                //   console.log("scroll up")
+                var itemPosition = $(item).position()
+                var ya = itemPosition.top
+                //var y = parseInt($(item).offset().top)
+                // itemPosition.top = 200
+                //var scrollValue = 10
+                ya = itemPosition.top - 10
+                //    console.log("ya", ya)
+
+                //console.log($(item).offset().top)
+            }
+
+            function scrollDown(item) {
+                //  console.log("scroll down")
+                var itemPosition = $(item).position()
+                var yb = itemPosition.top
+                // var y = parseInt($(item).offset().top)
+                yb += 10
+                //  console.log("yb", yb)
+                // $(item).css({"top": yb});
+            }
+            // mouse click to drag Table
+            /*
+            var x1, y1, x2, y2, offleft, offtop, isclik = 0;
+            
+            $(function() {
+
+                var wmax = 500 - $("#divSideLeft").width();
+                var hmax = 300 - $("#divSideLeft").height();
+                $("#divSideLeft").click(function() {});
+                $("#divSideLeft").mousedown(function(e) {
+
+                    y1 = e.pageY;
+                    offtop = parseInt($("#divSideLeft").css('top'));
+                    isclik = 1;
+
+                });
+                $("#divSideLeft").mousemove(function(e) {
+                    if (isclik == 1) {
+                        y2 = e.pageY;
+                        var yy = y2 - y1 + offtop;
+}
+                        if (yy >= 0 && yy < hmax - 1) {
+                $("#tableLeft").css({"top": yy})
+
+                        }
+
+                    } else {
+                        isclik = 0
+
+                    }
+
+                }).mouseup(function() {
+                    //  console.log("up up")
+                    //  console.log("y2upupupup", y2)
+                    isclik = 0;
+                    var currentY = parseInt($("#tableLeft").position().top)
+                    moveY = currentY + (y2 - y1)
+                    //  console.log("moveY", moveY)
+                    if (moveY > 0) {
+                        $("#tableLeft").css({
+                            "top": 0
+                        })
+                    } else {
+                        $("#tableLeft").css({
+                            "top": moveY
+                        })
+                    }
+
+                });
+
+            });
+            */
+
+
+
+
+
+            var maxList = 10
+            var startNum = 10
+            var endNum = 55
+            //createTable(maxList, startNum, endNum)
+
+            function createTable(maxList, startNum, endNum) {
+                for (var i = startNum; i < endNum + 1; i++) {
+
+                    var $tr = $('<tr class="tr_content"></tr>');
+                    var $td1 = $('<td style="border: 0px">' +
+                        i +
+                        '</td>')
+                    var $td2 = $('<td style="vertical-align: middle;border: 0px">' +
+                        '<img src="http://vg.com/assets/simpleslot/battle_of_ball/qc/win.png" class="rounded float-left " style="height:100px">' +
+
+                        // '<img src="http://vg.com/assets/simpleslot/battle_of_ball/icon/battle_of_ball_v001_icon.png" class="img-thumbnail ">' +
+                        '</td>');
+                    var $td3 = $('<td style="border: 0px">' +
+                        'projectName' +
+                        '</td>')
+
+
+                    $("#tableBodyLeft").append($tr);
+                    $("#tableBodyLeft").append($td1);
+
+                    $("#tableBodyLeft").append($td2);
+                    $("#tableBodyLeft").append($td3);
+
+
+
+                };
+            };
+
+        </script>
+</body>
+
+</html>

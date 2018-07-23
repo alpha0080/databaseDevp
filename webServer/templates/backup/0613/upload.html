@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>pixiSpineTest-DropZone</title>
+    
+    <link href="{{url_for('static',filename='css/bootstrap.min.css')}}" rel="stylesheet">
+    <link href="{{url_for('static',filename='css/fileinput.min.css')}}" rel="stylesheet">
+    <link href="{{url_for('static',filename='css/fileinput-rtl.min.css')}}" rel="stylesheet">
+    <link href="{{url_for('static',filename='css/jquery-ui.css')}}" rel="stylesheet">
+
+    <script src="{{url_for('static', filename='jqueryUI/jquery.js')}}"></script>
+
+    <script src="{{url_for('static', filename='jqueryUI/jquery-ui.js')}}"></script>
+<!--
+    {{ dropzone.load() }} {{ dropzone.style('border: 2px dashed #0087F7; margin: 10%; min-height: 400px;color:rgb(250,250,250);background-color:rgb(50,50,50)') }}-->
+</head>
+
+<body>
+   release Note 0.92 beta, 可以放入背景圖 <br>
+   <br>
+   
+   <p style = "color:brown">將背景圖改成 bg.png 或是 bg.jpg，連同spine的檔案一同拖入視窗即可</p>
+    <div>
+          {{ dropzone.create(action_view='upload') }} 
+    </div>
+    <div style="margin:10% ">
+        <input type="button" value="spine 測試" id ="submitRequest" style = "height: 50px;width:360px;border-radius: 10px;background-color:rgb(200,200,200)">
+    </div>
+    <script>
+           /*   
+        $("#submitRequest").click(function(){
+            console.log("open New Window")
+            window.open("http://192.168.161.193:80/pixiSpine")
+            var data = {
+                'name': 'kikay',
+                'age': 18
+            }
+            $.ajax({
+                type: 'POST',
+                url: '{{url_for("cleanReq")}}',
+                data: data,
+                dataType: 'json', //希望服务器返回json格式的数据
+                });
+            
+            location.reload();
+             
+            });
+            /*
+            $('#submitRequest').click(function() {
+            window.open("http://192.168.161.46:5000/pixiSpine")
+            var data = {
+                'name': 'kikay',
+                'age': 18
+            }
+            $.ajax({
+                type: 'POST',
+                url: '{{url_for("cleanReq")}}',
+                data: data,
+                dataType: 'json', //希望服务器返回json格式的数据
+                });
+                  
+            });
+            */
+    
+    
+    </script>
+
+</body>
+
+</html>
