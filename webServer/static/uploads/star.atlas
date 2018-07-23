@@ -1,0 +1,69 @@
+
+star.png
+size: 677,677
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+fire_ball.0001
+  rotate: true
+  xy: 2, 600
+  size: 75, 596
+  orig: 75, 596
+  offset: 0, 0
+  index: -1
+fire_ball.0002
+  rotate: true
+  xy: 2, 523
+  size: 75, 596
+  orig: 75, 596
+  offset: 0, 0
+  index: -1
+fire_ball.0003
+  rotate: true
+  xy: 2, 446
+  size: 75, 596
+  orig: 75, 596
+  offset: 0, 0
+  index: -1
+fire_ball.0004
+  rotate: true
+  xy: 2, 369
+  size: 75, 596
+  orig: 75, 596
+  offset: 0, 0
+  index: -1
+fire_ball.0005
+  rotate: true
+  xy: 2, 292
+  size: 75, 596
+  orig: 75, 596
+  offset: 0, 0
+  index: -1
+fire_ball.0006
+  rotate: true
+  xy: 2, 215
+  size: 75, 596
+  orig: 75, 596
+  offset: 0, 0
+  index: -1
+fire_ball.0007
+  rotate: true
+  xy: 2, 138
+  size: 75, 596
+  orig: 75, 596
+  offset: 0, 0
+  index: -1
+fire_ball.0008
+  rotate: false
+  xy: 600, 79
+  size: 75, 596
+  orig: 75, 596
+  offset: 0, 0
+  index: -1
+star_b2
+  rotate: false
+  xy: 2, 8
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1

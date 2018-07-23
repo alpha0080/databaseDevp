@@ -1,0 +1,55 @@
+
+bigWin_effectA_02.png
+size: 968,968
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+effectC_shine01
+  rotate: false
+  xy: 2, 294
+  size: 128, 256
+  orig: 128, 256
+  offset: 0, 0
+  index: -1
+freeGameText
+  rotate: false
+  xy: 2, 810
+  size: 964, 156
+  orig: 964, 156
+  offset: 0, 0
+  index: -1
+growC4
+  rotate: false
+  xy: 2, 552
+  size: 256, 256
+  orig: 256, 256
+  offset: 0, 0
+  index: -1
+star_d1
+  rotate: false
+  xy: 260, 744
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
+star_e1
+  rotate: false
+  xy: 2, 228
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
+star_f1
+  rotate: false
+  xy: 260, 710
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+star_s
+  rotate: false
+  xy: 132, 486
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1

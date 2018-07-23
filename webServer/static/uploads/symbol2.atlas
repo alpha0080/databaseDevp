@@ -1,0 +1,118 @@
+
+symbol2.png
+size: 1024,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+L_eyeball
+  rotate: false
+  xy: 159, 11
+  size: 20, 19
+  orig: 20, 19
+  offset: 0, 0
+  index: -1
+R_eyeball
+  rotate: false
+  xy: 957, 144
+  size: 18, 18
+  orig: 18, 18
+  offset: 0, 0
+  index: -1
+R_shoulder
+  rotate: false
+  xy: 478, 90
+  size: 153, 77
+  orig: 153, 77
+  offset: 0, 0
+  index: -1
+bg
+  rotate: false
+  xy: 240, 33
+  size: 236, 221
+  orig: 236, 221
+  offset: 0, 0
+  index: -1
+buddha_01
+  rotate: false
+  xy: 515, 6
+  size: 31, 30
+  orig: 31, 30
+  offset: 0, 0
+  index: -1
+buddha_02
+  rotate: false
+  xy: 996, 230
+  size: 25, 24
+  orig: 25, 24
+  offset: 0, 0
+  index: -1
+buddha_03
+  rotate: false
+  xy: 957, 164
+  size: 35, 33
+  orig: 35, 33
+  offset: 0, 0
+  index: -1
+buddha_04
+  rotate: false
+  xy: 478, 2
+  size: 35, 34
+  orig: 35, 34
+  offset: 0, 0
+  index: -1
+buddha_crown
+  rotate: false
+  xy: 478, 169
+  size: 157, 85
+  orig: 157, 85
+  offset: 0, 0
+  index: -1
+caps_01
+  rotate: true
+  xy: 2, 4
+  size: 26, 155
+  orig: 26, 155
+  offset: 0, 0
+  index: -1
+caps_02
+  rotate: true
+  xy: 478, 38
+  size: 50, 150
+  orig: 50, 150
+  offset: 0, 0
+  index: -1
+caps_03
+  rotate: true
+  xy: 890, 199
+  size: 55, 104
+  orig: 55, 104
+  offset: 0, 0
+  index: -1
+chest
+  rotate: false
+  xy: 637, 179
+  size: 130, 75
+  orig: 130, 75
+  offset: 0, 0
+  index: -1
+face
+  rotate: true
+  xy: 769, 162
+  size: 92, 119
+  orig: 92, 119
+  offset: 0, 0
+  index: -1
+frame
+  rotate: false
+  xy: 2, 32
+  size: 236, 222
+  orig: 236, 222
+  offset: 0, 0
+  index: -1
+neck
+  rotate: false
+  xy: 890, 137
+  size: 65, 60
+  orig: 65, 60
+  offset: 0, 0
+  index: -1

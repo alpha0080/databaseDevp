@@ -1,0 +1,62 @@
+
+fire_ball_b.png
+size: 1024,1024
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+fire_ball.0001
+  rotate: false
+  xy: 2, 2
+  size: 75, 596
+  orig: 75, 596
+  offset: 0, 0
+  index: -1
+fire_ball.0002
+  rotate: false
+  xy: 79, 2
+  size: 75, 596
+  orig: 75, 596
+  offset: 0, 0
+  index: -1
+fire_ball.0003
+  rotate: false
+  xy: 156, 2
+  size: 75, 596
+  orig: 75, 596
+  offset: 0, 0
+  index: -1
+fire_ball.0004
+  rotate: false
+  xy: 233, 2
+  size: 75, 596
+  orig: 75, 596
+  offset: 0, 0
+  index: -1
+fire_ball.0005
+  rotate: false
+  xy: 310, 2
+  size: 75, 596
+  orig: 75, 596
+  offset: 0, 0
+  index: -1
+fire_ball.0006
+  rotate: false
+  xy: 387, 2
+  size: 75, 596
+  orig: 75, 596
+  offset: 0, 0
+  index: -1
+fire_ball.0007
+  rotate: false
+  xy: 464, 2
+  size: 75, 596
+  orig: 75, 596
+  offset: 0, 0
+  index: -1
+fire_ball.0008
+  rotate: false
+  xy: 541, 2
+  size: 75, 596
+  orig: 75, 596
+  offset: 0, 0
+  index: -1

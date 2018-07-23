@@ -1,0 +1,48 @@
+
+symbol.png
+size: 1024,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+symbol10
+  rotate: false
+  xy: 474, 2
+  size: 234, 230
+  orig: 234, 230
+  offset: 0, 0
+  index: -1
+symbol5
+  rotate: false
+  xy: 2, 234
+  size: 234, 230
+  orig: 234, 230
+  offset: 0, 0
+  index: -1
+symbol6
+  rotate: false
+  xy: 2, 2
+  size: 234, 230
+  orig: 234, 230
+  offset: 0, 0
+  index: -1
+symbol7
+  rotate: false
+  xy: 238, 234
+  size: 234, 230
+  orig: 234, 230
+  offset: 0, 0
+  index: -1
+symbol8
+  rotate: false
+  xy: 238, 2
+  size: 234, 230
+  orig: 234, 230
+  offset: 0, 0
+  index: -1
+symbol9
+  rotate: false
+  xy: 474, 234
+  size: 234, 230
+  orig: 234, 230
+  offset: 0, 0
+  index: -1

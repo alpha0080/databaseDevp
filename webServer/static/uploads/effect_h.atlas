@@ -1,0 +1,27 @@
+
+effect_h.png
+size: 1024,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+meteor_A
+  rotate: false
+  xy: 2, 22
+  size: 256, 81
+  orig: 256, 81
+  offset: 0, 0
+  index: -1
+meteor_B
+  rotate: false
+  xy: 260, 24
+  size: 256, 79
+  orig: 256, 79
+  offset: 0, 0
+  index: -1
+point
+  rotate: false
+  xy: 2, 2
+  size: 18, 18
+  orig: 18, 18
+  offset: 0, 0
+  index: -1

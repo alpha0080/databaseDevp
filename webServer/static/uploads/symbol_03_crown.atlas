@@ -1,0 +1,230 @@
+
+symbol_03_crown.png
+size: 2048,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+light_02
+  rotate: false
+  xy: 1477, 122
+  size: 49, 51
+  orig: 49, 51
+  offset: 0, 0
+  index: -1
+symbol_03_crown
+  rotate: false
+  xy: 2, 34
+  size: 234, 218
+  orig: 234, 218
+  offset: 0, 0
+  index: -1
+symbol_03_crown_0001
+  rotate: true
+  xy: 62, 5
+  size: 27, 56
+  orig: 27, 56
+  offset: 0, 0
+  index: -1
+symbol_03_crown_0002
+  rotate: true
+  xy: 2, 2
+  size: 30, 58
+  orig: 30, 58
+  offset: 0, 0
+  index: -1
+symbol_03_crown_0003
+  rotate: false
+  xy: 1404, 99
+  size: 33, 71
+  orig: 33, 71
+  offset: 0, 0
+  index: -1
+symbol_03_crown_0004
+  rotate: true
+  xy: 346, 16
+  size: 40, 81
+  orig: 40, 81
+  offset: 0, 0
+  index: -1
+symbol_03_crown_0005
+  rotate: false
+  xy: 2005, 161
+  size: 41, 91
+  orig: 41, 91
+  offset: 0, 0
+  index: -1
+symbol_03_crown_0006
+  rotate: true
+  xy: 1220, 115
+  size: 55, 98
+  orig: 55, 98
+  offset: 0, 0
+  index: -1
+symbol_03_crown_0007
+  rotate: true
+  xy: 1648, 181
+  size: 71, 101
+  orig: 71, 101
+  offset: 0, 0
+  index: -1
+symbol_03_crown_0008
+  rotate: true
+  xy: 1542, 180
+  size: 72, 104
+  orig: 72, 104
+  offset: 0, 0
+  index: -1
+symbol_03_crown_0009
+  rotate: true
+  xy: 1435, 175
+  size: 77, 105
+  orig: 77, 105
+  offset: 0, 0
+  index: -1
+symbol_03_crown_0010
+  rotate: true
+  xy: 1328, 172
+  size: 80, 105
+  orig: 80, 105
+  offset: 0, 0
+  index: -1
+symbol_03_crown_0011
+  rotate: true
+  xy: 1220, 172
+  size: 80, 106
+  orig: 80, 106
+  offset: 0, 0
+  index: -1
+symbol_03_crown_0012
+  rotate: true
+  xy: 688, 149
+  size: 103, 107
+  orig: 103, 107
+  offset: 0, 0
+  index: -1
+symbol_03_crown_0013
+  rotate: false
+  xy: 238, 34
+  size: 106, 108
+  orig: 106, 108
+  offset: 0, 0
+  index: -1
+symbol_03_crown_0014
+  rotate: false
+  xy: 238, 144
+  size: 107, 108
+  orig: 107, 108
+  offset: 0, 0
+  index: -1
+symbol_03_crown_0015
+  rotate: false
+  xy: 578, 147
+  size: 108, 105
+  orig: 108, 105
+  offset: 0, 0
+  index: -1
+symbol_03_crown_0016
+  rotate: false
+  xy: 347, 153
+  size: 115, 99
+  orig: 115, 99
+  offset: 0, 0
+  index: -1
+symbol_03_crown_0017
+  rotate: false
+  xy: 464, 154
+  size: 112, 98
+  orig: 112, 98
+  offset: 0, 0
+  index: -1
+symbol_03_crown_0018
+  rotate: false
+  xy: 797, 154
+  size: 108, 98
+  orig: 108, 98
+  offset: 0, 0
+  index: -1
+symbol_03_crown_0019
+  rotate: false
+  xy: 907, 154
+  size: 106, 98
+  orig: 106, 98
+  offset: 0, 0
+  index: -1
+symbol_03_crown_0020
+  rotate: false
+  xy: 1015, 154
+  size: 103, 98
+  orig: 103, 98
+  offset: 0, 0
+  index: -1
+symbol_03_crown_0021
+  rotate: false
+  xy: 1120, 154
+  size: 98, 98
+  orig: 98, 98
+  offset: 0, 0
+  index: -1
+symbol_03_crown_0022
+  rotate: true
+  xy: 1751, 161
+  size: 91, 92
+  orig: 91, 92
+  offset: 0, 0
+  index: -1
+symbol_03_crown_0023
+  rotate: false
+  xy: 1845, 169
+  size: 84, 83
+  orig: 84, 83
+  offset: 0, 0
+  index: -1
+symbol_03_crown_0024
+  rotate: false
+  xy: 1931, 170
+  size: 72, 82
+  orig: 72, 82
+  offset: 0, 0
+  index: -1
+symbol_03_crown_0025
+  rotate: true
+  xy: 1320, 111
+  size: 59, 82
+  orig: 59, 82
+  offset: 0, 0
+  index: -1
+symbol_03_crown_0026
+  rotate: true
+  xy: 347, 101
+  size: 50, 82
+  orig: 50, 82
+  offset: 0, 0
+  index: -1
+symbol_03_crown_0027
+  rotate: true
+  xy: 346, 58
+  size: 41, 81
+  orig: 41, 81
+  offset: 0, 0
+  index: -1
+symbol_03_crown_0028
+  rotate: false
+  xy: 1439, 104
+  size: 36, 69
+  orig: 36, 69
+  offset: 0, 0
+  index: -1
+symbol_03_crown_0029
+  rotate: false
+  xy: 431, 96
+  size: 33, 55
+  orig: 33, 55
+  offset: 0, 0
+  index: -1
+symbol_03_crown_0030
+  rotate: false
+  xy: 466, 102
+  size: 31, 50
+  orig: 31, 50
+  offset: 0, 0
+  index: -1

@@ -1,0 +1,83 @@
+
+effectD_1.png
+size: 1024,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+blur_line
+  rotate: true
+  xy: 242, 194
+  size: 51, 288
+  orig: 51, 288
+  offset: 0, 0
+  index: -1
+blur_point2
+  rotate: false
+  xy: 956, 202
+  size: 43, 43
+  orig: 43, 43
+  offset: 0, 0
+  index: -1
+copper_coin.0001
+  rotate: false
+  xy: 242, 92
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: -1
+copper_coin.0002
+  rotate: false
+  xy: 344, 92
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: -1
+copper_coin.0003
+  rotate: false
+  xy: 446, 92
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: -1
+copper_coin.0004
+  rotate: false
+  xy: 548, 145
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: -1
+copper_coin.0005
+  rotate: false
+  xy: 650, 145
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: -1
+copper_coin.0006
+  rotate: false
+  xy: 752, 145
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: -1
+copper_coin.0007
+  rotate: false
+  xy: 854, 145
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: -1
+copper_coin.0008
+  rotate: false
+  xy: 548, 43
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: -1
+green_cloud
+  rotate: false
+  xy: 2, 2
+  size: 238, 243
+  orig: 238, 243
+  offset: 0, 0
+  index: -1

@@ -1,0 +1,89 @@
+
+effect_g.png
+size: 2048,2048
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+glow_center
+  rotate: false
+  xy: 1768, 1614
+  size: 256, 256
+  orig: 256, 256
+  offset: 0, 0
+  index: -1
+lens_0001
+  rotate: false
+  xy: 1028, 735
+  size: 500, 109
+  orig: 500, 109
+  offset: 0, 0
+  index: -1
+lighting.0001
+  rotate: false
+  xy: 2, 1502
+  size: 1024, 368
+  orig: 1024, 368
+  offset: 0, 0
+  index: -1
+lighting.0002
+  rotate: false
+  xy: 2, 1132
+  size: 1024, 368
+  orig: 1024, 368
+  offset: 0, 0
+  index: -1
+lighting.0003
+  rotate: false
+  xy: 2, 762
+  size: 1024, 368
+  orig: 1024, 368
+  offset: 0, 0
+  index: -1
+lighting.0004
+  rotate: true
+  xy: 1028, 846
+  size: 1024, 368
+  orig: 1024, 368
+  offset: 0, 0
+  index: -1
+lighting.0005
+  rotate: false
+  xy: 2, 392
+  size: 1024, 368
+  orig: 1024, 368
+  offset: 0, 0
+  index: -1
+lighting.0006
+  rotate: true
+  xy: 1398, 846
+  size: 1024, 368
+  orig: 1024, 368
+  offset: 0, 0
+  index: -1
+lighting.0007
+  rotate: false
+  xy: 2, 22
+  size: 1024, 368
+  orig: 1024, 368
+  offset: 0, 0
+  index: -1
+point
+  rotate: false
+  xy: 2, 2
+  size: 18, 18
+  orig: 18, 18
+  offset: 0, 0
+  index: -1
+
+effect_g2.png
+size: 2048,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+lighting.0008
+  rotate: false
+  xy: 2, 2
+  size: 1024, 368
+  orig: 1024, 368
+  offset: 0, 0
+  index: -1

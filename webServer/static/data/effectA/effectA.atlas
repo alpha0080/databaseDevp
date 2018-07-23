@@ -1,0 +1,13 @@
+
+effectA.png
+size: 128,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+fan_light_D_add
+  rotate: false
+  xy: 2, 2
+  size: 72, 464
+  orig: 72, 464
+  offset: 0, 0
+  index: -1

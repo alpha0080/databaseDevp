@@ -1,0 +1,13 @@
+
+star_01.png
+size: 128,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+blue_star_add
+  rotate: false
+  xy: 2, 2
+  size: 77, 77
+  orig: 77, 77
+  offset: 0, 0
+  index: -1

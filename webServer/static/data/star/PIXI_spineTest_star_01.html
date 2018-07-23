@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="scripts/pixi.js?1500"></script>
+	<script src="scripts/pixi-spine.js?1500"></script>
+
+</head>
+
+<body>
+	<script>
+		var app = new PIXI.Application(1920,1080);
+		document.body.appendChild(app.view);
+
+		PIXI.loader
+			.add('star_01', 'star_01.json')
+			.load(onAssetsLoaded);
+
+		app.stage.interactive = true;
+        	
+		function onAssetsLoaded(loader, res) {
+            
+			var star = new PIXI.spine.Spine(res.star_01.spineData);
+
+			// set the position
+			star.x = app.screen.width / 2;
+			star.y = app.screen.height/2;
+
+			star.scale.set(1);
+
+			// set up the mixes!
+			//spineBoy.stateData.setMix('walk', 'jump', 0.2);
+			//spineBoy.stateData.setMix('jump', 'walk', 0.4);
+
+			// play animation
+			star.state.setAnimation(0, 'star', true);
+
+			app.stage.addChild(star);
+		
+		//	app.stage.on('pointerdown', function() {
+			//	spineBoy.state.setAnimation(0, 'jump', false);
+			//	spineBoy.state.addAnimation(0, 'walk', true, 0);
+		//	});
+			
+			
+          
+          //  console.log("loader",PIXI.loader)
+		}
+	</script>
+</body>
+</html>

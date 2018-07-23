@@ -1,0 +1,34 @@
+
+symbol3.png
+size: 1024,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+color
+  rotate: false
+  xy: 255, 14
+  size: 239, 231
+  orig: 239, 231
+  offset: 0, 0
+  index: -1
+ears
+  rotate: false
+  xy: 739, 186
+  size: 104, 59
+  orig: 104, 59
+  offset: 0, 0
+  index: -1
+frame1
+  rotate: false
+  xy: 2, 2
+  size: 251, 243
+  orig: 251, 243
+  offset: 0, 0
+  index: -1
+head
+  rotate: false
+  xy: 496, 31
+  size: 241, 214
+  orig: 241, 214
+  offset: 0, 0
+  index: -1

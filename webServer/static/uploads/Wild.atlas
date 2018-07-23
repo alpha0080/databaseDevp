@@ -1,0 +1,320 @@
+
+Wild.png
+size: 2048,2048
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+images/pic_symbol_m1/pic_symbol_m1_0000
+  rotate: false
+  xy: 2, 1163
+  size: 391, 385
+  orig: 391, 385
+  offset: 0, 0
+  index: -1
+images/pic_symbol_m1/pic_symbol_m1_0001
+  rotate: false
+  xy: 395, 1550
+  size: 391, 385
+  orig: 391, 385
+  offset: 0, 0
+  index: -1
+images/pic_symbol_m1/pic_symbol_m1_0002
+  rotate: false
+  xy: 2, 776
+  size: 391, 385
+  orig: 391, 385
+  offset: 0, 0
+  index: -1
+images/pic_symbol_m1/pic_symbol_m1_0003
+  rotate: false
+  xy: 395, 1163
+  size: 391, 385
+  orig: 391, 385
+  offset: 0, 0
+  index: -1
+images/pic_symbol_m1/pic_symbol_m1_0004
+  rotate: false
+  xy: 788, 1550
+  size: 391, 385
+  orig: 391, 385
+  offset: 0, 0
+  index: -1
+images/pic_symbol_m1/pic_symbol_m1_0005
+  rotate: false
+  xy: 2, 389
+  size: 391, 385
+  orig: 391, 385
+  offset: 0, 0
+  index: -1
+images/pic_symbol_m1/pic_symbol_m1_0006
+  rotate: false
+  xy: 395, 776
+  size: 391, 385
+  orig: 391, 385
+  offset: 0, 0
+  index: -1
+images/pic_symbol_m1/pic_symbol_m1_0007
+  rotate: false
+  xy: 788, 1163
+  size: 391, 385
+  orig: 391, 385
+  offset: 0, 0
+  index: -1
+images/pic_symbol_m1/pic_symbol_m1_0008
+  rotate: false
+  xy: 1181, 1550
+  size: 391, 385
+  orig: 391, 385
+  offset: 0, 0
+  index: -1
+images/pic_symbol_m1/pic_symbol_m1_0009
+  rotate: false
+  xy: 2, 2
+  size: 391, 385
+  orig: 391, 385
+  offset: 0, 0
+  index: -1
+images/pic_symbol_m1/pic_symbol_m1_0010
+  rotate: false
+  xy: 395, 389
+  size: 391, 385
+  orig: 391, 385
+  offset: 0, 0
+  index: -1
+images/pic_symbol_m1/pic_symbol_m1_0011
+  rotate: false
+  xy: 788, 776
+  size: 391, 385
+  orig: 391, 385
+  offset: 0, 0
+  index: -1
+images/pic_symbol_m1/pic_symbol_m1_0012
+  rotate: false
+  xy: 1181, 1163
+  size: 391, 385
+  orig: 391, 385
+  offset: 0, 0
+  index: -1
+images/pic_symbol_m1/pic_symbol_m1_0013
+  rotate: false
+  xy: 1574, 1550
+  size: 391, 385
+  orig: 391, 385
+  offset: 0, 0
+  index: -1
+images/pic_symbol_m1/pic_symbol_m1_0014
+  rotate: false
+  xy: 395, 2
+  size: 391, 385
+  orig: 391, 385
+  offset: 0, 0
+  index: -1
+images/pic_symbol_m1/pic_symbol_m1_0015
+  rotate: false
+  xy: 788, 389
+  size: 391, 385
+  orig: 391, 385
+  offset: 0, 0
+  index: -1
+images/pic_symbol_m1/pic_symbol_m1_0016
+  rotate: false
+  xy: 1181, 776
+  size: 391, 385
+  orig: 391, 385
+  offset: 0, 0
+  index: -1
+images/pic_symbol_m1/pic_symbol_m1_0017
+  rotate: false
+  xy: 1574, 1163
+  size: 391, 385
+  orig: 391, 385
+  offset: 0, 0
+  index: -1
+images/pic_symbol_m1/pic_symbol_m1_0018
+  rotate: false
+  xy: 788, 2
+  size: 391, 385
+  orig: 391, 385
+  offset: 0, 0
+  index: -1
+images/pic_symbol_m1/pic_symbol_m1_0019
+  rotate: false
+  xy: 1181, 389
+  size: 391, 385
+  orig: 391, 385
+  offset: 0, 0
+  index: -1
+images/pic_symbol_m1/pic_symbol_m1_0020
+  rotate: false
+  xy: 1574, 776
+  size: 391, 385
+  orig: 391, 385
+  offset: 0, 0
+  index: -1
+images/pic_symbol_m1/pic_symbol_m1_0021
+  rotate: false
+  xy: 1181, 2
+  size: 391, 385
+  orig: 391, 385
+  offset: 0, 0
+  index: -1
+images/pic_symbol_m1/pic_symbol_m1_0022
+  rotate: false
+  xy: 1574, 389
+  size: 391, 385
+  orig: 391, 385
+  offset: 0, 0
+  index: -1
+images/pic_symbol_m1/pic_symbol_m1_0023
+  rotate: false
+  xy: 1574, 2
+  size: 391, 385
+  orig: 391, 385
+  offset: 0, 0
+  index: -1
+images/pic_symbol_m1/pic_symbol_m1_0043
+  rotate: false
+  xy: 2, 1550
+  size: 391, 385
+  orig: 391, 385
+  offset: 0, 0
+  index: -1
+
+Wild2.png
+size: 2048,2048
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+images/pic_symbol_m1/pic_symbol_m1_0024
+  rotate: false
+  xy: 2, 1550
+  size: 391, 385
+  orig: 391, 385
+  offset: 0, 0
+  index: -1
+images/pic_symbol_m1/pic_symbol_m1_0025
+  rotate: false
+  xy: 2, 1163
+  size: 391, 385
+  orig: 391, 385
+  offset: 0, 0
+  index: -1
+images/pic_symbol_m1/pic_symbol_m1_0026
+  rotate: false
+  xy: 395, 1550
+  size: 391, 385
+  orig: 391, 385
+  offset: 0, 0
+  index: -1
+images/pic_symbol_m1/pic_symbol_m1_0027
+  rotate: false
+  xy: 2, 776
+  size: 391, 385
+  orig: 391, 385
+  offset: 0, 0
+  index: -1
+images/pic_symbol_m1/pic_symbol_m1_0028
+  rotate: false
+  xy: 395, 1163
+  size: 391, 385
+  orig: 391, 385
+  offset: 0, 0
+  index: -1
+images/pic_symbol_m1/pic_symbol_m1_0029
+  rotate: false
+  xy: 788, 1550
+  size: 391, 385
+  orig: 391, 385
+  offset: 0, 0
+  index: -1
+images/pic_symbol_m1/pic_symbol_m1_0030
+  rotate: false
+  xy: 2, 389
+  size: 391, 385
+  orig: 391, 385
+  offset: 0, 0
+  index: -1
+images/pic_symbol_m1/pic_symbol_m1_0031
+  rotate: false
+  xy: 395, 776
+  size: 391, 385
+  orig: 391, 385
+  offset: 0, 0
+  index: -1
+images/pic_symbol_m1/pic_symbol_m1_0032
+  rotate: false
+  xy: 788, 1163
+  size: 391, 385
+  orig: 391, 385
+  offset: 0, 0
+  index: -1
+images/pic_symbol_m1/pic_symbol_m1_0033
+  rotate: false
+  xy: 1181, 1550
+  size: 391, 385
+  orig: 391, 385
+  offset: 0, 0
+  index: -1
+images/pic_symbol_m1/pic_symbol_m1_0034
+  rotate: false
+  xy: 2, 2
+  size: 391, 385
+  orig: 391, 385
+  offset: 0, 0
+  index: -1
+images/pic_symbol_m1/pic_symbol_m1_0035
+  rotate: false
+  xy: 395, 389
+  size: 391, 385
+  orig: 391, 385
+  offset: 0, 0
+  index: -1
+images/pic_symbol_m1/pic_symbol_m1_0036
+  rotate: false
+  xy: 788, 776
+  size: 391, 385
+  orig: 391, 385
+  offset: 0, 0
+  index: -1
+images/pic_symbol_m1/pic_symbol_m1_0037
+  rotate: false
+  xy: 1181, 1163
+  size: 391, 385
+  orig: 391, 385
+  offset: 0, 0
+  index: -1
+images/pic_symbol_m1/pic_symbol_m1_0038
+  rotate: false
+  xy: 1574, 1550
+  size: 391, 385
+  orig: 391, 385
+  offset: 0, 0
+  index: -1
+images/pic_symbol_m1/pic_symbol_m1_0039
+  rotate: false
+  xy: 395, 2
+  size: 391, 385
+  orig: 391, 385
+  offset: 0, 0
+  index: -1
+images/pic_symbol_m1/pic_symbol_m1_0040
+  rotate: false
+  xy: 788, 389
+  size: 391, 385
+  orig: 391, 385
+  offset: 0, 0
+  index: -1
+images/pic_symbol_m1/pic_symbol_m1_0041
+  rotate: false
+  xy: 1181, 776
+  size: 391, 385
+  orig: 391, 385
+  offset: 0, 0
+  index: -1
+images/pic_symbol_m1/pic_symbol_m1_0042
+  rotate: false
+  xy: 1574, 1163
+  size: 391, 385
+  orig: 391, 385
+  offset: 0, 0
+  index: -1

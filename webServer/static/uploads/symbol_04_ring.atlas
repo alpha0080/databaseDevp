@@ -1,0 +1,153 @@
+
+symbol_04_ring.png
+size: 1024,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+BG_conch
+  rotate: true
+  xy: 2, 314
+  size: 196, 188
+  orig: 196, 188
+  offset: 0, 0
+  index: -1
+light_01
+  rotate: true
+  xy: 916, 198
+  size: 90, 93
+  orig: 90, 93
+  offset: 0, 0
+  index: -1
+symbol_06_conch_0007
+  rotate: false
+  xy: 299, 16
+  size: 101, 116
+  orig: 101, 116
+  offset: 0, 0
+  index: -1
+symbol_06_conch_0008
+  rotate: false
+  xy: 2, 2
+  size: 127, 130
+  orig: 127, 130
+  offset: 0, 0
+  index: -1
+symbol_06_conch_0009
+  rotate: false
+  xy: 669, 5
+  size: 138, 153
+  orig: 138, 153
+  offset: 0, 0
+  index: -1
+symbol_06_conch_0010
+  rotate: true
+  xy: 510, 5
+  size: 153, 157
+  orig: 153, 157
+  offset: 0, 0
+  index: -1
+symbol_06_conch_0011
+  rotate: true
+  xy: 690, 344
+  size: 166, 161
+  orig: 166, 161
+  offset: 0, 0
+  index: -1
+symbol_06_conch_0012
+  rotate: true
+  xy: 192, 332
+  size: 178, 162
+  orig: 178, 162
+  offset: 0, 0
+  index: -1
+symbol_06_conch_0013
+  rotate: true
+  xy: 170, 134
+  size: 178, 165
+  orig: 178, 165
+  offset: 0, 0
+  index: -1
+symbol_06_conch_0014
+  rotate: true
+  xy: 2, 134
+  size: 178, 166
+  orig: 178, 166
+  offset: 0, 0
+  index: -1
+symbol_06_conch_0015
+  rotate: true
+  xy: 337, 153
+  size: 177, 168
+  orig: 177, 168
+  offset: 0, 0
+  index: -1
+symbol_06_conch_0016
+  rotate: true
+  xy: 356, 334
+  size: 176, 168
+  orig: 176, 168
+  offset: 0, 0
+  index: -1
+symbol_06_conch_0017
+  rotate: true
+  xy: 507, 160
+  size: 172, 167
+  orig: 172, 167
+  offset: 0, 0
+  index: -1
+symbol_06_conch_0018
+  rotate: false
+  xy: 526, 343
+  size: 162, 167
+  orig: 162, 167
+  offset: 0, 0
+  index: -1
+symbol_06_conch_0019
+  rotate: false
+  xy: 676, 174
+  size: 145, 167
+  orig: 145, 167
+  offset: 0, 0
+  index: -1
+symbol_06_conch_0020
+  rotate: true
+  xy: 131, 3
+  size: 129, 166
+  orig: 129, 166
+  offset: 0, 0
+  index: -1
+symbol_06_conch_0021
+  rotate: true
+  xy: 853, 398
+  size: 112, 160
+  orig: 112, 160
+  offset: 0, 0
+  index: -1
+symbol_06_conch_0022
+  rotate: true
+  xy: 853, 290
+  size: 106, 151
+  orig: 106, 151
+  offset: 0, 0
+  index: -1
+symbol_06_conch_0023
+  rotate: false
+  xy: 402, 5
+  size: 106, 146
+  orig: 106, 146
+  offset: 0, 0
+  index: -1
+symbol_06_conch_0024
+  rotate: false
+  xy: 809, 37
+  size: 105, 135
+  orig: 105, 135
+  offset: 0, 0
+  index: -1
+symbol_06_conch_0025
+  rotate: false
+  xy: 916, 63
+  size: 50, 133
+  orig: 50, 133
+  offset: 0, 0
+  index: -1

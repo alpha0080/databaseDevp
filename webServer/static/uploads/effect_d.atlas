@@ -1,0 +1,195 @@
+
+effect_d.png
+size: 2048,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+blur_point
+  rotate: false
+  xy: 1364, 74
+  size: 69, 69
+  orig: 69, 69
+  offset: 0, 0
+  index: -1
+copper_coin D.0001
+  rotate: false
+  xy: 242, 145
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: -1
+copper_coin D.0002
+  rotate: false
+  xy: 242, 43
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: -1
+copper_coin D.0003
+  rotate: false
+  xy: 344, 145
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: -1
+copper_coin D.0004
+  rotate: false
+  xy: 344, 43
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: -1
+copper_coin D.0005
+  rotate: false
+  xy: 446, 145
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: -1
+copper_coin D.0006
+  rotate: false
+  xy: 446, 43
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: -1
+copper_coin D.0007
+  rotate: false
+  xy: 548, 145
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: -1
+copper_coin D.0008
+  rotate: false
+  xy: 548, 43
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: -1
+copper_coin D.0009
+  rotate: false
+  xy: 650, 145
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: -1
+copper_coin D.0010
+  rotate: false
+  xy: 650, 43
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: -1
+copper_coin D.0011
+  rotate: false
+  xy: 752, 145
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: -1
+copper_coin D.0012
+  rotate: false
+  xy: 752, 43
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: -1
+copper_coin D.0013
+  rotate: false
+  xy: 854, 145
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: -1
+copper_coin D.0014
+  rotate: false
+  xy: 854, 43
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: -1
+copper_coin D.0015
+  rotate: false
+  xy: 956, 145
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: -1
+copper_coin.0001
+  rotate: false
+  xy: 956, 43
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: -1
+copper_coin.0002
+  rotate: false
+  xy: 1058, 145
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: -1
+copper_coin.0003
+  rotate: false
+  xy: 1058, 43
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: -1
+copper_coin.0004
+  rotate: false
+  xy: 1160, 145
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: -1
+copper_coin.0005
+  rotate: false
+  xy: 1160, 43
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: -1
+copper_coin.0006
+  rotate: false
+  xy: 1262, 145
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: -1
+copper_coin.0007
+  rotate: false
+  xy: 1262, 43
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: -1
+copper_coin.0008
+  rotate: false
+  xy: 1364, 145
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: -1
+green_cloud
+  rotate: false
+  xy: 2, 2
+  size: 238, 243
+  orig: 238, 243
+  offset: 0, 0
+  index: -1
+green_point
+  rotate: false
+  xy: 1466, 202
+  size: 43, 43
+  orig: 43, 43
+  offset: 0, 0
+  index: -1
+point
+  rotate: false
+  xy: 242, 23
+  size: 18, 18
+  orig: 18, 18
+  offset: 0, 0
+  index: -1

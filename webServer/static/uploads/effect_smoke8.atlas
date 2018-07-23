@@ -1,0 +1,20 @@
+
+effect_smoke8.png
+size: 512,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+smokeB
+  rotate: false
+  xy: 2, 2
+  size: 150, 150
+  orig: 150, 150
+  offset: 0, 0
+  index: -1
+smokeC
+  rotate: false
+  xy: 154, 2
+  size: 150, 150
+  orig: 150, 150
+  offset: 0, 0
+  index: -1

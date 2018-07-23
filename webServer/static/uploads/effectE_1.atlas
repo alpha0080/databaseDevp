@@ -1,0 +1,55 @@
+
+effectE_1.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+fan_light_A_add
+  rotate: false
+  xy: 260, 85
+  size: 22, 286
+  orig: 22, 286
+  offset: 0, 0
+  index: -1
+fan_light_B_add
+  rotate: true
+  xy: 2, 44
+  size: 23, 254
+  orig: 23, 254
+  offset: 0, 0
+  index: -1
+fan_light_C_add
+  rotate: true
+  xy: 2, 69
+  size: 44, 254
+  orig: 44, 254
+  offset: 0, 0
+  index: -1
+glow_ball2
+  rotate: false
+  xy: 2, 115
+  size: 256, 256
+  orig: 256, 256
+  offset: 0, 0
+  index: -1
+glow_ball_s
+  rotate: false
+  xy: 284, 289
+  size: 40, 40
+  orig: 40, 40
+  offset: 0, 0
+  index: -1
+glow_ball_x
+  rotate: false
+  xy: 284, 331
+  size: 41, 40
+  orig: 41, 40
+  offset: 0, 0
+  index: -1
+glow_ball_x_big
+  rotate: false
+  xy: 2, 2
+  size: 41, 40
+  orig: 41, 40
+  offset: 0, 0
+  index: -1

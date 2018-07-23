@@ -1,0 +1,257 @@
+
+Scatter_symbol.png
+size: 2048,2048
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+ani_symbol_m2_03
+  rotate: false
+  xy: 660, 311
+  size: 325, 311
+  orig: 325, 311
+  offset: 0, 0
+  index: -1
+ani_symbol_m2_04
+  rotate: false
+  xy: 698, 624
+  size: 326, 312
+  orig: 326, 312
+  offset: 0, 0
+  index: -1
+ani_symbol_m2_05
+  rotate: false
+  xy: 295, 54
+  size: 325, 311
+  orig: 325, 311
+  offset: 0, 0
+  index: -1
+ani_symbol_m2_06
+  rotate: false
+  xy: 1712, 670
+  size: 325, 311
+  orig: 325, 311
+  offset: 0, 0
+  index: -1
+ani_symbol_m2_07
+  rotate: true
+  xy: 1679, 52
+  size: 307, 327
+  orig: 307, 327
+  offset: 0, 0
+  index: -1
+ani_symbol_m2_08
+  rotate: true
+  xy: 1712, 361
+  size: 307, 328
+  orig: 307, 328
+  offset: 0, 0
+  index: -1
+ani_symbol_m2_09
+  rotate: true
+  xy: 987, 88
+  size: 307, 327
+  orig: 307, 327
+  offset: 0, 0
+  index: -1
+ani_symbol_m2_10
+  rotate: true
+  xy: 622, 2
+  size: 307, 327
+  orig: 307, 327
+  offset: 0, 0
+  index: -1
+ani_symbol_m2_11
+  rotate: true
+  xy: 2, 372
+  size: 313, 328
+  orig: 313, 328
+  offset: 0, 0
+  index: -1
+ani_symbol_m2_12
+  rotate: true
+  xy: 367, 681
+  size: 320, 329
+  orig: 320, 329
+  offset: 0, 0
+  index: -1
+ani_symbol_m2_13
+  rotate: false
+  xy: 2, 1311
+  size: 375, 344
+  orig: 375, 344
+  offset: 0, 0
+  index: -1
+ani_symbol_m2_14
+  rotate: false
+  xy: 1617, 1330
+  size: 374, 344
+  orig: 374, 344
+  offset: 0, 0
+  index: -1
+ani_symbol_m2_15
+  rotate: false
+  xy: 423, 1311
+  size: 375, 345
+  orig: 375, 345
+  offset: 0, 0
+  index: -1
+ani_symbol_m2_16
+  rotate: false
+  xy: 1617, 983
+  size: 371, 345
+  orig: 371, 345
+  offset: 0, 0
+  index: -1
+ani_symbol_m2_17
+  rotate: true
+  xy: 2, 687
+  size: 302, 346
+  orig: 302, 346
+  offset: 0, 0
+  index: -1
+ani_symbol_m2_18
+  rotate: true
+  xy: 729, 938
+  size: 322, 327
+  orig: 322, 327
+  offset: 0, 0
+  index: -1
+ani_symbol_m2_19
+  rotate: false
+  xy: 2, 1657
+  size: 419, 372
+  orig: 419, 372
+  offset: 0, 0
+  index: -1
+ani_symbol_m2_20
+  rotate: false
+  xy: 1170, 1027
+  size: 392, 296
+  orig: 392, 296
+  offset: 0, 0
+  index: -1
+ani_symbol_m2_21
+  rotate: false
+  xy: 423, 1658
+  size: 394, 371
+  orig: 394, 371
+  offset: 0, 0
+  index: -1
+ani_symbol_m2_22
+  rotate: false
+  xy: 819, 1661
+  size: 395, 368
+  orig: 395, 368
+  offset: 0, 0
+  index: -1
+ani_symbol_m2_23
+  rotate: true
+  xy: 819, 1262
+  size: 397, 349
+  orig: 397, 349
+  offset: 0, 0
+  index: -1
+ani_symbol_m2_24
+  rotate: false
+  xy: 1216, 1325
+  size: 399, 349
+  orig: 399, 349
+  offset: 0, 0
+  index: -1
+ani_symbol_m2_25
+  rotate: false
+  xy: 1619, 1676
+  size: 399, 353
+  orig: 399, 353
+  offset: 0, 0
+  index: -1
+ani_symbol_m2_26
+  rotate: false
+  xy: 1216, 1676
+  size: 401, 353
+  orig: 401, 353
+  offset: 0, 0
+  index: -1
+ani_symbol_m2_27
+  rotate: false
+  xy: 2, 991
+  size: 363, 318
+  orig: 363, 318
+  offset: 0, 0
+  index: -1
+ani_symbol_m2_28
+  rotate: false
+  xy: 367, 1003
+  size: 360, 306
+  orig: 360, 306
+  offset: 0, 0
+  index: -1
+ani_symbol_m2_29
+  rotate: true
+  xy: 2, 21
+  size: 349, 291
+  orig: 349, 291
+  offset: 0, 0
+  index: -1
+ani_symbol_m2_30
+  rotate: false
+  xy: 1385, 669
+  size: 325, 312
+  orig: 325, 312
+  offset: 0, 0
+  index: -1
+ani_symbol_m2_31
+  rotate: false
+  xy: 1026, 397
+  size: 325, 312
+  orig: 325, 312
+  offset: 0, 0
+  index: -1
+ani_symbol_m2_32
+  rotate: false
+  xy: 332, 367
+  size: 326, 312
+  orig: 326, 312
+  offset: 0, 0
+  index: -1
+ani_symbol_m2_33
+  rotate: false
+  xy: 1058, 711
+  size: 325, 314
+  orig: 325, 314
+  offset: 0, 0
+  index: -1
+ani_symbol_m2_34
+  rotate: false
+  xy: 1353, 357
+  size: 324, 310
+  orig: 324, 310
+  offset: 0, 0
+  index: -1
+ani_symbol_m2_35
+  rotate: true
+  xy: 1316, 89
+  size: 266, 271
+  orig: 266, 271
+  offset: 0, 0
+  index: -1
+
+Scatter_symbol2.png
+size: 1024,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+ani_symbol_m2_01
+  rotate: false
+  xy: 262, 17
+  size: 259, 250
+  orig: 259, 250
+  offset: 0, 0
+  index: -1
+ani_symbol_m2_02
+  rotate: false
+  xy: 2, 2
+  size: 258, 265
+  orig: 258, 265
+  offset: 0, 0
+  index: -1

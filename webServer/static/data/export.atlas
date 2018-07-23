@@ -1,0 +1,62 @@
+
+export.png
+size: 1024,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+bl_0006s
+  rotate: false
+  xy: 850, 278
+  size: 36, 232
+  orig: 36, 232
+  offset: 0, 0
+  index: -1
+blue_ball_add_2
+  rotate: false
+  xy: 76, 124
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+blue_star_add
+  rotate: false
+  xy: 888, 433
+  size: 77, 77
+  orig: 77, 77
+  offset: 0, 0
+  index: -1
+effectB_centerShine1
+  rotate: false
+  xy: 76, 254
+  size: 256, 256
+  orig: 256, 256
+  offset: 0, 0
+  index: -1
+effectB_shine01s
+  rotate: false
+  xy: 334, 254
+  size: 256, 256
+  orig: 256, 256
+  offset: 0, 0
+  index: -1
+effectB_shineC
+  rotate: true
+  xy: 2, 2
+  size: 42, 250
+  orig: 42, 250
+  offset: 0, 0
+  index: -1
+effectB_starShine2
+  rotate: false
+  xy: 592, 254
+  size: 256, 256
+  orig: 256, 256
+  offset: 0, 0
+  index: -1
+fan_light_D_add
+  rotate: false
+  xy: 2, 46
+  size: 72, 464
+  orig: 72, 464
+  offset: 0, 0
+  index: -1

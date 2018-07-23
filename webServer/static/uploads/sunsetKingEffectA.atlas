@@ -1,0 +1,48 @@
+
+sunsetKingEffectA.png
+size: 1224,1224
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+logo_A
+  rotate: false
+  xy: 2, 955
+  size: 1220, 267
+  orig: 1220, 267
+  offset: 0, 0
+  index: -1
+logo_B
+  rotate: false
+  xy: 2, 686
+  size: 1220, 267
+  orig: 1220, 267
+  offset: 0, 0
+  index: -1
+logo_C
+  rotate: false
+  xy: 2, 417
+  size: 1220, 267
+  orig: 1220, 267
+  offset: 0, 0
+  index: -1
+logo_D
+  rotate: false
+  xy: 2, 148
+  size: 1220, 267
+  orig: 1220, 267
+  offset: 0, 0
+  index: -1
+shine_L2
+  rotate: true
+  xy: 2, 18
+  size: 128, 512
+  orig: 128, 512
+  offset: 0, 0
+  index: -1
+star_D1
+  rotate: false
+  xy: 516, 71
+  size: 75, 75
+  orig: 75, 75
+  offset: 0, 0
+  index: -1

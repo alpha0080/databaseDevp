@@ -1,0 +1,62 @@
+
+effect_l.png
+size: 2048,2048
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+light_line_a
+  rotate: false
+  xy: 2, 1101
+  size: 1023, 882
+  orig: 1023, 882
+  offset: 0, 0
+  index: -1
+light_line_b
+  rotate: true
+  xy: 2, 75
+  size: 1024, 871
+  orig: 1024, 871
+  offset: 0, 0
+  index: -1
+line_a
+  rotate: false
+  xy: 1027, 1471
+  size: 95, 512
+  orig: 95, 512
+  offset: 0, 0
+  index: -1
+line_b
+  rotate: true
+  xy: 2, 2
+  size: 71, 512
+  orig: 71, 512
+  offset: 0, 0
+  index: -1
+line_c
+  rotate: false
+  xy: 875, 587
+  size: 20, 512
+  orig: 20, 512
+  offset: 0, 0
+  index: -1
+point
+  rotate: false
+  xy: 1027, 1435
+  size: 34, 34
+  orig: 34, 34
+  offset: 0, 0
+  index: -1
+star_a
+  rotate: false
+  xy: 1124, 1855
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+star_b
+  rotate: false
+  xy: 897, 971
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1

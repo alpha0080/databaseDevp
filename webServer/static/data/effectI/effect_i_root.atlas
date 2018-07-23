@@ -1,0 +1,34 @@
+
+effect_i_root.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+fire_ball
+  rotate: false
+  xy: 266, 357
+  size: 10, 64
+  orig: 10, 64
+  offset: 0, 0
+  index: -1
+glow_center
+  rotate: false
+  xy: 2, 165
+  size: 262, 256
+  orig: 262, 256
+  offset: 0, 0
+  index: -1
+glow_ray
+  rotate: false
+  xy: 2, 36
+  size: 42, 127
+  orig: 42, 127
+  offset: 0, 0
+  index: -1
+white_circle
+  rotate: false
+  xy: 2, 2
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1

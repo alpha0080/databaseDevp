@@ -1,0 +1,90 @@
+
+version_jp.png
+size: 1024,1024
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+pic_jp_b_4
+  rotate: false
+  xy: 2, 728
+  size: 230, 240
+  orig: 230, 240
+  offset: 0, 0
+  index: -1
+pic_jp_b_5
+  rotate: false
+  xy: 2, 486
+  size: 230, 240
+  orig: 230, 240
+  offset: 0, 0
+  index: -1
+pic_jp_g_4
+  rotate: false
+  xy: 234, 728
+  size: 230, 240
+  orig: 230, 240
+  offset: 0, 0
+  index: -1
+pic_jp_g_5
+  rotate: false
+  xy: 2, 244
+  size: 230, 240
+  orig: 230, 240
+  offset: 0, 0
+  index: -1
+pic_jp_i2_4
+  rotate: false
+  xy: 2, 2
+  size: 230, 240
+  orig: 230, 240
+  offset: 0, 0
+  index: -1
+pic_jp_i2_5
+  rotate: false
+  xy: 234, 244
+  size: 230, 240
+  orig: 230, 240
+  offset: 0, 0
+  index: -1
+pic_jp_i_4
+  rotate: false
+  xy: 234, 486
+  size: 230, 240
+  orig: 230, 240
+  offset: 0, 0
+  index: -1
+pic_jp_i_5
+  rotate: false
+  xy: 466, 728
+  size: 230, 240
+  orig: 230, 240
+  offset: 0, 0
+  index: -1
+pic_jp_n_4
+  rotate: false
+  xy: 466, 486
+  size: 230, 240
+  orig: 230, 240
+  offset: 0, 0
+  index: -1
+pic_jp_n_5
+  rotate: false
+  xy: 698, 728
+  size: 230, 240
+  orig: 230, 240
+  offset: 0, 0
+  index: -1
+pic_jp_w_4
+  rotate: false
+  xy: 234, 2
+  size: 230, 240
+  orig: 230, 240
+  offset: 0, 0
+  index: -1
+pic_jp_w_5
+  rotate: false
+  xy: 466, 244
+  size: 230, 240
+  orig: 230, 240
+  offset: 0, 0
+  index: -1

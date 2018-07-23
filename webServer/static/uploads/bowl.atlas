@@ -1,0 +1,34 @@
+
+bowl.png
+size: 1024,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+bowl_bottom
+  rotate: false
+  xy: 282, 57
+  size: 260, 153
+  orig: 260, 153
+  offset: 0, 0
+  index: -1
+bowl_final
+  rotate: false
+  xy: 2, 2
+  size: 278, 208
+  orig: 278, 208
+  offset: 0, 0
+  index: -1
+bowl_glow
+  rotate: false
+  xy: 791, 155
+  size: 55, 55
+  orig: 55, 55
+  offset: 0, 0
+  index: -1
+bowl_top
+  rotate: false
+  xy: 544, 74
+  size: 245, 136
+  orig: 245, 136
+  offset: 0, 0
+  index: -1

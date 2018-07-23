@@ -1,0 +1,383 @@
+
+number.png
+size: 1024,1024
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+1
+  rotate: true
+  xy: 326, 17
+  size: 70, 134
+  orig: 70, 134
+  offset: 0, 0
+  index: -1
+2
+  rotate: true
+  xy: 629, 756
+  size: 98, 134
+  orig: 98, 134
+  offset: 0, 0
+  index: -1
+FX_A_1/pic_collectionBox_Grow
+  rotate: false
+  xy: 348, 737
+  size: 279, 279
+  orig: 279, 279
+  offset: 0, 0
+  index: -1
+FX_A_2/Effect_particle_B_0001
+  rotate: false
+  xy: 2, 164
+  size: 160, 160
+  orig: 160, 160
+  offset: 0, 0
+  index: -1
+FX_A_2/Effect_particle_B_0002
+  rotate: false
+  xy: 348, 575
+  size: 160, 160
+  orig: 160, 160
+  offset: 0, 0
+  index: -1
+FX_A_2/Effect_particle_B_0003
+  rotate: false
+  xy: 629, 856
+  size: 160, 160
+  orig: 160, 160
+  offset: 0, 0
+  index: -1
+FX_A_2/Effect_particle_B_0004
+  rotate: false
+  xy: 2, 2
+  size: 160, 160
+  orig: 160, 160
+  offset: 0, 0
+  index: -1
+FX_A_2/Effect_particle_B_0005
+  rotate: false
+  xy: 164, 164
+  size: 160, 160
+  orig: 160, 160
+  offset: 0, 0
+  index: -1
+FX_A_2/Effect_particle_B_0006
+  rotate: false
+  xy: 348, 413
+  size: 160, 160
+  orig: 160, 160
+  offset: 0, 0
+  index: -1
+FX_A_2/Effect_particle_B_0007
+  rotate: false
+  xy: 791, 856
+  size: 160, 160
+  orig: 160, 160
+  offset: 0, 0
+  index: -1
+FX_A_2/Effect_particle_B_0008
+  rotate: false
+  xy: 164, 2
+  size: 160, 160
+  orig: 160, 160
+  offset: 0, 0
+  index: -1
+FX_A_2/Effect_particle_B_0009
+  rotate: false
+  xy: 510, 575
+  size: 160, 160
+  orig: 160, 160
+  offset: 0, 0
+  index: -1
+FX_A_2/Effect_particle_B_0010
+  rotate: false
+  xy: 510, 413
+  size: 160, 160
+  orig: 160, 160
+  offset: 0, 0
+  index: -1
+FX_A_2/Effect_particle_B_0011
+  rotate: false
+  xy: 348, 251
+  size: 160, 160
+  orig: 160, 160
+  offset: 0, 0
+  index: -1
+FX_A_2/Effect_particle_B_0012
+  rotate: false
+  xy: 510, 251
+  size: 160, 160
+  orig: 160, 160
+  offset: 0, 0
+  index: -1
+FX_A_2/Effect_particle_B_0013
+  rotate: false
+  xy: 326, 89
+  size: 160, 160
+  orig: 160, 160
+  offset: 0, 0
+  index: -1
+FX_A_2/Effect_particle_B_0014
+  rotate: false
+  xy: 488, 89
+  size: 160, 160
+  orig: 160, 160
+  offset: 0, 0
+  index: -1
+FX_A_2/Effect_particle_B_0015
+  rotate: false
+  xy: 765, 694
+  size: 160, 160
+  orig: 160, 160
+  offset: 0, 0
+  index: -1
+FX_A_2/Effect_particle_B_0016
+  rotate: false
+  xy: 672, 532
+  size: 160, 160
+  orig: 160, 160
+  offset: 0, 0
+  index: -1
+FX_A_2/Effect_particle_B_0017
+  rotate: false
+  xy: 672, 370
+  size: 160, 160
+  orig: 160, 160
+  offset: 0, 0
+  index: -1
+FX_A_2/Effect_particle_B_0018
+  rotate: false
+  xy: 672, 208
+  size: 160, 160
+  orig: 160, 160
+  offset: 0, 0
+  index: -1
+FX_A_2/Effect_particle_B_0019
+  rotate: false
+  xy: 650, 46
+  size: 160, 160
+  orig: 160, 160
+  offset: 0, 0
+  index: -1
+FX_A_2/Effect_particle_B_0020
+  rotate: false
+  xy: 834, 532
+  size: 160, 160
+  orig: 160, 160
+  offset: 0, 0
+  index: -1
+FX_A_2/Effect_particle_B_0021
+  rotate: false
+  xy: 834, 370
+  size: 160, 160
+  orig: 160, 160
+  offset: 0, 0
+  index: -1
+FX_A_2/Effect_particle_B_0022
+  rotate: false
+  xy: 834, 208
+  size: 160, 160
+  orig: 160, 160
+  offset: 0, 0
+  index: -1
+FX_A_2/Effect_particle_B_0023
+  rotate: false
+  xy: 812, 46
+  size: 160, 160
+  orig: 160, 160
+  offset: 0, 0
+  index: -1
+pic_collectionBox_L
+  rotate: false
+  xy: 2, 326
+  size: 344, 344
+  orig: 344, 344
+  offset: 0, 0
+  index: -1
+pic_collectionBox_R
+  rotate: false
+  xy: 2, 672
+  size: 344, 344
+  orig: 344, 344
+  offset: 0, 0
+  index: -1
+
+number2.png
+size: 1024,1024
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+3
+  rotate: false
+  xy: 473, 337
+  size: 98, 134
+  orig: 98, 134
+  offset: 0, 0
+  index: -1
+FX_B/ring_02_0001
+  rotate: false
+  xy: 2, 787
+  size: 155, 155
+  orig: 155, 155
+  offset: 0, 0
+  index: -1
+FX_B/ring_02_0002
+  rotate: false
+  xy: 2, 630
+  size: 155, 155
+  orig: 155, 155
+  offset: 0, 0
+  index: -1
+FX_B/ring_02_0003
+  rotate: false
+  xy: 159, 787
+  size: 155, 155
+  orig: 155, 155
+  offset: 0, 0
+  index: -1
+FX_B/ring_02_0004
+  rotate: false
+  xy: 2, 473
+  size: 155, 155
+  orig: 155, 155
+  offset: 0, 0
+  index: -1
+FX_B/ring_02_0005
+  rotate: false
+  xy: 159, 630
+  size: 155, 155
+  orig: 155, 155
+  offset: 0, 0
+  index: -1
+FX_B/ring_02_0006
+  rotate: false
+  xy: 316, 787
+  size: 155, 155
+  orig: 155, 155
+  offset: 0, 0
+  index: -1
+FX_B/ring_02_0007
+  rotate: false
+  xy: 2, 316
+  size: 155, 155
+  orig: 155, 155
+  offset: 0, 0
+  index: -1
+FX_B/ring_02_0008
+  rotate: false
+  xy: 159, 473
+  size: 155, 155
+  orig: 155, 155
+  offset: 0, 0
+  index: -1
+FX_B/ring_02_0009
+  rotate: false
+  xy: 316, 630
+  size: 155, 155
+  orig: 155, 155
+  offset: 0, 0
+  index: -1
+FX_B/ring_02_0010
+  rotate: false
+  xy: 473, 787
+  size: 155, 155
+  orig: 155, 155
+  offset: 0, 0
+  index: -1
+FX_B/ring_02_0011
+  rotate: false
+  xy: 2, 159
+  size: 155, 155
+  orig: 155, 155
+  offset: 0, 0
+  index: -1
+FX_B/ring_02_0012
+  rotate: false
+  xy: 159, 316
+  size: 155, 155
+  orig: 155, 155
+  offset: 0, 0
+  index: -1
+FX_B/ring_02_0013
+  rotate: false
+  xy: 316, 473
+  size: 155, 155
+  orig: 155, 155
+  offset: 0, 0
+  index: -1
+FX_B/ring_02_0014
+  rotate: false
+  xy: 473, 630
+  size: 155, 155
+  orig: 155, 155
+  offset: 0, 0
+  index: -1
+FX_B/ring_02_0015
+  rotate: false
+  xy: 630, 787
+  size: 155, 155
+  orig: 155, 155
+  offset: 0, 0
+  index: -1
+FX_B/ring_02_0016
+  rotate: false
+  xy: 2, 2
+  size: 155, 155
+  orig: 155, 155
+  offset: 0, 0
+  index: -1
+FX_B/ring_02_0017
+  rotate: false
+  xy: 159, 159
+  size: 155, 155
+  orig: 155, 155
+  offset: 0, 0
+  index: -1
+FX_B/ring_02_0018
+  rotate: false
+  xy: 316, 316
+  size: 155, 155
+  orig: 155, 155
+  offset: 0, 0
+  index: -1
+FX_B/ring_02_0019
+  rotate: false
+  xy: 473, 473
+  size: 155, 155
+  orig: 155, 155
+  offset: 0, 0
+  index: -1
+FX_B/ring_02_0020
+  rotate: false
+  xy: 630, 630
+  size: 155, 155
+  orig: 155, 155
+  offset: 0, 0
+  index: -1
+FX_B/ring_02_0021
+  rotate: false
+  xy: 787, 787
+  size: 155, 155
+  orig: 155, 155
+  offset: 0, 0
+  index: -1
+FX_B/ring_02_0022
+  rotate: false
+  xy: 159, 2
+  size: 155, 155
+  orig: 155, 155
+  offset: 0, 0
+  index: -1
+FX_B/ring_02_0023
+  rotate: false
+  xy: 316, 159
+  size: 155, 155
+  orig: 155, 155
+  offset: 0, 0
+  index: -1
+plus
+  rotate: false
+  xy: 630, 494
+  size: 98, 134
+  orig: 98, 134
+  offset: 0, 0
+  index: -1

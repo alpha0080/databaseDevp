@@ -1,0 +1,48 @@
+
+fiveStoneB.png
+size: 1024,1024
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+bokeh_01
+  rotate: false
+  xy: 132, 260
+  size: 256, 256
+  orig: 256, 256
+  offset: 0, 0
+  index: -1
+shine_L2
+  rotate: false
+  xy: 2, 4
+  size: 128, 512
+  orig: 128, 512
+  offset: 0, 0
+  index: -1
+star_A1
+  rotate: false
+  xy: 390, 260
+  size: 256, 256
+  orig: 256, 256
+  offset: 0, 0
+  index: -1
+star_A2
+  rotate: false
+  xy: 648, 260
+  size: 256, 256
+  orig: 256, 256
+  offset: 0, 0
+  index: -1
+star_B1
+  rotate: false
+  xy: 132, 2
+  size: 256, 256
+  orig: 256, 256
+  offset: 0, 0
+  index: -1
+star_C1
+  rotate: false
+  xy: 390, 2
+  size: 256, 256
+  orig: 256, 256
+  offset: 0, 0
+  index: -1

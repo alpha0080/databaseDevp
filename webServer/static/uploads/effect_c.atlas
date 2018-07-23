@@ -1,0 +1,34 @@
+
+effect_c.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+effect_c_items_001
+  rotate: false
+  xy: 263, 185
+  size: 148, 256
+  orig: 148, 256
+  offset: 0, 0
+  index: -1
+effect_c_items_002
+  rotate: true
+  xy: 2, 22
+  size: 161, 256
+  orig: 161, 256
+  offset: 0, 0
+  index: -1
+effect_c_items_003
+  rotate: false
+  xy: 2, 185
+  size: 259, 256
+  orig: 259, 256
+  offset: 0, 0
+  index: -1
+point
+  rotate: false
+  xy: 2, 2
+  size: 18, 18
+  orig: 18, 18
+  offset: 0, 0
+  index: -1

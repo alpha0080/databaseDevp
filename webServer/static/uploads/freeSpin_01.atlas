@@ -1,0 +1,27 @@
+
+freeSpin_01.png
+size: 129,129
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+starA
+  rotate: false
+  xy: 2, 45
+  size: 81, 82
+  orig: 81, 82
+  offset: 0, 0
+  index: -1
+starB
+  rotate: false
+  xy: 2, 2
+  size: 41, 41
+  orig: 41, 41
+  offset: 0, 0
+  index: -1
+starC
+  rotate: false
+  xy: 85, 96
+  size: 27, 31
+  orig: 27, 31
+  offset: 0, 0
+  index: -1

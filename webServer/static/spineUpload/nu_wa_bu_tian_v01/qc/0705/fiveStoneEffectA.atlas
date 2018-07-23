@@ -1,0 +1,76 @@
+
+fiveStoneEffectA.png
+size: 840,840
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+pic_stone_01
+  rotate: false
+  xy: 518, 304
+  size: 200, 176
+  orig: 200, 176
+  offset: 0, 0
+  index: -1
+pic_stone_02
+  rotate: false
+  xy: 518, 482
+  size: 200, 178
+  orig: 200, 178
+  offset: 0, 0
+  index: -1
+pic_stone_03
+  rotate: false
+  xy: 2, 7
+  size: 200, 317
+  orig: 200, 317
+  offset: 0, 0
+  index: -1
+pic_stone_04
+  rotate: false
+  xy: 401, 131
+  size: 200, 171
+  orig: 200, 171
+  offset: 0, 0
+  index: -1
+pic_stone_05
+  rotate: false
+  xy: 518, 662
+  size: 300, 176
+  orig: 300, 176
+  offset: 0, 0
+  index: -1
+pic_stone_06
+  rotate: false
+  xy: 204, 90
+  size: 195, 234
+  orig: 195, 234
+  offset: 0, 0
+  index: -1
+pic_stone_07
+  rotate: false
+  xy: 603, 105
+  size: 127, 197
+  orig: 127, 197
+  offset: 0, 0
+  index: -1
+pic_stone_08
+  rotate: true
+  xy: 401, 2
+  size: 127, 197
+  orig: 127, 197
+  offset: 0, 0
+  index: -1
+shine_1
+  rotate: false
+  xy: 2, 326
+  size: 256, 512
+  orig: 256, 512
+  offset: 0, 0
+  index: -1
+shine_s
+  rotate: false
+  xy: 260, 326
+  size: 256, 512
+  orig: 256, 512
+  offset: 0, 0
+  index: -1

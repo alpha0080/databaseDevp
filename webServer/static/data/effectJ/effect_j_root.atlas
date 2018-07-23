@@ -1,0 +1,143 @@
+
+effect_j_root.png
+size: 1024,1024
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+fw_a.0001
+  rotate: false
+  xy: 2, 505
+  size: 501, 511
+  orig: 501, 511
+  offset: 0, 0
+  index: -1
+fw_a.0002
+  rotate: true
+  xy: 2, 2
+  size: 501, 511
+  orig: 501, 511
+  offset: 0, 0
+  index: -1
+fw_a.0003
+  rotate: true
+  xy: 505, 515
+  size: 501, 511
+  orig: 501, 511
+  offset: 0, 0
+  index: -1
+fw_a.0004
+  rotate: false
+  xy: 515, 2
+  size: 501, 511
+  orig: 501, 511
+  offset: 0, 0
+  index: -1
+
+effect_j_root2.png
+size: 1024,1024
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+fw_a.0005
+  rotate: false
+  xy: 2, 505
+  size: 501, 511
+  orig: 501, 511
+  offset: 0, 0
+  index: -1
+fw_a.0006
+  rotate: true
+  xy: 2, 2
+  size: 501, 511
+  orig: 501, 511
+  offset: 0, 0
+  index: -1
+fw_a.0007
+  rotate: true
+  xy: 505, 515
+  size: 501, 511
+  orig: 501, 511
+  offset: 0, 0
+  index: -1
+fw_a.0008
+  rotate: false
+  xy: 515, 2
+  size: 501, 511
+  orig: 501, 511
+  offset: 0, 0
+  index: -1
+
+effect_j_root3.png
+size: 1024,1024
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+fw_a.0009
+  rotate: false
+  xy: 2, 505
+  size: 501, 511
+  orig: 501, 511
+  offset: 0, 0
+  index: -1
+fw_a.0010
+  rotate: true
+  xy: 2, 2
+  size: 501, 511
+  orig: 501, 511
+  offset: 0, 0
+  index: -1
+fw_a.0011
+  rotate: true
+  xy: 505, 515
+  size: 501, 511
+  orig: 501, 511
+  offset: 0, 0
+  index: -1
+fw_a.0012
+  rotate: false
+  xy: 515, 2
+  size: 501, 511
+  orig: 501, 511
+  offset: 0, 0
+  index: -1
+
+effect_j_root4.png
+size: 1024,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+fwp.0001
+  rotate: false
+  xy: 2, 2
+  size: 161, 227
+  orig: 161, 227
+  offset: 0, 0
+  index: -1
+fwp.0002
+  rotate: false
+  xy: 165, 2
+  size: 161, 227
+  orig: 161, 227
+  offset: 0, 0
+  index: -1
+fwp.0003
+  rotate: false
+  xy: 328, 2
+  size: 161, 227
+  orig: 161, 227
+  offset: 0, 0
+  index: -1
+fwp.0004
+  rotate: false
+  xy: 491, 2
+  size: 161, 227
+  orig: 161, 227
+  offset: 0, 0
+  index: -1
+fwp.0005
+  rotate: false
+  xy: 654, 2
+  size: 161, 227
+  orig: 161, 227
+  offset: 0, 0
+  index: -1

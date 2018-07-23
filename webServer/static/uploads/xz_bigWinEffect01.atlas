@@ -1,0 +1,48 @@
+
+xz_bigWinEffect01.png
+size: 734,734
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+pic_arrow
+  rotate: false
+  xy: 262, 248
+  size: 125, 130
+  orig: 125, 130
+  offset: 0, 0
+  index: -1
+pic_wbw
+  rotate: false
+  xy: 2, 638
+  size: 730, 94
+  orig: 730, 94
+  offset: 0, 0
+  index: -1
+shine_L4
+  rotate: false
+  xy: 2, 124
+  size: 128, 512
+  orig: 128, 512
+  offset: 0, 0
+  index: -1
+shine_L5
+  rotate: false
+  xy: 132, 124
+  size: 128, 512
+  orig: 128, 512
+  offset: 0, 0
+  index: -1
+star_C1
+  rotate: false
+  xy: 262, 380
+  size: 256, 256
+  orig: 256, 256
+  offset: 0, 0
+  index: -1
+star_M1
+  rotate: true
+  xy: 2, 90
+  size: 32, 128
+  orig: 32, 128
+  offset: 0, 0
+  index: -1

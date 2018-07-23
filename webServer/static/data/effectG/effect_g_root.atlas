@@ -1,0 +1,76 @@
+
+effect_g_root.png
+size: 1024,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+glow_center
+  rotate: false
+  xy: 2, 96
+  size: 256, 256
+  orig: 256, 256
+  offset: 0, 0
+  index: -1
+lens_0001
+  rotate: false
+  xy: 2, 354
+  size: 500, 109
+  orig: 500, 109
+  offset: 0, 0
+  index: -1
+lighting.0001
+  rotate: false
+  xy: 504, 371
+  size: 256, 92
+  orig: 256, 92
+  offset: 0, 0
+  index: -1
+lighting.0002
+  rotate: false
+  xy: 2, 2
+  size: 256, 92
+  orig: 256, 92
+  offset: 0, 0
+  index: -1
+lighting.0003
+  rotate: true
+  xy: 260, 96
+  size: 256, 92
+  orig: 256, 92
+  offset: 0, 0
+  index: -1
+lighting.0004
+  rotate: false
+  xy: 762, 371
+  size: 256, 92
+  orig: 256, 92
+  offset: 0, 0
+  index: -1
+lighting.0005
+  rotate: true
+  xy: 354, 96
+  size: 256, 92
+  orig: 256, 92
+  offset: 0, 0
+  index: -1
+lighting.0006
+  rotate: true
+  xy: 448, 96
+  size: 256, 92
+  orig: 256, 92
+  offset: 0, 0
+  index: -1
+lighting.0007
+  rotate: false
+  xy: 260, 2
+  size: 256, 92
+  orig: 256, 92
+  offset: 0, 0
+  index: -1
+lighting.0008
+  rotate: false
+  xy: 542, 277
+  size: 256, 92
+  orig: 256, 92
+  offset: 0, 0
+  index: -1

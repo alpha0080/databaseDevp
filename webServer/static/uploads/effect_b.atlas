@@ -1,0 +1,34 @@
+
+effect_b.png
+size: 1024,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+circle_01
+  rotate: false
+  xy: 2, 21
+  size: 256, 256
+  orig: 256, 256
+  offset: 0, 0
+  index: -1
+effectB_shine01s
+  rotate: false
+  xy: 260, 21
+  size: 256, 256
+  orig: 256, 256
+  offset: 0, 0
+  index: -1
+glow_ray_01
+  rotate: false
+  xy: 2, 2
+  size: 256, 17
+  orig: 256, 17
+  offset: 0, 0
+  index: -1
+point
+  rotate: false
+  xy: 518, 259
+  size: 18, 18
+  orig: 18, 18
+  offset: 0, 0
+  index: -1

@@ -1,0 +1,56 @@
+{
+"skeleton": {
+	"hash": "LfI4+t9ijgY0wiEhBUAW6Et2OxA",
+	"spine": "3.6.52",
+	"width": 100,
+	"height": 100,
+	"images": "//mcd-server/webServer/spineTest/effectC/coinA"
+},
+"bones": [
+	{ "name": "root" },
+	{ "name": "bone", "parent": "root" }
+],
+"slots": [
+	{ "name": "aa", "bone": "bone", "attachment": "copper_coin.0008" }
+],
+"skins": {
+	"default": {
+		"aa": {
+			"copper_coin.0001": { "width": 100, "height": 100 },
+			"copper_coin.0002": { "width": 100, "height": 100 },
+			"copper_coin.0003": { "width": 100, "height": 100 },
+			"copper_coin.0004": { "width": 100, "height": 100 },
+			"copper_coin.0005": { "width": 100, "height": 100 },
+			"copper_coin.0006": { "width": 100, "height": 100 },
+			"copper_coin.0007": { "width": 100, "height": 100 },
+			"copper_coin.0008": { "width": 100, "height": 100 }
+		}
+	}
+},
+"animations": {
+	"animation": {
+		"slots": {
+			"aa": {
+				"attachment": [
+					{ "time": 0, "name": "copper_coin.0001" },
+					{ "time": 0.0333, "name": "copper_coin.0002" },
+					{ "time": 0.0667, "name": "copper_coin.0003" },
+					{ "time": 0.1, "name": "copper_coin.0004" },
+					{ "time": 0.1333, "name": "copper_coin.0005" },
+					{ "time": 0.1667, "name": "copper_coin.0006" },
+					{ "time": 0.2, "name": "copper_coin.0007" },
+					{ "time": 0.2333, "name": "copper_coin.0008" }
+				]
+			}
+		},
+		"bones": {
+			"bone": {
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0 },
+					{ "time": 1.6667, "x": 558, "y": 130 }
+				]
+			}
+		}
+	}
+}
+}

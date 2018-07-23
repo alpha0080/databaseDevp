@@ -1,0 +1,354 @@
+
+Scatter_bird.png
+size: 2048,2048
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+ani_symbol_m2_04
+  rotate: false
+  xy: 487, 482
+  size: 476, 511
+  orig: 476, 511
+  offset: 0, 0
+  index: -1
+ani_symbol_m2_05
+  rotate: false
+  xy: 485, 995
+  size: 483, 512
+  orig: 483, 512
+  offset: 0, 0
+  index: -1
+ani_symbol_m2_06
+  rotate: true
+  xy: 965, 533
+  size: 460, 522
+  orig: 460, 522
+  offset: 0, 0
+  index: -1
+ani_symbol_m2_15
+  rotate: false
+  xy: 1489, 568
+  size: 444, 489
+  orig: 444, 489
+  offset: 0, 0
+  index: -1
+ani_symbol_m2_16
+  rotate: true
+  xy: 1429, 1059
+  size: 489, 472
+  orig: 489, 472
+  offset: 0, 0
+  index: -1
+ani_symbol_m2_17
+  rotate: true
+  xy: 2, 989
+  size: 518, 481
+  orig: 518, 481
+  offset: 0, 0
+  index: -1
+ani_symbol_m2_18
+  rotate: false
+  xy: 2, 2
+  size: 521, 470
+  orig: 521, 470
+  offset: 0, 0
+  index: -1
+ani_symbol_m2_19
+  rotate: true
+  xy: 1036, 14
+  size: 517, 459
+  orig: 517, 459
+  offset: 0, 0
+  index: -1
+ani_symbol_m2_20
+  rotate: false
+  xy: 1510, 1572
+  size: 515, 448
+  orig: 515, 448
+  offset: 0, 0
+  index: -1
+ani_symbol_m2_21
+  rotate: true
+  xy: 970, 1029
+  size: 510, 457
+  orig: 510, 457
+  offset: 0, 0
+  index: -1
+ani_symbol_m2_24
+  rotate: true
+  xy: 1497, 157
+  size: 409, 504
+  orig: 409, 504
+  offset: 0, 0
+  index: -1
+ani_symbol_m2_25
+  rotate: true
+  xy: 1013, 1550
+  size: 470, 495
+  orig: 470, 495
+  offset: 0, 0
+  index: -1
+ani_symbol_m2_26
+  rotate: true
+  xy: 525, 6
+  size: 474, 509
+  orig: 474, 509
+  offset: 0, 0
+  index: -1
+ani_symbol_m2_41
+  rotate: false
+  xy: 2, 1509
+  size: 495, 511
+  orig: 495, 511
+  offset: 0, 0
+  index: -1
+ani_symbol_m2_42
+  rotate: true
+  xy: 499, 1541
+  size: 479, 512
+  orig: 479, 512
+  offset: 0, 0
+  index: -1
+ani_symbol_m2_43
+  rotate: false
+  xy: 2, 474
+  size: 483, 513
+  orig: 483, 513
+  offset: 0, 0
+  index: -1
+
+Scatter_bird2.png
+size: 2048,2048
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+ani_symbol_m2_01
+  rotate: true
+  xy: 1184, 1059
+  size: 259, 250
+  orig: 259, 250
+  offset: 0, 0
+  index: -1
+ani_symbol_m2_03
+  rotate: false
+  xy: 2, 19
+  size: 391, 497
+  orig: 391, 497
+  offset: 0, 0
+  index: -1
+ani_symbol_m2_07
+  rotate: false
+  xy: 792, 33
+  size: 383, 489
+  orig: 383, 489
+  offset: 0, 0
+  index: -1
+ani_symbol_m2_08
+  rotate: false
+  xy: 2, 518
+  size: 383, 502
+  orig: 383, 502
+  offset: 0, 0
+  index: -1
+ani_symbol_m2_09
+  rotate: false
+  xy: 2, 1534
+  size: 381, 511
+  orig: 381, 511
+  offset: 0, 0
+  index: -1
+ani_symbol_m2_10
+  rotate: false
+  xy: 1176, 1572
+  size: 382, 473
+  orig: 382, 473
+  offset: 0, 0
+  index: -1
+ani_symbol_m2_11
+  rotate: false
+  xy: 791, 1555
+  size: 383, 490
+  orig: 383, 490
+  offset: 0, 0
+  index: -1
+ani_symbol_m2_12
+  rotate: true
+  xy: 1560, 1240
+  size: 383, 466
+  orig: 383, 466
+  offset: 0, 0
+  index: -1
+ani_symbol_m2_13
+  rotate: false
+  xy: 799, 1078
+  size: 383, 475
+  orig: 383, 475
+  offset: 0, 0
+  index: -1
+ani_symbol_m2_14
+  rotate: false
+  xy: 395, 33
+  size: 395, 489
+  orig: 395, 489
+  offset: 0, 0
+  index: -1
+ani_symbol_m2_22
+  rotate: true
+  xy: 1581, 2
+  size: 428, 456
+  orig: 428, 456
+  offset: 0, 0
+  index: -1
+ani_symbol_m2_23
+  rotate: false
+  xy: 387, 524
+  size: 404, 496
+  orig: 404, 496
+  offset: 0, 0
+  index: -1
+ani_symbol_m2_27
+  rotate: false
+  xy: 385, 1536
+  size: 404, 509
+  orig: 404, 509
+  offset: 0, 0
+  index: -1
+ani_symbol_m2_28
+  rotate: false
+  xy: 2, 1022
+  size: 396, 510
+  orig: 396, 510
+  offset: 0, 0
+  index: -1
+ani_symbol_m2_29
+  rotate: false
+  xy: 400, 1040
+  size: 397, 494
+  orig: 397, 494
+  offset: 0, 0
+  index: -1
+ani_symbol_m2_34
+  rotate: false
+  xy: 1177, 93
+  size: 402, 464
+  orig: 402, 464
+  offset: 0, 0
+  index: -1
+ani_symbol_m2_35
+  rotate: true
+  xy: 1581, 836
+  size: 402, 462
+  orig: 402, 462
+  offset: 0, 0
+  index: -1
+ani_symbol_m2_36
+  rotate: true
+  xy: 1581, 432
+  size: 402, 462
+  orig: 402, 462
+  offset: 0, 0
+  index: -1
+ani_symbol_m2_37
+  rotate: false
+  xy: 793, 559
+  size: 404, 479
+  orig: 404, 479
+  offset: 0, 0
+  index: -1
+ani_symbol_m2_40
+  rotate: true
+  xy: 1560, 1625
+  size: 420, 469
+  orig: 420, 469
+  offset: 0, 0
+  index: -1
+ani_symbol_m2_45
+  rotate: false
+  xy: 1199, 740
+  size: 367, 317
+  orig: 367, 317
+  offset: 0, 0
+  index: -1
+ani_symbol_m2_47
+  rotate: false
+  xy: 1184, 1320
+  size: 371, 250
+  orig: 371, 250
+  offset: 0, 0
+  index: -1
+
+Scatter_bird3.png
+size: 2048,1024
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+ani_symbol_m2_02
+  rotate: true
+  xy: 1337, 533
+  size: 382, 449
+  orig: 382, 449
+  offset: 0, 0
+  index: -1
+ani_symbol_m2_30
+  rotate: true
+  xy: 427, 514
+  size: 401, 455
+  orig: 401, 455
+  offset: 0, 0
+  index: -1
+ani_symbol_m2_31
+  rotate: false
+  xy: 820, 61
+  size: 400, 451
+  orig: 400, 451
+  offset: 0, 0
+  index: -1
+ani_symbol_m2_32
+  rotate: false
+  xy: 418, 2
+  size: 400, 459
+  orig: 400, 459
+  offset: 0, 0
+  index: -1
+ani_symbol_m2_33
+  rotate: true
+  xy: 884, 515
+  size: 400, 451
+  orig: 400, 451
+  offset: 0, 0
+  index: -1
+ani_symbol_m2_38
+  rotate: false
+  xy: 2, 11
+  size: 414, 450
+  orig: 414, 450
+  offset: 0, 0
+  index: -1
+ani_symbol_m2_39
+  rotate: false
+  xy: 2, 463
+  size: 423, 452
+  orig: 423, 452
+  offset: 0, 0
+  index: -1
+ani_symbol_m2_44
+  rotate: false
+  xy: 1222, 76
+  size: 410, 437
+  orig: 410, 437
+  offset: 0, 0
+  index: -1
+ani_symbol_m2_46
+  rotate: false
+  xy: 1634, 224
+  size: 333, 307
+  orig: 333, 307
+  offset: 0, 0
+  index: -1
+ani_symbol_m2_48
+  rotate: true
+  xy: 1788, 579
+  size: 336, 250
+  orig: 336, 250
+  offset: 0, 0
+  index: -1

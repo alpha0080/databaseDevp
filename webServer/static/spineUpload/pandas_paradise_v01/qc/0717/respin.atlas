@@ -1,0 +1,41 @@
+
+respin.png
+size: 1024,1024
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+circle_01
+  rotate: false
+  xy: 2, 2
+  size: 256, 256
+  orig: 256, 256
+  offset: 0, 0
+  index: -1
+light_line_a
+  rotate: false
+  xy: 2, 260
+  size: 480, 414
+  orig: 480, 414
+  offset: 0, 0
+  index: -1
+light_line_b
+  rotate: false
+  xy: 484, 266
+  size: 480, 408
+  orig: 480, 408
+  offset: 0, 0
+  index: -1
+light_line_c
+  rotate: false
+  xy: 260, 2
+  size: 256, 256
+  orig: 256, 256
+  offset: 0, 0
+  index: -1
+respin
+  rotate: false
+  xy: 2, 676
+  size: 897, 320
+  orig: 897, 320
+  offset: 0, 0
+  index: -1

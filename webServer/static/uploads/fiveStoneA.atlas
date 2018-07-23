@@ -1,0 +1,76 @@
+
+fiveStoneA.png
+size: 1024,1024
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+pic_stone_01
+  rotate: false
+  xy: 518, 659
+  size: 200, 176
+  orig: 200, 176
+  offset: 0, 0
+  index: -1
+pic_stone_02
+  rotate: false
+  xy: 2, 2
+  size: 200, 178
+  orig: 200, 178
+  offset: 0, 0
+  index: -1
+pic_stone_03
+  rotate: false
+  xy: 2, 182
+  size: 200, 317
+  orig: 200, 317
+  offset: 0, 0
+  index: -1
+pic_stone_04
+  rotate: false
+  xy: 820, 842
+  size: 200, 171
+  orig: 200, 171
+  offset: 0, 0
+  index: -1
+pic_stone_05
+  rotate: false
+  xy: 518, 837
+  size: 300, 176
+  orig: 300, 176
+  offset: 0, 0
+  index: -1
+pic_stone_06
+  rotate: false
+  xy: 204, 265
+  size: 195, 234
+  orig: 195, 234
+  offset: 0, 0
+  index: -1
+pic_stone_07
+  rotate: false
+  xy: 204, 66
+  size: 127, 197
+  orig: 127, 197
+  offset: 0, 0
+  index: -1
+pic_stone_08
+  rotate: true
+  xy: 518, 530
+  size: 127, 197
+  orig: 127, 197
+  offset: 0, 0
+  index: -1
+shine_1
+  rotate: false
+  xy: 2, 501
+  size: 256, 512
+  orig: 256, 512
+  offset: 0, 0
+  index: -1
+shine_s
+  rotate: false
+  xy: 260, 501
+  size: 256, 512
+  orig: 256, 512
+  offset: 0, 0
+  index: -1

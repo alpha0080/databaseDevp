@@ -1,0 +1,55 @@
+
+car_freeGameEffect_01.png
+size: 1145,1145
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+car_shine_01
+  rotate: true
+  xy: 2, 255
+  size: 64, 512
+  orig: 64, 512
+  offset: 0, 0
+  index: -1
+crossStar_01
+  rotate: false
+  xy: 780, 112
+  size: 96, 99
+  orig: 96, 99
+  offset: 0, 0
+  index: -1
+glint_01
+  rotate: false
+  xy: 989, 1015
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+knief_01
+  rotate: false
+  xy: 2, 321
+  size: 592, 484
+  orig: 592, 484
+  offset: 0, 0
+  index: -1
+knief_02
+  rotate: true
+  xy: 596, 213
+  size: 592, 484
+  orig: 592, 484
+  offset: 0, 0
+  index: -1
+map_01
+  rotate: false
+  xy: 2, 807
+  size: 985, 336
+  orig: 985, 336
+  offset: 0, 0
+  index: -1
+text_01
+  rotate: false
+  xy: 2, 2
+  size: 776, 209
+  orig: 776, 209
+  offset: 0, 0
+  index: -1
