@@ -768,6 +768,32 @@
 
         });
     
+   
+        $(function() {
+            $('#submitEditAssetBtn').click(function(){
+                console.log('點選新增 確認 新增asset 按鈕') 
+                console.log(event)
+                var assetEditorValue = getAssetEditorValue()
+               // console.log('assetEditorValue',assetEditorValue)
+                
+                $.ajax({url:"/submitEditAssetBtn", data:assetEditorValue,success:function(data){
+                    console.log('回傳錯誤訊息，與回傳資料')    
+                    console.log(data);
+                    var errMsg = data[3]
+                    var fullErrMsg = data[4]
+                    var assetName = data[2]
+                    if(errMsg == "null" ){
+                        $('#addAssetEditorErrMsg').text("新增"+assetName+"完成")
+                        
+                    }else{
+                        $('#addAssetEditorErrMsg').text(fullErrMsg)
+                    } 
+		          }});
+                
+            });
+
+        });    
+    
     
     
         //submitAddNewShotBtn 在asset/shot編輯器中 點選  確定 送出 
@@ -818,7 +844,8 @@
                 console.log('取得asset editor資料')
                 var currentProjectSelecte = $('#currentProjectSelectedInputBox').val()
                 console.log('currentProjectSelected',currentProjectSelecte)
-
+                
+                
                 var assetName = $('#editAssetName').val()
                 var assetDesctiption = $('#editAssetDescription').val()
                 var assetClass = $('#editAssetClassSelector').val()
@@ -850,7 +877,7 @@
                 var riggingProcess = $('#assetRiggingTaskProcessSelect').val()
                 var riggingWorkonUser = $('#assetRiggingWorkonUserSelector').val()
                 var riggingWorkonExtra = $('#assetRiggingExtra').val()
-
+                var assetCode = $('#currentAssetCode').val() 
                 console.log(assetName,assetDesctiption,assetClass,assetWorkUser,assetTimeStart,assetTimeEnd)
                 console.log("concept",conceptTS,conceptTD,conceptProcess,conceptWorkonUser,conceptWorkonExtra)
                 console.log("model",modelTS,modelTD,modelProcess,modelWorkonUser,modelWorkonExtra)
@@ -859,6 +886,7 @@
             
                 assetEditorValue = {'currentProjectSelecte':currentProjectSelecte,
                                     'assetName':assetName,
+                                    'assetCode':assetCode,
                                     'assetDesctiption':assetDesctiption,
                                     'assetClass':assetClass,
                                     'assetWorkUser':assetWorkUser,
@@ -1010,20 +1038,38 @@
     
         //addNewAsset 在asset/shot編輯器中 點選  新增asset 
         $('#addNewAssetINEditorBtn').click(function(){
-            
+            $('#submitAddNewAssetBtn').show()
+            $('#submitEditAssetBtn').hide()
            // $('.userSelector').append('<option selected><h5 class="text-primary">請選擇專案負責人....</h5></option>')
             var userCount = in3DDBUserDB.length
             console.log('點選新增Asset 按鈕')  
             $('.userSelector >option').remove()
-            $('.userSelector').append('<option><h5 class="text-primary">'+"null" +'</h5></option>') 
+            $('.userSelector').append('<option><h5 class="text-primary" value ="None">'+"None" +'</h5></option>') 
+
             for(var i=0;i<userCount;i++){
                 var user = in3DDBUserDB[i][2]
-               $('.userSelector').append('<option><h5 class="text-primary">'+user +'</h5></option>') 
-                
-                
-            }
+                $('.userSelector').append('<option><h5 class="text-primary" value ="'+ user +'">'+user +'</h5></option>')  
+            };
             var currentDate = getCurrentTime()
-                
+            $('#currentAssetCode').val('')
+            $('#editAssetName').val('')
+            $('#editAssetDescription').val('')
+            $('#editAssetClassSelector').val('character')
+            $('#editAssetWorkOnUserSelector').val('None')
+            
+            $('#assetConceptTaskProcessSelect').val('.Not Ready')
+            $('#assetModelTaskProcessSelect').val('.Not Ready')
+            $('#assetTextureTaskProcessSelect').val('.Not Ready')
+            $('#assetRiggingTaskProcessSelect').val('.Not Ready')
+            
+            $('#assetConceptExtra').val('')
+            $('#assetModelExtra').val('')
+            $('#assetTextureExtra').val('')
+            $('#assetRiggingExtra').val('')            
+            
+            
+            
+
             $('#editAssetTimeStart').val(currentDate)
             $('#editAssetTimeEnd').val(currentDate)
                          
@@ -1053,15 +1099,12 @@
             var userCount = in3DDBUserDB.length
             console.log('取得user資料',in3DDBUserDB,userCount)  
             $('.userSelector >option').remove()
-            $('.userSelector').append('<option><h5 class="text-primary">'+"null" +'</h5></option>') 
+            $('.userSelector').append('<option><h5 class="text-primary" value ="None">'+"None" +'</h5></option>') 
 
             for(var i=0;i<userCount;i++){
                 var user = in3DDBUserDB[i][2]
-               $('.userSelector').append('<option><h5 class="text-primary">'+user +'</h5></option>') 
-                
-                
-            }
-            
+                $('.userSelector').append('<option><h5 class="text-primary" value ="'+ user +'">'+user +'</h5></option>')  
+                };
             var currentDate = getCurrentTime()
             
                             
@@ -1539,8 +1582,12 @@
                                     $('#pmEditorAssets').append($trAsset0)
                                     //點選 asset編輯按鈕
                                     $('.assetEditorBtn').click(function(event){
-                                        
-                                        console.log(event['currentTarget']['id'])
+                                        $('#submitAddNewAssetBtn').hide()
+                                        $('#submitEditAssetBtn').show()
+                                        //console.log(event['currentTarget']['id'])
+                                        var assetID = event['currentTarget']['id'].split('editAssetBtn_')[1]
+                                        console.log('現有 asset 編輯',assetID)
+                                        loadAssetDataClickedEdit(assetID);
 
                                     })
                                     
@@ -1637,6 +1684,103 @@
             
         }
     
+        function loadAssetDataClickedEdit(assetID){
+            console.log(" 編輯 Asset 物件，由資料庫讀取現存資料","assetID",assetID)
+            $.post("/getSpecAssetDataFrom3DDB", {
+
+                "assetID":assetID,
+                
+                }, function(data) {
+
+                    console.log(data)
+                
+                    var assetData =  data[0]
+                    var project =  data[1]
+                    
+                    var assetName = assetData [6]
+                    var assetDesc = assetData [1]
+                    var assetTypeCode = assetData [8]
+                    var userCount = in3DDBUserDB.length
+                    var assetWorkonUser = assetData [14]
+                    var assetStartTime = assetData [36]
+                    var assetEndTime = assetData [37]
+                    
+                    var conceptWorkOnUser = assetData [16]
+                    var conceptstatus = assetData [17]
+                    var conceptTimeStart = assetData [18]
+                    var conceptTimeEnd = assetData [19]
+                    var conceptDesc = assetData [20]
+
+                    var modelWorkOnUser = assetData [21]
+                    var modelstatus = assetData [22]
+                    var modelTimeStart = assetData [23]
+                    var modelTimeEnd = assetData [24]
+                    var modelDesc = assetData [25]
+
+                    var textureWorkOnUser = assetData [26]
+                    var texturestatus = assetData [27]
+                    var textureTimeStart = assetData [28]
+                    var textureTimeEnd = assetData [29]
+                    var textureDesc = assetData [30]
+
+                    var riggingWorkOnUser = assetData [31]
+                    var riggingstatus = assetData [32]
+                    var riggingTimeStart = assetData [33]
+                    var riggingTimeEnd = assetData [34]
+                    var riggingDesc = assetData [35]
+                    var assetCode = assetData [0]
+                   // console.log('login',assetWorkonUser)
+                    if(assetTypeCode == "ASSET_TYPE00002"){var assetType = "character"}
+                            else if(assetTypeCode == "ASSET_TYPE00003"){var assetType = "vehicle"}
+                            else if(assetTypeCode == "ASSET_TYPE00004"){var assetType = "set"}
+                            else if(assetTypeCode == "ASSET_TYPE00005"){var assetType = "prop"}
+                            else if(assetTypeCode == "ASSET_TYPE00006"){var assetType = "other"};
+                   // console.log('in3DDBUserDB',in3DDBUserDB,userCount)
+                    $('.userSelector').append('<option><h5 class="text-primary" value ="None">'+"None" +'</h5></option>') 
+
+                    for(var i=0;i<userCount;i++){
+                        var user = in3DDBUserDB[i][2]
+                        $('.userSelector').append('<option><h5 class="text-primary" value ="'+ user +'">'+user +'</h5></option>')  
+                    };
+               
+                    $('#editAssetName').val(assetName)
+                  
+                    $('#editAssetDescription').val(assetDesc)
+                    $('#editAssetClassSelector').val(assetType)
+                    $('#editAssetWorkOnUserSelector').val(assetWorkonUser)
+                    $('#editAssetTimeStart').val(assetStartTime)
+                    $('#editAssetTimeEnd').val(assetEndTime)
+
+                    $('#assetConceptTimeStart').val(conceptTimeStart)
+                    $('#assetConceptTimeEnd').val(conceptTimeEnd)
+                    $('#assetConceptTaskProcessSelect').val(conceptstatus)
+                    $('#assetConceptWorkonUserSelector').val(conceptWorkOnUser)
+                    $('#assetConceptExtra').val(conceptDesc)
+                          
+                    $('#assetModelTimeStart').val(modelTimeStart)
+                    $('#assetModelTimeEnd').val(modelTimeEnd)
+                    $('#assetModelTaskProcessSelect').val(modelstatus)
+                    $('#assetModelWorkonUserSelector').val(modelWorkOnUser)
+                    $('#assetModelExtra').val(modelDesc)
+                     
+                    $('#assetTextureTimeStart').val(textureTimeStart)
+                    $('#assetTextureTimeEnd').val(textureTimeEnd)
+                    $('#assetTextureTaskProcessSelect').val(texturestatus)
+                    $('#assetTextureWorkonUserSelector').val(textureWorkOnUser)
+                    $('#assetTextureExtra').val(textureDesc)
+          
+                    $('#assetRiggingTimeStart').val(riggingTimeStart)
+                    $('#assetRiggingTimeEnd').val(riggingTimeEnd)
+                    $('#assetRiggingTaskProcessSelect').val(riggingstatus)
+                    $('#assetRiggingWorkonUserSelector').val(riggingWorkOnUser)
+                    $('#assetRiggingExtra').val(riggingDesc)
+                    $('#currentAssetCode').val(assetCode)
+                                 
+
+                })
+
+             };
+                                  
         function defineWorkonUser(projectWorkingOn,workingOnCount){
             console.log('define workon user')
             $('#projContentWorking').tagsinput('removeAll')
@@ -1684,11 +1828,21 @@
                 <div class="input-group mb-3">
                     <h5>新增 asset 編輯</h5>
                 </div>
+                <div class="input-group mb-3" >
+                    <div class="input-group-append ">
+                        <label class="input-group-text align-middle" for="inputGroupSelect02" style="width: 100px">Code</label>
+                    </div>
+                    <div class="input-group-append " style="width:250px">
+                        <input type="text" class="form-control" placeholder="None" aria-label="project EN name" aria-describedby="basic-addon2" id="currentAssetCode">
+                    </div>
+                
+                
+                 </div>
                 <div class="input-group mb-3">
                     <div class="input-group-append ">
                         <label class="input-group-text align-middle" for="inputGroupSelect02" style="width: 100px">英文名稱</label>
                     </div>
-                    <div class="input-group-append " style="width:190px">
+                    <div class="input-group-append " style="width:250px">
                         <input type="text" class="form-control" placeholder="物件英文名稱" aria-label="project EN name" aria-describedby="basic-addon2" id="editAssetName">
                     </div>
                     <div class="input-group-append ">
@@ -1884,13 +2038,18 @@
             </div>
             <div class="modal-footer ">
                 <div class="input-group mb-3 ">
-                    <h6 class="col-6"></h6>
-                    <button type="button" class="col-2 btn btn-dark btn-md " id= "submitAddNewAssetBtn">確定 送出</button>
-                    <h6 class="col-1"></h6>
+                   <div class="col-6">
+                       
+                   </div>
+                   <div class="col-6">
+                       <div class="row">
+                            <button type="button" class="col-3 btn btn-primary btn-md" id= "submitAddNewAssetBtn">確定新增</button>
+                            <button type="button" class="col-3 btn btn-success btn-md " id= "submitEditAssetBtn">確認編輯</button>
 
-                    <button type="button" class="col-2 btn btn-secondary btn-md ">取消</button>
+                            <button type="button" class="col-3 btn btn-secondary btn-md ">取消</button>
 
-                    <h6 class="col-1"></h6>
+                        </div>
+                    </div>
                 </div>
 
             </div>

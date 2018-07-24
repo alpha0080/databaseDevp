@@ -2854,7 +2854,7 @@ def submitAddNewAssetBtn():
     #print 'game_name',game_name
     conn = psycopg2.connect(database='3D_db', user= 'postgres', password= '', host= '192.168.161.193', port= '5432')
     cursor = conn.cursor()
-    cursor.execute("INSERT INTO assets (id,code,description,timestamp,game_code,asset_type_code,login,name,s_status,pipeline_code,keywords,frames,game_name,game_name_chn) VALUES(%s,'%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s')"%(searchID,assetCode,assetDesctiption,assetTimeStart,gameCode,assetType,assetWorkUser,assetName,'None','simpleslot/assets','None','None',game_name,game_name_chn.decode('utf8')))
+    cursor.execute("INSERT INTO assets (id,code,description,timestamp,game_code,asset_type_code,login,name,s_status,pipeline_code,keywords,frames,game_name,game_name_chn,brief_sd,brief_ed) VALUES(%s,'%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s')"%(searchID,assetCode,assetDesctiption,assetTimeStart,gameCode,assetType,assetWorkUser,assetName,'None','simpleslot/assets','None','None',game_name,game_name_chn.decode('utf8'),assetTimeStart,assetTimeEnd))
 
     conn.commit()
     conn.close() 
@@ -2901,6 +2901,321 @@ def submitAddNewAssetBtn():
     
     return jsonify(getData,data,assetName,errorMsg,exportErrorMsg,assetCode,dataConceptTask)
     
+### 編輯asset
+@app.route('/submitEditAssetBtn',methods=['GET','POST'])
+def submitEditAssetBtn():
+    getData =  request.args#.get('assetEditorValue')
+    assetName = getData['assetName']
+    assetCode = getData['assetCode']
+    assetDesctiption = getData['assetDesctiption']
+    assetClass = getData['assetClass']
+    assetWorkUser = getData['assetWorkUser']
+    assetTimeStart = (getData['assetTimeStart']).replace('/','-')
+    assetTimeEnd = (getData['assetTimeEnd']).replace('/','-')
+    gameName = getData['currentProjectSelecte']  
+    
+    
+    conceptProcess =  getData['conceptProcess']    
+    conceptTS =  getData['conceptTS']    
+    conceptTD =  getData['conceptTD']    
+    conceptWorkonUser =  getData['conceptWorkonUser']    
+    conceptWorkonExtra =  getData['conceptWorkonExtra']    
+
+    modelProcess =  getData['modelProcess']    
+    modelTS =  getData['modelTS']    
+    modelTD =  getData['modelTD']    
+    modelWorkonUser =  getData['modelWorkonUser']    
+    modelWorkonExtra =  getData['modelWorkonExtra']   
+    
+    textureProcess =  getData['textureProcess']    
+    textureTS =  getData['textureTS']    
+    textureTD =  getData['textureTD']    
+    textureWorkonExtra =  getData['textureWorkonExtra']    
+    textureWorkonUser =  getData['textureWorkonUser']    
+   
+    riggingProcess =  getData['riggingProcess']    
+    riggingTS =  getData['riggingTS']    
+    riggingTD =  getData['riggingTD']    
+    riggingWorkonUser =  getData['riggingWorkonUser']    
+    riggingWorkonExtra =  getData['riggingWorkonExtra']    
+   
+   
+
+    conn = psycopg2.connect(database='3D_db', user= 'postgres', password= '', host= '192.168.161.193', port= '5432')
+    cursor = conn.cursor()
+    cursor.execute("SELECT * FROM games_db")
+   # print allIDs
+    allGamesIn3DDB = cursor.fetchall()
+    code = int(filter(lambda x:x[0] == gameName ,allGamesIn3DDB)[0][1])
+    gameCode =  "GAME"+'{:05d}'.format(code)
+    conn.commit()
+    conn.close() 
+    
+
+
+    
+    ###add new asset to tactic using tactic api
+    tactic = runTactic()
+    server=tactic.server
+    tactic_server_ip= tactic.tactic_server_ip
+    
+
+    #print server
+    if assetClass == "character" :
+        assetType = "ASSET_TYPE00002"
+    elif assetClass == "vehicle" :
+        assetType = "ASSET_TYPE00003"
+    elif assetClass == "set" :
+        assetType = "ASSET_TYPE00004"
+    elif assetClass == "prop" :
+        assetType = "ASSET_TYPE00005"
+    elif assetClass == "other" :
+        assetType = "ASSET_TYPE00006"
+    
+    ### add asset to tactic
+
+
+    server.set_server(tactic_server_ip)
+    server.set_project("simpleslot")
+    ticket = server.get_ticket("julio", "1234")
+    server.set_ticket(ticket)
+    #print 
+    search_type ='simpleslot/assets'
+   # code = 'vehicle001'
+    
+    
+    data ={
+        'name': assetName,
+        'description':assetDesctiption,
+        'asset_type_code':assetType,
+        'game_code':gameCode,
+        'login':assetWorkUser,
+        'timestamp':assetTimeStart
+       # 'project_coordinator': pcName,
+       # 'brief_sd':newProjectStartTime,
+       # 'brief_ed':newProjectEndTime
+    }
+
+        
+
+
+    ### get assetCode from tactic
+
+    search_key = server.build_search_key(search_type, assetCode)
+
+    try:
+      #  server.update(search_key, data)
+        errorMsg ="null"
+    except Exception, e:
+        errorMsg = str(e)  
+           
+    
+    conn4= psycopg2.connect(database='sthpw', user= 'postgres', password= '', host= '192.168.163.60', port= '5432')
+    cursor4 = conn4.cursor()
+    cursor4.execute("SELECT * FROM task")
+    allTaskInTactic = cursor4.fetchall()
+    allTaskData = filter(lambda x:x[32] == assetCode ,allTaskInTactic)
+
+    conn4.commit()
+    conn4.close()    
+    
+    '''
+    dataConceptTask = {
+        'assigned': conceptWorkonUser,
+        'status': conceptProcess,
+        'bid_start_date': conceptTS,
+        'bid_end_date': conceptTD,
+        'process': 'concept',
+        'context': 'concept',
+        'pipeline_code': '3d_task',
+        'search_code': assetCode,     
+        'description': conceptWorkonExtra,       
+        'search_type': "simpleslot/assets?project=simpleslot",     
+        'search_id': searchID,     
+        'project_code': 'simpleslot',     
+      
+    }
+
+    server.set_server(tactic_server_ip)
+    server.set_project("sthpw")
+    ticket = server.get_ticket("julio", "1234")
+    server.set_ticket(ticket)
+    #print 
+    search_typeC ='sthpw/task'
+    
+    search_key = server.build_search_key(search_typeC, assetCode)
+
+    try:
+        server.update(search_key, dataConceptTask)
+        addConceptTaskErrorMsg ="null"
+    except Exception, e:
+        addConceptTaskErrorMsg = str(e)  
+        
+    ### add model Task     
+    
+    dataModeltTask = {
+        'assigned': modelWorkonUser,
+        'status': modelProcess,
+        'bid_start_date': modelTS,
+        'bid_end_date': modelTD,
+        'process': 'model',
+        'context': 'model',
+        'pipeline_code': '3d_task',
+        'search_code': assetCode,     
+        'description': modelWorkonExtra,       
+        'search_type': "simpleslot/assets?project=simpleslot",     
+        'search_id': searchID,     
+        'project_code': 'simpleslot',     
+      
+    }
+    
+    server.set_server(tactic_server_ip)
+    server.set_project("sthpw")
+    ticket = server.get_ticket("julio", "1234")
+    server.set_ticket(ticket)
+    #print 
+    search_type ='sthpw/task'
+    #search_key = server.build_search_key(search_type, assetCode)
+
+    try:
+        server.update(search_key, dataModeltTask)
+        addModelTaskErrorMsg ="null"
+    except Exception, e:
+        addModelTaskErrorMsg = str(e)  
+    
+    ### add texture Task     
+   
+    dataTexturetTask = {
+        'assigned': textureWorkonUser,
+        'status': textureProcess,
+        'bid_start_date': textureTS,
+        'bid_end_date': textureTD,
+        'process': 'texture',
+        'context': 'texture',
+        'pipeline_code': '3d_task',
+        'search_code': assetCode,     
+        'description': textureWorkonExtra,       
+        'search_type': "simpleslot/assets?project=simpleslot",     
+        'search_id': searchID,     
+        'project_code': 'simpleslot',     
+      
+    }
+    
+    server.set_server(tactic_server_ip)
+    server.set_project("sthpw")
+    ticket = server.get_ticket("julio", "1234")
+    server.set_ticket(ticket)
+    #print 
+    search_type ='sthpw/task'
+    try:
+        server.update(search_key, dataTexturetTask)
+        addTextureTaskErrorMsg ="null"
+    except Exception, e:
+        addTextureTaskErrorMsg = str(e)  
+        
+    ### add rigging Task     
+    dataRiggingTask = {
+        'assigned': riggingWorkonUser,
+        'status': riggingProcess,
+        'bid_start_date': riggingTS,
+        'bid_end_date': riggingTD,
+        'process': 'rigging',
+        'context': 'rigging',
+        'pipeline_code': '3d_task',
+        'search_code': assetCode,     
+        'description': riggingWorkonExtra,       
+        'search_type': "simpleslot/assets?project=simpleslot",     
+        'search_id': searchID,     
+        'project_code': 'simpleslot',     
+      
+    }
+    
+    server.set_server(tactic_server_ip)
+    server.set_project("sthpw")
+    ticket = server.get_ticket("julio", "1234")
+    server.set_ticket(ticket)
+    #print 
+    search_type ='sthpw/task'
+    try:
+        server.update(search_key, dataRiggingTask)
+        addRiggingTaskErrorMsg ="null"
+    except Exception, e:
+        addRiggingTaskErrorMsg = str(e)  
+    
+    exportErrorMsg =  addConceptTaskErrorMsg + "<"+"br"+">" + addModelTaskErrorMsg + "<"+"br"+">" + addTextureTaskErrorMsg  + "<"+"br"+">" + addRiggingTaskErrorMsg
+    
+    
+    
+    #print (assetEditorValue),type(assetEditorValue)
+    
+    ###### add task info to 3DDB assets
+    
+    conn3 = psycopg2.connect(database='3D_db', user= 'postgres', password= '', host= '192.168.161.193', port= '5432')
+    cursor3 = conn3.cursor()
+    cursor3.execute("SELECT * FROM games_db")
+
+    allGamesIn3DDB = cursor3.fetchall()
+    getGameData = (filter(lambda x:x[1] == str(code) ,allGamesIn3DDB))[0]
+    game_name = getGameData[0]
+    game_name_chn = getGameData[3]
+    conn3.commit()
+    conn3.close() 
+    #print 'game_name',game_name
+    conn = psycopg2.connect(database='3D_db', user= 'postgres', password= '', host= '192.168.161.193', port= '5432')
+    cursor = conn.cursor()
+    cursor.execute("INSERT INTO assets (id,code,description,timestamp,game_code,asset_type_code,login,name,s_status,pipeline_code,keywords,frames,game_name,game_name_chn,brief_sd,brief_ed) VALUES(%s,'%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s')"%(searchID,assetCode,assetDesctiption,assetTimeStart,gameCode,assetType,assetWorkUser,assetName,'None','simpleslot/assets','None','None',game_name,game_name_chn.decode('utf8'),assetTimeStart,assetTimeEnd))
+
+    conn.commit()
+    conn.close() 
+
+            
+    export3DDB_conceptData = {
+        'concept_user':conceptWorkonUser,
+        'concept_status':conceptProcess,
+        'concept_ts':conceptTS,
+        'concept_te':conceptTD,
+        'concept_desc':conceptWorkonExtra,  
+    }
+    
+    export3DDB_modelData = {
+        'model_user':modelWorkonUser,
+        'model_status':modelProcess,
+        'model_ts':modelTS,
+        'model_te':modelTD,
+        'model_desc':modelWorkonExtra,  
+    }
+  
+    export3DDB_textureData = {
+        'texture_user':textureWorkonUser,
+        'texture_status':textureProcess,
+        'texture_ts':textureTS,
+        'texture_te':textureTD,
+        'texture_desc':textureWorkonExtra,  
+    }
+
+    export3DDB_riggingData = {
+        'rigging_user':riggingWorkonUser,
+        'rigging_status':riggingProcess,
+        'rigging_ts':riggingTS,
+        'rigging_te':riggingTD,
+        'rigging_desc':riggingWorkonExtra,  
+    }   
+    
+    
+    addTaskTo3DDBAssets(searchID,export3DDB_conceptData) 
+    addTaskTo3DDBAssets(searchID,export3DDB_modelData) 
+    addTaskTo3DDBAssets(searchID,export3DDB_textureData) 
+    addTaskTo3DDBAssets(searchID,export3DDB_riggingData) 
+  
+    '''
+    #return jsonify(getData,data,assetName,errorMsg,exportErrorMsg,assetCode,dataConceptTask)
+    data = "2"
+    #assetName ="3"
+    exportErrorMsg ="null"
+    dataConceptTask= "null"
+    return jsonify(getData,data,assetName,errorMsg,exportErrorMsg,assetCode,dataConceptTask,allTaskData)
+    
+
 
 
     
@@ -2917,6 +3232,10 @@ def addTaskTo3DDBAssets(assetID,taskData):
         conn.commit()
         conn.close() 
 
+        
+        
+        
+        
 ### 新增加shot
 
 
@@ -3285,6 +3604,7 @@ def submitAddNewShotBtn():
 
     
         
+        
 def addTaskTo3DDBShots(shotID,taskData):
     
     for key in taskData.keys():
@@ -3298,7 +3618,29 @@ def addTaskTo3DDBShots(shotID,taskData):
         conn.commit()
         conn.close() 
               
-        
+  
+
+@app.route('/getSpecAssetDataFrom3DDB',methods=['GET','POST'])
+def getSpecAssetDataFrom3DDB():
+    
+    assetID = int(request.form['assetID'])
+
+    conn3 = psycopg2.connect(database='3D_db', user= 'postgres', password= '', host= '192.168.161.193', port= '5432')
+    cursor3 = conn3.cursor()
+    cursor3.execute("SELECT * FROM assets")
+    allAssetsIn3DDB = cursor3.fetchall()
+
+    getAssetData = (filter(lambda x:x[12] == assetID ,allAssetsIn3DDB))[0]
+    getGameCode = int(getAssetData[7].split('GAME')[1])
+    cursor3.execute("SELECT * FROM games_db")
+    allGamesIn3DDB = cursor3.fetchall()
+    getGameData = (filter(lambda x:x[8] == getGameCode ,allGamesIn3DDB))[0]
+
+    conn3.commit()
+    conn3.close() 
+
+    return jsonify(getAssetData,getGameData)
+
         
 if __name__ == '__main__':
     app.run(host='192.168.161.193',debug=True,port = 80)
