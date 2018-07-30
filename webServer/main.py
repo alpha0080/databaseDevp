@@ -2075,10 +2075,10 @@ def getProjectDataWhenClickEditBtn():
     conn3.commit()
     conn3.close()       
     
-
+    gameCode = "GAME"+'{:05d}'.format(selectGameDB[0][8])
     
     
-    return jsonify(selectGameDB,selectAssetsDB,selectShotsDB)
+    return jsonify(selectGameDB,selectAssetsDB,selectShotsDB,gameCode)
 
 
 
@@ -2245,6 +2245,7 @@ def pm_syncProjectsBtn():
     
 #### 同步shot tactic <--> 3ddb
 
+
 @app.route('/pm_syncShotsBtn',methods=['GET','POST'])
 def pm_syncShotsBtn():
 
@@ -2400,6 +2401,7 @@ def pm_syncShotsBtn():
 
 
 #### assets tactic <--> 3ddb
+
 
 @app.route('/pm_syncAssetsBtn',methods=['GET','POST'])
 def pm_syncAssetsBtn():
@@ -2570,34 +2572,76 @@ def pm_syncAssetsBtn():
 
 
 
+
 @app.route('/storeModifyTo3DDB',methods=['GET','POST'])
 def storeModifyTo3DDB():
 
     
     gameName = request.form['gameName']
-   # gameNameChn = request.form['gameNameChn']
+    gameNameChn = request.form['gameNameChn']
     projectPM = request.form['projectPM']
     projectPC = request.form['projectPC']
     projectBriefSD = request.form['projectBriefSD']
     projectBriefED = request.form['projectBriefED']
     projectWorkingOn = request.form['projectWorkingOn']
+    projectStatus = request.form['projectStatus']
+    projectCode = request.form['projectCode']
 
-    
+    #### update 3DDB/games_db
     conn = psycopg2.connect(database='3D_db', user= 'postgres', password= '', host= '192.168.161.193', port= '5432')
     cursor = conn.cursor()
     try:
-        cursor.execute( "UPDATE games_db set pm = '%s' where name = '%s';" % ( projectPM, gameName))
-        cursor.execute( "UPDATE games_db set pc = '%s' where name = '%s';" % ( projectPC, gameName))
-        cursor.execute( "UPDATE games_db set brief_sd = '%s' where name = '%s';" % ( projectBriefSD, gameName))
-        cursor.execute( "UPDATE games_db set brief_ed = '%s' where name = '%s';" % ( projectBriefED, gameName))
-        cursor.execute( "UPDATE games_db set workon_user = '%s' where name = '%s';" % ( projectWorkingOn, gameName))
+        cursor.execute( "UPDATE games_db set pm ='%s',pc='%s',brief_sd='%s',brief_ed='%s',workon_user='%s',project_status='%s' WHERE name ='%s'"%(projectPM,projectPC,projectBriefSD,projectBriefED,projectWorkingOn,projectStatus,gameName))
     except:
         pass
     conn.commit()
     conn.close() 
 
+    
+    #### update tactic/games
+    tactic = runTactic()
+    server=tactic.server
+    tactic_server_ip= tactic.tactic_server_ip
+    
+
+    server.set_server(tactic_server_ip)
+    server.set_project("simpleslot")
+    ticket = server.get_ticket("julio", "1234")
+    server.set_ticket(ticket)
+    #print 
+    search_type ='simpleslot/game'
+    
+    data ={
+        'name': gameName,
+        'name_chn':gameNameChn,
+        'project_status':projectStatus,
+        'login':projectWorkingOn,
+        'timestamp':projectBriefSD,
+        'brief_sd':projectBriefSD,
+        'brief_ed':projectBriefED,
+        'project_coordinator':projectPC,
+        'pipeline_code':'simpleslot/game',
+    }
+    
+    
+    
+    search_key = server.build_search_key(search_type, projectCode)
+
+
+    try:
+        server.update(search_key, data)
+
+        errorMsg ="null"
+    except Exception, e:
+        errorMsg = str(e)  
+    
+    
+    
+    
+    
+    
     #data="aaaa"
-    return jsonify(gameName,projectPM,projectPC,projectBriefSD,projectBriefED,projectWorkingOn)
+    return jsonify(gameName,projectPM,projectPC,projectBriefSD,projectBriefED,projectWorkingOn,errorMsg)
 
 
 
@@ -2907,6 +2951,7 @@ def submitEditAssetBtn():
     getData =  request.args#.get('assetEditorValue')
     assetName = getData['assetName']
     assetCode = getData['assetCode']
+    searchID = int(assetCode.split('ASSETS')[1])
     assetDesctiption = getData['assetDesctiption']
     assetClass = getData['assetClass']
     assetWorkUser = getData['assetWorkUser']
@@ -2991,20 +3036,16 @@ def submitEditAssetBtn():
         'game_code':gameCode,
         'login':assetWorkUser,
         'timestamp':assetTimeStart
-       # 'project_coordinator': pcName,
-       # 'brief_sd':newProjectStartTime,
-       # 'brief_ed':newProjectEndTime
+
     }
 
         
 
 
-    ### get assetCode from tactic
-
     search_key = server.build_search_key(search_type, assetCode)
 
     try:
-      #  server.update(search_key, data)
+        server.update(search_key, data)
         errorMsg ="null"
     except Exception, e:
         errorMsg = str(e)  
@@ -3015,11 +3056,18 @@ def submitEditAssetBtn():
     cursor4.execute("SELECT * FROM task")
     allTaskInTactic = cursor4.fetchall()
     allTaskData = filter(lambda x:x[32] == assetCode ,allTaskInTactic)
+    concept_searchKey =  "TASK"+'{:08d}'.format(filter(lambda x:x[15] == 'concept' ,allTaskData)[0][0])
+
+    model_searchKey =  "TASK"+'{:08d}'.format(filter(lambda x:x[15] == 'model' ,allTaskData)[0][0])
+    texture_searchKey =  "TASK"+'{:08d}'.format(filter(lambda x:x[15] == 'texture' ,allTaskData)[0][0])
+    rigging_searchKey =  "TASK"+'{:08d}'.format(filter(lambda x:x[15] == 'rigging' ,allTaskData)[0][0])
+
+
 
     conn4.commit()
     conn4.close()    
     
-    '''
+    
     dataConceptTask = {
         'assigned': conceptWorkonUser,
         'status': conceptProcess,
@@ -3043,7 +3091,7 @@ def submitEditAssetBtn():
     #print 
     search_typeC ='sthpw/task'
     
-    search_key = server.build_search_key(search_typeC, assetCode)
+    search_key = server.build_search_key(search_typeC, concept_searchKey)
 
     try:
         server.update(search_key, dataConceptTask)
@@ -3074,8 +3122,7 @@ def submitEditAssetBtn():
     ticket = server.get_ticket("julio", "1234")
     server.set_ticket(ticket)
     #print 
-    search_type ='sthpw/task'
-    #search_key = server.build_search_key(search_type, assetCode)
+    search_key = server.build_search_key(search_typeC, model_searchKey)
 
     try:
         server.update(search_key, dataModeltTask)
@@ -3105,8 +3152,9 @@ def submitEditAssetBtn():
     server.set_project("sthpw")
     ticket = server.get_ticket("julio", "1234")
     server.set_ticket(ticket)
-    #print 
-    search_type ='sthpw/task'
+    # 
+    search_key = server.build_search_key(search_typeC, texture_searchKey)
+
     try:
         server.update(search_key, dataTexturetTask)
         addTextureTaskErrorMsg ="null"
@@ -3135,7 +3183,7 @@ def submitEditAssetBtn():
     ticket = server.get_ticket("julio", "1234")
     server.set_ticket(ticket)
     #print 
-    search_type ='sthpw/task'
+    search_key = server.build_search_key(search_typeC, rigging_searchKey)
     try:
         server.update(search_key, dataRiggingTask)
         addRiggingTaskErrorMsg ="null"
@@ -3143,7 +3191,6 @@ def submitEditAssetBtn():
         addRiggingTaskErrorMsg = str(e)  
     
     exportErrorMsg =  addConceptTaskErrorMsg + "<"+"br"+">" + addModelTaskErrorMsg + "<"+"br"+">" + addTextureTaskErrorMsg  + "<"+"br"+">" + addRiggingTaskErrorMsg
-    
     
     
     #print (assetEditorValue),type(assetEditorValue)
@@ -3163,57 +3210,15 @@ def submitEditAssetBtn():
     #print 'game_name',game_name
     conn = psycopg2.connect(database='3D_db', user= 'postgres', password= '', host= '192.168.161.193', port= '5432')
     cursor = conn.cursor()
-    cursor.execute("INSERT INTO assets (id,code,description,timestamp,game_code,asset_type_code,login,name,s_status,pipeline_code,keywords,frames,game_name,game_name_chn,brief_sd,brief_ed) VALUES(%s,'%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s')"%(searchID,assetCode,assetDesctiption,assetTimeStart,gameCode,assetType,assetWorkUser,assetName,'None','simpleslot/assets','None','None',game_name,game_name_chn.decode('utf8'),assetTimeStart,assetTimeEnd))
 
+
+    cursor.execute("UPDATE assets SET name ='%s',description ='%s',timestamp ='%s',asset_type_code ='%s',login ='%s',brief_sd ='%s',brief_ed='%s',concept_user ='%s',concept_status ='%s',concept_ts='%s',concept_te='%s',concept_desc='%s',model_user ='%s',model_status='%s',model_ts='%s',model_te='%s',model_desc='%s',texture_user ='%s',texture_status='%s',texture_ts='%s',texture_te='%s',texture_desc='%s',rigging_user ='%s',rigging_status='%s',rigging_ts='%s',rigging_te='%s',rigging_desc='%s' WHERE id = %s"%(assetName,assetDesctiption,assetTimeStart,assetType,assetWorkUser,assetTimeStart,assetTimeEnd,conceptWorkonUser,conceptProcess,conceptTS,conceptTD,conceptWorkonExtra,modelWorkonUser,modelProcess,modelTS,modelTD,modelWorkonExtra,textureWorkonUser,textureProcess,textureTS,textureTD,textureWorkonExtra,riggingWorkonUser,riggingProcess,riggingTS,riggingTD,riggingWorkonExtra,searchID))
+
+   
     conn.commit()
     conn.close() 
 
-            
-    export3DDB_conceptData = {
-        'concept_user':conceptWorkonUser,
-        'concept_status':conceptProcess,
-        'concept_ts':conceptTS,
-        'concept_te':conceptTD,
-        'concept_desc':conceptWorkonExtra,  
-    }
-    
-    export3DDB_modelData = {
-        'model_user':modelWorkonUser,
-        'model_status':modelProcess,
-        'model_ts':modelTS,
-        'model_te':modelTD,
-        'model_desc':modelWorkonExtra,  
-    }
-  
-    export3DDB_textureData = {
-        'texture_user':textureWorkonUser,
-        'texture_status':textureProcess,
-        'texture_ts':textureTS,
-        'texture_te':textureTD,
-        'texture_desc':textureWorkonExtra,  
-    }
-
-    export3DDB_riggingData = {
-        'rigging_user':riggingWorkonUser,
-        'rigging_status':riggingProcess,
-        'rigging_ts':riggingTS,
-        'rigging_te':riggingTD,
-        'rigging_desc':riggingWorkonExtra,  
-    }   
-    
-    
-    addTaskTo3DDBAssets(searchID,export3DDB_conceptData) 
-    addTaskTo3DDBAssets(searchID,export3DDB_modelData) 
-    addTaskTo3DDBAssets(searchID,export3DDB_textureData) 
-    addTaskTo3DDBAssets(searchID,export3DDB_riggingData) 
-  
-    '''
-    #return jsonify(getData,data,assetName,errorMsg,exportErrorMsg,assetCode,dataConceptTask)
-    data = "2"
-    #assetName ="3"
-    exportErrorMsg ="null"
-    dataConceptTask= "null"
-    return jsonify(getData,data,assetName,errorMsg,exportErrorMsg,assetCode,dataConceptTask,allTaskData)
+    return jsonify(getData,data,assetName,errorMsg,exportErrorMsg,assetCode,dataConceptTask,dataModeltTask,dataTexturetTask,dataRiggingTask,allTaskData,concept_searchKey,model_searchKey,texture_searchKey,rigging_searchKey)
     
 
 
@@ -3237,6 +3242,9 @@ def addTaskTo3DDBAssets(assetID,taskData):
         
         
 ### 新增加shot
+
+
+
 
 
 @app.route('/submitAddNewShotBtn',methods=['GET','POST'])
@@ -3530,9 +3538,9 @@ def submitAddNewShotBtn():
     #### add task info to 3DDB shots
     conn = psycopg2.connect(database='3D_db', user= 'postgres', password= '', host= '192.168.161.193', port= '5432')
     cursor = conn.cursor()
-    cursor.execute("INSERT INTO shots (id,code,description,timestamp,game_code,login,name,s_status,pipeline_code,keywords,game_name,game_name_chn) VALUES(%s,'%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s')"%(searchID,shotCode,shotDesctiption,shotTimeStart,gameCode,shotWorkUser,shotName,'None','simpleslot/shot','None',game_name,game_name_chn.decode('utf8')))
-
+    cursor.execute("INSERT INTO shots (id,code,description,timestamp,game_code,login,name,s_status,pipeline_code,keywords,game_name,game_name_chn,brief_sd,brief_ed) VALUES(%s,'%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s')"%(searchID,shotCode,shotDesctiption,shotTimeStart,gameCode,shotWorkUser,shotName,'None','simpleslot/shot','None',game_name,game_name_chn.decode('utf8'),shotTimeStart,shotTimeEnd))
     conn.commit()
+
     conn.close() 
     
     export3DDB_layoutData = {
@@ -3603,7 +3611,353 @@ def submitAddNewShotBtn():
     
 
     
+
+    
+
+@app.route('/submitEditShotBtn',methods=['GET','POST'])
+def submitEditShotBtn():   
+    getData =  request.args
+    shotName = getData['shotName']
+    shotCode = getData['shotCode']
+    search_ID = int(shotCode.split('SHOT')[1])
+    shotDesctiption = getData['shotDesctiption']
+    shotWorkUser = getData['shotWorkUser']
+    shotTimeStart = (getData['shotTimeStart']).replace('/','-')
+    shotTimeEnd = (getData['shotTimeEnd']).replace('/','-')
+    gameName = getData['currentProjectSelecte']  
+    
+    
+    layoutTS =  getData['layoutTS']    
+    layoutTD =  getData['layoutTD']    
+    layoutProcess =  getData['layoutProcess']    
+    layoutWorkonUser =  getData['layoutWorkonUser']    
+    layoutWorkonExtra =  getData['layoutWorkonExtra']   
+    
+    animationTS =  getData['animationTS']    
+    animationTD =  getData['animationTD']    
+    animationProcess =  getData['animationProcess']    
+    animationWorkonUser =  getData['animationWorkonUser']    
+    animationWorkonExtra =  getData['animationWorkonExtra']    
+
+    lightingTS =  getData['lightingTS']    
+    lightingTD =  getData['lightingTD']    
+    lightingProcess =  getData['lightingProcess']    
+    lightingWorkonUser =  getData['lightingWorkonUser']    
+    lightingWorkonExtra =  getData['lightingWorkonExtra']       
+
+    effectsTS =  getData['effectsTS']    
+    effectsTD =  getData['effectsTD']    
+    effectsProcess =  getData['effectsProcess']    
+    effectsWorkonUser =  getData['effectsWorkonUser']    
+    effectsWorkonExtra =  getData['effectsWorkonExtra']       
+
+    simulationTS =  getData['simulationTS']    
+    simulationTD =  getData['simulationTD']    
+    simulationProcess =  getData['simulationProcess']    
+    simulationWorkonUser =  getData['simulationWorkonUser']    
+    simulationWorkonExtra =  getData['simulationWorkonExtra']     
+
+    compTS =  getData['compTS']    
+    compTD =  getData['compTD']    
+    compProcess =  getData['compProcess']    
+    compWorkonUser =  getData['compWorkonUser']    
+    compWorkonExtra =  getData['compWorkonExtra']     
+
+    finalTS =  getData['finalTS']    
+    finalTD =  getData['finalTD']    
+    finalProcess =  getData['finalProcess']    
+    finalWorkonUser =  getData['finalWorkonUser']    
+    finalWorkonExtra =  getData['finalWorkonExtra']     
+    
+    
+    conn = psycopg2.connect(database='3D_db', user= 'postgres', password= '', host= '192.168.161.193', port= '5432')
+    cursor = conn.cursor()
+    cursor.execute("SELECT * FROM games_db")
+   # print allIDs
+    allGamesIn3DDB = cursor.fetchall()
+    code = int(filter(lambda x:x[0] == gameName ,allGamesIn3DDB)[0][1])
+    gameCode =  "GAME"+'{:05d}'.format(code)
+    conn.commit()
+    conn.close() 
+    
+
+
+    ###add new shot to tactic using tactic api  新增shot到tactic/shot
+    tactic = runTactic()
+    server=tactic.server
+    tactic_server_ip= tactic.tactic_server_ip
+    
+
+    server.set_server(tactic_server_ip)
+    server.set_project("simpleslot")
+    ticket = server.get_ticket("julio", "1234")
+    server.set_ticket(ticket)
+    #print 
+    search_type ='simpleslot/shot'
+    data ={
+        'name': shotName,
+        'description':shotDesctiption,
+        'game_code':gameCode,
+        'login':shotWorkUser,
+        'timestamp':shotTimeStart,
+        'pipeline_code':'simpleslot/shot',
         
+
+       # 'project_coordinator': pcName,
+       # 'brief_sd':newProjectStartTime,
+       # 'brief_ed':newProjectEndTime
+    }
+    
+    
+    
+    search_key = server.build_search_key(search_type, shotCode)
+
+
+    try:
+        server.update(search_key, data)
+
+        errorMsg ="null"
+    except Exception, e:
+        errorMsg = str(e)  
+
+
+
+    
+        
+    conn4= psycopg2.connect(database='sthpw', user= 'postgres', password= '', host= '192.168.163.60', port= '5432')
+    cursor4 = conn4.cursor()
+    cursor4.execute("SELECT * FROM task")
+    allTaskInTactic = cursor4.fetchall()
+    allTaskData = filter(lambda x:x[32] == shotCode ,allTaskInTactic)
+    layout_searchKey =  "TASK"+'{:08d}'.format(filter(lambda x:x[15] == 'layout' ,allTaskData)[0][0])
+    animation_searchKey =  "TASK"+'{:08d}'.format(filter(lambda x:x[15] == 'animation' ,allTaskData)[0][0])
+    lighting_searchKey =  "TASK"+'{:08d}'.format(filter(lambda x:x[15] == 'lighting' ,allTaskData)[0][0])
+    effects_searchKey =  "TASK"+'{:08d}'.format(filter(lambda x:x[15] == 'effects' ,allTaskData)[0][0])
+    simulation_searchKey =  "TASK"+'{:08d}'.format(filter(lambda x:x[15] == 'simulation' ,allTaskData)[0][0])
+    comp_searchKey =  "TASK"+'{:08d}'.format(filter(lambda x:x[15] == 'comp' ,allTaskData)[0][0])
+    final_searchKey =  "TASK"+'{:08d}'.format(filter(lambda x:x[15] == 'final' ,allTaskData)[0][0])
+    conn4.commit()
+    conn4.close() 
+    
+
+    
+
+
+    
+    ### add asset task to tactic task
+    server.set_server(tactic_server_ip)
+    server.set_project("sthpw")
+    ticket = server.get_ticket("julio", "1234")
+    server.set_ticket(ticket)
+    #print 
+    search_typeT ='sthpw/task'
+
+    
+
+
+    dataLayoutTask = {
+        'assigned': layoutWorkonUser,
+        'status': layoutProcess,
+        'bid_start_date': layoutTS,
+        'bid_end_date': layoutTD,
+        'process': 'layout',
+        'context': 'layout',
+        'pipeline_code': '3d_task',
+        'search_code': shotCode,     
+        'description': layoutWorkonExtra,       
+        'search_type': "simpleslot/shot?project=simpleslot",     
+        'search_id': search_ID,     
+        'project_code': 'simpleslot'  
+    }
+
+    dataAnimationTask = {
+        'assigned': animationWorkonUser,
+        'status':  animationProcess,
+        'bid_start_date':  animationTS,
+        'bid_end_date':  animationTD,
+        'process': 'animation',
+        'context': 'animation',
+        'pipeline_code': '3d_task',
+        'search_code': shotCode,     
+        'description':  animationWorkonExtra,       
+        'search_type': "simpleslot/shot?project=simpleslot",     
+        'search_id': search_ID,     
+        'project_code': 'simpleslot'  
+    }
+
+    dataLightingTask = {
+        'assigned': lightingWorkonUser,
+        'status':  lightingProcess,
+        'bid_start_date':  lightingTS,
+        'bid_end_date':  lightingTD,
+        'process': 'lighting',
+        'context': 'lighting',
+        'pipeline_code': '3d_task',
+        'search_code': shotCode,     
+        'description':  lightingWorkonExtra,       
+        'search_type': "simpleslot/shot?project=simpleslot",     
+        'search_id': search_ID,     
+        'project_code': 'simpleslot'  
+    }
+    
+    dataEffectsTask = {
+        'assigned': effectsWorkonUser,
+        'status':  effectsProcess,
+        'bid_start_date':  effectsTS,
+        'bid_end_date':  effectsTD,
+        'process': 'effects',
+        'context': 'effects',
+        'pipeline_code': '3d_task',
+        'search_code': shotCode,     
+        'description':  effectsWorkonExtra,       
+        'search_type': "simpleslot/shot?project=simpleslot",     
+        'search_id': search_ID,     
+        'project_code': 'simpleslot'  
+    }
+    
+    dataSimulationTask = {
+        'assigned': simulationWorkonUser,
+        'status':  simulationProcess,
+        'bid_start_date':  simulationTS,
+        'bid_end_date':  simulationTD,
+        'process': 'simulation',
+        'context': 'simulation',
+        'pipeline_code': '3d_task',
+        'search_code': shotCode,     
+        'description':  simulationWorkonExtra,       
+        'search_type': "simpleslot/shot?project=simpleslot",     
+        'search_id': search_ID,     
+        'project_code': 'simpleslot'  
+    }
+        
+    dataCompTask = {
+        'assigned': compWorkonUser,
+        'status':  compProcess,
+        'bid_start_date':  compTS,
+        'bid_end_date':  compTD,
+        'process': 'comp',
+        'context': 'comp',
+        'pipeline_code': '3d_task',
+        'search_code': shotCode,     
+        'description':  compWorkonExtra,       
+        'search_type': "simpleslot/shot?project=simpleslot",     
+        'search_id': search_ID,     
+        'project_code': 'simpleslot'  
+    }
+    
+        
+    dataFinalTask = {
+        'assigned': finalWorkonUser,
+        'status':  finalProcess,
+        'bid_start_date':  finalTS,
+        'bid_end_date':  finalTD,
+        'process': 'final',
+        'context': 'final',
+        'pipeline_code': '3d_task',
+        'search_code': shotCode,     
+        'description':  finalWorkonExtra,       
+        'search_type': "simpleslot/shot?project=simpleslot",     
+        'search_id': search_ID,     
+        'project_code': 'simpleslot'  
+    }    
+
+
+    
+    
+    
+    search_key = server.build_search_key(search_typeT, layout_searchKey)
+    try:
+        server.update(search_key, dataLayoutTask)
+        addLayoutTaskErrorMsg ="null"
+    except Exception, e:
+        addLayoutTaskErrorMsg = str(e) 
+        
+    search_key = server.build_search_key(search_typeT, animation_searchKey)
+    try:
+        server.update(search_key, dataAnimationTask)
+        addAnimationTaskErrorMsg ="null"
+    except Exception, e:
+        addAnimationTaskErrorMsg = str(e)    
+        
+    search_key = server.build_search_key(search_typeT, lighting_searchKey)
+    try:
+        server.update(search_key, dataLightingTask)
+        addLightingTaskErrorMsg ="null"
+    except Exception, e:
+        addLightingTaskErrorMsg = str(e)      
+        
+    search_key = server.build_search_key(search_typeT, effects_searchKey)
+    try:
+        server.update(search_key, dataEffectsTask)
+        addEffectTaskErrorMsg ="null"
+    except Exception, e:
+        addEffectTaskErrorMsg = str(e)     
+        
+    
+    search_key = server.build_search_key(search_typeT, simulation_searchKey)
+    try:
+        server.update(search_key, dataSimulationTask)
+        addSimulationTaskErrorMsg ="null"
+    except Exception, e:
+        addSimulationTaskErrorMsg = str(e) 
+   
+
+    search_key = server.build_search_key(search_typeT, comp_searchKey)
+    try:
+        server.update(search_key, dataCompTask)
+        addCompTaskErrorMsg ="null"
+    except Exception, e:
+        addCompTaskErrorMsg = str(e) 
+
+    search_key = server.build_search_key(search_typeT, final_searchKey)
+    try:
+        server.update(search_key, dataFinalTask)
+        addFinalTaskErrorMsg ="null"
+    except Exception, e:
+        addFinalTaskErrorMsg = str(e) 
+
+    
+   
+    try:
+        
+        server.insert(search_type, dataAnimationTask)
+        addAnimationTaskErrorMsg ="null"
+    except Exception, e:
+        addAnimationTaskErrorMsg = str(e)  
+        
+        
+
+        
+    exportErrorMsg =  addLayoutTaskErrorMsg + "<"+"br"+">" + addAnimationTaskErrorMsg + "<"+"br"+">" + addLightingTaskErrorMsg  + "<"+"br"+">" + addEffectTaskErrorMsg + "<"+"br"+">" + addSimulationTaskErrorMsg + "<"+"br"+">" + addCompTaskErrorMsg + "<"+"br"+">" + addFinalTaskErrorMsg
+        
+    ##### get game name
+    conn3 = psycopg2.connect(database='3D_db', user= 'postgres', password= '', host= '192.168.161.193', port= '5432')
+    cursor3 = conn3.cursor()
+    cursor3.execute("SELECT * FROM games_db")
+
+    allGamesIn3DDB = cursor3.fetchall()
+    getGameData = (filter(lambda x:x[1] == str(code) ,allGamesIn3DDB))[0]
+    game_name = getGameData[0]
+    game_name_chn = getGameData[3]
+    conn3.commit()
+    conn3.close() 
+    
+    #### add task info to 3DDB shots
+    conn = psycopg2.connect(database='3D_db', user= 'postgres', password= '', host= '192.168.161.193', port= '5432')
+    cursor = conn.cursor()
+
+  
+    
+    cursor.execute("UPDATE shots SET name ='%s',description ='%s',timestamp ='%s',login='%s',brief_sd='%s',brief_ed='%s',layout_user='%s', layout_status='%s',layout_ts='%s',layout_te='%s',layout_desc='%s',animation_user='%s', animation_status='%s',animation_ts='%s',animation_te='%s',animation_desc='%s',lighting_user='%s',lighting_status='%s',lighting_ts='%s',lighting_te='%s',lighting_desc='%s',effect_user='%s',effect_status='%s',effect_ts='%s',effect_te='%s',effect_desc='%s',simulation_user='%s', simulation_status='%s',simulation_ts='%s',simulation_te='%s',simulation_desc='%s',comp_user='%s', comp_status='%s',comp_ts='%s',comp_te='%s',comp_desc='%s',final_user='%s', final_status='%s',final_ts='%s',final_te='%s',final_desc='%s' WHERE id = %s"%(shotName,shotDesctiption,shotTimeStart,shotWorkUser,shotTimeStart,shotTimeEnd,layoutWorkonUser,layoutProcess,layoutTS,layoutTD,layoutWorkonExtra,animationWorkonUser,animationProcess,animationTS,animationTD,animationWorkonExtra,lightingWorkonUser,lightingProcess,lightingTS,lightingTD,lightingWorkonExtra,effectsWorkonUser,effectsProcess,effectsTS,effectsTD,effectsWorkonExtra,simulationWorkonUser,simulationProcess,simulationTS,simulationTD,simulationWorkonExtra,compWorkonUser,compProcess,compTS,compTD,compWorkonExtra,finalWorkonUser,finalProcess,finalTS,finalTD,finalWorkonExtra,search_ID))
+    
+    
+    conn.commit()
+
+    conn.close() 
+   
+    return jsonify(data,shotCode,shotName,errorMsg,exportErrorMsg,allTaskData,layout_searchKey)
+        
+    
         
 def addTaskTo3DDBShots(shotID,taskData):
     
@@ -3642,5 +3996,265 @@ def getSpecAssetDataFrom3DDB():
     return jsonify(getAssetData,getGameData)
 
         
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+@app.route('/getSpecShotDataFrom3DDB',methods=['GET','POST'])
+def getSpecShotDataFrom3DDB():   
+    
+    shotID = int(request.form['shotID'])
+    conn3 = psycopg2.connect(database='3D_db', user= 'postgres', password= '', host= '192.168.161.193', port= '5432')
+    cursor3 = conn3.cursor()
+    cursor3.execute("SELECT * FROM shots")
+    allShotsIn3DDB = cursor3.fetchall()
+    getShotData = (filter(lambda x:x[7] == shotID ,allShotsIn3DDB))[0]
+    conn3.commit()
+    conn3.close() 
+   # getShotData ="aa"
+    return jsonify(getShotData,shotID)
+    
+    
+    
+@app.route('/imageUpload',methods=['GET','POST'])
+def imageUpload():   
+    app.config['UPLOADED_PATH'] = uploadPath
+
+    for f in request.files.getlist('file'):
+        f.save(os.path.join(app.config['UPLOADED_PATH'], f.filename))
+       # print request.files.getlist('file')
+    
+    #return 
+    
+    return "finished"
+
+
+@app.route('/defineImageUpload',methods=['GET','POST'])
+def defineImageUpload():   
+    errMsg= "專案 icon 上傳失敗"
+    fileName = request.form['fileName']
+    projectName = request.form['projectName']
+    itemName = request.form['itemName']
+    itemCode = int(request.form['itemCode'])
+
+    uploadMode = request.form['uploadMode']
+    sourceFileName = uploadPath +'/'+fileName
+    currentTime = datetime.datetime.now().strftime('%Y%m%d_%H%M%S_%f')
+    timeStamp = time.time()
+    data = currentTime.split('_')[0]
+    im = Image.open( sourceFileName )
+    imageFormat = im.format
+    imageSize = im.size
+    imageMode = im.mode
+    metaData ='size%s___format(%s)___mode(%s)'%(imageSize,imageFormat,imageMode)
+    currentProjectPath = projectDBPath +'/' +projectName
+    print uploadMode
+    if uploadMode =="project":
+        
+        iconName = projectIconPath +'/' +projectName +'_v001_icon.png'
+        proJectIconURL = "http://192.168.161.193:8080/database/projects/projectIcons"+'/' +projectName +'_v001_icon.png'
+
+        width = 120
+        ratio = float(width)/im.size[0]
+        height = int(im.size[1]*ratio)
+        createIcon = im.resize( (width, height), Image.BILINEAR )
+        createIcon.save( iconName )  
+        conn3 = psycopg2.connect(database='3D_db', user= 'postgres', password= '', host= '192.168.161.193', port= '5432')
+        cursor3 = conn3.cursor()
+        cursor3.execute( "UPDATE games_db set project_icon_url = '%s' where name = '%s';" % ( proJectIconURL, projectName))
+        conn3.commit()
+        conn3.close() 
+        os.remove(sourceFileName)
+        errMsg= "專案 icon 設定完成"
+        
+    elif uploadMode =="asset":
+        currentAssetPath = currentProjectPath + '/assets' 
+        cuttentAssetIconPath = currentAssetPath +'/icons'
+        #print currentProjectPath,currentAssetPath,cuttentAssetIconPath
+        try:
+            os.makedirs(currentProjectPath)
+        except:
+            pass
+        try:
+            os.makedirs(currentAssetPath)
+        except:
+            pass
+        try:
+            os.makedirs(cuttentAssetIconPath)
+        except:
+            pass
+        
+        iconName = cuttentAssetIconPath +'/' +itemName +'_v001_icon.png'
+        iconURL =  "http://192.168.161.193:8080/database/projects/" +projectName +'/assets/icons/'+itemName +'_v001_icon.png'
+        
+        width = 96
+        ratio = float(width)/im.size[0]
+        height = int(im.size[1]*ratio)
+        createIcon = im.resize( (width, height), Image.BILINEAR )
+        createIcon.save( iconName )  
+        
+        conn3 = psycopg2.connect(database='3D_db', user= 'postgres', password= '', host= '192.168.161.193', port= '5432')
+        cursor3 = conn3.cursor()
+        cursor3.execute( "UPDATE assets set icon_url = '%s' where name = '%s';" % ( iconURL, itemName))
+        conn3.commit()
+        conn3.close() 
+        
+        try:
+            os.remove(sourceFileName)
+        except:
+            pass
+        
+        errMsg= "Asset icon 設定完成"
+        
+    elif uploadMode =="shot":
+        currentShotPath = currentProjectPath + '/shots'
+        cuttentShotIconPath = currentShotPath +'/icons'
+        print currentShotPath,cuttentShotIconPath
+        try:
+            os.makedirs(currentProjectPath)
+        except:
+            pass
+        try:
+            os.makedirs(currentShotPath)
+        except:
+            pass
+        try:
+            os.makedirs(cuttentShotIconPath)
+        except:
+            pass
+        
+        iconName = cuttentShotIconPath +'/' +itemName +'_v001_icon.png'
+        iconURL =  "http://192.168.161.193:8080/database/projects/" +projectName +'/shots/icons/'+itemName +'_v001_icon.png'
+        
+        width = 96
+        ratio = float(width)/im.size[0]
+        height = int(im.size[1]*ratio)
+        createIcon = im.resize( (width, height), Image.BILINEAR )
+        createIcon.save( iconName )  
+        
+        conn3 = psycopg2.connect(database='3D_db', user= 'postgres', password= '', host= '192.168.161.193', port= '5432')
+        cursor3 = conn3.cursor()
+        cursor3.execute( "UPDATE shots set icon_url = '%s' where name = '%s';" % ( iconURL, itemName))
+        conn3.commit()
+        conn3.close() 
+        try:
+            os.remove(sourceFileName)
+        except:
+            pass
+        errMsg= "Shot icon 設定完成"        
+ 
+        
+    return jsonify(errMsg)
+    
+    
+
+    
+    
+    
+@app.route('/publishItemUpload',methods=['GET','POST'])
+def publishItemUpload():    
+    
+    errMsg = "upload fail"
+    app.config['UPLOADED_PATH'] = uploadPath
+
+    for f in request.files.getlist('file'):
+        f.save(os.path.join(app.config['UPLOADED_PATH'], f.filename))
+    
+    
+    errMsg = "finished"
+
+    
+    return jsonify(errMsg)
+
+
+    
+@app.route('/definePublishItem',methods=['GET','POST'])
+def definePublishItem():    
+    
+    errMsg = "upload fail"
+    fileName = request.form['fileName']
+    game_name = request.form['projectName']
+    name = request.form['itemName']
+    code = int(request.form['itemCode'])
+    uploadMode = request.form['uploadMode']
+    
+    type = request.form['itemType']
+    mode = request.form['itemMode']
+    resx = int(request.form['itemResX'])
+    resy = int(request.form['itemResY'])
+    pivot_x = str(request.form['itemPivotX'])
+    pivot_y = str(request.form['itemPivotY'])
+    center_x = int(request.form['itemCenterX'])
+    center_y = int(request.form['itemCenterY'])
+    locate_x = int(request.form['itemLocateX'])
+    locate_y = int(request.form['itemLocateY'])
+    scale = str(request.form['itemScale'])
+    opti = str(request.form['itemOpti'])
+    init_vis = request.form['itemInitVis']
+    z_depth = int(request.form['itemZdepth'])
+    description = request.form['itemDesc']
+    
+
+    
+    
+    
+    
+    timestamp = datetime.datetime.now().strftime('%Y/%m/%d/%H/%M/%S/%f')
+   # timestamp = time.time()
+   # timestamp = currentTime.split('_')[0]
+    currentProjectPath = projectDBPath +'/' +game_name
+    currentProjectAssetDir = currentProjectPath +'/assets' 
+    currentItemDir = currentProjectAssetDir + '/'+  name
+
+    if uploadMode == "publishImage":
+        
+        file_url =  "http://192.168.161.193:8080/database/projects/" +game_name +'/assets/'+name +'/'+fileName
+
+        sourceFileName = uploadPath +'/'+fileName
+        
+        file_dir = sourceFileName + '/'+ fileName
+        
+
+        conn3 = psycopg2.connect(database='3D_db', user= 'postgres', password= '', host= '192.168.161.193', port= '5432')
+        cursor3 = conn3.cursor()
+        cursor3.execute("SELECT * FROM publish")
+        allPublishItem = cursor3.fetchall()
+        getItemData= (filter(lambda x:int(x[21]) == int(code)  ,allPublishItem))#[0]
+        conn3.commit()
+        conn3.close()        
+        
+        
+        if len(getItemData) > 0 :   ###do update publish
+            inputData = (name,game_name,type,mode,resx,resy,pivot_x,pivot_y,center_x,center_y,locate_x,locate_y,scale,opti,init_vis,z_depth,description,file_url,file_dir,timestamp,code)
+            conn3 = psycopg2.connect(database='3D_db', user= 'postgres', password= '', host= '192.168.161.193', port= '5432')
+            cursor3 = conn3.cursor()
+              
+            cursor3.execute("UPDATE publish SET name = '%s' , game_name = '%s' , type = '%s', mode= '%s', resx = %s , resy = %s , pivot_x = '%s' , pivot_y = '%s' , center_x = %s , center_y = %s ,locate_x = %s , locate_y = %s , scale ='%s' , opti = '%s' , init_vis = '%s' , z_depth = %s , description = '%s' , file_url = '%s' , file_dir = '%s' , timestamp ='%s' WHERE code = %s "%(inputData))
+            conn3.commit()
+            conn3.close()        
+            errMsg ="update %s with %s/%s finish"%(name,mode,type)
+           # print'getItemData', getItemData
+        
+        else:
+            conn3 = psycopg2.connect(database='3D_db', user= 'postgres', password= '', host= '192.168.161.193', port= '5432')
+            cursor3 = conn3.cursor()
+              
+            inputData = (name,game_name,code,type,mode,resx,resy,pivot_x,pivot_y,center_x,center_y,locate_x,locate_y,scale,opti,init_vis,z_depth,description,file_url,file_dir,timestamp)
+            cursor3.execute("INSERT INTO publish (name,game_name,code,type,mode,resx,resy,pivot_x,pivot_y,center_x,center_y,locate_x,locate_y,scale,opti,init_vis,z_depth,description,file_url,file_dir,timestamp) VALUES('%s','%s',%s,'%s','%s',%s,%s,'%s','%s',%s,%s,%s,%s,'%s','%s','%s',%s,'%s','%s','%s','%s')"%inputData)
+
+            conn3.commit()
+            conn3.close()        
+            errMsg ="add %s with %s/%s finish"%(name,mode,type)
+    
+    return jsonify(errMsg,inputData,getItemData,allPublishItem,code)  
+    #return jsonify(fileName)  
+    
+    
 if __name__ == '__main__':
     app.run(host='192.168.161.193',debug=True,port = 80)

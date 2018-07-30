@@ -76,13 +76,19 @@
     <!-- input Markdown js 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.css">
     <script src="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.js"></script>
-    -->
     <script src="{{url_for('static', filename='bootstrap-markdown.js')}}"></script>
+    <script src="{{url_for('static', filename='bootstrap-markdown.zh-tw.js')}}"></script>
+
     <link href="{{url_for('static',filename='css/bootstrap-markdown.css')}}" rel="stylesheet">
+    
 
     
-    
-    
+    -->
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.css">
+    <script src="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.js"></script>
+
+
     <!-- input bootstrap datepickup CDN js
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/js/bootstrap-datepicker.js"></script>
     <link rel="stylesheet" href="https://rawgit.com/enyo/dropzone/master/dist/https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/css/bootstrap-datepicker.css"> -->
@@ -182,6 +188,15 @@
         letter-spacing: 0.2em
     }
 
+    
+    @import url(https://fonts.googleapis.com/earlyaccess/cwtexyen.css);
+    .chineseStyleU_TableHeadBig {
+        font-family: 'cwTeXYen', sans-serif;
+        font-size: 1.2em;
+        font-weight: 100;
+        letter-spacing: 0.2em
+    }
+    
 
     @import url(https://fonts.googleapis.com/earlyaccess/cwtexyen.css);
     .chineseStyleU_TableBody {
@@ -245,10 +260,19 @@
 
 <style>
 /* button style */
+    .assetImage{}
+    .shotImage()
     .assetEditorBtn{}
     .shotEditorBtn{}
     .projectEditorBtn{}
-    
+    .assetPublishED{}
+    .publishEditor{
+        
+        background-color: rgba(30,30,30,0.8);
+        
+        
+        
+    }
     .assetShotEditor{
         
        z-index: 1000;
@@ -512,18 +536,39 @@
                             <label class="input-group-text align-middle" for="inputGroupSelect02" style="width: 100px">中文名稱</label>
                           </div>
                           <input type="text" class="form-control" placeholder="專案中文名稱" aria-label="project Chn name" aria-describedby="basic-addon2" id="projContentChnName">
-                           <div class="input-group-append ">
-                            <label class="input-group-text align-middle" for="inputGroupSelect02" style="width: 100px">窗口</label>
+                         <div class="input-group-append ">
+                            <label class="input-group-text align-middle" for="inputGroupSelect02" style="width: 100px">Code</label>
                           </div>
-                          <select class="custom-select" id="projContentWindowName"></select>
-                           <div class="input-group-append">
-                            <label class="input-group-text align-middle" for="inputGroupSelect02" style="width: 100px">PC</label>
-                          </div>
-                          <select class="custom-select" id="projContentPC"></select>
+                          <input type="text" class="form-control" placeholder="" aria-label="project Chn name" aria-describedby="basic-addon2" id="projCodeInput">
+  
+                        <div class="input-group mb-3">
+                        
+                             <div class="input-group-append ">
+                                <label class="input-group-text align-middle" for="inputGroupSelect02" style="width: 100px">窗口</label>
+                              </div>
+                              <select class="custom-select" id="projContentWindowName"></select>
+                               <div class="input-group-append">
+                                <label class="input-group-text align-middle" for="inputGroupSelect02" style="width: 100px">PC</label>
+                              </div>
+                              <select class="custom-select" id="projContentPC"></select>
+                              <div class="input-group-append">
+                                <label class="input-group-text align-middle" for="inputGroupSelect02" style="width: 100px">專案狀態</label>
+                              </div>
+                              <select class="custom-select" id="projectStatusSelector">
+                                  
+                                   <option selected></option>
+                                    <option value=".Not Ready" selected>準備中</option>
+                                    <option value=".In Progress">進行中</option>
+                                    <option value=".Complete">已完成</option>
+                              </select>
+                              
+                              
+                            </div>
+
+
+                        
+                        
                         </div>
-
-
-
                         <div class="input-group mb-6">
                             <div class="input-group-append">
                                 <label class="input-group-text align-middle" for="inputGroupSelect02" style="width: 100px">執行人員</label>
@@ -557,19 +602,85 @@
                 <div class="modal-body chineseStyleU_TableHeadAssets align-middle">
                     <ul class="nav nav-tabs" id="" role="tablist">
                       <li class="nav-item">
-                        <a class="nav-link active" id="nav_projs" data-toggle="tab" href="#divProjs" role="tab" aria-controls="divProjs" aria-selected="true">Prjoect</a>
+                        <a class="nav-link" id="nav_projs" data-toggle="tab" href="#divProjs" role="tab" aria-controls="divProjs" aria-selected="true">Prjoect</a>
                       </li>
                       <li class="nav-item">
-                        <a class="nav-link" id="nav_assets" data-toggle="tab" href="#divAssets" role="tab" aria-controls="divAssets" aria-selected="false">Assets</a>
+                        <a class="nav-link active" id="nav_assets" data-toggle="tab" href="#divAssets" role="tab" aria-controls="divAssets" aria-selected="false">Assets<span class="badge badge-light align-middle" id="currentProjectAssetCount">0</span></a>
                       </li>
                       <li class="nav-item">
-                        <a class="nav-link" id="nav_shots" data-toggle="tab" href="#divShots" role="tab" aria-controls="divShots" aria-selected="false">Shots</a>
+                        <a class="nav-link" id="nav_shots" data-toggle="tab" href="#divShots" role="tab" aria-controls="divShots" aria-selected="false">Shots<span class="badge badge-light align-middle" id="currentProjectShotCount">0</span></a>
                       </li>
                     </ul>
 
                     <div class="tab-content" id="divProjEditor">
-                      <div class="tab-pane fade show active" id="divProjs" role="tabpanel" aria-labelledby="nav_projs">專案細節</div>
-                      <div class="tab-pane fade" id="divAssets" role="tabpanel" aria-labelledby="nav_assets">
+                      <div class="tab-pane fade " id="divProjs" role="tabpanel" aria-labelledby="nav_projs">
+                            <div class="col-12"> <HR></div>
+                            <div class="col-12 chineseStyleU_TableHeadAssets ">
+                                <button type="button" class="btn btn-info" id="gameDescriptionBtn">專案說明</button>
+                                <button type="button" class="btn btn-success" id="gameSymbolBtn">標記符號</button>
+                                <button type="button" class="btn btn-success" id="gameEffectBtn">遊戲特效</button>
+                                <button type="button" class="btn btn-success" id="gameUIBtn">遊戲特效</button>
+
+
+                            </div>
+                            <div class="col-12" id="gameDescriptionDiv">
+                               <form>
+                                <textarea name="content" data-provide="markdown" data-iconlibrary="fa" rows="10" id="editor"></textarea>
+                                </form> 
+                                
+                            </div>
+                             <div class="col-12" id="gameSymbolDiv">
+                                <div><HR></div>
+                                <table class="table chineseStyleU_TableHead" >
+                                    <thead>
+                                        <tr>
+                                            <th>
+                                                <div class="form-check">
+                                                    <!--<input type="checkbox" class=" align-middle" id="exampleCheck1">-->
+                                                </div>
+                                            </th>
+                                            <th>
+                                                #
+                                            </th>
+                                            <th>
+                                                編號
+                                            </th>
+                                            <th>
+                                                名稱
+                                            </th>
+                                            <th>
+                                                需求說明
+                                            </th>
+                                            <th>
+                                                參考
+                                            </th>
+
+                                            <th>
+                                                備註
+                                            </th>
+
+                                        </tr>
+                                    </thead>
+                                    <tbody class="align-middle" id="">
+
+
+
+                                    </tbody>
+                                    </table>
+                             
+                             
+                             
+                            
+                            </div>
+                             <div class="col-12" id="gameEffectDiv">
+                            
+                            </div>
+                             <div class="col-12" id="gameUIDiv">
+                            
+                            </div>
+                            
+                      </div>
+                      <div class="tab-pane fade show active" id="divAssets" role="tabpanel" aria-labelledby="nav_assets">
 
                           <div class="row">
                     
@@ -606,13 +717,13 @@
                                         執行人員
                                     </th>
                                     <th>
-                                        備註
-                                    </th>
-                                    <th>
                                         專案時間
                                     </th>
                                     <th>
                                         編輯
+                                    </th>
+                                    <th>
+                                        發佈
                                     </th>
                                 </tr>
                             </thead>
@@ -718,6 +829,44 @@
         var in3DDBGameDBCompleted =[]
         var in3DDBPCDB = []
         var in3DDBUserDB =[]
+        
+        $(function() {
+            
+            $('#pm_nav_progressBTN').click(function(){
+                console.log('點選 執行中 按鈕')
+                //console.log(in3DDBGameDBInProgress)
+                
+               $('#pmTbodyA > tr').remove()
+
+                buildProjectTable(in3DDBGameDBInProgress)
+                
+                
+            })
+            
+            $('#pm_nav_completedBTN').click(function(){
+                console.log('點選 已完成 按鈕')
+                //console.log(in3DDBGameDBCompleted)
+                $('#pmTbodyA > tr').remove()
+
+                buildProjectTable(in3DDBGameDBCompleted)
+            })
+            
+            
+            $('#pm_nav_allBTN').click(function(){
+                console.log('點選 全部 按鈕')
+                //console.log(in3DDBGameDB)
+                
+               $('#pmTbodyA > tr').remove()
+
+                buildProjectTable(in3DDBGameDB)             
+                
+
+            })
+            
+           
+        })
+        
+        
         $(function() {
             
             console.log('取得3DDB 專案資料')  
@@ -772,18 +921,18 @@
         $(function() {
             $('#submitEditAssetBtn').click(function(){
                 console.log('點選新增 確認 新增asset 按鈕') 
-                console.log(event)
+               // console.log(event)
                 var assetEditorValue = getAssetEditorValue()
                // console.log('assetEditorValue',assetEditorValue)
                 
                 $.ajax({url:"/submitEditAssetBtn", data:assetEditorValue,success:function(data){
                     console.log('回傳錯誤訊息，與回傳資料')    
-                    console.log(data);
+                  //  console.log(data);
                     var errMsg = data[3]
                     var fullErrMsg = data[4]
                     var assetName = data[2]
                     if(errMsg == "null" ){
-                        $('#addAssetEditorErrMsg').text("新增"+assetName+"完成")
+                        $('#addAssetEditorErrMsg').text("編輯"+assetName+"，更新完成")
                         
                     }else{
                         $('#addAssetEditorErrMsg').text(fullErrMsg)
@@ -800,6 +949,8 @@
         $(function() {
             $('#submitAddNewShotBtn').click(function(){
                 console.log('點選新增 確認 新增 shot 按鈕') 
+                $('#submitAddNewShotBtn').show()
+                $('#submitEditShotBtn').hide()
  
                 var shotEditorValue = getShotEditorValue()
                 console.log('getShotEditorValue',getShotEditorValue)
@@ -823,7 +974,35 @@
 
         });  
     
-    
+         //submitEditShotBtn 在asset/shot編輯器中 點選  確定 送出 
+        $(function() {
+            $('#submitEditShotBtn').click(function(){
+                console.log('點選新增 確認 新增 shot 按鈕') 
+                $('#submitAddNewShotBtn').hide()
+                $('#submitEditShotBtn').show()
+ 
+                var shotEditorValue = getShotEditorValue()
+               // console.log('getShotEditorValue',getShotEditorValue)
+                
+                $.ajax({url:"/submitEditShotBtn", data:shotEditorValue,success:function(data){
+                    console.log('回傳錯誤訊息，與回傳資料')    
+                  //  console.log(data);
+                    var errMsg = data[3]
+                    var fullErrMsg = data[4]
+                    var shotName = data[2]
+                 //   console.log('shotName',shotName)
+                    if(errMsg == "null" ){
+                        $('#addShotEditorErrMsg').text("編輯"+shotName+"，更新完成")
+                        
+                    }else{
+                        $('#addShotEditorErrMsg').text(fullErrMsg)
+                    } 
+		          }});
+                
+            });
+
+        });  
+       
     
     
     
@@ -926,6 +1105,7 @@
                 console.log('currentProjectSelected',currentProjectSelecte)
 
                 var shotName = $('#editShotName').val()
+                var shotCode = $('#currentShotCode').val()
                 var shotDesctiption = $('#editShotDescription').val()
                 var shotWorkUser = $('#editShotWorkOnUserSelector').val()
                 var shotTimeStart = $('#editShotTimeStart').val()
@@ -981,6 +1161,7 @@
             
                 shotEditorValue = {'currentProjectSelecte':currentProjectSelecte,
                                     'shotName':shotName,
+                                    'shotCode':shotCode,
                                     'shotDesctiption':shotDesctiption,
                                     'shotWorkUser':shotWorkUser,
                                     'shotTimeStart':shotTimeStart,
@@ -1096,8 +1277,14 @@
      
         $('#addNewShotINEditorBtn').click(function(){
            // $('.userSelector').append('<option selected><h5 class="text-primary">請選擇專案負責人....</h5></option>')
+            
+                                                    
+            $('#submitAddNewShotBtn').show()
+            $('#submitEditShotBtn').hide()
+            
+            
             var userCount = in3DDBUserDB.length
-            console.log('取得user資料',in3DDBUserDB,userCount)  
+           // console.log('取得user資料',in3DDBUserDB,userCount)  
             $('.userSelector >option').remove()
             $('.userSelector').append('<option><h5 class="text-primary" value ="None">'+"None" +'</h5></option>') 
 
@@ -1200,6 +1387,9 @@
     
         //創建新專案 動態視窗 
         $(function() {
+            
+           
+            
 
             })
         //點選 新增 專案
@@ -1341,6 +1531,8 @@
             var projectBriefSD = $('#projContentDateStart').val()
             var projectBriefED = $('#projContentDateEnd').val()
             var projectWorkingOn = $('#projContentWorking').val()
+            var projectStatus = $('#projectStatusSelector').val()
+            var projectCode =  $('#projCodeInput').val()
            // console.log(gameName,gameNameChn,projectPM,projectPC)
            // console.log('projectBriefSD',projectBriefSD)
           //  console.log('projectBriefED',projectBriefED)
@@ -1356,8 +1548,8 @@
                     "projectBriefSD":projectBriefSD,
                     "projectBriefED":projectBriefED,
                     "projectWorkingOn":projectWorkingOn,
-
-
+                    "projectStatus":projectStatus,
+                    "projectCode":projectCode
                         }, function(data) {
                  console.log(data)
                 //console.log(in3DDBGameDB) addNewProjInTactic
@@ -1367,14 +1559,10 @@
     
     
     
-        $('#pm_nav_progressBTN').click(function(){
-            
-           
-        })
-           
+
         //創建 專案 table
         function buildProjectTable(data){
-            console.log('開啟專案編輯頁面 初始化',)
+            console.log('開啟專案編輯頁面 初始化','創建專案列表')
             projectCount = data.length
             
             for(var i=0;i<projectCount;i++){
@@ -1391,7 +1579,7 @@
                 var previewImgURL = data[i][9];
                 var editBtnID = 'projEditBtn_'+gameName
                 var editBtnName = "#"+editBtnID
-                
+                var imageID = "imagePreview_"+gameName
               // var tdSelectorID = "#" +currentFileTrID                                       
 
              //   $(tdSelectorID).remove()
@@ -1407,7 +1595,7 @@
                                         i+
                                     '</td>'+
                                     '<td  class="align-middle">'+
-                                         '<img class="card-img-top" style="width:192px;height:108px" src="' + previewImgURL + '" id="modelImagePreview"/>'+
+                                         '<img class="card-img-top " style="width:192px;height:108px" src="' + previewImgURL + '" id="'+imageID+'"/>'+
                                     '</td>'+
                                     '<td class="englishStyle_tableBody align-middle" style="color:rgb(30,30,200)">'+
                                         gameName +
@@ -1428,8 +1616,8 @@
                                         timestamp +
                                     '</td>'+
                                     '<td class=" align-middle chineseStyleU_TableBody">'+
-                                        '<span class="badge badge-pill badge-primary projectEditorBtn " data-toggle="modal" data-target="#projectEditedINtacticModal"' + 
-                                        'id="'+editBtnID+'">專案編輯</span>'+
+                                        '<span class="badge badge-pill badge-primary projectEditorBtn chineseStyleU_TableHead " data-toggle="modal" data-target="#projectEditedINtacticModal"' + 
+                                        'id="'+editBtnID+'">專案內容</span>'+
                                     '</td>'+
                                 '</tr>'
                                 )
@@ -1439,25 +1627,40 @@
                 //個別專案編輯按鈕
                 
              $(editBtnName).click(function(event){
-                 console.log('tag',$("#projContentWorking").val())
-               // console.log(event['currentTarget']['id'])
+                 console.log('點選 專案內容')
+
+                 //初始化
+                 $('#projContentWindowName > option').remove()
+                 $('#projContentPC > option').remove()
+               
+                //初始化编辑器
+                 var simplemde = new SimpleMDE({ element: $("#editor")[0] });
+
+                 
+                 
+                 
+                 
                  var currentProject = event['currentTarget']['id'].split('projEditBtn_')[1]
                  
                  $('#currentProjectSelectedInputBox').val(currentProject) ;
                     
                    $.post("/getProjectDataWhenClickEditBtn", {
                                 "projectName":currentProject,
-
                             }, function(data) {
                                 console.log(data)
+                                var gameCode= data[3]
                                 var projectData = data[0];
                                 var assetsData =data[1];
                                 var shotsData =data[2];
                                 var assetsCount = assetsData.length
+                                $('#currentProjectAssetCount').text(assetsCount)
+
                                 var shotsCount = shotsData.length
+                                $('#currentProjectShotCount').text(shotsCount)
+
                                 var pcCount =  in3DDBPCDB.length
                                 var userCount = in3DDBUserDB.length
-                              //  console.log("projectData",projectData)
+                                console.log("projectData",projectData)
                                // console.log("assetsData",assetsData,assetsCount)
 
                               //  console.log("shotsData",shotsData,shotsCount)
@@ -1474,7 +1677,7 @@
                                 var projectPC = projectData[0][5]
                                 var projectBriefSD = projectData[0][13]
                                 var projectBriefED = projectData[0][14]
-
+                                var projectStatus = projectData[0][4]
 
                              //   for(var i=0;i<workingOnCount;i++){
                                 //    $('#projContentWorking').tagsinput('add', projectWorkingOn[i]); 
@@ -1505,6 +1708,7 @@
                                     var user = in3DDBUserDB[i][2]
                                     var userOptionID = "userOption_" + in3DDBUserDB[i][0]
                                    // console.log(pc)
+                                 //   $('#projContentWindowName > option').remove()
                                     var $optionUser0 = $('<option value="'+user+'" id="'+userOptionID+'">'+ user+'</option>')
                                     $('#projContentWindowName').append($optionUser0)   
                                     
@@ -1519,12 +1723,17 @@
                                     
                                 }  
                                 $('#projContentEngName').val(projectEngName)
+
+                                $('#projContentEngName').val(projectEngName)
                                 $('#projContentChnName').val(projectChnName)
                                 $('#projContentDateStart').val(projectBriefSD)
                                 $('#projContentDateEnd').val(projectBriefED)
+                                $('#projectStatusSelector').val(projectStatus)
+                                $('#projCodeInput').val(gameCode)
 
+                       
                                 for(i=0;i<assetsCount;i++){
-                                    var assetPreviewImgURL =""
+                                    var assetPreviewImgURL = assetsData[i][38];
                                     var assetName = assetsData[i][6];
                                     var assetChnName =  assetsData[i][1];
                                     var assetTimesStamp = assetsData[i][2].split(' ')[0];
@@ -1533,6 +1742,8 @@
                                     //console.log('assetsData',assetsData[i])
                                     var assetEditBtnID = "editAssetBtn_"+assetsData[i][12]
                                     var trID = "assetTr_"+assetsData[i][12]
+                                    var assetImageID = "imagePreview_" + assetsData[i][12]
+                                    var assetPublishID =  "assetPublish_" + assetsData[i][12]
                                     //console
                                     if(assetType == "ASSET_TYPE00002"){var assetTypeDesc = "character"}
                                     else if(assetType == "ASSET_TYPE00003"){var assetTypeDesc = "vehicle"}
@@ -1551,7 +1762,7 @@
                                                             i+
                                                         '</td>'+
                                                         '<td  class="align-middle">'+
-                                                             '<img class="card-img-top" style="width:96px;height:54px" src="' + assetPreviewImgURL + '" id="modelImagePreview"/>'+
+                                                             '<img class="assetImage" style="width:96px;height:54px" name="'+ assetName +'" src="' + assetPreviewImgURL + '" id="' + assetImageID +'"/>'+
                                                         '</td>'+
                                                         '<td class="englishStyle_tableBody align-middle" style="color:rgb(30,30,200)">'+
                                                             assetName +
@@ -1565,40 +1776,85 @@
                                                         '<td class="englishStyle_tableBody align-middle">'+
                                                             "Login" +
                                                         '</td>'+
-                                                        '<td class="englishStyle_tableBody align-middle">'+
-                                                            ""+
-                                                        '</td>'+
                                                         '<td class="englishStyle_tableBodyS h-50 align-middle">'+
                                                             assetTimesStamp +
                                                         '</td>'+
                                                         '<td class=" align-middle">'+
-                                                           '<span class="badge badge-pill badge-primary assetEditorBtn" data-toggle="modal" data-target="#addEditAssetModal"' + 
-                                                            'id="'+assetEditBtnID+' " >EDIT</span>'+
+                                                           '<span class="badge badge-pill badge-primary assetEditorBtn chineseStyleU_TableHead" data-toggle="modal" data-target="#addEditAssetModal"' + 
+                                                            'id="'+assetEditBtnID+' " >編輯</span>'+
                                                         '</td>'+
+                                                        '<td class=" align-middle">'+
+                                                            '<span class="badge badge-pill badge-success assetPublishED chineseStyleU_TableHead" data-toggle="modal" data-target="#publishModal"' + 'title="'+ assetName +'"' +
+                                                            'id="'+assetPublishID+' " >發佈</span>'+
+                                                        '</td>'+                                            
                                                     '</tr>'
                                                     );
                                     
                                     
                                     $('#pmEditorAssets').append($trAsset0)
-                                    //點選 asset編輯按鈕
-                                    $('.assetEditorBtn').click(function(event){
+                                }
+                                //點選 asset編輯按鈕       
+
+                                $('.assetEditorBtn').click(function(e){
                                         $('#submitAddNewAssetBtn').hide()
                                         $('#submitEditAssetBtn').show()
                                         //console.log(event['currentTarget']['id'])
-                                        var assetID = event['currentTarget']['id'].split('editAssetBtn_')[1]
+                                        $('.userSelector > option').remove()
+                                        var assetID = e['currentTarget']['id'].split('editAssetBtn_')[1]
                                         console.log('現有 asset 編輯',assetID)
                                         loadAssetDataClickedEdit(assetID);
 
-                                    })
-                                    
-                                }
+                                })
+                                $('.assetImage').mousedown(function(e){
+                                    console.log('上傳圖片')
+                                    if( e.button == 2 ) { 
+                                        console.log(e)
+                                        var assetName = e['currentTarget']['name']
+                                        var assetID = e['currentTarget']['id'].split('imagePreview_')[1]
+                                        $('#uploadImageDroparea').modal('show'); 
+                                        $('#uploadImageName').val(assetName)     
+                                        $('#uploadImageCode').val(assetID)
+                                        $('#uploadImageMode').val("asset")
+                                        $('#uploadImageProjectName').val(projectEngName)
 
+                                        console.log(assetName,assetID,projectEngName)
+
+                                      //return false; action="/file-upload"  class="dropzone"
+                                    } 
+                                    return true; 
+                                }); 
+                                $('.assetPublishED').click(function(e){
+                                    console.log('點擊 發布 按鈕')
+                                      //  $('#submitAddNewAssetBtn').hide()
+                                     //   $('#submitEditAssetBtn').show()
+                                        console.log( e)
+                                        var assetName = e['currentTarget']['title']
+                                        var assetCode = e['currentTarget']['id'].split('assetPublish_')[1]
+                                       // console.log(assetName,assetsData[i][12],projectEngName)
+                                        $('#publishProjectName').val(projectEngName)   
+                                        $('#publishItemName').val(assetName)     
+                                        $('#publishItemCode').val(assetCode)     
+                                        $('#spinePublishDropzone').hide()   
+                                        $('#sequenePublishDropzone').hide()
+                                    $('#itemPublishErrMsg').text()
+
+                                      //  $('.userSelector > option').remove()
+                                       // var assetID = event['currentTarget']['id'].split('editAssetBtn_')[1]
+                                       // console.log('現有 asset 編輯',assetID)
+                                       // loadAssetDataClickedEdit(assetID);
+
+                                })
+                       
+                       
+                       
                                 for(i=0;i<shotsCount;i++){
-                                    var shotPreviewImgURL =""
+                                    var shotPreviewImgURL = shotsData[i][51];
                                     var shotName = shotsData[i][8];
                                     var shotChnName =  shotsData[i][1];
                                     var shotTimesStamp = shotsData[i][2].split(' ')[0];
-                                    var shotEditBtnID = "editShotBtn_"+shotsData[i][7]   
+                                    var shotEditBtnID = "editShotBtn_"+shotsData[i][7] 
+                                    var shotImageID = "imagePreview_" + shotsData[i][7] 
+
                                     //console.log('asdfasdf',shotsData[i])
                                     var shotLoginUser = shotsData[i][6];
                                     var $trAsset0 =  $('<tr class="align-middle">'+
@@ -1611,7 +1867,7 @@
                                                             i+
                                                         '</td>'+
                                                         '<td  class="align-middle">'+
-                                                             '<img class="card-img-top" style="width:96px;height:54px" src="' + shotPreviewImgURL + '" id="modelImagePreview"/>'+
+                                                             '<img class="shotImage" style="width:96px;height:54px" name= "'+shotName+'" src="' + shotPreviewImgURL + '" id="'+shotImageID+'"/>'+
                                                         '</td>'+
                                                         '<td class="englishStyle_tableBody align-middle" style="color:rgb(30,30,200)">'+
                                                             shotName +
@@ -1638,14 +1894,40 @@
                                     
                                     
                                     $('#pmEditorShots').append($trAsset0)
-                                    $('.shotEditorBtn').click(function(event){
-                                        
-                                        console.log(event['currentTarget']['id'])
-                                    })
+
                                     
                                     
                                 };
-                                
+                                $('.shotEditorBtn').click(function(event){
+                                        
+                                        $('#submitAddNewShotBtn').hide()
+                                        $('#submitEditShotBtn').show()
+                                        //console.log(event['currentTarget']['id'])
+                                        var shotID = event['currentTarget']['id'].split('editShotBtn_')[1]
+                                        console.log('現有 shot 編輯',shotID)
+                                        loadShotDataClickedEdit(shotID);
+                                })
+                       
+                               $('.shotImage').mousedown(function(e){
+                                    console.log('上傳圖片')
+                                    if( e.button == 2 ) { 
+                                        console.log(e)
+                                        var shotName = e['currentTarget']['name']
+                                        var shotID = e['currentTarget']['id'].split('imagePreview_')[1]
+                                        $('#uploadImageDroparea').modal('show'); 
+                                        $('#uploadImageName').val(shotName) 
+                                        $('#uploadImageCode').val(shotID)
+
+                                        $('#uploadImageMode').val("shot")
+                                        $('#uploadImageProjectName').val(projectEngName)
+
+                                      //return false; action="/file-upload"  class="dropzone"
+                                    } 
+                                    return true; 
+                                });
+                       
+                       
+                       
                                 var projectWorkingOn = data[0][0][11]
                                 if(projectWorkingOn == null){console.log('null')
                                     $('#projContentWorking').tagsinput('removeAll')}
@@ -1680,9 +1962,164 @@
             
             
                 })
+                
+
             }
+             $('.card-img-top').mousedown(function(e){
+                console.log('上傳圖片')
+                if( e.button == 2 ) { 
+                    console.log(e)
+                    var projectName = e['currentTarget']['id'].split('imagePreview_')[1]
+                    console.log(projectName)
+                    $('#uploadImageDroparea').modal('show'); 
+                    $('#uploadImageName').val(projectName)     
+                    $('#uploadImageMode').val("project")
+                    $('#uploadImageProjectName').val(projectName)
+                    
+
+                  //return false; action="/file-upload"  class="dropzone"
+                } 
+                return true; 
+              }); 
             
+            
+
+                
         }
+    
+        function loadShotDataClickedEdit(shotID){
+            console.log(" 編輯 shot 物件，由資料庫讀取現存資料","shotID",shotID)
+             $.post("/getSpecShotDataFrom3DDB", {
+
+                "shotID":shotID,
+                
+                }, function(data) {
+                
+                $('.userSelector').append('<option><h5 class="text-primary" value ="None">'+"None" +'</h5></option>') 
+                    var userCount = in3DDBUserDB.length
+
+                    for(var i=0;i<userCount;i++){
+                        var user = in3DDBUserDB[i][2]
+                        $('.userSelector').append('<option><h5 class="text-primary" value ="'+ user +'">'+user +'</h5></option>')  
+                };
+                
+                 
+                console.log(data) 
+                var shotData =  data[0]
+                var shotCode = shotData [0]
+
+                var shotName = shotData [8]
+                var shotDesc = shotData [11] 
+                var shotWorkOnUSer = shotData [13] 
+                var editShotTimeStart = shotData [49] 
+                var editShotTimeEnd = shotData [50] 
+                
+                
+                var assetLayoutWorkonUserSelector = shotData [13]
+                var assetLayoutTaskProcessSelect = shotData [14]
+                var assetLayoutTimeStart = shotData [15]
+                var assetLayoutTimeEnd = shotData [16]
+                var assetLayoutExtra = shotData [17]
+
+                var assetAnimationWorkonUserSelector = shotData [18]
+                var assetAnimationTaskProcessSelect = shotData [19]
+                var assetAnimationTimeStart = shotData [20]
+                var assetAnimationTimeEnd = shotData [21]
+                var assetAnimationExtra = shotData [22]
+                
+                var assetLightingWorkonUserSelector = shotData [23]
+                var assetLightingTaskProcessSelect = shotData [24]
+                var assetLightingTimeStart = shotData [25]
+                var assetLightingTimeEnd = shotData [26]
+                var assetLightingExtra = shotData [27]
+            
+                var assetEffectsWorkonUserSelector = shotData [28]
+                var assetEffectsTaskProcessSelect = shotData [29]
+                var assetEffectsTimeStart = shotData [30]
+                var assetEffectsTimeEnd = shotData [31]
+                var assetEffectsExtra = shotData [32]
+                
+                var assetSimulationWorkonUserSelector = shotData [33]
+                var assetSimulationTaskProcessSelect = shotData [34]
+                var assetSimulationTimeStart = shotData [35]
+                var assetSimulationTimeEnd = shotData [36]
+                var assetSimulationExtra = shotData [37]
+                
+                var assetCompWorkonUserSelector = shotData [38]
+                var assetCompTaskProcessSelect = shotData [39]
+                var assetCompTimeStart = shotData [40]
+                var assetCompTimeEnd = shotData [41]
+                var assetCompExtra = shotData [42]
+                
+                var assetFinalWorkonUserSelector = shotData [43]
+                var assetFinalTaskProcessSelect = shotData [44]
+                var assetFinalTimeStart = shotData [45]
+                var assetFinalTimeEnd = shotData [46]
+                var assetFinalExtra = shotData [47]
+
+                $('#currentShotCode').val(shotCode)
+  
+                $('#editShotName').val(shotName)
+                $('#editShotDescription').val(shotDesc)
+                $('#editShotWorkOnUserSelector').val(shotWorkOnUSer)
+                $('#editShotTimeStart').val(editShotTimeStart)
+                $('#editShotTimeEnd').val(editShotTimeEnd)
+
+                 
+                $('#assetLayoutWorkonUserSelector').val(assetLayoutWorkonUserSelector)
+                $('#assetLayoutTaskProcessSelect').val(assetLayoutTaskProcessSelect)
+                $('#assetLayoutTimeStart').val(assetLayoutTimeStart)
+                $('#assetLayoutTimeEnd').val(assetLayoutTimeEnd)
+                $('#assetLayoutExtra').val(assetLayoutExtra)
+                 
+                $('#assetAnimationWorkonUserSelector').val(assetAnimationWorkonUserSelector)
+                $('#assetAnimationTaskProcessSelect').val(assetAnimationTaskProcessSelect)
+                $('#assetAnimationTimeStart').val(assetAnimationTimeStart)
+                $('#assetAnimationTimeEnd').val(assetAnimationTimeEnd)
+                $('#assetAnimationExtra').val(assetAnimationExtra)
+                
+                 
+                $('#assetLightingWorkonUserSelector').val(assetLightingWorkonUserSelector)
+                $('#assetLightingTaskProcessSelect').val(assetLightingTaskProcessSelect)
+                $('#assetLightingTimeStart').val(assetLightingTimeStart)
+                $('#assetLightingTimeEnd').val(assetLightingTimeEnd)
+                $('#assetLightingExtra').val(assetLightingExtra)
+                
+                                  
+                $('#assetSimulationWorkonUserSelector').val(assetSimulationWorkonUserSelector)
+                $('#assetSimulationTaskProcessSelect').val(assetSimulationTaskProcessSelect)
+                $('#assetSimulationTimeStart').val(assetSimulationTimeStart)
+                $('#assetSimulationTimeEnd').val(assetSimulationTimeEnd)
+                $('#assetSimulationExtra').val(assetSimulationExtra)
+                
+                                  
+                $('#assetEffectsWorkonUserSelector').val(assetEffectsWorkonUserSelector)
+                $('#assetEffectsTaskProcessSelect').val(assetEffectsTaskProcessSelect)
+                $('#assetEffectsTimeStart').val(assetEffectsTimeStart)
+                $('#assetEffectsTimeEnd').val(assetEffectsTimeEnd)
+                $('#assetEffectsExtra').val(assetEffectsExtra)
+                
+                                  
+                $('#assetCompWorkonUserSelector').val(assetCompWorkonUserSelector)
+                $('#assetCompTaskProcessSelect').val(assetCompTaskProcessSelect)
+                $('#assetCompTimeStart').val(assetCompTimeStart)
+                $('#assetCompTimeEnd').val(assetCompTimeEnd)
+                $('#assetCompExtra').val(assetCompExtra)
+                
+                                  
+                $('#assetFinalWorkonUserSelector').val(assetFinalWorkonUserSelector)
+                $('#assetFinalTaskProcessSelect').val(assetFinalTaskProcessSelect)
+                $('#assetFinalTimeStart').val(assetFinalTimeStart)
+                $('#assetFinalTimeEnd').val(assetFinalTimeEnd)
+                $('#assetFinalExtra').val(assetFinalExtra)
+                
+               // var shotDesc = shotData [11] 
+               // var shotDesc = shotData [11] 
+
+             })
+
+        };
+    
     
         function loadAssetDataClickedEdit(assetID){
             console.log(" 編輯 Asset 物件，由資料庫讀取現存資料","assetID",assetID)
@@ -1692,7 +2129,7 @@
                 
                 }, function(data) {
 
-                    console.log(data)
+                   // console.log(data)
                 
                     var assetData =  data[0]
                     var project =  data[1]
@@ -1796,15 +2233,415 @@
     
         $( document ).ready(function(in3DDBUserDB) {
              $('#currentProjectSelectedInputBox').hide()
-            //console.log('in3DDBUserDB',in3DDBUserDB)
-            //$('.userSelector').append()
-           // $('#editAndAddNewShot').hide()
+             //$('#uploadImageProjectName').hide()
+             $('#currentAssetCode').prop('readonly', true);
+             $('#currentShotCode').prop('readonly', true);
+             $('#projCodeInput').prop('readonly', true);
+             $('#publishItemLocation').prop('readonly', true);
+
+             $("#addEditAssetModal").on("hidden", function () {
+                console.log('asset 編輯視窗關閉')
+                $('.userSelector > option').remove() 
+                 
+             });
 
         });
     
+       
+    
+       $(function() {
+            
+                $('#publishItemMode').change(function() {
+            
+                console.log('發佈模式改變',$('#publishItemMode').val())
+                var itemPublishMode = $('#publishItemMode').val()
+               
+                if(itemPublishMode == 'image'){
+                        Dropzone.options.imagePublishDropzone['maxFiles']=1
+                        Dropzone.options.imagePublishDropzone['autoProcessQueue'] = " .png, .PNG,.tif,.TIF,.tiff,.tga,.TGA, .jpg "
+                        Dropzone.options.imagePublishDropzone['dictDefaultMessage'] ="將單圖拖曳至此區"
+                        var maxFileCount =1
+                        $('#imagePublishDropzone').show()   
+
+                        $('#spinePublishDropzone').hide()   
+                        $('#sequenePublishDropzone').hide()
+            
+                    
+                    }else if(itemPublishMode == 'spine'){
+                        $('#spinePublishDropzone').show()   
+                        $('#sequenePublishDropzone').hide()
+                        $('#imagePublishDropzone').hide()   
+
+                        Dropzone.options.imagePublishDropzone['maxFiles']=7
+                        Dropzone.options.imagePublishDropzone['autoProcessQueue'] = " .json , .png, .PNG,.jpg ,.skel, .atlas,"
+                        Dropzone.options.imagePublishDropzone['dictDefaultMessage'] ="將Spine需求檔案拖曳至此區"
+                        var maxFileCount =7
+                    }else if(itemPublishMode == 'sequence'){
+                        $('#spinePublishDropzone').hide()   
+                        $('#sequenePublishDropzone').show()
+                        $('#imagePublishDropzone').hide()   
+
+                        Dropzone.options.imagePublishDropzone['maxFiles'] = 1000
+                        Dropzone.options.imagePublishDropzone['autoProcessQueue'] = " .png, .PNG,.tif,.TIF,.tiff,.tga,.TGA, .jpg "
+                        Dropzone.options.imagePublishDropzone['dictDefaultMessage'] ="將連續圖檔拖曳至此區"
+                        var maxFileCount =1000
+                }
+                
+
+
+                console.log($('#imagePublishDropzone'))
+                   // myDropzone.fallback()
+                });
+
+            
+
+        })
+        Dropzone.options.imagePublishDropzone = {
+            dictDefaultMessage: "請拖曳單一圖檔到此",
+            paramName: "file", // The name that will be used to transfer the file
+            maxFilesize: 500, // MB
+            autoProcessQueue: false,
+            parallelUploads: 1,
+            ignoreHiddenFiles: true,
+            maxFiles:1,
+            init: function() {
+                var myDropzone = this;
+
+                var maxFileCount = 1
+
+                $("#publishSubmitBtn").click(function(e) {
+                    //sendFileList =[]
+
+                    e.preventDefault();
+                    myDropzone.processQueue();
+
+                })
+                
+                myDropzone.on('addedfile', function(file) {
+                    if (this.files.length > maxFileCount) {
+                        this.removeFile(this.files[0]);
+                        }
+                });               
+                myDropzone.on("complete", function(file) {
+
+       
+                    $.post("/publishItemUpload", {
+                           // 'projectName': currentSelectProject,
+                           // 'projectNameCN': currentSelectProjectCN
+                        },
+                        function(data) {
+                            console.log("feedback", data)
+                           // myDropzone.removeAllFiles()
+                            if ( data == "finished"){
+                                var fileList = []
+                                var fileCount = myDropzone.files.length
+                                //var fileName = myDropzone.files[0]['name']
+                                for(var i=0;i<fileCount;i++ ){
+                                    fileList.push( myDropzone.files[i]['name']) 
+                                    
+                                    fileName = fileList[0]
+                                    
+                                };
+                            console.log(fileList)
+
+                                fileUploadCompleted(fileName)
+                                myDropzone.removeAllFiles()
+                            }else{ console.log("上傳檔案失敗")}
+                          }
+                                        
+
+                    //
+                    );
+
+                });
+                
+                
+                function fileUploadCompleted(uploadfile) {
+                    
+                    console.log('image 上傳完畢',uploadfile)
+                    var itemName = $('#publishItemName').val()
+                    var itemCode = parseInt($('#publishItemCode').val())
+                    var projectName = $('#publishProjectName').val()
+                    var uploadMode = 'publishImage'
+
+                    var itemType = $('#publishItemType').val()
+                    var itemMode = $('#publishItemMode').val()
+                    var itemResX = $('#publishItemResX').val()
+                    var itemResY = $('#publishItemResY').val()
+                    var itemPivotX = $('#publishItemPivotX').val()
+                    var itemPivotY = $('#publishItemPivotY').val()
+                    var itemCenterX = $('#publishItemCordCenterX').val()
+                    var itemCenterY = $('#publishItemCordCenterY').val()
+                    var itemLocateX = $('#publishItemCordX').val()
+                    var itemLocateY = $('#publishItemCordY').val()
+                    var itemScale = $('#publishItemScale').val()
+                    var itemOpti = $('#publishItemOpt').val()
+                    var itemZdepth = $('#publishItemDepth').val()
+                    
+                    var itemInitVis = $('#publishItemVis').val()
+                 //   var itemLocated = $('#publishItemLocation').val()
+                    var itemDesc = $('#itemPublishDesc').val()
+
+                    
+                    console.log(itemName,itemCode,projectName,uploadMode,itemMode,itemDesc,itemResX,itemResY)
+                    
+                    
+                    $.post("/definePublishItem", {
+                        'fileName': uploadfile,
+                        'itemName': itemName,
+                        'itemCode': itemCode,
+                        'projectName': projectName,
+                        'uploadMode':uploadMode,
+                        'itemType':itemType,
+                        'itemMode':itemMode,
+                        'itemResX':itemResX,
+                        'itemResY':itemResY,
+                        'itemPivotX':itemPivotX,
+                        'itemPivotY':itemPivotY,
+                        'itemCenterX':itemCenterX,
+                        'itemCenterY':itemCenterY,
+                        'itemLocateX':itemLocateX,
+                        'itemLocateY':itemLocateY,
+                        'itemScale':itemScale,
+                        'itemOpti':itemOpti,
+                        'itemInitVis':itemInitVis,
+                        'itemZdepth':itemZdepth,
+                        'itemDesc':itemDesc,
+
+                        },
+                        function(data) {
+                            console.log("feedback", data)
+                        var errMsg = data[0]
+                        $('#itemPublishErrMsg').text()
+                        $('#itemPublishErrMsg').text(errMsg)
+                        
+                        }
+
+                    
+                    );
+                    
+                        
+                }
+                
+                    
+                $("#publishUploadCleartBtn").click(function(e) {
+                    
+                    myDropzone.removeAllFiles()
+
+                });
+
+            
+            },
+        };
+    
+        Dropzone.options.imageUploadDropzone = {
+            dictDefaultMessage: "將圖片拖曳至此區",
+            paramName: "file", // The name that will be used to transfer the file
+            maxFilesize: 100, // MB
+            autoProcessQueue: false,
+            parallelUploads: 1,
+            acceptedFiles:  ".png, .jpg, .tif, .TIF, .Tif, .PNG ,.JPG , .tga",
+            ignoreHiddenFiles: true,
+            maxFiles: 1,
+            init: function() {
+                var myDropzone = this;
+                myDropzone.on('addedfile', function(file) {
+                    if (this.files.length > 1) {
+                        this.removeFile(this.files[0]);
+                        }
+                 });
+                // Update selector to match your button
+                $("#imageUploadDropzoneBTN").click(function(e) {
+                    //sendFileList =[]
+
+                    e.preventDefault();
+                    myDropzone.processQueue();
+
+
+                })
+
+                myDropzone.on("complete", function(file) {
+
+       
+                    $.post("/imageUpload", {
+                           // 'projectName': currentSelectProject,
+                           // 'projectNameCN': currentSelectProjectCN
+                        },
+                        function(data) {
+                            console.log("feedback", data)
+                           // myDropzone.removeAllFiles()
+                            if ( data == "finished"){
+                                var fileName = myDropzone.files[0]['name']
+                                fileUploadCompleted(fileName)
+                            }else{ console.log("上傳檔案失敗")}
+                          }
+                                        
+
+                    //
+                    );
+
+                });
+
+
+
+                function fileUploadCompleted(uploadfile) {
+                    
+                    console.log('image 上傳完畢',uploadfile)
+                    var itemName = $('#uploadImageName').val()
+                    var itemCode = $('#uploadImageCode').val()
+                    var projectName = $('#uploadImageProjectName').val()
+                    var uploadMode = $('#uploadImageMode').val()
+                    $.post("/defineImageUpload", {
+                        'fileName': uploadfile,
+                        'itemName': itemName,
+                        'itemCode': itemCode,
+                        'projectName': projectName,
+                        'uploadMode':uploadMode,
+                        },
+                        function(data) {
+                            console.log("feedback", data)
+                        var errMsg = data
+                        $('#uploadImageErrmsg').text(errMsg)
+                        
+                        }
+
+
+                    );
+                    
+                        
+                }
+                
+
+                $("#clearAllUploadFiles").click(function(e) {
+                    
+                    myDropzone.removeAllFiles()
+
+                });
+                
+                $("#imageUploadDropzoneClearBTN").parent().children().click(function(e) {
+                    //console.log('sdsd')
+
+                    //console.log(e['currentTarget'])
+                    myDropzone.removeAllFiles()
+
+                })
+
+            }
+
+        };
+    
+        Dropzone.options.spinePublishDropzone = {
+            dictDefaultMessage: "將spine 檔案拖曳至此區",
+            paramName: "file", // The name that will be used to transfer the file
+            maxFilesize: 100, // MB
+            autoProcessQueue: false,
+            parallelUploads: 1,
+            acceptedFiles:  ".atlas, .json , .PNG , .JPG , .skel",
+            ignoreHiddenFiles: true,
+            maxFiles: 7,
+            init: function() {
+                var myDropzone = this;
+                myDropzone.on('addedfile', function(file) {
+                    if (this.files.length > 7) {
+                        this.removeFile(this.files[0]);
+                        }
+                 });
+                // Update selector to match your button
+                $("#imageUploadDropzoneBTN").click(function(e) {
+                    //sendFileList =[]
+
+                    e.preventDefault();
+                    myDropzone.processQueue();
+
+
+                })
+
+                myDropzone.on("complete", function(file) {
+
+       
+                    $.post("/imageUpload", {
+                           // 'projectName': currentSelectProject,
+                           // 'projectNameCN': currentSelectProjectCN
+                        },
+                        function(data) {
+                            console.log("feedback", data)
+                           // myDropzone.removeAllFiles()
+                            if ( data == "finished"){
+                                var fileName = myDropzone.files[0]['name']
+                                fileUploadCompleted(fileName)
+                            }else{ console.log("上傳檔案失敗")}
+                          }
+                                        
+
+                    //
+                    );
+
+                });
+
+
+
+                function fileUploadCompleted(uploadfile) {
+                    
+                    console.log('image 上傳完畢',uploadfile)
+                    var itemName = $('#uploadImageName').val()
+                    var itemCode = $('#uploadImageCode').val()
+                    var projectName = $('#uploadImageProjectName').val()
+                    var uploadMode = $('#uploadImageMode').val()
+                    $.post("/defineImageUpload", {
+                        'fileName': uploadfile,
+                        'itemName': itemName,
+                        'itemCode': itemCode,
+                        'projectName': projectName,
+                        'uploadMode':uploadMode,
+                        },
+                        function(data) {
+                            console.log("feedback", data)
+                        var errMsg = data
+                        $('#uploadImageErrmsg').text(errMsg)
+                        
+                        }
+
+
+                    );
+                    
+                        
+                }
+                
+
+                $("#clearAllUploadFiles").click(function(e) {
+                    
+                    myDropzone.removeAllFiles()
+
+                });
+                
+                $("#imageUploadDropzoneClearBTN").parent().children().click(function(e) {
+                    //console.log('sdsd')
+
+                    //console.log(e['currentTarget'])
+                    myDropzone.removeAllFiles()
+
+                })
+
+            }
+
+        };
+       
     
     
-    
+        $(function() {
+            
+            $('#gameSymbolBtn').click(function(event){
+                
+                $('#gameDescriptionDiv').hide()
+                $('#gameSymbolDiv').show()
+                $('#gameEffectDiv').hide()
+                $('#gameUIDiv').hide()
+
+            
+            });
+            
+
+            })
         
     </script>
     
@@ -1825,9 +2662,7 @@
 
             <!-- 新增 asset -->
             <div class="modal-body chineseStyleU_TableHeadAssets align-middle " style="border-style: solid;border-width: 1px;border-radius: 5px;margin-left: 20px;margin-right: 20px;background-color: rgb(240,240,240)" id="">
-                <div class="input-group mb-3">
-                    <h5>新增 asset 編輯</h5>
-                </div>
+
                 <div class="input-group mb-3" >
                     <div class="input-group-append ">
                         <label class="input-group-text align-middle" for="inputGroupSelect02" style="width: 100px">Code</label>
@@ -2070,14 +2905,22 @@
 
             <!-- 新增 shot -->
             <div class="modal-body chineseStyleU_TableHeadAssets align-middle" style="border-style: solid;border-width: 1px;border-radius: 5px;margin-left: 20px;margin-right: 20px;background-color: rgb(240,240,240)" id="">
-                <div class="input-group mb-3">
-                    <h5> 新增 shot 編輯</h5>
-                </div>
+                 <div class="input-group mb-3" >
+                    <div class="input-group-append ">
+                        <label class="input-group-text align-middle" for="inputGroupSelect02" style="width: 100px">Code</label>
+                    </div>
+                    <div class="input-group-append " style="width:250px">
+                        <input type="text" class="form-control" placeholder="None" aria-label="project EN name" aria-describedby="basic-addon2" id="currentShotCode">
+                    </div>
+                
+                
+                 </div>
+       
                 <div class="input-group mb-3">
                     <div class="input-group-append ">
                         <label class="input-group-text align-middle" for="inputGroupSelect02" style="width: 100px">英文名稱</label>
                     </div>
-                    <div class="input-group-append " style="width:190px">
+                    <div class="input-group-append " style="width:250px">
                         <input type="text" class="form-control" placeholder="物件英文名稱" aria-label="project EN name" aria-describedby="basic-addon2" id="editShotName">
                     </div>
                     <div class="input-group-append ">
@@ -2348,14 +3191,16 @@
             </div>
             
              <div class="modal-footer ">
-                <div class="input-group mb-3 ">
-                    <h6 class="col-6"></h6>
-                    <button type="button" class="col-2 btn btn-dark btn-md " id = "submitAddNewShotBtn">確定</button>
-                    <h6 class="col-1"></h6>
+                <div class="col-6">
+                       
+                </div>
+                 <div class="col-6">
+                    <div class="row">
+                        <button type="button" class="col-3 btn btn-primary btn-md" id= "submitAddNewShotBtn">確定新增</button>
+                        <button type="button" class="col-3 btn btn-success btn-md " id= "submitEditShotBtn">確認編輯</button>
 
-                    <button type="button" class="col-2 btn btn-secondary btn-md ">取消</button>
-
-                    <h6 class="col-1"></h6>
+                        <button type="button" class="col-3 btn btn-secondary btn-md ">取消</button>
+                    </div>
                 </div>
 
             </div>
@@ -2365,7 +3210,329 @@
 </div>
 
     
+<!-- 上傳圖片 動態視窗 -->    
+<div class="modal fade  " id="addEditAssetModal">
+    <div class="modal-dialog modal-megamenu" style="min-width: 800px">
+        <div class="modal-content " id="">
+            <div class="modal-header  bg-dark text-light" id="">
+                <h5 class="chineseStyleModalBold w-100 text-center align-middle" id="">檔案上傳(image)</h5>
 
+            </div>
+            
+            <div class="modal-header " id="">
+                <div class="input-group mb-3">
+                    <div class="input-group-append" style="width: 10%">
+                        <label class="input-group-text align-middle" for="inputGroupSelect02" style="width: 100px" >Project</label>
+                    </div>
+                    <div class="input-group-append" style="width: 90%">
+                        <input type="text" class="form-control" placeholder="None" aria-label="project EN name" aria-describedby="basic-addon2" id="uploadImageProjectName">
+                    </div>
+
+                </div>
+            </div>
+
+             <div class="modal-header " id="">
+
+                  <div class="input-group mb-3" >
+                       
+                        <div class="input-group-append" style="width: 10%">
+                            <label class="input-group-text align-middle" for="inputGroupSelect02" style="width: 100px">Name</label>
+                        </div>
+                        <div class="input-group-append" style="width: 30%" >
+                            <input type="text" class="form-control" placeholder="None" aria-label="project EN name" aria-describedby="basic-addon2" id="uploadImageName">
+                        </div>
+                        <div class="input-group-append" style="width: 10%">
+                            <label class="input-group-text align-middle" for="inputGroupSelect02" style="width: 100px">Code</label>
+                        </div>
+                        <div class="input-group-append " style="width: 30%">
+                            <input type="text" class="form-control" placeholder="None" aria-label="project EN name" aria-describedby="basic-addon2" id="uploadImageCode">
+                        </div>
+                        <div class="input-group-append" style="width: 10%">
+                            <label class="input-group-text align-middle" for="inputGroupSelect02" style="width: 100px">Mode</label>
+                        </div>
+                        <div class="input-group-append" style="width: 10%" >
+                            <input type="text" class="form-control" placeholder="None" aria-label="project EN name" aria-describedby="basic-addon2" id="uploadImageMode">
+                        </div>
+
+                 </div>
+              </div>
+
+            <div class="modal-body chineseStyleModalBold align-middle">
+                    <form action="/qcUpload" class="dropzone chineseStyleA " id="imageUploadDropzone" method="POST" style="color:black;min-height: 200px">
+                                                <h6 class="chineseStyleA" id="infoProjectTextPerson"></h6>
+
+
+                    </form>
+            </div>
+        
+
+             <div class="modal-footer ">
+
+                <h5 class="chineseStyleModalBold w-100 text-center align-middle text-danger " id="uploadImageErrmsg"></h5>
+             </div>
+            <div class="modal-footer ">
+                   <button type="button" class="btn btn-primary chineseStyleModalBold w-100" id="imageUploadDropzoneBTN">上傳</button>
+
+                    <button type="button" class="btn btn-dark chineseStyleModalBold w-100" id="imageUploadDropzoneClearBTN">清除</button>
+
+
+            </div>
+
+        </div>
+    </div>
+ </div>  
+
+
+<!-- 發佈元件 動態視窗 -->    
+<div class="modal fade publishEditor " id="publishModal">
+    <div class="modal-dialog modal-megamenu publishEditor" style="min-width: 1200px">
+        <div class="modal-content " id="">
+            <div class="modal-header  bg-dark text-light" id="">
+                <h5 class="chineseStyleModalBold w-100 text-center align-middle" id="">元件發佈</h5>
+
+            </div>
+            
+            <div class="modal-header " id="">
+                <div class="input-group mb-3">
+       
+                        <label class="input-group-text align-middle" for="inputGroupSelect02" style="width: 10%" >專案名稱</label>
+ 
+                        <div class="input-group-append" style="width:25%">
+                            <input type="text" class="form-control" placeholder="None" aria-label="project EN name" aria-describedby="basic-addon2" id="publishProjectName">
+                        </div>
+                    
+                        <label class="input-group-text align-middle" for="inputGroupSelect02" style="width:  10%">物件名稱</label>
+                      
+                        <div class="input-group-append"  style="width:25%">
+                            <input type="text" class="form-control" placeholder="None" aria-label="project EN name" aria-describedby="basic-addon2" id="publishItemName">
+                        </div>
+                        
+                        <label class="input-group-text align-middle" for="inputGroupSelect02" style="width:  10%">Code</label>
+                       
+                        <div class="input-group-append " style="width:20%">
+                            <input type="text" class="form-control" placeholder="None" aria-label="project EN name" aria-describedby="basic-addon2" id="publishItemCode">
+                        </div>
+
+                </div>
+            </div>
+             <div class="modal-header"  id="">
+           
+                        <div class='col-6'>
+                            <div class='row'>
+                                <button type="button" class="btn btn-secondary btn-sm chineseStyleU_TableHeadBig " id="publishUploadSwitchBtn"  style="width: 20%;">上傳</button>
+                                 <button type="button" class="btn btn-outline-secondary btn-sm chineseStyleU_TableHeadBig " id="publishUploadCleartBtn"  style="width: 20%;">清除</button>
+
+                                 <button type="button" class="btn btn-outline-success btn-sm chineseStyleU_TableHeadBig " id="publishPreviewSwitchBtn"  style="width: 20%;">預覽</button>
+
+
+                            </div>
+                            <div class='row' >
+
+                                <div class="chineseStyleModalBold align-middle " id="publishItemPreview" style="width:100%" >
+                                        <form action="/qcUpload" class="dropzone chineseStyleA " id="imagePublishDropzone" method="POST" style="color:black;height: 330px;margin: 3px ;background-color:#E6E6E6">
+
+
+                                        </form>
+                                        <form action="/qcUpload" class="dropzone chineseStyleA " id="spinePublishDropzone" method="POST" style="color:black;height: 330px;margin: 3px;background-color:#FFFFCC">
+
+
+                                        </form>
+                                        <form action="/qcUpload" class="dropzone chineseStyleA " id="sequenePublishDropzone" method="POST" style="color:black;height: 330px;margin: 3px;background-color:#99FFCC">
+
+
+                                        </form>
+     
+                                </div>
+                                
+                                
+                                
+                                <div class="col-12" id="publishItemPreviewDiv">
+                                    
+                                </div>
+
+                            </div>
+                        </div>
+
+                      <div class='col-6' >
+                         <!--    -->
+                            <div class='row'>
+                                <label class="input-group-text align-middle chineseStyleU_TableHead" for="inputGroupSelect02" style="width: 100%">屬性</label>
+
+
+                            </div>
+                         <!--    -->
+                            <div class='row' >
+                                <label class="input-group-text align-middle chineseStyleU_TableHead" for="inputGroupSelect02" style="width: 25%">功能類別</label>
+
+                                <div class="input-group-append chineseStyleU_TableHeadBig" style="width:75%">
+                                    <select class="custom-select " id="publishItemType">
+                                                                    <option value="symbol" selected>符號/標記</option>
+                                                                    <option value="ui">介面</option>
+                                                                    <option value="bg">背景</option>
+                                                                    <option value="character">角色</option>
+                                                                    <option value="effect">特效</option>
+                                                                    <option value="text">文字</option>
+
+                                                              </select>
+                                </div>
+                            </div>
+                        <!--    -->
+                                <div class='row'>
+                                <label class="input-group-text align-middle chineseStyleU_TableHead" for="inputGroupSelect02" style="width: 25%">表現方式</label>
+
+                                <div class="input-group-append chineseStyleU_TableHeadBig" style="width:75%">
+                                    <select class="custom-select " id="publishItemMode">
+                                                                    <option value="image" selected>圖檔</option>
+                                                                    <option value="spine">SPINE</option>
+                                                                    <option value="sequence">連續圖</option>
+
+                                                              </select>
+                                </div>
+                            </div>
+                        <!--    -->
+                            <div class='row'>
+                                <label class="input-group-text align-middle chineseStyleU_TableHead" for="inputGroupSelect02" style="width: 25%">解析度</label>
+
+                                <div class="input-group-append" style="width:37.5%">
+                                    <input type="text" class="form-control" value="0" aria-label="project EN name" aria-describedby="basic-addon2" id="publishItemResX">
+                                </div>
+                                <div class="input-group-append" style="width:37.5%">
+                                    <input type="text" class="form-control" value="0" aria-label="project EN name" aria-describedby="basic-addon2" id="publishItemResY">
+                                </div>
+                            </div>
+                        <!--    -->
+                            <div class='row'>
+                                <label class="input-group-text align-middle chineseStyleU_TableHead" for="inputGroupSelect02" style="width: 25%">中心點</label>
+
+                                <div class="input-group-append" style="width:37.5%">
+                                    <input type="text" class="form-control" value="0" aria-label="project EN name" aria-describedby="basic-addon2" id="publishItemPivotX">
+                                </div>
+                                <div class="input-group-append" style="width:37.5%">
+                                    <input type="text" class="form-control" value="0" aria-label="project EN name" aria-describedby="basic-addon2" id="publishItemPivotY">
+                                </div>
+                            </div>
+                                                        
+                            
+                        <!--    -->
+                            <div class='row'>
+                                <label class="input-group-text align-middle chineseStyleU_TableHead" for="inputGroupSelect02" style="width: 25%">起始座標</label>
+
+                                <div class="input-group-append" style="width:37.5%">
+                                    <input type="text" class="form-control" value="0" aria-label="project EN name" aria-describedby="basic-addon2" id="publishItemCordCenterX">
+                                </div>
+                                <div class="input-group-append" style="width:37.5%">
+                                    <input type="text" class="form-control" value="0" aria-label="project EN name" aria-describedby="basic-addon2" id="publishItemCordCenterY">
+                                </div>
+                            </div>
+                        <!--    -->
+                            <div class='row'>
+                                <label class="input-group-text align-middle chineseStyleU_TableHead" for="inputGroupSelect02" style="width: 25%">放置座標</label>
+
+                                <div class="input-group-append" style="width:37.5%">
+                                    <input type="text" class="form-control" value="0" aria-label="project EN name" aria-describedby="basic-addon2" id="publishItemCordX">
+                                </div>
+                                <div class="input-group-append" style="width:37.5%">
+                                    <input type="text" class="form-control" value="0" aria-label="project EN name" aria-describedby="basic-addon2" id="publishItemCordY">
+                                </div>
+                            </div>
+                        <!--    -->
+                            <div class='row'>
+                                <label class="input-group-text align-middle chineseStyleU_TableHead" for="inputGroupSelect02" style="width: 25%">比例</label>
+
+                                <div class="input-group-append" style="width:75%">
+                                    <input type="text" class="form-control" value="1.0" aria-label="project EN name" aria-describedby="basic-addon2" id="publishItemScale">
+                                </div>
+
+                            </div>
+                            
+                        <!--    -->
+                            <div class='row'>
+                                <label class="input-group-text align-middle chineseStyleU_TableHead" for="inputGroupSelect02" style="width: 25%">透明度</label>
+
+                                <div class="input-group-append" style="width:75%">
+                                    <input type="text" class="form-control" value="100" aria-label="project EN name" aria-describedby="basic-addon2" id="publishItemOpt">
+                                </div>
+
+                            </div>
+                        <!--    -->
+                            <div class='row'>
+                                <label class="input-group-text align-middle chineseStyleU_TableHead" for="inputGroupSelect02" style="width: 25%">深度</label>
+
+                                <div class="input-group-append" style="width:75%">
+                                    <input type="text" class="form-control" value="0" aria-label="project EN name" aria-describedby="basic-addon2" id="publishItemDepth">
+                                </div>
+
+                            </div>                                    
+                        <!--    -->
+                            <div class='row'>
+                                <label class="input-group-text align-middle chineseStyleU_TableHead" for="inputGroupSelect02" style="width: 25%">初始狀態</label>
+
+                                 <div class="input-group-append chineseStyleU_TableHeadBig" style="width:75%" >
+                                    <select class="custom-select chineseStyleU_TableHead" id="publishItemVis">
+                                            <option value="show" selected>顯示</option>
+                                            <option value="hide">隱藏</option>
+
+                                      </select>
+                                </div>
+              
+
+                            </div>                         
+                            
+                        
+                     </div>  
+                    
+          
+            
+             </div>
+             <div class="modal-header " id="">
+                <div class='col-12'>
+                    <div class='row'>
+
+                          <div class="input-group-append" style="width:90%">
+                              <h5 class="chineseStyleModalBold w-100 text-center align-middle text-danger " id="itemPublishErrMsg"></h5>
+
+                            </div>
+
+                    </div>
+                    <div class='row'>
+                        <label class="input-group-text align-middle chineseStyleU_TableHead" for="inputGroupSelect02" style="width: 10%">發布位置</label>
+
+                          <div class="input-group-append" style="width:90%">
+                                        <input type="text" class="form-control" value="" aria-label="project EN name" aria-describedby="basic-addon2" id="publishItemLocation">
+                                    </div>
+
+                    </div>
+                    <div class='row'>
+                        <label class="input-group-text align-middle chineseStyleU_TableHead" for="inputGroupSelect02" style="width: 10%">說明</label>
+
+                          <div class="input-group-append" style="width:90%">
+                                        <input type="text" class="form-control" value="" aria-label="project EN name" aria-describedby="basic-addon2" id="itemPublishDesc">
+                                    </div>
+
+                    </div>
+                </div>
+              </div>   
+ 
+
+        
+
+             <div class="modal-footer ">
+
+                <h5 class="chineseStyleModalBold w-100 text-center align-middle text-danger " id=""></h5>
+             </div>
+            <div class="modal-footer ">
+                   <button type="button" class="btn btn-primary chineseStyleModalBold w-100" id="publishSubmitBtn">發佈</button>
+
+                    <button type="button" class="btn btn-dark chineseStyleModalBold w-100" id="publishCCancelBtn">取消</button>
+
+
+            </div>
+
+        </div>
+    </div>
+ </div>  
+
+    
 
 
 </body>
