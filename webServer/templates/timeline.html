@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+      <!-- UI -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/earlyaccess/cwtexkai.css">
+     <link rel="stylesheet" href="https://fonts.googleapis.com/earlyaccess/cwtexyen.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/earlyaccess/cwtexfangsong.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/earlyaccess/notosanstc.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/earlyaccess/cwtexming.css">
+   
+
+
+    <!-- input jQuery Mobile js
+    <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
+   -->
+    <!-- jquery core
+    <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+ -->
+	<script src="{{url_for('static', filename='jquery-3.3.1.min.js')}}"></script>
+   
+   
+    <!-- Jquery UI -->
+	<link href="{{url_for('static',filename='css/jquery-ui.min.css')}}" rel="stylesheet">
+
+	<script src="{{url_for('static', filename='jquery-ui.min.js')}}"></script>
+
+  
+  
+  
+   <!-- bootstrap CDN 
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+
+    -->
+    
+    
+    <!-- bootstrap local -->
+    <link href="{{url_for('static',filename='css/bootstrap.min.css')}}" rel="stylesheet">
+
+	<script src="{{url_for('static', filename='bootstrap.min.js')}}"></script>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+
+    
+    <!-- input dropzoe js -->
+    <script src="https://rawgit.com/enyo/dropzone/master/dist/dropzone.js"></script>
+    <link rel="stylesheet" href="https://rawgit.com/enyo/dropzone/master/dist/dropzone.css">
+
+ 
+  
+
+    <!-- input bootstrap tag plugin js -->
+
+    <script src="{{url_for('static', filename='tagsinput.js')}}"></script>
+    <link href="{{url_for('static',filename='css/tagsinput.css')}}" rel="stylesheet">
+    
+
+    <!-- input pixi js -->
+
+
+    <script src="{{url_for('static', filename='pixi.min.js')}}"></script>
+    <script src="{{url_for('static', filename='pixi-spine.js')}}"></script>
+
+    <!-- input full screen js -->
+
+    <script src="{{url_for('static', filename='screenfull.min.js')}}"></script>
+
+    <!-- input Markdown js 
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.css">
+    <script src="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.js"></script>
+    -->
+    <script src="{{url_for('static', filename='bootstrap-markdown.js')}}"></script>
+    <link href="{{url_for('static',filename='css/bootstrap-markdown.css')}}" rel="stylesheet">
+    <!--
+    <script src="{{url_for('static', filename='timeliner.js')}}"></script>
+    <script src="{{url_for('static', filename='Frame.js')}}"></script>
+    -->
+    <link href="{{url_for('static',filename='styles/editor.css')}}" rel="stylesheet">
+
+   
+   <!--
+   
+    <script src="{{url_for('static', filename='TweenMax.js')}}"></script>
+    <script src="{{url_for('static', filename='TimelineMax.js')}}"></script>
+
+    <script src="{{url_for('static', filename='TweenTime.Core.min.js')}}"></script>
+    <script src="{{url_for('static', filename='TweenTime.Editor.min.js')}}"></script>
+    -->
+    <script src="{{url_for('static', filename='timeliner.js')}}"></script>
+
+ 
+    <title>Document</title>
+</head>
+
+<style>
+#main{
+    display:block;
+    width:80%;
+    padding:50px 10%;
+    height:300px;
+} 
+
+</style>
+
+
+<body>
+	<div class="container">
+        <div class="row">
+            <div class="col-12">
+                main panel
+            </div>
+            <div class="col-12" id="timelineEditor">
+               <canvas class="align-middle w-100 h-100 " id="timelinePixiCanvas" ></canvas>
+               
+            </div>
+            
+            
+        </div>
+
+        
+
+    
+  <!-- Content here -->
+    </div>
+    
+</body>
+
+
+
+<script>
+  
+    
+   var app = new PIXI.Application(1920, 1080, {
+                        view: document.getElementById('timelinePixiCanvas')
+                            }
+                );
+    console.log(app)
+    console.log('div',$('#timelinePixiCanvas'))
+   //document.body.appendChild(app.view);
+    //timeliner.setValues
+  //  console.log('timeliner',timeliner,DEFAULT_TIME_SCALE)
+    var width_L = 400
+    var width_R = 1920 - width_L
+    var height =1080
+    rectA(app,width_L,height)
+    rectB(app,width_R,height,width_L)
+    var ruleLeft = width_L+50
+    var ruleWidth = width_R-100
+    var ruleTop = 10
+    var ruleHeight =100
+    ruleA(0,200,100,600,ruleLeft,ruleWidth,ruleTop,ruleHeight)
+    currentRedLine(app,ruleLeft,50)
+   // rectB(app)
+    $(document).ready( function(){
+    //Get the canvas &
+   //  var c = $('#timelinePixiCanvas');
+      //  var ct = c.get(0).getContext('2d');
+      //  var container = $(c).parent();
+     //console.log(app.renderer.view.clientWidth)   
+
+    //Run function when browser resizes
+    $(window).resize( respondCanvas );
+        
+
+    function respondCanvas(){
+        var width = app.renderer.view.clientWidth
+       // c.attr('width', $(container).width() ); //max width
+        //c.attr('height', $(container).height() ); //max height
+        //console.log(app.render)
+        console.log(app.renderer.view.clientWidth)   
+        
+        // console.log($('#timelineEditor').width())   
+        //rectA(app,width)
+        //Call a function to redraw other content (texts, images etc)
+
+    }
+/*
+    //Initial call
+    respondCanvas();
+*/
+    }); 
+    
+   
+    
+     function currentRedLine(app,ruleLeft,offset){
+        var redLine = new PIXI.Graphics();
+        redLine.lineStyle(1, 0xff0000, 1);
+        redLine.moveTo(ruleLeft+offset,0);
+        redLine.lineTo(ruleLeft+offset, 1200);
+        
+        app.stage.addChild(redLine);
+
+    }
+    
+    
+    
+    
+    function rectA(app,w,h){
+        var graphics = new PIXI.Graphics();
+        //graphics.lineStyle(2, 0x4D4D4D, 1);
+        graphics.beginFill(0x4D4D4D, 1);
+        graphics.drawRoundedRect(0, 0, w, h, 0);
+        graphics.endFill();
+        
+        app.stage.addChild(graphics);
+
+    }
+    
+     function rectB(app,w,h,left){
+        var graphics = new PIXI.Graphics();
+           // graphics.lineStyle(2, 0x0000FF, 1);
+            graphics.beginFill(0xCCCCCC, 1);
+            graphics.drawRect(left, 0, w, h);
+        
+        app.stage.addChild(graphics);
+
+    }
+    
+    
+   
+    
+    function ruleA(minFrame,maxFrame,viewMinFrame,viewMaxFrame,left,w,top,h){
+        var graphics = new PIXI.Graphics();
+       // graphics.lineStyle(2, 0x0000FF, 1);
+        graphics.beginFill(0xA9C4EB, 1);
+        graphics.drawRect(left, top, w, h);
+
+        graphics.lineStyle(1, 0x000000, 1);
+      
+        var divV = (viewMaxFrame-viewMinFrame)
+        var divSpace = w/divV
+        var div5 = (viewMaxFrame-viewMinFrame)/5
+        var divSpace5 = w/div5
+        var div10 = (viewMaxFrame-viewMinFrame)/10
+        var divSpace10 = w/div10
+       
+        console.log('divV',divV,divSpace)
+        graphics.zOrder =0
+        app.stage.addChild(graphics);
+
+        var style = new PIXI.TextStyle({
+        fontFamily: 'Arial',
+        fontSize: 16,
+        fontStyle: 'normal',
+        fontWeight: 'light', 
+        align:'left'
+            });
+        if(divSpace >= 20){
+            for(var i =0;i<(divV+1);i++){
+            graphics.moveTo(left+(i*divSpace),top);
+            graphics.lineTo(left+(i*divSpace), top+30);
+            var bigNum = new PIXI.Text((viewMinFrame+i),style);
+            bigNum.x= left+(i*divSpace)
+            bigNum.y = top+40
+            bigNum.zOrder = 30
+            app.stage.addChild(bigNum);
+            }   
+        }else if(divSpace < 20 && divSpace >= 10){
+            for(var i =0;i<(div5+1);i++){
+            graphics.moveTo(left+(i*divSpace5),top);
+            graphics.lineTo(left+(i*divSpace5), top+30);
+            var bigNum = new PIXI.Text((viewMinFrame+i*5),style);
+            bigNum.x= left+(i*divSpace5)
+            bigNum.y = top+40
+            bigNum.zOrder = 30
+            app.stage.addChild(bigNum);
+            }  
+        }else if(divSpace < 10){
+            console.log('divSpace10',divSpace,div10)
+            for(var i =0;i<(div10+1);i++){
+            graphics.moveTo(left+(i*divSpace10),top);
+            graphics.lineTo(left+(i*divSpace10), top+30);
+            var bigNum = new PIXI.Text((viewMinFrame+i*10),style);
+            bigNum.x= left+(i*divSpace10)
+            bigNum.y = top+40
+            bigNum.zOrder = 30
+            app.stage.addChild(bigNum);
+            } 
+            
+            
+            
+        }
+        
+        
+       
+        
+        
+        
+        
+    }
+    
+</script>
+
+
+
+</html>
