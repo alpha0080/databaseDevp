@@ -79,19 +79,21 @@
     <script src="{{url_for('static', filename='timeliner.js')}}"></script>
     <script src="{{url_for('static', filename='Frame.js')}}"></script>
     -->
-    <link href="{{url_for('static',filename='styles/editor.css')}}" rel="stylesheet">
 
    
-   <!--
-   
-    <script src="{{url_for('static', filename='TweenMax.js')}}"></script>
-    <script src="{{url_for('static', filename='TimelineMax.js')}}"></script>
+ 
+    
+     
 
-    <script src="{{url_for('static', filename='TweenTime.Core.min.js')}}"></script>
-    <script src="{{url_for('static', filename='TweenTime.Editor.min.js')}}"></script>
-    -->
+
+        
+          <!--
     <script src="{{url_for('static', filename='timeliner.js')}}"></script>
+       
+           <script src="../src/scripts/bower_components/draggable-number.js/dist/draggable-number.js"></script>
 
+       
+        -->
  
     <title>Document</title>
 </head>
@@ -138,6 +140,13 @@
                         view: document.getElementById('timelinePixiCanvas')
                             }
                 );
+    
+    var loader = PIXI.loader
+    loader
+        .add('aniA', 'static/uploads/bigWin_effectA_03.json')
+      //  .on('complete',defineSpineEvent())
+        .load(defineSpineEvent);
+    
     console.log(app)
     console.log('div',$('#timelinePixiCanvas'))
    //document.body.appendChild(app.view);
@@ -153,6 +162,7 @@
     var ruleTop = 10
     var ruleHeight =100
     ruleA(0,200,100,600,ruleLeft,ruleWidth,ruleTop,ruleHeight)
+    drawArrow()
     currentRedLine(app,ruleLeft,50)
    // rectB(app)
     $(document).ready( function(){
@@ -166,27 +176,70 @@
     $(window).resize( respondCanvas );
         
 
+        
+    })
+        
+     
+    
+        
+    function defineSpineEvent(loader,res){
+        console.log('define spine',loader)
+      //  var res = loader.resources
+      //  var aniA = res.aniA.spineData
+        console.log('res',res)
+        var act1 =  new PIXI.spine.Spine(res.aniA.spineData);
+        console.log('act1',act1)
+        act1.x = 700
+        act1.y = 500
+        app.stage.addChild(act1);
+        //"testAction"
+        var currentTrack0 = act1.state.getCurrent(0)
+        console.log('currentTrack0',currentTrack0)
+       // act1.state.setEmptyAnimation (0,0)
+        act1.state.setAnimation(0, "testAction", true);
+        act1.state.setAnimation(1, "testAction", true);
+
+        var tracks = act1.state.tracks
+        tracks[0].delay =3
+        tracks[0].mixDuration =2
+        tracks[0].mixTime =3
+        tracks[1].timeScale  =3
+        console.log(tracks[0])
+        //currentTrack0.delay =20
+       // act1.state.addEmptyAnimation (0,0,0)
+      //  act1.stage.addAnimation(0,"testAction", true,10.0)
+       // act1.stage.addAnimation(0,'aniA', true,10.0)
+
+        var currentTrack0 = act1.state.getCurrent(0)
+
+        console.log('currentTrack0',currentTrack0)
+
+        //act1.state.setEmptyAnimation (0,0)
+       // act1.state.addEmptyAnimation (0,0,0)
+       // act1.mixDuration = 1;
+      //  addEmptyAnimation (	int trackIndex, float mixDuration, float delay)
+        
+        }
+    
     function respondCanvas(){
         var width = app.renderer.view.clientWidth
        // c.attr('width', $(container).width() ); //max width
         //c.attr('height', $(container).height() ); //max height
         //console.log(app.render)
         console.log(app.renderer.view.clientWidth)   
+   
         
         // console.log($('#timelineEditor').width())   
         //rectA(app,width)
         //Call a function to redraw other content (texts, images etc)
 
     }
-/*
-    //Initial call
-    respondCanvas();
-*/
-    }); 
+
     
    
     
      function currentRedLine(app,ruleLeft,offset){
+         console.log('drawline')
         var redLine = new PIXI.Graphics();
         redLine.lineStyle(1, 0xff0000, 1);
         redLine.moveTo(ruleLeft+offset,0);
@@ -220,7 +273,21 @@
 
     }
     
-    
+    function drawArrow(){
+        var graphics = new PIXI.Graphics();
+        graphics.lineStyle(2, 0xFF0000, 1);
+        graphics.beginFill(0xC66666, 1);
+
+        graphics.moveTo(-20,0);
+        graphics.lineTo(20,0);
+        graphics.lineTo(0,100);
+        graphics.lineTo(-20,0);
+        graphics.x= 960
+        graphics.y= 540
+
+        app.stage.addChild(graphics);
+        
+    }
    
     
     function ruleA(minFrame,maxFrame,viewMinFrame,viewMaxFrame,left,w,top,h){
