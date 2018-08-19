@@ -46,10 +46,10 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 
     
-    <!-- input dropzoe js -->
+    <!-- input dropzoe js 
     <script src="https://rawgit.com/enyo/dropzone/master/dist/dropzone.js"></script>
     <link rel="stylesheet" href="https://rawgit.com/enyo/dropzone/master/dist/dropzone.css">
-
+-->
  
   
 
@@ -81,8 +81,15 @@
     -->
 
    
- 
-    
+
+
+
+    <link href="{{url_for('static',filename='timeline/css/reset.css')}}" rel="stylesheet">
+    <link href="{{url_for('static',filename='timeline/css/timeline.css')}}" rel="stylesheet">
+    <script src="{{url_for('static', filename='timeline/js/timeline.js')}}"></script>
+    <script src="{{url_for('static', filename='gsap/src/uncompressed/TimelineMax.js')}}"></script>
+    <script src="{{url_for('static', filename='gsap/src/uncompressed/TweenMax.js')}}"></script>
+
      
 
 
@@ -122,15 +129,30 @@
             
             
         </div>
+        <div class= "row">
+            <div class="col-12">
+                <button type="button" class="btn btn-primary btn-sm" id="spin">spin</button>
+                <button type="button" class="btn btn-primary btn-sm" id="prew">prew</button>
+                <button type="button" class="btn btn-primary btn-sm" id="next">next</button>
 
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                control panel
+            </div>
+            <div class="col-12 time" id="timelineEditor">
+               <canvas class="align-middle w-100 h-100 " id="timelinePixiControlCanvas" ></canvas>
+               
+            </div>
+            
+            
+        </div>
         
 
     
   <!-- Content here -->
-    </div>
-    
-</body>
-
+  
 
 
 <script>
@@ -141,14 +163,21 @@
                             }
                 );
     
+   var timelineApp = new PIXI.Application(1920, 600, {
+                        view: document.getElementById('timelinePixiControlCanvas')
+                            }
+                );
+        
+    
+    
     var loader = PIXI.loader
     loader
-        .add('aniA', 'static/uploads/bigWin_effectA_03.json')
+        .add('aniA', 'static/uploads/Scatter_bird.json')
       //  .on('complete',defineSpineEvent())
         .load(defineSpineEvent);
     
-    console.log(app)
-    console.log('div',$('#timelinePixiCanvas'))
+    //console.log(app)
+    //console.log('div',$('#timelinePixiCanvas'))
    //document.body.appendChild(app.view);
     //timeliner.setValues
   //  console.log('timeliner',timeliner,DEFAULT_TIME_SCALE)
@@ -161,10 +190,39 @@
     var ruleWidth = width_R-100
     var ruleTop = 10
     var ruleHeight =100
+    var fps = 30
     ruleA(0,200,100,600,ruleLeft,ruleWidth,ruleTop,ruleHeight)
     drawArrow()
-    currentRedLine(app,ruleLeft,50)
-   // rectB(app)
+    currentRedLine(ruleLeft,50)
+    drawLine()
+    defineSlotColumn(300,150)
+    
+    $('#spin').click(function(){
+        run()
+        
+        
+    })
+    
+    
+    $('#prew').click(function(){
+        
+        var act1 = app.stage.children[7]
+        var currentTrack = act1.state.tracks[0]
+        currentTrack.trackTime =0
+        var currentTrackTime = currentTrack.trackTime
+        var lastTime = currentTrack.animationEnd 
+        var length = lastTime + 1.0/fps
+        console.log('actionA',act1,currentTrack)
+     //   console.log('lastTime',lastTime)
+        console.log('currentTrackTime',currentTrackTime)
+        //currentTrack.trackTime = currentTrackTime +1/fps
+        TweenLite.to(currentTrack, length, {trackTime:lastTime});
+        
+        //TweenLite.from()
+    })
+    
+    
+   // rectB(app).stage
     $(document).ready( function(){
     //Get the canvas &
    //  var c = $('#timelinePixiCanvas');
@@ -176,34 +234,116 @@
     $(window).resize( respondCanvas );
         
 
-        
+     drawRect(100,100,20,5,0xffffff,1,0xaaaaaa,1)   
     })
         
-     
+    function run(){
+        console.log(app.ticker)
+        app.ticker.start()
+        var slotColumn_1 = app.stage.children[6]
+        timer = 0
+        slotColumn_1.y= 0
+        app.ticker.add(function(delta){
+           // dy += delta
+            // deltaS = 10*delta 
+            //速率為 每frame 10px   ; deltaS = 10*delta
+            //每個 位移一個 slot的時間為  gap / deltaS
+            //減速度 ; deltaNS = 20*delta
+            timer += delta
+        //console.log(delta)
+            /*
+            if (timer<100){
+                slotColumn_1.y += 10
+            }else if(timer >= 100 && timer <= 200){
+                slotColumn_1.y += (10 - ((timer-100)/10))
+            }else if(timer >200){
+                app.ticker.stop()
+            }
+            */
+            //slotColumn_1.y += 15
+           //  console.log(slotColumn_1.y)
+            if(timer >= 100){app.ticker.stop()
+                    console.log(slotColumn_1.y)
+                            }  //delta = 15*100
+            
+            
+            
+            //if (timer >= 100) {app.ticker.stop()}
+        })
+        
+        
+    }
+    
+    function maskA(){
+        var maskA = new PIXI.Graphics
+        maskA.beginFill(0xffffff,1)
+        maskA.lineStyle(1, 0xffffff, 1);
+        //ccenterX = 
+        maskA.drawRoundedRect(960, 540, 200, 100,0);
+        return maskA
+    }
+    
+    function defineSlotColumn(count,gap){
+        var slotColumn = new PIXI.Container();
+        slotColumn.name = 'container_slotColumn'
+        var slotInColumn = []
+        for(var i=0;i<count;i++){
+               
+            var slot = drawRect(100,100,20,5,0xffffff,1,0xaaaaaa,1)  
+            //slotInColumn.push(slot)
+           // console.log(slot)
+            slot.y = 0 - i*gap
+            slotColumn.addChild(slot)
+        } 
+        //slotColumn.addChild(slotInColumn)
+        //var mask = maskA()
+        //mask.alpha = 1;
+        //mask.blendMode =1
+        app.stage.addChild(slotColumn)
+        //app.stage.addChild(mask)
+        //slotColumn.mask = mask
+    }
     
         
+    function drawRect(w,h,r,lineW,lineColor,lineOpti,fillColor,fillOpti){
+        var graphic = new PIXI.Graphics
+        graphic.beginFill(fillColor,fillOpti)
+        graphic.lineStyle(lineW, lineColor, lineOpti);
+        //ccenterX = 
+        screenW = app.renderer.screen.width
+        screenH = app.renderer.screen.height
+        graphic.drawRoundedRect(screenW/2-w/2, screenH/2-h/2, w, h,r);
+        return graphic
+        //app.stage.addChild(graphic)
+
+        
+    }
+    
+    
     function defineSpineEvent(loader,res){
         console.log('define spine',loader)
       //  var res = loader.resources
       //  var aniA = res.aniA.spineData
-        console.log('res',res)
         var act1 =  new PIXI.spine.Spine(res.aniA.spineData);
         console.log('act1',act1)
         act1.x = 700
         act1.y = 500
         app.stage.addChild(act1);
-        //"testAction"
+        console.log(res,Object.keys(res))
+        var spineJob = Object.keys(res[Object.keys(res)[0]].data.animations)
+        console.log('spineJob',spineJob)
         var currentTrack0 = act1.state.getCurrent(0)
-        console.log('currentTrack0',currentTrack0)
        // act1.state.setEmptyAnimation (0,0)
-        act1.state.setAnimation(0, "testAction", true);
-        act1.state.setAnimation(1, "testAction", true);
-
+        act1.state.setAnimation(0, spineJob[0], true);
+        
+      //  act1.state.setAnimation(1, "aniA", true);
+        console.log('act1',act1)
         var tracks = act1.state.tracks
-        tracks[0].delay =3
-        tracks[0].mixDuration =2
-        tracks[0].mixTime =3
-        tracks[1].timeScale  =3
+        tracks[0].timeScale =0
+      //  tracks[0].delay =3
+    //    tracks[0].mixDuration =2
+      //  tracks[0].mixTime =3
+      //  tracks[1].timeScale  =3
         console.log(tracks[0])
         //currentTrack0.delay =20
        // act1.state.addEmptyAnimation (0,0,0)
@@ -235,10 +375,21 @@
 
     }
 
-    
+    function drawLine(){
+        var line = new PIXI.Graphics();
+        line.lineStyle(1, 0xff0000, 1);
+        line.moveTo(960,0);
+        line.lineTo(960,1080)
+        line.moveTo(0,540)
+        line.lineTo(1920,540)
+        line.zOrder =99
+        
+        app.stage.addChild(line);
+        
+    }
    
     
-     function currentRedLine(app,ruleLeft,offset){
+     function currentRedLine(ruleLeft,offset){
          console.log('drawline')
         var redLine = new PIXI.Graphics();
         redLine.lineStyle(1, 0xff0000, 1);
@@ -291,6 +442,8 @@
    
     
     function ruleA(minFrame,maxFrame,viewMinFrame,viewMaxFrame,left,w,top,h){
+        var ruler = new PIXI.Container();
+
         var graphics = new PIXI.Graphics();
        // graphics.lineStyle(2, 0x0000FF, 1);
         graphics.beginFill(0xA9C4EB, 1);
@@ -307,7 +460,8 @@
        
         console.log('divV',divV,divSpace)
         graphics.zOrder =0
-        app.stage.addChild(graphics);
+        ruler.addChild(graphics)
+        app.stage.addChild(ruler);
 
         var style = new PIXI.TextStyle({
         fontFamily: 'Arial',
@@ -324,7 +478,7 @@
             bigNum.x= left+(i*divSpace)
             bigNum.y = top+40
             bigNum.zOrder = 30
-            app.stage.addChild(bigNum);
+            ruler.addChild(bigNum);
             }   
         }else if(divSpace < 20 && divSpace >= 10){
             for(var i =0;i<(div5+1);i++){
@@ -334,7 +488,7 @@
             bigNum.x= left+(i*divSpace5)
             bigNum.y = top+40
             bigNum.zOrder = 30
-            app.stage.addChild(bigNum);
+            ruler.addChild(bigNum);
             }  
         }else if(divSpace < 10){
             console.log('divSpace10',divSpace,div10)
@@ -345,14 +499,14 @@
             bigNum.x= left+(i*divSpace10)
             bigNum.y = top+40
             bigNum.zOrder = 30
-            app.stage.addChild(bigNum);
+            ruler.addChild(bigNum);
             } 
             
             
             
         }
         
-        
+        ruler.name ='container_ruler'
        
         
         
@@ -360,6 +514,8 @@
         
     }
     
+    
+
 </script>
 
 
