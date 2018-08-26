@@ -90,7 +90,10 @@
     <script src="{{url_for('static', filename='gsap/src/uncompressed/TimelineMax.js')}}"></script>
     <script src="{{url_for('static', filename='gsap/src/uncompressed/TweenMax.js')}}"></script>
 
+    <script src="{{url_for('static', filename='pixi.input.js')}}"></script>
+    <script src="{{url_for('static', filename='PixiTextInput.js')}}"></script>
      
+    <script src="{{url_for('static', filename='pixiTimeline.js')}}"></script>
 
 
         
@@ -134,6 +137,7 @@
                 <button type="button" class="btn btn-primary btn-sm" id="spin">spin</button>
                 <button type="button" class="btn btn-primary btn-sm" id="prew">prew</button>
                 <button type="button" class="btn btn-primary btn-sm" id="next">next</button>
+                <button type="button" class="btn btn-primary btn-sm" id="playBtn">play</button>
 
             </div>
         </div>
@@ -195,13 +199,72 @@
     drawArrow()
     currentRedLine(ruleLeft,50)
     drawLine()
-    defineSlotColumn(300,150)
+    //defineSlotColumn(300,150)
+    
+    
+    //intial container index
+    var labelContainer =  new PIXI.Container();
+    labelContainer.name = 'timeline_itemLabel'
+    timelineApp.stage.addChild(labelContainer)
+    console.log('timelineApp',timelineApp.stage)
+    
+    
+    
+    //initial ui 
+    
+    var timelineScreenW = timelineApp.renderer.screen.width
+    var timelineScreenH = timelineApp.renderer.screen.height
+
+    timelineApp.stage.setChildIndex(labelContainer,0)
+    
+    
+    
+    
+    
+    //ui
+
+   
+    
+ 
+    vartimelineRuler = creatTimelineRule(timelineApp,0,200,0,60)
+    var pixiTimelinePanel = pixiTimeline(timelineApp,'itemName')
+  //  console.log('pixiTimelinePanel',pixiTimelinePanel)
+   // createItemLabel(timelineApp,200,32,'symbol_A')
+    
+    //setItemLabelInTimeline()
+    
+    
+    
+    //ui end
     
     $('#spin').click(function(){
         run()
         
         
     })
+    
+   
+    
+    
+    function setItemLabelInTimeline(){
+    //  console.log(labelContainer)
+         
+        var itemList = labelContainer.children
+        for(var i=0;i<itemList.length;i++){
+            var setX = -timelineScreenW/2 + itemList[i].width/2 
+            var setY =  -timelineScreenH/2 + ((itemList[i].height)/2)*(i+1)
+            console.log(itemList[i],setX,setY)
+
+            itemList[i].x = setX
+            itemList[i].y = setY
+                //itemList[i].width/2 -timelineScreenW/2
+            
+            
+        }
+        
+        
+        
+    }
     
     
     $('#prew').click(function(){
@@ -221,6 +284,22 @@
         //TweenLite.from()
     })
     
+    
+    $('#playBtn').click(function(){
+        
+        console.log('click play btn')
+        console.log('stage',app.stage.children)
+        var slotColumn = app.stage.children[2]
+       // var slotCounts = slotPoor.length
+        
+        ////var slotTest = slotPoor[0]
+       // console.log('slotPoor',slotPoor,slotCounts,slotTest)
+       // var move = new TimelineMax(slotTest, 1, {x:100,y:-300}); 
+       // var move2 = new TweenMax(slotTest, 1, {x:100,y:300}); 
+        var move = new TimelineMax({repeat:0, repeatDelay:0});
+            move.to(slotColumn, 0, {y:0})
+            move.to(slotColumn, 6, {ease: Elastic.easeOut.config(1, 0.5),y:2200})
+    })
     
    // rectB(app).stage
     $(document).ready( function(){
@@ -274,34 +353,44 @@
         
     }
     
-    function maskA(){
+    function maskA(maskW,maskH){
         var maskA = new PIXI.Graphics
         maskA.beginFill(0xffffff,1)
         maskA.lineStyle(1, 0xffffff, 1);
-        //ccenterX = 
-        maskA.drawRoundedRect(960, 540, 200, 100,0);
+        maskA.drawRoundedRect(960, 540, maskW, maskH,0);
+        maskA.pivot.x=maskW/2
+        maskA.pivot.y=maskH/2
+
         return maskA
     }
     
+   
+
     function defineSlotColumn(count,gap){
-        var slotColumn = new PIXI.Container();
-        slotColumn.name = 'container_slotColumn'
-        var slotInColumn = []
+         var symbolW =200
+         var symbolH =200
+         var gap = 20
+         var maskW = 300
+         var maskH = 700
+        var slotPoor = new PIXI.Container();
+        slotPoor.name = 'container_slotPoor'
         for(var i=0;i<count;i++){
                
-            var slot = drawRect(100,100,20,5,0xffffff,1,0xaaaaaa,1)  
-            //slotInColumn.push(slot)
+            var slot = drawRect(symbolW,symbolH,20,5,0xffffff,1,0xaaaaaa,1)  
+            //slotPoor.push(slot)
            // console.log(slot)
-            slot.y = 0 - i*gap
-            slotColumn.addChild(slot)
+            slot.y = 5*(symbolH+gap) - i*(symbolH+gap)
+            slot.x = 0
+            slotPoor.addChild(slot)
         } 
         //slotColumn.addChild(slotInColumn)
-        //var mask = maskA()
+        var mask = maskA(maskW,maskH)
         //mask.alpha = 1;
         //mask.blendMode =1
-        app.stage.addChild(slotColumn)
-        //app.stage.addChild(mask)
-        //slotColumn.mask = mask
+        app.stage.addChild(slotPoor)
+        app.stage.setChildIndex(slotPoor,2)
+        app.stage.addChild(mask)
+        slotPoor.mask = mask
     }
     
         
@@ -321,30 +410,30 @@
     
     
     function defineSpineEvent(loader,res){
-        console.log('define spine',loader)
+      //  console.log('define spine',loader)
       //  var res = loader.resources
       //  var aniA = res.aniA.spineData
         var act1 =  new PIXI.spine.Spine(res.aniA.spineData);
-        console.log('act1',act1)
+    //    console.log('act1',act1)
         act1.x = 700
         act1.y = 500
         app.stage.addChild(act1);
-        console.log(res,Object.keys(res))
+     //   console.log(res,Object.keys(res))
         var spineJob = Object.keys(res[Object.keys(res)[0]].data.animations)
-        console.log('spineJob',spineJob)
+       // console.log('spineJob',spineJob)
         var currentTrack0 = act1.state.getCurrent(0)
        // act1.state.setEmptyAnimation (0,0)
         act1.state.setAnimation(0, spineJob[0], true);
         
       //  act1.state.setAnimation(1, "aniA", true);
-        console.log('act1',act1)
+     //   console.log('act1',act1)
         var tracks = act1.state.tracks
         tracks[0].timeScale =0
       //  tracks[0].delay =3
     //    tracks[0].mixDuration =2
       //  tracks[0].mixTime =3
       //  tracks[1].timeScale  =3
-        console.log(tracks[0])
+       // console.log(tracks[0])
         //currentTrack0.delay =20
        // act1.state.addEmptyAnimation (0,0,0)
       //  act1.stage.addAnimation(0,"testAction", true,10.0)
@@ -366,7 +455,7 @@
        // c.attr('width', $(container).width() ); //max width
         //c.attr('height', $(container).height() ); //max height
         //console.log(app.render)
-        console.log(app.renderer.view.clientWidth)   
+     //   console.log(app.renderer.view.clientWidth)   
    
         
         // console.log($('#timelineEditor').width())   
