@@ -115,6 +115,11 @@
     padding:50px 10%;
     height:300px;
 } 
+    
+    .tableLnie{
+        height: 20px
+        
+    }
 
 </style>
 
@@ -133,20 +138,33 @@
             
         </div>
         <div class= "row">
-            <div class="col-12">
+            <div class="col-3">
                 <button type="button" class="btn btn-primary btn-sm" id="spin">spin</button>
                 <button type="button" class="btn btn-primary btn-sm" id="prew">prew</button>
                 <button type="button" class="btn btn-primary btn-sm" id="next">next</button>
                 <button type="button" class="btn btn-primary btn-sm" id="playBtn">play</button>
+            </div>
 
+            <div class="col-9">   
+                <div class="input-group-prepend">
+                   <label class="input-group-text" for="inputGroupSelect01">current frame</label>
+                     <input type="number" class="form-control" min=0 max =1000 step=1 value=0 style="width:  15%" id="timelineCurrentFrame">
+                    <label class="input-group-text" for="inputGroupSelect01">start</label>
+                     <input type="number" class="form-control" min=0 max =1000 step=1 value=0 style="width:  15%" id="timelineStartInput">
+                    <label class="input-group-text" for="inputGroupSelect01">range start</label>
+                     <input type="number" class="form-control" min=0 max =1000 step=1 value=0 style="width:  15%" id="rangeStartInput">
+                       <label class="input-group-text" for="inputGroupSelect01">range end</label>
+                     <input type="number" class="form-control" min=0 max =1000 step=1 value=300 style="width:  15%" id="rangeEndInput">
+                      <label class="input-group-text" for="inputGroupSelect01">end</label>
+                     <input type="number" class="form-control" min=0 max =1000 step=1 value=1000 style="width:  15%" id="timelineEndInput">
+
+                  </div> 
             </div>
         </div>
         <div class="row">
-            <div class="col-12">
-                control panel
-            </div>
+         
             <div class="col-12 time" id="timelineEditor">
-               <canvas class="align-middle w-100 h-100 " id="timelinePixiControlCanvas" ></canvas>
+               <canvas  class="align-middle w-100 h-100 " id="timelinePixiControlCanvas" ></canvas>
                
             </div>
             
@@ -202,6 +220,11 @@
     //defineSlotColumn(300,150)
     
     
+    //初始化timeline table
+    //console.log($('#itemTableHeadSample').height())
+   
+    
+    
     //intial container index
     var labelContainer =  new PIXI.Container();
     labelContainer.name = 'timeline_itemLabel'
@@ -226,7 +249,7 @@
    
     
  
-    vartimelineRuler = creatTimelineRule(timelineApp,0,200,0,60)
+    vartimelineRuler = creatTimelineRule(timelineApp,0,100,0,1000)
     var pixiTimelinePanel = pixiTimeline(timelineApp,'itemName')
   //  console.log('pixiTimelinePanel',pixiTimelinePanel)
    // createItemLabel(timelineApp,200,32,'symbol_A')

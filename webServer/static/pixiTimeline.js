@@ -682,8 +682,26 @@ function pixiTimeline(pixiApp,itemName){
     };
     
 
+function createTimelineS(pixiApp,h,left,top,index){
+    var gap = 10
+    console.log('hhhh',h)
+    var itemTimelineContainer = new PIXI.Container() 
+    var itemTimelineLabel = new PIXI.Graphics();
+    var timeLineW = pixiApp.renderer.screen.width - 2*gap
+    itemTimelineLabel.beginFill(0x999999);
+    itemTimelineLabel.lineStyle(1, 0xffffff, 1);
+    itemTimelineLabel.drawRoundedRect(0,0,200,h,5)
+    itemTimelineLabel.endFill();
+   // itemTimelineLabel.x = gap
+    itemTimelineContainer.y =h*index
+    itemTimelineContainer.addChild(itemTimelineLabel)
+    pixiApp.stage.addChild(itemTimelineContainer)
+    
+    
+}
 
-function creatTimelineRule(pixiApp,minFrame,maxFrame,viewMinFrame,viewMaxFrame){
+
+function creatTimelineRule(pixiApp,rangeStart,rangeEnd,timelineStart,timelineEnd){
     
     var h = 32
     var w = 200
@@ -717,7 +735,7 @@ function creatTimelineRule(pixiApp,minFrame,maxFrame,viewMinFrame,viewMaxFrame){
     var timeLineW =timelineScreenW - (2*h + 4*h + 3*w)
     rulerTimelineLabel.name = 'ruleTimelineLabel'
     rulerTimelineLabel.beginFill(0x999999);
-    rulerTimelineLabel.lineStyle(1, 0xffffff, 1);
+    rulerTimelineLabel.lineStyle(1, 0xffffff, );
     rulerTimelineLabel.drawRoundedRect(0,0,timeLineW,1.5*h,5)
     rulerTimelineLabel.endFill();
     rulerTimelineLabel.x= left//2*h + 4*h + 2.5*w + 9*gap //timelineScreenW/2 + 2*w +30
@@ -725,6 +743,34 @@ function creatTimelineRule(pixiApp,minFrame,maxFrame,viewMinFrame,viewMaxFrame){
     rulerTimelineLabel.zOrder = 200   
         
     rulerContainer.addChild(rulerTimelineLabel)
+    
+    
+    var vLineCount = rangeEnd -rangeStart +1
+    var VlineSpaceCount =vLineCount -1
+    var vLineSpace = Math.floor(timeLineW / VlineSpaceCount)
+  
+    
+    console.log('vLineSpace',vLineSpace)
+    
+    //draw vLine
+    var rulerTimelineVLline = new PIXI.Graphics();
+    rulerContainer.addChild(rulerTimelineVLline)
+
+    for(var i=0;i<vLineCount;i++){
+        rulerTimelineVLline.name = 'rulerTimelineVLline'
+        rulerTimelineVLline.beginFill(0xffffff);
+        rulerTimelineVLline.lineStyle(1, 0xffffff, 0.5);
+        rulerTimelineVLline.moveTo(0+vLineSpace*i,0)
+        rulerTimelineVLline.lineTo(0+vLineSpace*i, h/2);
+        rulerTimelineVLline.endFill(); 
+        rulerTimelineVLline.zOrder=300
+        rulerTimelineVLline.x= left
+        rulerTimelineVLline.y= h/2
+
+
+    }
+    
+    
         
     pixiApp.stage.addChild(rulerContainer)
         
